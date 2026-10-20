@@ -16,5 +16,3 @@ web/        Portal, wiki y juego (HTML/CSS/JS)
 semilla/    Datos iniciales de la base de datos (wiki, puzzles, configuración)
 admin/      App de escritorio de administración (Windows)
 ```
-
-Proyecto fan sin ánimo de lucro · Resident Evil © CAPCOM · Contiene violencia y gore.
