@@ -1,0 +1,1160 @@
+/* ============================================================================
+ *  juego.css — HUD, escenas, temas por capítulo y cada tipo de paso
+ * ============================================================================
+ *  Índice:
+ *   1. HUD (monitor ECG, capítulo, botones)
+ *   2. Escena y temas de ambientación (uno por juego)
+ *   3. Tarjeta de capítulo
+ *   4. Narración
+ *   5. Salas (en explorar.css)
+ *   6. Encuentro (QTE)
+ *   7. Puzzles (orden, teclado, texto)
+ *   8. Máquina de escribir, susto y fin de capítulo
+ *   9. Documentos, inventario y archivos
+ *  10. Pantalla final
+ *  11. Adaptación a móvil
+ * ========================================================================== */
+
+/* ============================== 1. HUD ============================== */
+#pantalla-juego {
+  background: var(--negro);
+}
+
+.hud {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: calc(8px + var(--seguro-arriba)) 16px 8px;
+  background: linear-gradient(#0b0808, rgba(8, 6, 6, 0.92));
+  border-bottom: 1px solid var(--borde);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Monitor de salud con ECG, como en el menú de estado clásico */
+.hud-salud {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 8px 2px 2px;
+  background: #020702;
+  border: 1px solid #1a3a1a;
+  border-radius: 3px;
+  box-shadow: inset 0 0 12px rgba(60, 255, 107, 0.12);
+}
+
+#hud-ecg {
+  width: 110px;
+  height: 36px;
+  /* Cuadrícula de monitor médico */
+  background:
+    linear-gradient(rgba(60, 255, 107, 0.08) 1px, transparent 1px) 0 0 / 10px 9px,
+    linear-gradient(90deg, rgba(60, 255, 107, 0.08) 1px, transparent 1px) 0 0 / 10px 9px;
+}
+
+#hud-salud-texto {
+  font-family: var(--fuente-ui);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  min-width: 6.5em;
+  transition: color 0.4s;
+}
+
+#hud-salud-texto[data-estado="bien"] { color: var(--verde); }
+#hud-salud-texto[data-estado="precaucion"] { color: var(--ambar); }
+#hud-salud-texto[data-estado="peligro"],
+#hud-salud-texto[data-estado="muerto"] {
+  color: var(--sangre-clara);
+  animation: latir-texto 0.7s infinite;
+}
+
+@keyframes latir-texto {
+  50% { opacity: 0.4; }
+}
+
+.hud-centro {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.25;
+}
+
+#hud-capitulo {
+  font-family: var(--fuente-titulo);
+  color: var(--hueso);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.hud-tiempo-caja {
+  white-space: nowrap;
+  font-family: var(--fuente-maquina);
+  font-size: 0.85rem;
+  color: var(--texto-tenue);
+}
+
+.hud-botones {
+  display: flex;
+  gap: 6px;
+}
+
+.hud-botones button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  justify-content: center;
+  background: rgba(20, 14, 14, 0.9);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 1.05rem;
+}
+
+.hud-botones button span {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hud-botones button:hover {
+  border-color: var(--sangre-viva);
+}
+
+/* ============================== 2. ESCENA Y TEMAS ============================== */
+.escena {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Fondo: imagen opcional + degradados temáticos + niebla + luz que parpadea */
+.escena-fondo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Oscurecemos cualquier imagen de fondo para que el texto se lea siempre */
+.escena-fondo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--tema-degradado, radial-gradient(ellipse at 50% 30%, #1a0a0a, #000 75%));
+  opacity: 0.88;
+}
+
+/* Con foto de escenario, el velo es algo más ligero para que se aprecie la imagen */
+.escena-fondo.con-imagen::before {
+  opacity: 0.72;
+}
+
+.escena-fondo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.niebla {
+  position: absolute;
+  inset: -50%;
+  background:
+    radial-gradient(ellipse at 30% 60%, var(--tema-niebla, rgba(120, 120, 120, 0.08)), transparent 40%),
+    radial-gradient(ellipse at 70% 40%, var(--tema-niebla, rgba(120, 120, 120, 0.08)), transparent 45%);
+  animation: niebla 40s linear infinite;
+  z-index: 1;
+}
+
+@keyframes niebla {
+  from { transform: translateX(-10%) rotate(0deg); }
+  to { transform: translateX(10%) rotate(360deg); }
+}
+
+.luz-parpadeo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at 50% 0%, var(--tema-luz, rgba(255, 220, 160, 0.12)), transparent 55%);
+  animation: parpadeo-luz 6s infinite;
+}
+
+@keyframes parpadeo-luz {
+  0%, 18%, 22%, 60%, 64%, 100% { opacity: 1; }
+  19%, 21% { opacity: 0.2; }
+  62% { opacity: 0.4; }
+}
+
+body.reducir-destellos .luz-parpadeo {
+  animation: none;
+}
+
+/* --- Temas por juego (variables que usan el fondo, la niebla y la luz) --- */
+.tema-re2 { /* Comisaría: azul policial, fría */
+  --tema-degradado: radial-gradient(ellipse at 50% 20%, #13233d, #05070d 70%);
+  --tema-niebla: rgba(90, 120, 170, 0.12);
+  --tema-luz: rgba(150, 190, 255, 0.12);
+}
+.tema-re3 { /* Ciudad en llamas: naranja y humo */
+  --tema-degradado: radial-gradient(ellipse at 50% 100%, #5a1a00, #120500 65%, #000);
+  --tema-niebla: rgba(255, 110, 30, 0.1);
+  --tema-luz: rgba(255, 120, 40, 0.18);
+}
+.tema-re4 { /* Aldea rural: tierra y verde enfermizo */
+  --tema-degradado: radial-gradient(ellipse at 50% 30%, #2b2412, #0a0804 70%);
+  --tema-niebla: rgba(140, 150, 90, 0.1);
+  --tema-luz: rgba(255, 200, 120, 0.1);
+}
+.tema-re5 { /* África: sol abrasador y laboratorio */
+  --tema-degradado: radial-gradient(ellipse at 50% 0%, #6a3a08, #1a0d02 60%, #000);
+  --tema-niebla: rgba(255, 180, 80, 0.08);
+  --tema-luz: rgba(255, 190, 90, 0.2);
+}
+.tema-re6 { /* Catedral y virus C: verde azulado */
+  --tema-degradado: radial-gradient(ellipse at 50% 30%, #0c2a2a, #020808 70%);
+  --tema-niebla: rgba(70, 200, 180, 0.08);
+  --tema-luz: rgba(120, 255, 220, 0.1);
+}
+.tema-re7 { /* Casa Baker: moho, humedad, marrón verdoso */
+  --tema-degradado: radial-gradient(ellipse at 50% 40%, #24200c, #070602 70%);
+  --tema-niebla: rgba(110, 120, 60, 0.14);
+  --tema-luz: rgba(200, 180, 100, 0.1);
+}
+.tema-re8 { /* Aldea nevada: gris azulado y frío */
+  --tema-degradado: radial-gradient(ellipse at 50% 20%, #2a3038, #08090c 70%);
+  --tema-niebla: rgba(220, 230, 255, 0.12);
+  --tema-luz: rgba(220, 230, 255, 0.12);
+}
+.tema-re9 { /* Hotel Wrenwood: carmesí y violeta */
+  --tema-degradado: radial-gradient(ellipse at 50% 30%, #2d0a1a, #070206 70%);
+  --tema-niebla: rgba(200, 60, 120, 0.08);
+  --tema-luz: rgba(255, 120, 160, 0.1);
+}
+
+/* Nieve en Village */
+.tema-re8 .niebla::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 80px 120px, #fff, transparent),
+    radial-gradient(2px 2px at 150px 60px, #ddd, transparent),
+    radial-gradient(1px 1px at 200px 180px, #fff, transparent);
+  background-size: 240px 240px;
+  opacity: 0.5;
+  animation: nieve 12s linear infinite;
+}
+
+@keyframes nieve {
+  from { background-position: 0 0; }
+  to { background-position: 60px 480px; }
+}
+
+/* Contenido del paso (encima del fondo) */
+.escena-contenido {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px calc(24px + var(--seguro-abajo));
+}
+
+/* Cada paso aparece con un fundido */
+.escena-contenido > * {
+  animation: aparecer 0.5s ease;
+  width: 100%;
+  max-width: 820px;
+  margin: auto 0;   /* Centra verticalmente si cabe; si no, permite scroll */
+}
+
+/* ============================== 3. TARJETA DE CAPÍTULO ============================== */
+.tarjeta-capitulo {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.tc-numero {
+  margin: 0;
+  font-family: var(--fuente-maquina);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--sangre-clara);
+}
+
+.tc-juego {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 900;
+  font-size: clamp(2rem, 8vw, 4rem);
+  line-height: 1.05;
+  color: var(--hueso);
+  text-shadow: 0 0 25px rgba(193, 18, 31, 0.5), 0 4px 2px #000;
+}
+
+.tc-titulo {
+  margin: 0;
+  font-family: var(--fuente-sangre);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 4.5vw, 1.9rem);
+  color: var(--sangre-viva);
+}
+
+.tc-lugar {
+  font-family: var(--fuente-maquina);
+  color: var(--texto);
+}
+
+.tc-lugar span {
+  color: var(--texto-tenue);
+}
+
+.tc-prota {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 18px;
+  text-align: left;
+}
+
+.tc-prota img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 2px solid var(--borde);
+  box-shadow: 0 0 20px rgba(193, 18, 31, 0.4);
+}
+
+.tc-prota strong {
+  color: var(--hueso);
+  font-size: 1.15rem;
+}
+
+/* ============================== 4. NARRACIÓN ============================== */
+.narracion {
+  cursor: pointer;
+  font-family: var(--fuente-maquina);
+  font-size: clamp(1.02rem, 2.4vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--hueso);
+}
+
+.narracion-lineas p {
+  margin: 0 0 0.9em;
+  min-height: 1.7em;
+}
+
+.narracion-ayuda {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--texto-tenue);
+  text-align: right;
+}
+
+.narracion .btn {
+  margin-top: 8px;
+  float: right;
+}
+
+.narracion::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ============================== 5. SALAS: ver explorar.css ============================== */
+
+/* ============================== 6. ENCUENTRO (QTE) ============================== */
+.encuentro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.enemigo-marco {
+  position: relative;
+  width: clamp(130px, 30vw, 210px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--sangre);
+  box-shadow: 0 0 50px rgba(193, 18, 31, 0.6), inset 0 0 30px #000;
+  animation: amenaza 1.6s ease-in-out infinite;
+}
+
+.enemigo-retrato {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.25) saturate(1.2);
+}
+
+@keyframes amenaza {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.enemigo-nombre {
+  margin: 0;
+  font-family: var(--fuente-sangre);
+  font-weight: 400;
+  color: var(--sangre-viva);
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  text-shadow: 0 0 14px rgba(255, 0, 0, 0.6);
+}
+
+.encuentro-texto {
+  margin: 0;
+  max-width: 640px;
+  font-family: var(--fuente-maquina);
+  color: var(--hueso);
+  font-size: 1.05rem;
+}
+
+.qte {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.qte-ayuda,
+.qte-ronda {
+  margin: 0;
+  color: var(--texto-tenue);
+}
+
+.qte-ronda {
+  font-family: var(--fuente-ui);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hueso);
+}
+
+/* Barras de fuerza / tiempo */
+.barra {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background: #120a0a;
+  border: 1px solid var(--borde);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.barra .relleno {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #5a0000, #e01b1b);
+  transition: width 0.08s linear;
+}
+
+.barra-tiempo .relleno {
+  width: 100%;
+  background: linear-gradient(90deg, #6a5000, #ffc400);
+  transition: none;
+}
+
+.barra-texto {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-family: var(--fuente-maquina);
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+}
+
+/* Botón gigante del QTE: fácil de machacar con el pulgar */
+.btn-qte {
+  width: min(100%, 320px);
+  min-height: 92px;
+  border: 2px solid var(--sangre-clara);
+  border-radius: 10px;
+  background: radial-gradient(circle at 50% 35%, #d01414, #600000 70%);
+  color: #fff;
+  font-family: var(--fuente-sangre);
+  font-size: clamp(1.1rem, 5vw, 1.5rem);
+  text-shadow: 0 2px 3px #000;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5), inset 0 -6px 0 rgba(0, 0, 0, 0.35);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-qte.golpe {
+  animation: golpe-qte 0.12s ease;
+}
+
+.btn-qte:disabled {
+  filter: grayscale(0.7);
+  opacity: 0.6;
+}
+
+@keyframes golpe-qte {
+  50% { transform: scale(0.94); box-shadow: 0 0 60px rgba(255, 0, 0, 0.9); }
+}
+
+/* Pista de esquiva: un marcador recorre la barra; hay que pulsar en la zona */
+.esquiva-pista {
+  position: relative;
+  width: 100%;
+  height: 42px;
+  background: #0d0808;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.esquiva-zona {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(45deg, rgba(193, 18, 31, 0.55) 0 8px, rgba(120, 0, 0, 0.55) 8px 16px);
+  border-left: 2px solid var(--sangre-clara);
+  border-right: 2px solid var(--sangre-clara);
+  transition: background 0.2s;
+}
+
+.esquiva-zona.acierto {
+  background: rgba(60, 255, 107, 0.45);
+}
+
+.esquiva-zona.fallo {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.esquiva-marcador {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 4px;
+  margin-left: -2px;
+  background: #fff;
+  box-shadow: 0 0 12px #fff;
+}
+
+.encuentro-resultado {
+  font-family: var(--fuente-maquina);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.encuentro-resultado.bien { color: var(--hueso); }
+.encuentro-resultado.mal { color: var(--sangre-clara); }
+
+/* ============================== 7. PUZZLES ============================== */
+.puzzle {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+}
+
+.puzzle h2 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  color: var(--hueso);
+}
+
+.puzzle-enunciado {
+  margin: 0;
+  font-family: var(--fuente-maquina);
+}
+
+.puzzle-mensaje {
+  margin: 0;
+  min-height: 1.5em;
+  font-family: var(--fuente-maquina);
+}
+
+.puzzle-mensaje.bien { color: var(--verde); }
+.puzzle-mensaje.mal { color: var(--sangre-clara); }
+
+.puzzle-acciones {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.puzzle-pista {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px dashed var(--ambar);
+  border-radius: var(--radio);
+  color: var(--ambar);
+  font-family: var(--fuente-maquina);
+  text-align: left;
+}
+
+.puzzle-ui.resuelto {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* --- Orden de fichas --- */
+.orden-huecos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hueco {
+  width: 96px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 2px dashed #5a2a2a;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a1212, #070505);
+  color: var(--texto-tenue);
+  font-size: 0.8rem;
+}
+
+.hueco.lleno {
+  border-style: solid;
+  border-color: var(--ambar);
+  color: var(--hueso);
+  box-shadow: 0 0 16px rgba(255, 196, 0, 0.25);
+}
+
+.orden-fichas {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ficha {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 96px;
+  min-height: 76px;
+  padding: 8px 12px;
+  border: 1px solid #5a4a2a;
+  border-radius: 8px;
+  background: linear-gradient(#2a2418, #120f0a);
+  color: var(--hueso);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.ficha:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--ambar);
+}
+
+.ficha:disabled {
+  opacity: 0.25;
+}
+
+.ficha-icono {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+/* Cables de colores (RE6) */
+.ficha-cable {
+  width: 56px;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--ficha-color);
+  box-shadow: 0 0 10px var(--ficha-color);
+}
+
+.orden-ayuda {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-tenue);
+}
+
+/* --- Teclado numérico --- */
+.teclado {
+  width: min(100%, 300px);
+  margin: 0 auto;
+  padding: 16px;
+  background: linear-gradient(#2a2a2a, #121212);
+  border: 2px solid #3a3a3a;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.06), 0 10px 30px #000;
+}
+
+.teclado-pantalla {
+  margin-bottom: 12px;
+  padding: 10px;
+  background: #031a03;
+  border: 1px solid #0f3a0f;
+  border-radius: 4px;
+  color: var(--verde);
+  font-family: var(--fuente-maquina);
+  font-size: 1.9rem;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 8px rgba(60, 255, 107, 0.6);
+}
+
+.teclado-teclas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.teclado-teclas button {
+  min-height: 54px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: linear-gradient(#3a3a3a, #1c1c1c);
+  font-size: 1.3rem;
+  box-shadow: 0 3px 0 #000;
+}
+
+.teclado-teclas button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #000;
+}
+
+.teclado-teclas .ok {
+  background: linear-gradient(#2a6a2a, #123a12);
+}
+
+/* --- Texto libre --- */
+.texto-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.texto-form input {
+  flex: 1 1 220px;
+  max-width: 360px;
+  min-height: 48px;
+  padding: 0 14px;
+  background: #050404;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-family: var(--fuente-maquina);
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--hueso);
+}
+
+.texto-form input:focus {
+  border-color: var(--sangre-viva);
+  outline: none;
+}
+
+/* ============================== 8. MÁQUINA, SUSTO, FIN ============================== */
+.maquina {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  /* Luz cálida de "sala segura" */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 210, 140, 0.12), transparent 60%),
+    var(--panel);
+}
+
+.maquina-dibujo {
+  width: 150px;
+  filter: drop-shadow(0 6px 10px #000);
+}
+
+.maquina h2 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  color: var(--hueso);
+}
+
+.maquina p {
+  margin: 0;
+  font-family: var(--fuente-maquina);
+}
+
+.maquina-acciones {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.maquina-resultado {
+  min-height: 1.5em;
+  color: var(--verde);
+}
+
+.codigo-partida {
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  color: var(--ambar);
+  user-select: all;
+}
+
+.susto-texto {
+  text-align: center;
+  font-family: var(--fuente-maquina);
+  font-size: 1.2rem;
+  color: var(--hueso);
+}
+
+.susto-texto .btn {
+  margin-top: 12px;
+}
+
+.fin-capitulo {
+  text-align: center;
+}
+
+.sello {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 14px;
+  border: 3px double var(--sangre-viva);
+  color: var(--sangre-viva);
+  font-family: var(--fuente-maquina);
+  letter-spacing: 0.2em;
+  transform: rotate(-3deg);
+  text-shadow: 0 0 1px var(--sangre-viva);
+}
+
+.fin-capitulo h2 {
+  margin: 0 0 12px;
+  font-family: var(--fuente-titulo);
+  color: var(--hueso);
+}
+
+.estadisticas {
+  list-style: none;
+  margin: 0 auto 18px;
+  padding: 0;
+  max-width: 380px;
+  font-family: var(--fuente-maquina);
+}
+
+.estadisticas li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #2a1a1a;
+}
+
+.estadisticas strong {
+  color: var(--hueso);
+}
+
+/* ============================== 9. DOCUMENTOS E INVENTARIO ============================== */
+.modal-documento {
+  padding: 16px;
+}
+
+.documento-papel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 86dvh;
+  overflow-y: auto;
+  padding: 36px clamp(18px, 5vw, 44px) 32px;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px #000;
+  animation: papel-entra 0.4s ease;
+}
+
+@keyframes papel-entra {
+  from { transform: translateY(20px) rotate(-1.5deg); opacity: 0; }
+  to { transform: rotate(-0.4deg); opacity: 1; }
+}
+
+.documento-papel h2 {
+  margin: 0 0 16px;
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+}
+
+.documento-papel pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: var(--fuente-maquina);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.documento-papel .modal-cerrar {
+  color: inherit;
+  opacity: 0.6;
+}
+
+/* Papel envejecido, con manchas de café */
+.estilo-papel {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(120, 80, 20, 0.25), transparent 20%),
+    radial-gradient(ellipse at 10% 90%, rgba(90, 60, 20, 0.2), transparent 25%),
+    linear-gradient(#e6dcc3, #cfc2a2);
+  color: #2a2016;
+}
+
+/* Informe oficial mecanografiado */
+.estilo-informe {
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 27px, rgba(80, 90, 140, 0.15) 27px 28px),
+    linear-gradient(#efeadf, #d9d2c2);
+  color: #1d1d24;
+  border-top: 10px solid #2a3a5a;
+}
+
+/* Correo / pantalla de ordenador */
+.estilo-email {
+  background: #031003;
+  color: var(--verde);
+  border: 1px solid #0f3a0f;
+  text-shadow: 0 0 6px rgba(60, 255, 107, 0.5);
+}
+
+.estilo-email pre {
+  font-family: "Courier New", monospace;
+}
+
+/* Nota empapada de sangre */
+.estilo-sangre {
+  background:
+    radial-gradient(ellipse at 90% 85%, rgba(130, 0, 0, 0.85), transparent 28%),
+    radial-gradient(ellipse at 5% 10%, rgba(130, 0, 0, 0.6), transparent 18%),
+    radial-gradient(circle at 70% 30%, rgba(110, 0, 0, 0.35), transparent 8%),
+    linear-gradient(#ddd2bb, #bfb193);
+  color: #2a0d0d;
+}
+
+.inventario,
+.archivos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inventario .vacio,
+.archivos .vacio {
+  color: var(--texto-tenue);
+  font-family: var(--fuente-maquina);
+}
+
+.objeto {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #2a1a1a;
+  border-radius: var(--radio);
+}
+
+.objeto-icono {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  background: #000;
+  border: 1px solid #3a2a2a;
+  border-radius: 4px;
+}
+
+.objeto-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.objeto-info p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--texto-tenue);
+}
+
+.objeto-info em {
+  color: var(--ambar);
+  font-style: normal;
+}
+
+.objeto .btn {
+  min-height: 40px;
+  padding: 0.3em 0.9em;
+}
+
+.archivo {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #2a1a1a;
+  border-radius: var(--radio);
+  font-family: var(--fuente-maquina);
+}
+
+.archivo:hover {
+  border-color: var(--ambar);
+}
+
+/* ============================== 10. PANTALLA FINAL ============================== */
+#pantalla-final {
+  align-items: center;
+  overflow-y: auto;
+  padding: 24px 16px;
+  background: radial-gradient(ellipse at 50% 0%, #2a0505, #000 70%);
+}
+
+.final-contenido {
+  width: 100%;
+  max-width: 620px;
+  margin: auto 0;
+  text-align: center;
+}
+
+.final-contenido h1 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 900;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  color: var(--hueso);
+}
+
+.final-contenido h2 {
+  font-family: var(--fuente-titulo);
+  color: var(--hueso);
+  font-size: 1.2rem;
+}
+
+.final-texto {
+  font-family: var(--fuente-maquina);
+}
+
+.final-rango {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.rango {
+  font-family: var(--fuente-ui);
+  letter-spacing: 0.2em;
+}
+
+.rango strong {
+  font-family: var(--fuente-titulo);
+  font-size: 3rem;
+  color: var(--ambar);
+  text-shadow: 0 0 20px rgba(255, 196, 0, 0.5);
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.final-contenido .ranking {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* ============================== 11. MÓVIL ============================== */
+@media (max-width: 700px) {
+  body {
+    font-size: 16px;
+  }
+
+  .hud {
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-wrap: wrap;
+  }
+
+  #hud-ecg {
+    width: 80px;
+  }
+
+  #hud-salud-texto {
+    font-size: 0.75rem;
+    min-width: 0;
+  }
+
+  /* El texto de los botones del HUD se oculta; quedan los iconos */
+  .hud-botones button span {
+    display: none;
+  }
+
+  .hud-centro {
+    order: 3;
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+
+  #hud-capitulo {
+    font-size: 0.85rem;
+  }
+
+  .hud-botones {
+    margin-left: auto;
+  }
+
+  .escena-contenido {
+    padding: 14px 12px calc(20px + var(--seguro-abajo));
+  }
+
+  .hueco {
+    width: 74px;
+    height: 74px;
+    font-size: 0.72rem;
+  }
+
+  .ficha {
+    min-width: 78px;
+    min-height: 68px;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+
+  .narracion .btn {
+    width: 100%;
+    float: none;
+  }
+}

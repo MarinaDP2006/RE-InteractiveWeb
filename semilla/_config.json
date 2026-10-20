@@ -1,0 +1,49 @@
+{
+  "acceso": {
+    "anuncio": "",
+    "wiki": { "publica": true, "mensaje": "La wiki está en mantenimiento. Los archivos de Umbrella vuelven pronto." },
+    "juego": { "publico": true, "mensaje": "El juego está cerrado temporalmente. Las máquinas de escribir están sin cinta." }
+  },
+  "wiki": {
+    "secciones": [
+      { "id": "juegos", "titulo": "Juegos", "icono": "🎮", "descripcion": "Todos los juegos canon de la saga, en orden de lanzamiento y de historia.", "visible": true },
+      { "id": "peliculas", "titulo": "Películas y series", "icono": "🎬", "descripcion": "Las películas CGI canon y las adaptaciones de acción real (no canon).", "visible": true },
+      { "id": "personajes", "titulo": "Personajes", "icono": "👤", "descripcion": "Supervivientes, agentes, científicos y monstruos con nombre propio.", "visible": true },
+      { "id": "criaturas", "titulo": "Bestiario", "icono": "🧟", "descripcion": "Zombis, B.O.W., Tyrants, Ganados, Moldeados y todo lo que quiere comerte.", "visible": true },
+      { "id": "virus", "titulo": "Agentes biológicos", "icono": "🧬", "descripcion": "Del virus Progenitor al Megamiceto: lo que lo empezó todo.", "visible": true },
+      { "id": "organizaciones", "titulo": "Organizaciones", "icono": "☂", "descripcion": "Umbrella, la B.S.A.A., Tricell, Los Iluminados, La Familia...", "visible": true },
+      { "id": "ubicaciones", "titulo": "Ubicaciones", "icono": "📍", "descripcion": "Cada lugar de la saga en el mapa del mundo y de Raccoon City.", "visible": true },
+      { "id": "cronologia", "titulo": "Cronología", "icono": "⏳", "descripcion": "La historia completa, de 1966 a hoy, año a año.", "visible": true }
+    ],
+    "portada": {
+      "titulo": "UMBRELLA ARCHIVES",
+      "lema": "Nuestro negocio es la vida misma.",
+      "intro": "Archivo clasificado de la saga Resident Evil: todos los juegos y películas canon, cada personaje, cada virus y cada lugar, desde los laboratorios Arklay hasta las ruinas de Raccoon City.",
+      "destacados": [
+        { "seccion": "juegos", "id": "re2" },
+        { "seccion": "personajes", "id": "leon" },
+        { "seccion": "criaturas", "id": "tyrant" },
+        { "seccion": "ubicaciones", "id": "raccoon-city" }
+      ]
+    }
+  },
+  "juego": {
+    "rankingAbierto": true,
+    "mensajeDia": "",
+    "dificultad": "normal",
+    "archivos": {
+      "re2": true, "re3": true, "re4": true, "re5": true,
+      "re6": true, "re7": true, "re8": true, "re9": true
+    },
+    "videos": {
+      "intro": "",
+      "re2": "", "re3": "", "re4": "", "re5": "",
+      "re6": "", "re7": "", "re8": "", "re9": ""
+    },
+    "efectos": {
+      "lluviaTitulo": true,
+      "texturasProcedurales": true,
+      "particulas": true
+    }
+  }
+}

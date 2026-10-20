@@ -1,0 +1,277 @@
+/* ============================================================================
+ *  efectos.css — Capas de ambiente y efectos gore
+ * ============================================================================
+ *  - Grano de película y líneas de escaneo (siempre activos, muy sutiles).
+ *  - Viñeta roja que crece al bajar la salud.
+ *  - Canvas de sangre, destellos, temblores y jump scares.
+ *  - Goteo de sangre en la pantalla de título y pantalla de muerte.
+ * ========================================================================== */
+
+/* ---------- Capas fijas a pantalla completa ---------- */
+#lienzo-sangre,
+#capa-salud,
+#capa-grano,
+#capa-lineas,
+#capa-destello {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+#lienzo-sangre {
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6)); /* Relieve: la sangre parece "pegada" al cristal */
+}
+
+#lienzo-sangre.desvanecer {
+  opacity: 0;
+  transition: opacity 2.4s ease;
+}
+
+/* Grano: ruido SVG animado en bucle */
+#capa-grano {
+  z-index: 45;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grano 0.6s steps(4) infinite;
+}
+
+@keyframes grano {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Líneas de escaneo de monitor CRT */
+#capa-lineas {
+  z-index: 44;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, 0.18) 2px 3px);
+  opacity: 0.5;
+}
+
+/* Viñeta de salud: invisible en "bien", roja en "precaución", latiendo en "peligro" */
+#capa-salud {
+  z-index: 39;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(120, 0, 0, 0.55) 80%, rgba(60, 0, 0, 0.9) 100%);
+  transition: opacity 1s ease;
+}
+
+body.salud-precaucion #capa-salud {
+  opacity: 0.45;
+}
+
+body.salud-peligro #capa-salud {
+  opacity: 1;
+  animation: pulso-peligro 0.7s ease-in-out infinite;
+}
+
+@keyframes pulso-peligro {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+/* Destello a pantalla completa */
+#capa-destello {
+  z-index: 46;
+  opacity: 0;
+}
+
+#capa-destello.activo {
+  animation: destello 0.45s ease-out;
+}
+
+@keyframes destello {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ---------- Temblor de la interfaz ---------- */
+#app.temblor {
+  animation: temblor 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+#app.temblor-suave {
+  animation: temblor-suave 0.3s ease;
+}
+
+@keyframes temblor {
+  10%, 90% { transform: translate(-2px, 1px) rotate(-0.2deg); }
+  20%, 80% { transform: translate(4px, -2px) rotate(0.3deg); }
+  30%, 50%, 70% { transform: translate(-7px, 3px) rotate(-0.5deg); }
+  40%, 60% { transform: translate(7px, -3px) rotate(0.5deg); }
+}
+
+@keyframes temblor-suave {
+  50% { transform: translateX(2px); }
+}
+
+/* ---------- Jump scare ---------- */
+#capa-susto {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #000;
+  pointer-events: none;
+}
+
+#capa-susto.activo {
+  display: flex;
+}
+
+#capa-susto img {
+  width: min(92vw, 92vh);
+  height: min(92vw, 92vh);
+  object-fit: cover;
+  filter: contrast(1.6) saturate(1.4) brightness(1.1);
+  animation: susto-zoom 0.95s cubic-bezier(0.2, 0.9, 0.2, 1) forwards, susto-glitch 0.12s steps(2) infinite;
+}
+
+#capa-susto .susto-nombre {
+  position: absolute;
+  bottom: 8vh;
+  font-family: var(--fuente-sangre);
+  font-size: clamp(1.4rem, 6vw, 3rem);
+  color: var(--sangre-clara);
+  text-shadow: 0 0 20px #f00;
+}
+
+@keyframes susto-zoom {
+  0% { transform: scale(0.4); opacity: 0; }
+  12% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 1; }
+}
+
+@keyframes susto-glitch {
+  0% { translate: -6px 3px; filter: contrast(1.6) hue-rotate(0deg) saturate(1.4); }
+  100% { translate: 6px -3px; filter: contrast(2) hue-rotate(-20deg) saturate(2); }
+}
+
+/* Versión suave para "reducir destellos": sin parpadeo ni zoom brusco */
+#capa-susto.suave {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#capa-susto.suave img {
+  animation: aparecer 0.3s ease forwards;
+  filter: none;
+}
+
+body.reducir-destellos #capa-grano {
+  animation: none;
+}
+
+body.reducir-destellos #capa-salud {
+  animation: none !important;
+}
+
+/* ---------- Goteo de sangre (título y muerte) ---------- */
+.goteo {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  /* Borde superior empapado */
+  background: linear-gradient(to bottom, #5a0000 0, #3a0000 14px, transparent 40px);
+}
+
+.goteo i {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: 9px;
+  height: var(--h);
+  background: linear-gradient(#4a0000, #8a0303 70%, #a50808);
+  border-radius: 0 0 6px 6px;
+  transform-origin: top;
+  animation: gotear var(--d) ease-in infinite;
+}
+
+/* Gota que se desprende al final de cada chorretón */
+.goteo i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 11px;
+  height: 14px;
+  transform: translateX(-50%);
+  background: #a50808;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: gota-cae var(--d) ease-in infinite;
+}
+
+@keyframes gotear {
+  0% { transform: scaleY(0.15); }
+  70% { transform: scaleY(1); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes gota-cae {
+  0%, 65% { transform: translate(-50%, 0); opacity: 1; }
+  100% { transform: translate(-50%, 70vh); opacity: 0; }
+}
+
+/* ---------- Pantalla de muerte ---------- */
+#pantalla-muerte {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  background: radial-gradient(ellipse at center, #3a0000 0%, #120000 55%, #000 100%);
+}
+
+.muerte-contenido {
+  position: relative;
+  z-index: 41;  /* Por encima de la sangre del canvas */
+  max-width: 560px;
+}
+
+.muerte-titulo {
+  margin: 0;
+  font-family: var(--fuente-sangre);
+  font-size: clamp(2.6rem, 13vw, 6rem);
+  color: var(--sangre-viva);
+  text-shadow: 0 0 30px rgba(255, 0, 0, 0.7), 0 6px 0 #200;
+  animation: muerte-entra 2.2s ease forwards;
+}
+
+@keyframes muerte-entra {
+  0% { opacity: 0; letter-spacing: 0.6em; filter: blur(8px); }
+  100% { opacity: 1; letter-spacing: 0.04em; filter: blur(0); }
+}
+
+.muerte-causa {
+  font-family: var(--fuente-maquina);
+  font-size: 1.1rem;
+  color: var(--hueso);
+  opacity: 0;
+  animation: aparecer 1s ease 1.4s forwards;
+}
+
+.muerte-contador {
+  color: var(--texto-tenue);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.muerte-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+  margin: 24px auto 0;
+  opacity: 0;
+  animation: aparecer 0.8s ease 2s forwards;
+}

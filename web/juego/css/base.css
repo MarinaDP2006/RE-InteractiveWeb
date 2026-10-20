@@ -1,0 +1,527 @@
+/* ============================================================================
+ *  base.css — Variables, reset, tipografía, botones, pantallas y modales
+ * ============================================================================
+ *  Paleta inspirada en los menús de Resident Evil: negro profundo, rojo
+ *  sangre, hueso envejecido y el verde del monitor ECG.
+ * ========================================================================== */
+
+/* ---------- Variables de diseño ---------- */
+:root {
+  --negro: #050505;
+  --negro-2: #0d0b0b;
+  --panel: rgba(10, 8, 8, 0.9);
+  --borde: #3b1111;
+  --sangre: #8a0303;
+  --sangre-viva: #c1121f;
+  --sangre-clara: #ff3b3b;
+  --hueso: #e8e0d0;
+  --texto: #d6cfc2;
+  --texto-tenue: #8f877b;
+  --papel: #d9cfb8;
+  --verde: #3cff6b;
+  --ambar: #ffc400;
+
+  --fuente-titulo: "Cinzel", "Times New Roman", serif;
+  --fuente-maquina: "Special Elite", "Courier New", monospace;
+  --fuente-sangre: "Nosifer", "Cinzel", serif;
+  --fuente-ui: "Oswald", "Arial Narrow", system-ui, sans-serif;
+
+  --radio: 4px;
+  --sombra: 0 10px 40px rgba(0, 0, 0, 0.75);
+  /* Márgenes seguros para móviles con notch */
+  --seguro-arriba: env(safe-area-inset-top, 0px);
+  --seguro-abajo: env(safe-area-inset-bottom, 0px);
+
+  color-scheme: dark;
+}
+
+/* ---------- Reset mínimo ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--negro);
+  color: var(--texto);
+  font-family: var(--fuente-ui);
+  font-size: 17px;
+  line-height: 1.5;
+  overflow: hidden;                  /* El scroll lo gestiona cada pantalla */
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;        /* Evita el zoom por doble toque en el QTE */
+}
+
+/* El atributo hidden SIEMPRE oculta (aunque otra regla ponga display) */
+[hidden] {
+  display: none !important;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Retratos de personajes: fondo oscuro detrás de las fotos con transparencia
+   y encuadre por la parte superior (donde está la cara). */
+.msg-avatar,
+.chat-avatares img,
+.tc-prota img,
+.enemigo-retrato,
+#capa-susto img {
+  object-fit: cover;
+  object-position: 50% 15%;
+  background: radial-gradient(circle at 50% 35%, #3a1414, #0a0303 75%);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sangre-clara);
+  outline-offset: 3px;
+}
+
+.oculto {
+  display: none !important;
+}
+
+kbd {
+  font-family: var(--fuente-maquina);
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 3px;
+  padding: 0 0.35em;
+}
+
+code {
+  font-family: var(--fuente-maquina);
+  color: var(--hueso);
+}
+
+/* ---------- Contenedor principal y pantallas ---------- */
+#app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;    /* dvh: altura real en móviles (sin barra del navegador) */
+  overflow: hidden;
+}
+
+.pantalla {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+}
+
+.pantalla.activa {
+  display: flex;
+  animation: aparecer 0.6s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  min-height: 46px;
+  padding: 0.55em 1.4em;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: linear-gradient(#1a1212, #0c0909);
+  color: var(--hueso);
+  font-family: var(--fuente-ui);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--sangre-viva);
+  box-shadow: 0 0 18px rgba(193, 18, 31, 0.35);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+}
+
+.btn-principal {
+  background: linear-gradient(#9b0a0a, #5a0000);
+  border-color: #c1121f;
+  text-shadow: 0 1px 2px #000;
+}
+
+.btn-principal:hover:not(:disabled) {
+  background: linear-gradient(#b80d0d, #6d0000);
+}
+
+.btn-secundario {
+  background: rgba(20, 16, 16, 0.85);
+}
+
+.btn-peligro {
+  background: linear-gradient(#2a0000, #120000);
+  border-color: var(--sangre-viva);
+  color: var(--sangre-clara);
+  animation: latir 1.4s ease-in-out infinite;
+}
+
+@keyframes latir {
+  0%, 100% { box-shadow: 0 0 0 rgba(193, 18, 31, 0); }
+  50% { box-shadow: 0 0 22px rgba(193, 18, 31, 0.6); }
+}
+
+/* ---------- Caja de texto estilo RE (borde doble envejecido) ---------- */
+.caja-texto {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  outline: 1px solid rgba(232, 224, 208, 0.08);
+  outline-offset: -6px;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra), inset 0 0 60px rgba(0, 0, 0, 0.8);
+  padding: clamp(16px, 3vw, 28px);
+}
+
+/* ---------- Pantalla de título ---------- */
+#pantalla-titulo {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(120, 0, 0, 0.35), transparent 60%),
+    radial-gradient(ellipse at 50% 120%, rgba(60, 0, 0, 0.6), transparent 60%),
+    var(--negro);
+  overflow-y: auto;
+}
+
+.titulo-contenido {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  width: 100%;
+  margin: auto 0;
+}
+
+.titulo-pre {
+  margin: 0 0 0.3em;
+  font-family: var(--fuente-maquina);
+  color: var(--texto-tenue);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.titulo-logo {
+  margin: 0;
+  line-height: 1;
+}
+
+.titulo-re {
+  display: block;
+  font-family: var(--fuente-titulo);
+  font-weight: 900;
+  font-size: clamp(2.3rem, 10vw, 5.2rem);
+  letter-spacing: 0.06em;
+  color: #e9e1d2;
+  /* Relieve metálico + resplandor rojo, como los logos clásicos */
+  background: linear-gradient(#ffffff 10%, #bdb4a4 45%, #6e655a 55%, #e9e1d2 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 18px rgba(193, 18, 31, 0.55)) drop-shadow(0 4px 2px #000);
+  animation: parpadeo-titulo 7s infinite;
+}
+
+.titulo-archivos {
+  display: block;
+  margin-top: 0.25em;
+  font-family: var(--fuente-sangre);
+  font-size: clamp(1.3rem, 5.5vw, 2.6rem);
+  color: var(--sangre-viva);
+  text-shadow: 0 0 12px rgba(193, 18, 31, 0.8), 0 3px 0 #300;
+  letter-spacing: 0.04em;
+}
+
+@keyframes parpadeo-titulo {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.4; }
+  94% { opacity: 1; }
+  96% { opacity: 0.2; }
+  97% { opacity: 1; }
+}
+
+.titulo-sub {
+  margin: 1.2em 0 1.8em;
+  font-family: var(--fuente-maquina);
+  color: var(--texto);
+}
+
+.titulo-sub em {
+  color: var(--sangre-clara);
+  font-style: normal;
+}
+
+.menu-titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.aviso-servidor {
+  margin: 1.5em auto 0;
+  max-width: 480px;
+  padding: 0.8em 1em;
+  border: 1px dashed var(--ambar);
+  color: var(--ambar);
+  font-size: 0.9rem;
+  border-radius: var(--radio);
+}
+
+.titulo-pie {
+  position: relative;
+  z-index: 2;
+  margin-top: 24px;
+  font-size: 0.75rem;
+  color: var(--texto-tenue);
+  letter-spacing: 0.05em;
+  padding-bottom: var(--seguro-abajo);
+}
+
+/* ---------- Modales ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(3px);
+  animation: aparecer 0.25s ease;
+}
+
+.modal-caja {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 88dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px 24px;
+  background: linear-gradient(#140e0e, #0a0707);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra), 0 0 40px rgba(138, 3, 3, 0.25);
+}
+
+.modal-caja h2 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  color: var(--hueso);
+  letter-spacing: 0.05em;
+}
+
+.modal-caja p {
+  margin: 0;
+}
+
+.modal-caja input[type="text"] {
+  min-height: 48px;
+  padding: 0 14px;
+  background: #050404;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-family: var(--fuente-maquina);
+  font-size: 1.15rem;
+  color: var(--hueso);
+  letter-spacing: 0.08em;
+}
+
+.modal-caja input[type="text"]:focus {
+  border-color: var(--sangre-viva);
+  outline: none;
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--texto-tenue);
+  font-size: 1.2rem;
+}
+
+.modal-cerrar:hover {
+  color: var(--sangre-clara);
+}
+
+.modal-nota {
+  font-size: 0.85rem;
+  color: var(--texto-tenue);
+}
+
+.modal-mensaje {
+  min-height: 1.5em;
+  color: var(--sangre-clara);
+  font-family: var(--fuente-maquina);
+}
+
+.modal-aviso {
+  text-align: center;
+  border-color: var(--sangre-viva);
+}
+
+.modal-aviso h2 {
+  color: var(--sangre-clara);
+  font-family: var(--fuente-sangre);
+  font-size: 1.6rem;
+}
+
+.aviso-auriculares {
+  color: var(--texto-tenue);
+  font-family: var(--fuente-maquina);
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.opcion input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--sangre-viva);
+}
+
+/* ---------- Ranking ---------- */
+.ranking {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fuente-maquina);
+}
+
+.ranking li {
+  display: grid;
+  grid-template-columns: 2em 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 6px;
+  border-bottom: 1px dashed #2a1a1a;
+}
+
+.ranking li.yo {
+  background: rgba(138, 3, 3, 0.25);
+  color: var(--hueso);
+}
+
+.ranking .pos {
+  color: var(--sangre-clara);
+}
+
+.ranking .nom {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking .m {
+  color: var(--texto-tenue);
+}
+
+/* ---------- Avisos flotantes ---------- */
+#avisos {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: calc(18px + var(--seguro-abajo));
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  width: min(92vw, 420px);
+}
+
+.aviso {
+  padding: 10px 16px;
+  background: rgba(8, 6, 6, 0.95);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--hueso);
+  border-radius: var(--radio);
+  font-family: var(--fuente-maquina);
+  font-size: 0.95rem;
+  box-shadow: var(--sombra);
+  animation: aviso-entra 0.35s ease;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.aviso.objeto { border-left-color: var(--verde); }
+.aviso.documento { border-left-color: var(--ambar); }
+.aviso.aviso-pista { border-left-color: var(--ambar); }
+.aviso.aviso-error { border-left-color: var(--sangre-clara); }
+
+.aviso.saliendo {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes aviso-entra {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Accesibilidad: menos movimiento si el sistema lo pide ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

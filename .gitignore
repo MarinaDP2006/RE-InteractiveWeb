@@ -1,0 +1,16 @@
+# Datos de ejecución (base de datos local, copias, contraseña inicial)
+data/
+
+# Compilación
+build/
+out/
+*.class
+fuentes.txt
+lib/*.jar
+admin/dist/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
