@@ -168,7 +168,7 @@ final class VentanaLogin extends JFrame {
 
     private void usarLocal() {
         bloquear(true, "Arrancando el servidor local…");
-        Tarea.ejecutar(this, "Arrancando el servidor local…", () -> ServidorLocal.arrancar(8080), inst -> {
+        Tarea.ejecutar(this, "Arrancando el servidor local…", () -> ServidorLocal.arrancar(ServidorLocal.PUERTO), inst -> {
             servidor.getEditor().setItem("http://localhost:" + inst.puerto());
             String[] cred = ServidorLocal.credencialesIniciales();
             if (cred != null) {
@@ -180,6 +180,6 @@ final class VentanaLogin extends JFrame {
                 clave.requestFocusInWindow();
             }
         }, err -> bloquear(false, "<html>No se pudo arrancar: " + Tarea.escapar(err.getMessage())
-                + "<br>¿Está el puerto 8080 ocupado por otro servidor?</html>"));
+                + "<br>Los puertos 8081 y 8091 están ocupados por otro programa.</html>"));
     }
 }

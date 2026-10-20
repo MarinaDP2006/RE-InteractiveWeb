@@ -3,7 +3,7 @@
  *  ServidorLocal.java — El servidor de la web, integrado en la app.
  * ============================================================================
  *  La app lleva dentro la web, la semilla de la base de datos y el servidor.
- *  Con un clic se arranca en tu PC (http://localhost:8080) para trabajar sin
+ *  Con un clic se arranca en tu PC (http://localhost:8081) para trabajar sin
  *  Internet o probar cambios antes de subirlos a Render.
  *  Los datos se guardan en  Documentos\UmbrellaAdmin\servidor-local\data
  * ============================================================================
@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 final class ServidorLocal {
+
+    /** Puerto del servidor integrado (8081; si está ocupado, el servidor usa el de reserva 8091). iniciar.bat usa el 8080. */
+    static final int PUERTO = 8081;
 
     private static Servidor.Instancia instancia;
 

@@ -93,7 +93,7 @@ public final class Servidor {
                                         A R C H I V E S  ·  v""" + Api.VERSION);
             System.out.println("  Web:    " + web);
             System.out.println("  Datos:  " + s.almacenamiento());
-            System.out.println("  Abre    http://localhost:" + puerto + "   (Wiki: /wiki/  ·  Juego: /juego/)");
+            System.out.println("  Abre    http://localhost:" + s.puerto() + "   (Wiki: /wiki/  ·  Juego: /juego/)");
         } catch (IOException e) {
             System.err.println("ERROR al arrancar el servidor: " + e.getMessage());
             System.exit(1);
@@ -113,7 +113,8 @@ public final class Servidor {
         Subidas subidas = new Subidas(db.almacen());
         Api api = new Api(db, seguridad, actividad, juego, subidas);
 
-        HttpServer servidor = HttpServer.create(new InetSocketAddress(puerto), 256);
+        HttpServer servidor = crearHttp(puerto);
+        puerto = servidor.getAddress().getPort();
         servidor.createContext("/api/", api);
         servidor.createContext("/", new Estaticos(web, api, subidas));
         servidor.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
@@ -137,6 +138,31 @@ public final class Servidor {
 
         servidor.start();
         return new Instancia(servidor, tareas, actividad, db.descripcionAlmacen(), puerto);
+    }
+
+    /**
+     * Abre el puerto pedido. Si está ocupado (otro servidor ya en marcha), prueba el
+     * puerto de reserva (+10) y luego los siguientes. En Render (variable RENDER)
+     * no se cambia nunca: allí el puerto lo impone la plataforma.
+     */
+    private static HttpServer crearHttp(int puerto) throws IOException {
+        if (System.getenv("RENDER") != null) {
+            return HttpServer.create(new InetSocketAddress(puerto), 256);
+        }
+        int[] candidatos = {puerto, puerto + 10, puerto + 1, puerto + 11, puerto + 2};
+        IOException ultimo = null;
+        for (int p : candidatos) {
+            try {
+                HttpServer s = HttpServer.create(new InetSocketAddress(p), 256);
+                if (p != puerto) {
+                    System.out.println("[SERVIDOR] El puerto " + puerto + " está ocupado: uso el " + p + ".");
+                }
+                return s;
+            } catch (java.net.BindException e) {
+                ultimo = e;
+            }
+        }
+        throw new IOException("Los puertos " + puerto + ", " + (puerto + 10) + ", " + (puerto + 1) + "... están ocupados. Cierra el otro servidor.", ultimo);
     }
 
     private static String env(String nombre, String porDefecto) {

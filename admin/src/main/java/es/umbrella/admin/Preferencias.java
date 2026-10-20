@@ -55,8 +55,11 @@ final class Preferencias {
                 l.add(String.valueOf(o));
             }
         }
-        if (!l.contains("http://localhost:8080")) {
-            l.add("http://localhost:8080");
+        // Los dos servidores locales: iniciar.bat (8080) y el integrado en la app (8081).
+        for (String local : new String[]{"http://localhost:8080", "http://localhost:8081"}) {
+            if (!l.contains(local)) {
+                l.add(local);
+            }
         }
         return l;
     }

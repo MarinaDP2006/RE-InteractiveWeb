@@ -13,6 +13,13 @@ title Umbrella Archives - servidor
 set PORT=%1
 if "%PORT%"=="" set PORT=8080
 
+REM Si el puerto ya está ocupado (otro servidor abierto), se usa el de reserva (+10).
+netstat -ano | findstr /R /C:":%PORT% .*LISTENING" >nul
+if not errorlevel 1 (
+  echo El puerto %PORT% está ocupado: se usa el servidor de reserva.
+  set /a PORT=%PORT%+10
+)
+
 where javac >nul 2>nul
 if errorlevel 1 (
   echo ERROR: no se encuentra Java. Instala el JDK 21:

@@ -84,7 +84,7 @@ final class PanelAjustes extends JPanel implements VentanaPrincipal.Seccion {
         bl.setOpaque(false);
         bl.add(Tema.etiqueta("<html>La app lleva dentro la web completa. Puedes arrancarla en tu PC para trabajar sin Internet o probar cambios. "
                 + "Sus datos son independientes de los de Render (usa las copias de seguridad para pasar datos de uno a otro).</html>"));
-        JButton arrancar = Tema.botonRojo("Arrancar en http://localhost:8080");
+        JButton arrancar = Tema.botonRojo("Arrancar en http://localhost:" + ServidorLocal.PUERTO);
         JButton detener = Tema.boton("Detener");
         JButton abrir = Tema.boton("Abrir en el navegador");
         JButton carpeta = Tema.boton("Abrir la carpeta de datos local");
@@ -99,7 +99,7 @@ final class PanelAjustes extends JPanel implements VentanaPrincipal.Seccion {
         local.add(info, BorderLayout.SOUTH);
         cuerpo.add(local);
 
-        arrancar.addActionListener(e -> Tarea.ejecutar(this, "Arrancando el servidor local…", () -> ServidorLocal.arrancar(8080), i -> {
+        arrancar.addActionListener(e -> Tarea.ejecutar(this, "Arrancando el servidor local…", () -> ServidorLocal.arrancar(ServidorLocal.PUERTO), i -> {
             pintarLocal();
             String[] cr = ServidorLocal.credencialesIniciales();
             Tarea.info(this, "Servidor local en marcha en <b>http://localhost:" + i.puerto() + "</b>."
@@ -109,7 +109,7 @@ final class PanelAjustes extends JPanel implements VentanaPrincipal.Seccion {
             ServidorLocal.detener();
             pintarLocal();
         });
-        abrir.addActionListener(e -> VentanaPrincipal.abrir("http://localhost:" + (ServidorLocal.enMarcha() ? ServidorLocal.puerto() : 8080)));
+        abrir.addActionListener(e -> VentanaPrincipal.abrir("http://localhost:" + (ServidorLocal.enMarcha() ? ServidorLocal.puerto() : ServidorLocal.PUERTO)));
         carpeta.addActionListener(e -> {
             try {
                 Files.createDirectories(ServidorLocal.carpetaDatos());

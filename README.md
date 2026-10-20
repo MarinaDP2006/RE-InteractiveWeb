@@ -16,9 +16,26 @@ Proyecto fan de **Resident Evil** con tres piezas:
 
 Requisito: **Java JDK 21** (`winget install EclipseAdoptium.Temurin.21.JDK`).
 
-1. Doble clic en **`iniciar.bat`** → se abre `http://localhost:8080`.
+1. Doble clic en **`iniciar.bat`** → se abre `http://localhost:8080` (si ese puerto está ocupado, usa el de reserva `http://localhost:8090`).
 2. La primera vez se crea el administrador: el usuario y la contraseña salen en la ventana negra y se guardan en `data\ADMIN_INICIAL.txt`.
 3. Para gestionar la web: doble clic en **`admin.bat`** (o usa el `.exe`, abajo), servidor `http://localhost:8080`.
+
+Mira el apartado **[Servidores y contraseñas](#servidores-y-contraseñas)** para saber qué contraseña usar en cada caso.
+
+## Servidores y contraseñas
+
+Hay **un administrador distinto en cada servidor**, porque cada uno guarda sus propios datos. La contraseña depende de **por dónde entras**:
+
+| Cómo entras | Dirección (servidor) | Si está ocupado | Usuario | Dónde está la contraseña |
+|---|---|---|---|---|
+| **`iniciar.bat`** (web en tu PC) | `http://localhost:8080` | `http://localhost:8090` | `admin` | En la ventana negra la primera vez y en `data\ADMIN_INICIAL.txt` (carpeta del proyecto) |
+| **App · «Usar el servidor de este PC»** | `http://localhost:8081` | `http://localhost:8091` | `admin` | La app la rellena sola. También en `Documentos\UmbrellaAdmin\servidor-local\data\ADMIN_INICIAL.txt` |
+| **Web publicada en Render** | `https://re-wiki-game.onrender.com` | — | `admin` | La que escribiste en `ADMIN_PASSWORD` al crear el servicio (Render → *Environment*) |
+
+- Los dos servidores del PC pueden estar abiertos a la vez sin molestarse (8080 y 8081). Si un puerto ya lo usa otro programa, cada servidor salta solo a su puerto de reserva y lo dice en pantalla.
+- 🔐 **Las contraseñas no se suben a GitHub** (el repositorio es público). Para tenerlas a mano, el archivo **`CONTRASEÑAS.txt`** de la carpeta del proyecto las recoge en tu PC; está excluido de Git.
+- **Cambiarla**: entra en Umbrella Admin con ese servidor → **Ajustes** → *Usuario y contraseña del administrador* (mínimo 10 caracteres). Después borra el `ADMIN_INICIAL.txt` correspondiente (en el servidor de la app se borra solo) y apunta la nueva en `CONTRASEÑAS.txt`.
+- **¿La olvidaste?** En el PC: cierra el servidor, borra `_config.json` de su carpeta `data\db` (la configuración de acceso, la wiki y el juego vuelven a la original; las fichas no se tocan) y vuelve a arrancar: se crea un administrador nuevo. En Render: mira el apartado 3.
 
 Los datos locales se guardan en la carpeta `data\` (no se sube a GitHub).
 
@@ -46,7 +63,7 @@ También está en la página del repositorio → **Releases** → *Umbrella Admi
 2. Si Windows muestra **«Windows protegió su PC»** (SmartScreen), es porque la app no está firmada con un certificado de pago: pulsa **Más información** → **Ejecutar de todas formas**. Solo pasa la primera vez.
 3. En la ventana de acceso:
    - **Web publicada en Render**: en *Servidor* escribe su dirección (p. ej. `https://re-wiki-game.onrender.com`), usuario `admin` y la contraseña que pusiste en `ADMIN_PASSWORD`. Si la web estaba dormida, la primera conexión tarda hasta un minuto.
-   - **Sin Internet / para probar**: pulsa **«Usar el servidor de este PC»**. La app arranca la web dentro de tu PC (`http://localhost:8080`) y rellena sola el usuario y la contraseña de la primera vez. Cámbiala después en **Ajustes**.
+   - **Sin Internet / para probar**: pulsa **«Usar el servidor de este PC»**. La app arranca la web dentro de tu PC (`http://localhost:8081`) y rellena sola el usuario y la contraseña de la primera vez. Cámbiala después en **Ajustes**.
 4. La app recuerda los servidores y el usuario (nunca la contraseña).
 
 ### 2.4 Dónde guarda las cosas
@@ -68,7 +85,7 @@ También está en la página del repositorio → **Releases** → *Umbrella Admi
 |---|---|
 | «No se puede conectar con …» | Revisa la dirección (con `https://`). En Render, espera un minuto y vuelve a intentarlo. |
 | «Usuario o contraseña incorrectos» | Tras 5 fallos se bloquea 15 minutos. Si la olvidaste, mira el apartado 3 (*¿Olvidaste la contraseña?*). |
-| «No se pudo arrancar… puerto 8080» | Ya hay otro servidor en ese puerto (por ejemplo, `iniciar.bat` abierto). Ciérralo o conéctate a `http://localhost:8080`. |
+| «No se pudo arrancar… puertos 8081 y 8091 ocupados» | Otro programa usa esos puertos. Ciérralo, o conéctate a la web de `iniciar.bat` en `http://localhost:8080`. |
 | No arranca al hacer doble clic | Comprueba que extrajiste el zip completo y que `app` y `runtime` están junto al `.exe`. |
 
 ### 2.7 Construirla tú (opcional)
