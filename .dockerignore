@@ -1,0 +1,9 @@
+.git
+data
+build
+build-admin
+admin
+dist
+*.bat
+*.md
+.github
