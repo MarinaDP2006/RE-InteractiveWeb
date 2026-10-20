@@ -22,14 +22,60 @@ Requisito: **Java JDK 21** (`winget install EclipseAdoptium.Temurin.21.JDK`).
 
 Los datos locales se guardan en la carpeta `data\` (no se sube a GitHub).
 
-## 2. Descargar la app de administración (.exe)
+## 2. Instalar la app de gestión (Umbrella Admin) en tu PC
 
-**👉 [Descargar UmbrellaAdmin-windows.zip](https://github.com/MarinaDP2006/RE_Wiki-Game/releases/latest/download/UmbrellaAdmin-windows.zip)**
+La app lleva Java dentro: **no hay que instalar Java ni nada más**. Funciona en Windows 10 y 11 (64 bits).
 
-Descomprímelo donde quieras y abre **`UmbrellaAdmin.exe`**. Lleva Java dentro: **no hay que instalar nada**.
-GitHub la vuelve a construir sola cada vez que subes cambios (pestaña *Actions*).
+### 2.1 Descargar
 
-Para construirla tú: doble clic en `construir-admin.bat` → `dist\UmbrellaAdmin\UmbrellaAdmin.exe`.
+**👉 [Descargar UmbrellaAdmin-windows.zip](https://github.com/MarinaDP2006/RE_Wiki-Game/releases/latest/download/UmbrellaAdmin-windows.zip)** (unos 50 MB)
+
+También está en la página del repositorio → **Releases** → *Umbrella Admin · última versión*.
+
+### 2.2 Instalar
+
+1. Abre la carpeta **Descargas**, haz clic derecho en `UmbrellaAdmin-windows.zip` → **Extraer todo…**
+2. Como destino, escribe una carpeta fija, por ejemplo `C:\Users\TU_USUARIO\Programas` (no la dejes en Descargas para no borrarla sin querer) → **Extraer**.
+3. Dentro aparece la carpeta **`UmbrellaAdmin`**. **No saques el `.exe` de esa carpeta**: necesita las carpetas `app` y `runtime` que hay a su lado.
+4. Crea un acceso directo en el escritorio: clic derecho en **`UmbrellaAdmin.exe`** → **Mostrar más opciones** → **Enviar a** → **Escritorio (crear acceso directo)**.
+   Si quieres, arrástralo también a la barra de tareas o al menú Inicio.
+
+### 2.3 Primer arranque
+
+1. Abre **Umbrella Admin** desde el acceso directo.
+2. Si Windows muestra **«Windows protegió su PC»** (SmartScreen), es porque la app no está firmada con un certificado de pago: pulsa **Más información** → **Ejecutar de todas formas**. Solo pasa la primera vez.
+3. En la ventana de acceso:
+   - **Web publicada en Render**: en *Servidor* escribe su dirección (p. ej. `https://re-wiki-game.onrender.com`), usuario `admin` y la contraseña que pusiste en `ADMIN_PASSWORD`. Si la web estaba dormida, la primera conexión tarda hasta un minuto.
+   - **Sin Internet / para probar**: pulsa **«Usar el servidor de este PC»**. La app arranca la web dentro de tu PC (`http://localhost:8080`) y rellena sola el usuario y la contraseña de la primera vez. Cámbiala después en **Ajustes**.
+4. La app recuerda los servidores y el usuario (nunca la contraseña).
+
+### 2.4 Dónde guarda las cosas
+
+| Qué | Carpeta |
+|---|---|
+| Copias de seguridad automáticas (cada vez que te conectas) | `Documentos\UmbrellaAdmin\copias` (se puede cambiar en *Copias de seguridad*) |
+| Datos del servidor local del PC | `Documentos\UmbrellaAdmin\servidor-local\data` |
+| Preferencias de la app | `C:\Users\TU_USUARIO\.umbrella-admin` |
+
+### 2.5 Actualizar y desinstalar
+
+- **Actualizar**: cierra la app, descarga de nuevo el zip y extráelo **en la misma carpeta**, aceptando reemplazar los archivos. Tus copias, datos y preferencias no se tocan (están en otras carpetas).
+- **Desinstalar**: borra la carpeta `UmbrellaAdmin` y el acceso directo. Si quieres borrarlo todo, borra también `Documentos\UmbrellaAdmin` y `.umbrella-admin`.
+
+### 2.6 Problemas frecuentes
+
+| Problema | Solución |
+|---|---|
+| «No se puede conectar con …» | Revisa la dirección (con `https://`). En Render, espera un minuto y vuelve a intentarlo. |
+| «Usuario o contraseña incorrectos» | Tras 5 fallos se bloquea 15 minutos. Si la olvidaste, mira el apartado 3 (*¿Olvidaste la contraseña?*). |
+| «No se pudo arrancar… puerto 8080» | Ya hay otro servidor en ese puerto (por ejemplo, `iniciar.bat` abierto). Ciérralo o conéctate a `http://localhost:8080`. |
+| No arranca al hacer doble clic | Comprueba que extrajiste el zip completo y que `app` y `runtime` están junto al `.exe`. |
+
+### 2.7 Construirla tú (opcional)
+
+GitHub la construye sola cada vez que subes cambios (pestaña *Actions*). Si prefieres hacerlo en tu PC (necesitas el JDK 21):
+doble clic en `construir-admin.bat` → `dist\UmbrellaAdmin\UmbrellaAdmin.exe` y `dist\UmbrellaAdmin-windows.zip`.
+Sin construir nada, también puedes abrirla con `admin.bat` si tienes Java 21 instalado.
 
 ### Qué puedes hacer con la app
 
