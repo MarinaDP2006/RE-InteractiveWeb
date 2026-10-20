@@ -34,10 +34,16 @@ public final class Servidor {
     private Servidor() {
     }
 
+    /** Carpeta raíz del proyecto (primer argumento opcional; por defecto, la carpeta actual). */
+    private static Path raiz = Path.of("").toAbsolutePath();
+
     public static void main(String[] args) throws IOException {
+        if (args.length > 0 && !args[0].isBlank()) {
+            raiz = Path.of(args[0]).toAbsolutePath().normalize();
+        }
         int puerto = Integer.parseInt(env("PORT", "8080"));
         Path web = carpeta("WEB_DIR", "web");
-        Path datos = Path.of(env("DATA_DIR", "data")).toAbsolutePath().normalize();
+        Path datos = raiz.resolve(env("DATA_DIR", "data")).toAbsolutePath().normalize();
         Path semilla = carpeta("SEED_DIR", "semilla");
         Files.createDirectories(datos);
 
@@ -113,11 +119,11 @@ public final class Servidor {
         if (v != null && !v.isBlank()) {
             return Path.of(v).toAbsolutePath().normalize();
         }
-        Path aqui = Path.of(nombre).toAbsolutePath().normalize();
+        Path aqui = raiz.resolve(nombre).normalize();
         if (Files.isDirectory(aqui)) {
             return aqui;
         }
-        Path arriba = Path.of("..", nombre).toAbsolutePath().normalize();
+        Path arriba = raiz.resolve("..").resolve(nombre).normalize();
         return Files.isDirectory(arriba) ? arriba : aqui;
     }
 }

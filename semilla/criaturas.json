@@ -1,0 +1,849 @@
+{
+  "zombi": {
+    "titulo": "Zombi",
+    "tipo": "Humano infectado",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re0",
+      "re1",
+      "re2",
+      "re3",
+      "outbreak",
+      "code-veronica",
+      "re6",
+      "requiem"
+    ],
+    "peligrosidad": 2,
+    "debilidad": "Disparos a la cabeza, fuego",
+    "resumen": "La víctima clásica del Virus-T: un cuerpo que sigue caminando con una sola idea, comer.",
+    "cuerpo": [
+      "El Virus-T destruye la mayor parte del cerebro y deja solo los instintos más básicos. El metabolismo se acelera y provoca un hambre insaciable. Los infectados pierden sensibilidad al dolor, se mueven torpemente y atacan mordiendo, lo que contagia a sus víctimas.",
+      "En los remakes son mucho más duros: pueden resistir varios disparos en la cabeza, se arrastran sin piernas y se levantan cuando crees que han caído. Los de Resident Evil 6, creados con el Virus C, pueden correr y usar armas."
+    ],
+    "imagen": "/juego/img/personajes/zombi.webp",
+    "color": "#9aa58c",
+    "orden": 10
+  },
+  "crimson-head": {
+    "titulo": "Crimson Head",
+    "tipo": "Zombi evolucionado",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re1"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Quemar los cadáveres o decapitarlos",
+    "resumen": "Un zombi que «despierta» de nuevo con la piel enrojecida, garras y velocidad. Aparece si no se quema el cuerpo.",
+    "cuerpo": [
+      "Introducidos en el remake de 2002: los zombis abatidos en la mansión vuelven a levantarse más rápidos y agresivos al cabo de un tiempo. Por eso el queroseno y el mechero son tan valiosos."
+    ],
+    "imagen": "",
+    "color": "#b03a2a",
+    "orden": 15
+  },
+  "cerbero": {
+    "titulo": "Cerbero (perro zombi)",
+    "tipo": "Animal infectado",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re0",
+      "re1",
+      "re2",
+      "re3",
+      "code-veronica"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Escopeta a corta distancia",
+    "resumen": "Dobermans de entrenamiento militar infectados por el Virus-T. Rápidos, en manada y famosos por entrar por la ventana.",
+    "cuerpo": [
+      "Los perros de la mansión Spencer mataron a Joseph Frost en la primera escena del primer juego. El susto del pasillo en el que saltan por la ventana es uno de los momentos más célebres del terror en videojuegos."
+    ],
+    "imagen": "/juego/img/personajes/perro.webp",
+    "color": "#6a3a2a",
+    "orden": 20
+  },
+  "hunter": {
+    "titulo": "Hunter",
+    "tipo": "B.O.W. (arma biológica)",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re0",
+      "re1",
+      "re3",
+      "code-veronica",
+      "outbreak"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Escopeta, mágnum",
+    "resumen": "Humano modificado con ADN de reptil. Sus garras pueden decapitar de un golpe.",
+    "cuerpo": [
+      "Umbrella diseñó al Hunter como un soldado barato y obediente. Existen variantes: Hunter β en Raccoon City, Hunter γ (con aspecto de anfibio que se traga a sus víctimas) y otros. Su ataque de decapitación es una muerte instantánea."
+    ],
+    "imagen": "/juego/img/personajes/hunter.webp",
+    "color": "#5a6a3a",
+    "orden": 30
+  },
+  "chimera": {
+    "titulo": "Chimera",
+    "tipo": "B.O.W.",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re1"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Armas de fuego potentes",
+    "resumen": "Fusión de ADN humano y de mosca que se arrastra por los techos del laboratorio Arklay.",
+    "cuerpo": [
+      "Las Quimeras del laboratorio caen desde los conductos de ventilación. Son uno de los experimentos más grotescos de la mansión."
+    ],
+    "imagen": "",
+    "color": "#5a5a3a",
+    "orden": 35
+  },
+  "yawn": {
+    "titulo": "Yawn",
+    "tipo": "Animal mutado",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re1"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Escopeta; evitar su mordisco venenoso",
+    "resumen": "Una serpiente de más de 15 metros que vive en el desván de la mansión. Su mordedura envenena.",
+    "cuerpo": [
+      "Yawn se alimentó del Virus-T hasta alcanzar un tamaño colosal. Se enfrenta al jugador dos veces y es uno de los jefes más memorables del primer juego."
+    ],
+    "imagen": "",
+    "color": "#4a6a3a",
+    "orden": 40
+  },
+  "planta-42": {
+    "titulo": "Planta 42",
+    "tipo": "Planta mutada",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re1"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Herbicida V-JOLT, fuego",
+    "resumen": "Una planta carnívora gigante que infestó el sótano y la sala de la mansión con sus raíces.",
+    "cuerpo": [
+      "Regada con agua contaminada por el Virus-T, la Planta 42 creció hasta ocupar habitaciones enteras. Se puede debilitar antes de luchar preparando el herbicida V-JOLT."
+    ],
+    "imagen": "",
+    "color": "#3a6a2a",
+    "orden": 45
+  },
+  "lisa-trevor": {
+    "titulo": "Lisa Trevor",
+    "tipo": "Humana sometida a experimentos",
+    "origen": "progenitor",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re1"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "No muere: solo se puede frenar",
+    "resumen": "La hija del arquitecto de la mansión, encerrada y usada como cobaya durante casi treinta años. Inmortal y encadenada.",
+    "cuerpo": [
+      "En 1967, Lisa Trevor, de 14 años, y su madre fueron llevadas a la mansión como «invitadas». Su madre murió; Lisa fue infectada con variantes del Virus Progenitor una y otra vez, y su cuerpo absorbió todas.",
+      "Lleva las caras de sus víctimas cosidas a la suya, buscando a su madre. Sus células fueron la clave para que William Birkin descubriera el Virus-G. Su historia, contada a través de diarios, es una de las más tristes de la saga."
+    ],
+    "imagen": "",
+    "color": "#7a6a5a",
+    "orden": 50
+  },
+  "proto-tyrant": {
+    "titulo": "Proto-Tyrant",
+    "tipo": "Tyrant prototipo",
+    "origen": "t-virus",
+    "primeraAparicion": "re0",
+    "apariciones": [
+      "re0"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Su corazón expuesto",
+    "resumen": "Uno de los primeros Tyrant creados por Umbrella, liberado por Wesker contra Rebecca en el tren.",
+    "cuerpo": [
+      "El T-001 fue un modelo inestable con un corazón al descubierto y garras largas."
+    ],
+    "imagen": "",
+    "color": "#8a5a5a",
+    "orden": 55
+  },
+  "tyrant": {
+    "titulo": "Tyrant",
+    "tipo": "B.O.W. definitivo",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re0",
+      "re1",
+      "re2",
+      "code-veronica",
+      "umbrella-chronicles"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Lanzacohetes",
+    "resumen": "El arma biológica estrella de Umbrella: un humano gigante, inteligente y casi indestructible, capaz de obedecer órdenes.",
+    "cuerpo": [
+      "Solo una persona entre diez millones tiene los genes adecuados para convertirse en Tyrant sin perder la forma humana. El T-002 de la mansión, el T-103 de la serie de Mr. X, el T-078 de Rockfort y el T-A.L.O.S. de 2003 son algunas versiones.",
+      "Cuando reciben demasiado daño o se quitan su abrigo limitador, entran en «modo Super Tyrant»: el corazón queda expuesto y las garras crecen."
+    ],
+    "imagen": "",
+    "color": "#7a2a2a",
+    "orden": 60
+  },
+  "tyrant-t002": {
+    "titulo": "Tyrant T-002",
+    "tipo": "Tyrant",
+    "origen": "t-virus",
+    "primeraAparicion": "re1",
+    "apariciones": [
+      "re1"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Lanzacohetes en el helipuerto",
+    "resumen": "El Tyrant del laboratorio Arklay que mata a Wesker y acaba destruido por un cohete en el helipuerto.",
+    "cuerpo": [
+      "Wesker lo liberó para medir su potencia contra S.T.A.R.S. Su corazón expuesto y su garra gigante lo convirtieron en el primer gran jefe de la saga."
+    ],
+    "imagen": "",
+    "color": "#7a3a3a",
+    "orden": 61
+  },
+  "reina-sanguijuela": {
+    "titulo": "Reina Sanguijuela",
+    "tipo": "Colonia de sanguijuelas",
+    "origen": "t-virus",
+    "primeraAparicion": "re0",
+    "apariciones": [
+      "re0"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Luz solar",
+    "resumen": "Una sanguijuela madre alimentada con el ADN de James Marcus que adoptó su forma y su memoria.",
+    "cuerpo": [
+      "Tras el asesinato de Marcus en 1988, sus sanguijuelas lo devoraron y la reina asumió su identidad. Puede adoptar la apariencia de un Marcus joven y controlar a todas las sanguijuelas."
+    ],
+    "imagen": "",
+    "color": "#4a3a2a",
+    "orden": 65
+  },
+  "licker": {
+    "titulo": "Licker",
+    "tipo": "Zombi mutado",
+    "origen": "t-virus",
+    "primeraAparicion": "re2",
+    "apariciones": [
+      "re2",
+      "re3",
+      "re5",
+      "re6"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Granadas, escopeta. Es ciego: camina despacio y no hagas ruido",
+    "resumen": "Un zombi que mutó por segunda vez: sin piel, con el cerebro expuesto, garras y una lengua larguísima. Caza por el sonido.",
+    "cuerpo": [
+      "El Licker aparece por primera vez en la comisaría del R.P.D., en un pasillo con una ventana rota y un cadáver sin cabeza. Es completamente ciego, pero oye cualquier paso. Su lengua puede atravesar a una persona."
+    ],
+    "imagen": "/juego/img/personajes/licker.webp",
+    "color": "#8a2a2a",
+    "orden": 70
+  },
+  "mrx": {
+    "titulo": "Mr. X (T-00)",
+    "tipo": "Tyrant perseguidor",
+    "origen": "t-virus",
+    "primeraAparicion": "re2",
+    "apariciones": [
+      "re2"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Ninguna: solo se le puede tumbar unos segundos",
+    "resumen": "Tyrant de la serie T-103 con abrigo y sombrero enviado por Umbrella a la comisaría. Te persigue sin descanso.",
+    "cuerpo": [
+      "En el remake de 2019, Mr. X se convirtió en una leyenda: sus pasos resuenan por la comisaría y puede seguirte de habitación en habitación. Solo las salas seguras te protegen. Al final muta en Super Tyrant."
+    ],
+    "imagen": "/juego/img/personajes/mrx.webp",
+    "color": "#3a3a3a",
+    "orden": 75
+  },
+  "g-birkin": {
+    "titulo": "G (William Birkin)",
+    "tipo": "Portador del Virus-G",
+    "origen": "g-virus",
+    "primeraAparicion": "re2",
+    "apariciones": [
+      "re2"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Su ojo gigante",
+    "resumen": "La transformación de William Birkin tras inyectarse el Virus-G. Muta sin parar a través de cinco etapas.",
+    "cuerpo": [
+      "En su primera forma aún sostiene una barra de hierro; en la última es una masa de carne con bocas. Busca a familiares compatibles para implantarles embriones."
+    ],
+    "imagen": "/juego/img/personajes/g_adulto.webp",
+    "color": "#9a4a3a",
+    "orden": 80
+  },
+  "g-adulto": {
+    "titulo": "Adulto G",
+    "tipo": "Criatura del Virus-G",
+    "origen": "g-virus",
+    "primeraAparicion": "re2",
+    "apariciones": [
+      "re2"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Escopeta y lanzallamas",
+    "resumen": "Criaturas nacidas de los embriones del Virus-G que pueblan las alcantarillas y NEST.",
+    "cuerpo": [
+      "Un ojo enorme, brazos largos y la capacidad de implantar más embriones."
+    ],
+    "imagen": "/juego/img/personajes/g_adulto.webp",
+    "color": "#7a5a5a",
+    "orden": 85
+  },
+  "planta-43": {
+    "titulo": "Planta 43 («Ivy»)",
+    "tipo": "Planta B.O.W.",
+    "origen": "t-virus",
+    "primeraAparicion": "re2",
+    "apariciones": [
+      "re2"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Fuego, químicos",
+    "resumen": "Plantas humanoides de NEST que escupen ácido y se regeneran.",
+    "cuerpo": [
+      "Las Ivy envenenan con su ácido. Tienen un núcleo que hay que destruir."
+    ],
+    "imagen": "/juego/img/personajes/ivy.webp",
+    "color": "#4a6a3a",
+    "orden": 90
+  },
+  "cocodrilo": {
+    "titulo": "Cocodrilo gigante",
+    "tipo": "Animal mutado",
+    "origen": "t-virus",
+    "primeraAparicion": "re2",
+    "apariciones": [
+      "re2"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Una bombona de gas en su boca",
+    "resumen": "Un caimán de las alcantarillas de Raccoon City que creció hasta un tamaño monstruoso.",
+    "cuerpo": [
+      "Inspirado en la leyenda urbana de los cocodrilos de las alcantarillas, apareció en el RE2 original y regresó en el remake."
+    ],
+    "imagen": "",
+    "color": "#5a6a4a",
+    "orden": 95
+  },
+  "nemesis": {
+    "titulo": "Némesis-T Tipo",
+    "tipo": "Tyrant con parásito Némesis",
+    "origen": "t-virus",
+    "primeraAparicion": "re3",
+    "apariciones": [
+      "re3"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Ninguna conocida: solo se le aturde",
+    "resumen": "El Tyrant definitivo: un parásito inteligente implantado en un cuerpo de Tyrant, programado para exterminar a S.T.A.R.S.",
+    "cuerpo": [
+      "Desarrollado en la división europea de Umbrella, Némesis lleva un parásito que le permite seguir órdenes complejas y usar armas como el lanzacohetes.",
+      "Persigue a Jill por toda Raccoon City. Cada vez que lo derrota muta: pierde la gabardina, se vuelve un perro gigante (remake) y al final una masa de tentáculos."
+    ],
+    "imagen": "/juego/img/personajes/nemesis.webp",
+    "color": "#4a2a3a",
+    "orden": 100
+  },
+  "drain-deimos": {
+    "titulo": "Drain Deimos",
+    "tipo": "Insecto mutado",
+    "origen": "t-virus",
+    "primeraAparicion": "re3",
+    "apariciones": [
+      "re3"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Escopeta",
+    "resumen": "Pulgas gigantes que trepan por las paredes y te sujetan para infectarte.",
+    "cuerpo": [
+      "En el remake de RE3 pueden implantar parásitos en Jill que obligan a usar hierbas verdes para curarse."
+    ],
+    "imagen": "",
+    "color": "#5a4a3a",
+    "orden": 105
+  },
+  "bandersnatch": {
+    "titulo": "Bandersnatch",
+    "tipo": "B.O.W.",
+    "origen": "t-virus",
+    "primeraAparicion": "code-veronica",
+    "apariciones": [
+      "code-veronica"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Granadas",
+    "resumen": "Un fallido intento de Tyrant con un brazo elástico enorme que puede agarrar a distancia.",
+    "cuerpo": [
+      "Umbrella los fabricaba en Rockfort como alternativa barata al Tyrant."
+    ],
+    "imagen": "",
+    "color": "#7a7a6a",
+    "orden": 110
+  },
+  "nosferatu": {
+    "titulo": "Nosferatu (Alexander Ashford)",
+    "tipo": "Portador de T-Veronica",
+    "origen": "t-veronica",
+    "primeraAparicion": "code-veronica",
+    "apariciones": [
+      "code-veronica"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Rifle de francotirador en el corazón",
+    "resumen": "El padre de Alexia, usado por ella como primer experimento con T-Veronica. Encadenado en la Antártida.",
+    "cuerpo": [
+      "Ciego, con un gas venenoso que exhala, Nosferatu persigue a Chris en el tejado de la base antártica."
+    ],
+    "imagen": "",
+    "color": "#8a8aaa",
+    "orden": 115
+  },
+  "talos": {
+    "titulo": "T-A.L.O.S.",
+    "tipo": "Tyrant mecanizado",
+    "origen": "t-virus",
+    "primeraAparicion": "umbrella-chronicles",
+    "apariciones": [
+      "umbrella-chronicles"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Su corazón tras romper la armadura",
+    "resumen": "El último Tyrant de Umbrella, con armadura y sistemas de armas, controlado por la Reina Roja.",
+    "cuerpo": [
+      "Fue el último intento de Umbrella de convencer a los militares de comprar sus armas. Chris y Jill lo destruyeron en 2003."
+    ],
+    "imagen": "",
+    "color": "#5a5a7a",
+    "orden": 120
+  },
+  "ganado": {
+    "titulo": "Ganado",
+    "tipo": "Humano parasitado",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 2,
+    "debilidad": "Fuego; cuidado con la plaga que sale de su cuello",
+    "resumen": "Aldeanos españoles infectados por Las Plagas. Piensan, se coordinan, usan herramientas y obedecen a Saddler.",
+    "cuerpo": [
+      "A diferencia de los zombis, los Ganados conservan su inteligencia y hablan. Si les disparas en la cabeza, a veces de su cuello brota una plaga con tentáculos."
+    ],
+    "imagen": "/juego/img/personajes/ganado.webp",
+    "color": "#c8a888",
+    "orden": 130
+  },
+  "dr-salvador": {
+    "titulo": "Dr. Salvador",
+    "tipo": "Ganado",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Escopeta a distancia",
+    "resumen": "El Ganado de la motosierra con un saco en la cabeza. Si te alcanza, decapitación.",
+    "cuerpo": [
+      "Su rugido de motosierra en la plaza del pueblo es el sonido más temido del RE4."
+    ],
+    "imagen": "/juego/img/personajes/salvador.webp",
+    "color": "#8a6a4a",
+    "orden": 132
+  },
+  "el-gigante": {
+    "titulo": "El Gigante",
+    "tipo": "B.O.W. con plaga",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "La plaga de su espalda",
+    "resumen": "Un gigante de varios metros que arranca árboles. Cuando se arrodilla, la plaga de su espalda queda al descubierto.",
+    "cuerpo": [
+      "Leon lo enfrenta en un claro junto al pueblo."
+    ],
+    "imagen": "/juego/img/personajes/gigante.webp",
+    "color": "#8a7a6a",
+    "orden": 135
+  },
+  "regenerador": {
+    "titulo": "Regenerador",
+    "tipo": "B.O.W. con plaga",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Destruir las plagas visibles con mira térmica",
+    "resumen": "Regenera sus miembros de inmediato. Sus jadeos en el laboratorio de la isla son una pesadilla.",
+    "cuerpo": [
+      "Solo muere si se destruyen todas las plagas que tiene dentro, que se ven con la mira térmica."
+    ],
+    "imagen": "/juego/img/personajes/regenerador.webp",
+    "color": "#9a9a8a",
+    "orden": 140
+  },
+  "verdugo": {
+    "titulo": "Verdugo",
+    "tipo": "B.O.W. con plaga",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Nitrógeno líquido",
+    "resumen": "El guardaespaldas de Salazar, con cola afilada, que acecha a Leon en el subsuelo del castillo.",
+    "cuerpo": [
+      "Su exoesqueleto es casi impenetrable; congelarlo con nitrógeno líquido lo deja vulnerable."
+    ],
+    "imagen": "",
+    "color": "#4a4a3a",
+    "orden": 145
+  },
+  "garrador": {
+    "titulo": "Garrador",
+    "tipo": "Ganado modificado",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "La plaga de su espalda; es ciego",
+    "resumen": "Prisionero ciego con garras de acero en los brazos. Ataca al oír cualquier sonido.",
+    "cuerpo": [
+      "Como el Licker, el Garrador caza por el oído."
+    ],
+    "imagen": "",
+    "color": "#5a5a5a",
+    "orden": 150
+  },
+  "u3": {
+    "titulo": "U-3 («It»)",
+    "tipo": "B.O.W.",
+    "origen": "las-plagas",
+    "primeraAparicion": "re4",
+    "apariciones": [
+      "re4"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Su segunda forma expuesta",
+    "resumen": "Criatura creada en la isla mezclando humano, insecto y plaga.",
+    "cuerpo": [
+      "Persigue a Leon por un laberinto de contenedores."
+    ],
+    "imagen": "",
+    "color": "#6a5a4a",
+    "orden": 155
+  },
+  "ooze": {
+    "titulo": "Ooze",
+    "tipo": "Humano infectado",
+    "origen": "t-abyss",
+    "primeraAparicion": "revelations",
+    "apariciones": [
+      "revelations"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Escopeta",
+    "resumen": "Pasajeros del Queen Zenobia transformados por el T-Abyss en criaturas blancas y viscosas.",
+    "cuerpo": [
+      "El T-Abyss, que combina el Virus-T con un pez abisal, deforma el cuerpo y le da afinidad con el agua."
+    ],
+    "imagen": "",
+    "color": "#9ab0c0",
+    "orden": 160
+  },
+  "scagdead": {
+    "titulo": "Scagdead",
+    "tipo": "Ooze mutado",
+    "origen": "t-abyss",
+    "primeraAparicion": "revelations",
+    "apariciones": [
+      "revelations"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Su brazo-sierra",
+    "resumen": "Un Ooze enorme con una sierra en el brazo y tumores llenos de gas.",
+    "cuerpo": [
+      "Uno de los enemigos más resistentes del crucero."
+    ],
+    "imagen": "",
+    "color": "#8a9aaa",
+    "orden": 162
+  },
+  "lepotitsa": {
+    "titulo": "Lepotitsa",
+    "tipo": "B.O.W.",
+    "origen": "t-abyss",
+    "primeraAparicion": "revelations",
+    "apariciones": [
+      "revelations"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Su gas es tóxico: mantén la distancia",
+    "resumen": "Criatura de Veltro que expulsa un gas infeccioso. Su nombre viene de la palabra eslava para «belleza».",
+    "cuerpo": [
+      "Se usó en el atentado de Terragrigia."
+    ],
+    "imagen": "",
+    "color": "#aaaa9a",
+    "orden": 164
+  },
+  "majini": {
+    "titulo": "Majini",
+    "tipo": "Humano parasitado",
+    "origen": "las-plagas",
+    "primeraAparicion": "re5",
+    "apariciones": [
+      "re5"
+    ],
+    "peligrosidad": 2,
+    "debilidad": "Ataques cuerpo a cuerpo tras aturdirlos",
+    "resumen": "Los habitantes de Kijuju infectados por la Plaga Tipo 2 de Tricell. Atacan a plena luz del día.",
+    "cuerpo": [
+      "Su nombre significa «espíritus malignos» en suajili. Pueden usar armas de fuego y motocicletas."
+    ],
+    "imagen": "/juego/img/personajes/majini.webp",
+    "color": "#6a4a34",
+    "orden": 170
+  },
+  "verdugo-majini": {
+    "titulo": "Verdugo Majini (Executioner)",
+    "tipo": "Majini gigante",
+    "origen": "las-plagas",
+    "primeraAparicion": "re5",
+    "apariciones": [
+      "re5"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Esquivar su hacha gigante",
+    "resumen": "Un Majini enorme con capucha y un hacha gigantesca, protagonista de la primera ejecución pública de RE5.",
+    "cuerpo": [
+      "Inspirado en El Ejecutor de los grabados medievales. Su golpe es mortal."
+    ],
+    "imagen": "/juego/img/personajes/verdugo.webp",
+    "color": "#4a3020",
+    "orden": 172
+  },
+  "uroboros-criatura": {
+    "titulo": "Criatura Uroboros",
+    "tipo": "Portador de Uroboros",
+    "origen": "uroboros",
+    "primeraAparicion": "re5",
+    "apariciones": [
+      "re5"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Fuego",
+    "resumen": "Quien no es compatible con Uroboros se convierte en una masa de gusanos negros que absorbe todo lo que toca.",
+    "cuerpo": [
+      "Excella acabó así al final de RE5."
+    ],
+    "imagen": "",
+    "color": "#2a2a2a",
+    "orden": 175
+  },
+  "ndesu": {
+    "titulo": "Ndesu",
+    "tipo": "B.O.W. con plaga",
+    "origen": "las-plagas",
+    "primeraAparicion": "re5",
+    "apariciones": [
+      "re5"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Cañón satelital",
+    "resumen": "Un gigante de Kijuju, primo africano de El Gigante, al que se derrota con un arma satelital.",
+    "cuerpo": [],
+    "imagen": "",
+    "color": "#7a6a5a",
+    "orden": 177
+  },
+  "afligido": {
+    "titulo": "Afligido",
+    "tipo": "Humano infectado",
+    "origen": "t-phobos",
+    "primeraAparicion": "revelations2",
+    "apariciones": [
+      "revelations2"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Disparos a la cabeza",
+    "resumen": "Víctimas del T-Phobos que se transformaron al sentir miedo. Gritan y llevan armas improvisadas.",
+    "cuerpo": [],
+    "imagen": "",
+    "color": "#9a8a7a",
+    "orden": 180
+  },
+  "javo": {
+    "titulo": "J'avo",
+    "tipo": "Humano infectado",
+    "origen": "c-virus",
+    "primeraAparicion": "re6",
+    "apariciones": [
+      "re6"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "No disparar a las extremidades (mutan)",
+    "resumen": "Mercenarios infectados con el Virus C que conservan la inteligencia y mutan la parte del cuerpo que les hieres.",
+    "cuerpo": [
+      "El nombre viene de «diablo» en serbocroata. Pueden convertirse en crisálidas y renacer como criaturas aún peores."
+    ],
+    "imagen": "/juego/img/personajes/jo.webp",
+    "color": "#c8a888",
+    "orden": 190
+  },
+  "ustanak": {
+    "titulo": "Ustanak",
+    "tipo": "B.O.W. perseguidor",
+    "origen": "c-virus",
+    "primeraAparicion": "re6",
+    "apariciones": [
+      "re6"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Solo se le detiene",
+    "resumen": "Gigante con un brazo mecánico intercambiable, creado para cazar a Jake Muller.",
+    "cuerpo": [
+      "El Némesis de RE6: persigue a Jake y Sherry por medio mundo."
+    ],
+    "imagen": "/juego/img/personajes/ustanak.webp",
+    "color": "#9a8f8f",
+    "orden": 195
+  },
+  "haos": {
+    "titulo": "HAOS",
+    "tipo": "B.O.W. definitivo de Carla",
+    "origen": "c-virus",
+    "primeraAparicion": "re6",
+    "apariciones": [
+      "re6"
+    ],
+    "peligrosidad": 5,
+    "debilidad": "Su núcleo",
+    "resumen": "Una criatura colosal nacida de un capullo en el laboratorio submarino. Piers se sacrificó para destruirla.",
+    "cuerpo": [],
+    "imagen": "",
+    "color": "#6a4a7a",
+    "orden": 197
+  },
+  "moldeado": {
+    "titulo": "Moldeado",
+    "tipo": "Masa de moho",
+    "origen": "moho-e",
+    "primeraAparicion": "re7",
+    "apariciones": [
+      "re7",
+      "re8"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Escopeta, quemador",
+    "resumen": "Criaturas de moho negro con bocas llenas de dientes, nacidas de los cuerpos devorados por el moho de Eveline.",
+    "cuerpo": [
+      "Salen de las paredes y del suelo de la casa Baker. Hay variantes gordas que vomitan ácido y otras que se arrastran a cuatro patas."
+    ],
+    "imagen": "/juego/img/personajes/moldeado.webp",
+    "color": "#1e1a14",
+    "orden": 200
+  },
+  "licantropo": {
+    "titulo": "Licántropo",
+    "tipo": "Humano con Cadou",
+    "origen": "cadou",
+    "primeraAparicion": "re8",
+    "apariciones": [
+      "re8"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Escopeta, minas",
+    "resumen": "Aldeanos transformados por el Cadou de Miranda en criaturas lobunas que cazan en manada.",
+    "cuerpo": [
+      "El asedio a la aldea al principio de Village recuerda a la plaza de RE4, pero con hombres lobo. Su líder es Urias, un gigante con un martillo."
+    ],
+    "imagen": "/juego/img/personajes/licantropo.webp",
+    "color": "#8a7a6a",
+    "orden": 210
+  },
+  "hijas-dimitrescu": {
+    "titulo": "Hijas de Dimitrescu",
+    "tipo": "Enjambres de insectos",
+    "origen": "cadou",
+    "primeraAparicion": "re8",
+    "apariciones": [
+      "re8"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "Frío: abrir ventanas debilita su forma",
+    "resumen": "Bela, Cassandra y Daniela: tres hermanas formadas por moscas que adoptan forma humana.",
+    "cuerpo": [
+      "Solo son vulnerables cuando el aire frío las expone."
+    ],
+    "imagen": "/juego/img/personajes/hija.webp",
+    "color": "#efe2da",
+    "orden": 215
+  },
+  "soldat": {
+    "titulo": "Soldat",
+    "tipo": "Cíborg con Cadou",
+    "origen": "cadou",
+    "primeraAparicion": "re8",
+    "apariciones": [
+      "re8"
+    ],
+    "peligrosidad": 4,
+    "debilidad": "El núcleo de su pecho",
+    "resumen": "Soldados de Heisenberg: cadáveres con un taladro en el brazo y un corazón mecánico.",
+    "cuerpo": [],
+    "imagen": "",
+    "color": "#7a7a7a",
+    "orden": 220
+  },
+  "reina-roja": {
+    "titulo": "Reina Roja",
+    "tipo": "Inteligencia artificial",
+    "origen": "",
+    "primeraAparicion": "umbrella-chronicles",
+    "apariciones": [
+      "umbrella-chronicles"
+    ],
+    "peligrosidad": 3,
+    "debilidad": "Destruir su núcleo",
+    "resumen": "La IA de Umbrella que controlaba sus instalaciones rusas y al T-A.L.O.S.",
+    "cuerpo": [
+      "Controlaba la seguridad, las puertas y las armas de la base del Cáucaso hasta que Wesker y los equipos antiumbrella acabaron con ella."
+    ],
+    "imagen": "",
+    "color": "#c02020",
+    "orden": 230
+  }
+}

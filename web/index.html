@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  UMBRELLA ARCHIVES · Portal de entrada: elige la Wiki o el Juego.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050506">
+  <meta name="description" content="Umbrella Archives: wiki completa de Resident Evil y escape room interactivo en 3D.">
+  <title>Umbrella Archives</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☣%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Crimson+Pro:ital@0;1&family=Oswald:wght@400;500;600&family=Share+Tech+Mono&display=swap">
+  <link rel="stylesheet" href="comun/base.css">
+  <style>
+    body { overflow: hidden; height: 100vh; height: 100dvh; }
+    .portal { position: relative; z-index: 2; height: 100%; display: grid; grid-template-rows: auto 1fr auto; }
+    .portal-cab { display: flex; flex-direction: column; align-items: center; padding: 34px 16px 10px; text-align: center; }
+    .portal-cab .logo-umbrella { font-size: 74px; animation: girarLento 60s linear infinite; filter: drop-shadow(0 0 30px rgba(200, 16, 46, .5)); }
+    @keyframes girarLento { to { transform: rotate(360deg); } }
+    .portal-cab h1 { margin: 14px 0 0; font: 900 clamp(1.8rem, 5vw, 3.4rem)/1 var(--f-titulo); letter-spacing: .22em; }
+    .portal-cab p { margin: 6px 0 0; font: .78rem var(--f-mono); letter-spacing: .5em; color: var(--rojo-vivo); }
+    .anuncio { margin-top: 12px; padding: .45em 1em; border: 1px solid var(--ambar); border-radius: 999px; color: #ffd76a; font: 500 .85rem var(--f-ui); letter-spacing: .06em; }
+
+    .puertas { display: flex; gap: 2px; padding: 22px clamp(12px, 3vw, 40px); min-height: 0; }
+    .puerta {
+      position: relative; flex: 1; display: flex; align-items: flex-end; text-decoration: none; overflow: hidden; isolation: isolate;
+      border: 1px solid #1d1d24; border-radius: 10px; transition: flex 0.8s cubic-bezier(.2, .7, .2, 1), border-color .4s, box-shadow .4s;
+      min-height: 0;
+    }
+    .puerta:hover, .puerta:focus-visible { flex: 1.6; border-color: var(--rojo); box-shadow: 0 0 60px rgba(200, 16, 46, .25); outline: none; }
+    .puerta-fondo { position: absolute; inset: -3%; z-index: -2; background: var(--img) center / cover; filter: saturate(.45) brightness(.38) contrast(1.2); transform: scale(1.05); transition: transform 6s ease, filter .8s; }
+    .puerta:hover .puerta-fondo { transform: scale(1.14); filter: saturate(.8) brightness(.55) contrast(1.15); }
+    .puerta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(5, 5, 6, .95) 5%, rgba(5, 5, 6, .2) 60%, rgba(5, 5, 6, .55)); }
+    .puerta-in { padding: clamp(20px, 4vw, 48px); }
+    .puerta small { font: .75rem var(--f-mono); letter-spacing: .45em; color: var(--rojo-vivo); }
+    .puerta h2 { margin: .2em 0 .15em; font: 900 clamp(2.4rem, 6vw, 5rem)/.95 var(--f-titulo); letter-spacing: .06em; }
+    .puerta p { margin: 0; max-width: 46ch; color: var(--texto-suave); font-size: 1.05rem; }
+    .puerta .btn { margin-top: 20px; }
+    .puerta.cerrada .puerta-fondo { filter: grayscale(1) brightness(.25); }
+    .puerta.cerrada .btn { border-color: #555; }
+    .estado-cerrado { display: inline-block; margin-top: 12px; padding: .3em .8em; border: 1px solid var(--rojo); color: #ffb3bb; font: .78rem var(--f-mono); letter-spacing: .2em; }
+    .portal-pie { padding: 10px 16px 18px; text-align: center; font: .76rem var(--f-ui); letter-spacing: .1em; color: var(--texto-tenue); }
+    .portal-pie b { color: var(--texto-suave); }
+    @media (max-width: 760px) {
+      body { overflow: auto; height: auto; }
+      .puertas { flex-direction: column; }
+      .puerta { min-height: 38vh; }
+      .puerta:hover { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="portal">
+    <header class="portal-cab">
+      <span id="logo"></span>
+      <h1>UMBRELLA ARCHIVES</h1>
+      <p>RESIDENT EVIL · WIKI · ESCAPE ROOM</p>
+      <div class="anuncio" id="anuncio" hidden></div>
+    </header>
+    <main class="puertas">
+      <a class="puerta" id="puerta-wiki" href="/wiki/">
+        <div class="puerta-fondo" style="--img:url('/juego/img/escenarios/re2_vestibulo.webp')"></div>
+        <div class="puerta-in">
+          <small>ARCHIVO I</small>
+          <h2>LA WIKI</h2>
+          <p>La historia completa de la saga: juegos y películas canon, personajes, bestiario, virus, cronología y mapa interactivo.</p>
+          <span class="btn btn-rojo">Abrir los archivos</span>
+          <div id="estado-wiki"></div>
+        </div>
+      </a>
+      <a class="puerta" id="puerta-juego" href="/juego/">
+        <div class="puerta-fondo" style="--img:url('/juego/img/escenarios/re4_castillo.webp')"></div>
+        <div class="puerta-in">
+          <small>ARCHIVO II</small>
+          <h2>EL JUEGO</h2>
+          <p>Sobrevive de Raccoon City a Requiem en un escape room de terror en 3D, con 20 personajes jugables. Solo para mayores de 18.</p>
+          <span class="btn btn-rojo">Entrar si te atreves</span>
+          <div id="estado-juego"></div>
+        </div>
+      </a>
+    </main>
+    <footer class="portal-pie" id="pie">Proyecto fan sin ánimo de lucro · Resident Evil © CAPCOM</footer>
+  </div>
+  <script src="comun/efectos.js"></script>
+  <script>
+    (async () => {
+      Umbra.iniciar();
+      document.getElementById("logo").innerHTML = Umbra.logo();
+      Umbra.visita("portal");
+      try {
+        const p = await Umbra.api("/api/portal");
+        if (p.anuncio) { const a = document.getElementById("anuncio"); a.textContent = p.anuncio; a.hidden = false; }
+        const cerrar = (id, info) => {
+          if (!info || info.publica === false || info.publico === false) {
+            document.getElementById("puerta-" + id).classList.add("cerrada");
+            document.getElementById("estado-" + id).innerHTML = '<span class="estado-cerrado">⛔ CERRADO TEMPORALMENTE</span>';
+          }
+        };
+        if (!p.vistaAdmin) { cerrar("wiki", p.wiki); cerrar("juego", p.juego); }
+        document.getElementById("pie").innerHTML = `<b>${p.fichas}</b> expedientes · <b>${p.puzzles}</b> puzzles · <b>${p.supervivientes}</b> supervivientes en el ranking · Proyecto fan sin ánimo de lucro · Resident Evil © CAPCOM`;
+      } catch { /* el portal funciona igualmente */ }
+    })();
+  </script>
+</body>
+</html>

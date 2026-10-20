@@ -13,7 +13,7 @@
       { "id": "virus", "titulo": "Agentes biológicos", "icono": "🧬", "descripcion": "Del virus Progenitor al Megamiceto: lo que lo empezó todo.", "visible": true },
       { "id": "organizaciones", "titulo": "Organizaciones", "icono": "☂", "descripcion": "Umbrella, la B.S.A.A., Tricell, Los Iluminados, La Familia...", "visible": true },
       { "id": "ubicaciones", "titulo": "Ubicaciones", "icono": "📍", "descripcion": "Cada lugar de la saga en el mapa del mundo y de Raccoon City.", "visible": true },
-      { "id": "cronologia", "titulo": "Cronología", "icono": "⏳", "descripcion": "La historia completa, de 1966 a hoy, año a año.", "visible": true }
+      { "id": "cronologia", "titulo": "Cronología", "icono": "⏳", "descripcion": "La historia completa, de 1919 a hoy, año a año.", "visible": true }
     ],
     "portada": {
       "titulo": "UMBRELLA ARCHIVES",

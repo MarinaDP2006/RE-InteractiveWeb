@@ -10,11 +10,31 @@
     "ambientacion": "23 y 24 de julio de 1998",
     "anioHistoria": 1998.55,
     "lugar": "Montañas Arklay: tren Ecliptic Express, Centro de Formación de Ejecutivos de Umbrella",
-    "ubicaciones": ["ecliptic-express", "centro-formacion-umbrella", "montanas-arklay"],
-    "protagonistas": ["rebecca", "billy"],
-    "antagonistas": ["james-marcus", "wesker", "birkin"],
-    "amenazas": ["zombi", "reina-sanguijuela", "hunter", "proto-tyrant", "cerbero"],
-    "virus": ["t-virus", "progenitor"],
+    "ubicaciones": [
+      "ecliptic-express",
+      "centro-formacion-umbrella",
+      "montanas-arklay"
+    ],
+    "protagonistas": [
+      "rebecca",
+      "billy"
+    ],
+    "antagonistas": [
+      "james-marcus",
+      "wesker",
+      "birkin"
+    ],
+    "amenazas": [
+      "zombi",
+      "reina-sanguijuela",
+      "hunter",
+      "proto-tyrant",
+      "cerbero"
+    ],
+    "virus": [
+      "t-virus",
+      "progenitor"
+    ],
     "resumen": "Un día antes del incidente de la mansión, la novata del equipo Bravo de S.T.A.R.S., Rebecca Chambers, se cruza con el preso fugado Billy Coen en un tren infestado. Juntos descubren el origen del Virus-T y al hombre que lo creó.",
     "cuerpo": [
       "## El equipo Bravo cae en Arklay",
@@ -35,7 +55,14 @@
     "video": "QbjC_WZy_jo",
     "color": "#8a6d3b",
     "orden": 10,
-    "etiquetas": ["1998", "S.T.A.R.S.", "Bravo", "Umbrella", "Marcus", "precuela"]
+    "etiquetas": [
+      "1998",
+      "S.T.A.R.S.",
+      "Bravo",
+      "Umbrella",
+      "Marcus",
+      "precuela"
+    ]
   },
   "re1": {
     "titulo": "Resident Evil",
@@ -48,11 +75,33 @@
     "ambientacion": "24 y 25 de julio de 1998",
     "anioHistoria": 1998.56,
     "lugar": "Mansión Spencer y laboratorio Arklay, montañas Arklay",
-    "ubicaciones": ["mansion-spencer", "laboratorio-arklay", "montanas-arklay"],
-    "protagonistas": ["chris", "jill"],
-    "antagonistas": ["wesker", "tyrant-t002"],
-    "amenazas": ["zombi", "cerbero", "hunter", "chimera", "yawn", "planta-42", "crimson-head", "lisa-trevor", "tyrant"],
-    "virus": ["t-virus"],
+    "ubicaciones": [
+      "mansion-spencer",
+      "laboratorio-arklay",
+      "montanas-arklay"
+    ],
+    "protagonistas": [
+      "chris",
+      "jill"
+    ],
+    "antagonistas": [
+      "wesker",
+      "tyrant-t002"
+    ],
+    "amenazas": [
+      "zombi",
+      "cerbero",
+      "hunter",
+      "chimera",
+      "yawn",
+      "planta-42",
+      "crimson-head",
+      "lisa-trevor",
+      "tyrant"
+    ],
+    "virus": [
+      "t-virus"
+    ],
     "resumen": "El equipo Alpha de S.T.A.R.S. busca a sus compañeros desaparecidos y se refugia de una jauría de perros en una mansión aislada. Lo que esconde dio origen a todo el género del survival horror.",
     "cuerpo": [
       "## Desaparecidos en el bosque",
@@ -73,7 +122,14 @@
     "video": "IjxFtFwY6jk",
     "color": "#3b5a8a",
     "orden": 20,
-    "etiquetas": ["1998", "S.T.A.R.S.", "Alpha", "mansión", "Tyrant", "Wesker"]
+    "etiquetas": [
+      "1998",
+      "S.T.A.R.S.",
+      "Alpha",
+      "mansión",
+      "Tyrant",
+      "Wesker"
+    ]
   },
   "re2": {
     "titulo": "Resident Evil 2",
@@ -86,11 +142,37 @@
     "ambientacion": "29 y 30 de septiembre de 1998",
     "anioHistoria": 1998.74,
     "lugar": "Raccoon City: comisaría (R.P.D.), alcantarillas, orfanato, laboratorio NEST",
-    "ubicaciones": ["raccoon-city", "comisaria-rpd", "alcantarillas-raccoon", "orfanato-raccoon", "nest"],
-    "protagonistas": ["leon", "claire"],
-    "antagonistas": ["birkin", "mrx", "irons", "annette"],
-    "amenazas": ["zombi", "licker", "mrx", "g-birkin", "cerbero", "planta-43", "g-adulto", "cocodrilo"],
-    "virus": ["t-virus", "g-virus"],
+    "ubicaciones": [
+      "raccoon-city",
+      "comisaria-rpd",
+      "alcantarillas-raccoon",
+      "orfanato-raccoon",
+      "nest"
+    ],
+    "protagonistas": [
+      "leon",
+      "claire"
+    ],
+    "antagonistas": [
+      "birkin",
+      "mrx",
+      "irons",
+      "annette"
+    ],
+    "amenazas": [
+      "zombi",
+      "licker",
+      "mrx",
+      "g-birkin",
+      "cerbero",
+      "planta-43",
+      "g-adulto",
+      "cocodrilo"
+    ],
+    "virus": [
+      "t-virus",
+      "g-virus"
+    ],
     "resumen": "En su primer día de trabajo, el policía novato Leon S. Kennedy llega a una ciudad ya devorada por el Virus-T. Claire Redfield, que busca a su hermano Chris, se cruza con él. Bajo la comisaría, Umbrella esconde algo mucho peor: el Virus-G.",
     "cuerpo": [
       "## Una ciudad que ya ha caído",
@@ -113,7 +195,16 @@
     "video": "u3wS-Q2KBpk",
     "color": "#9c1c1c",
     "orden": 30,
-    "etiquetas": ["1998", "Raccoon City", "R.P.D.", "Virus-G", "Mr. X", "Leon", "Claire", "NEST"]
+    "etiquetas": [
+      "1998",
+      "Raccoon City",
+      "R.P.D.",
+      "Virus-G",
+      "Mr. X",
+      "Leon",
+      "Claire",
+      "NEST"
+    ]
   },
   "re3": {
     "titulo": "Resident Evil 3",
@@ -126,11 +217,30 @@
     "ambientacion": "28 de septiembre al 1 de octubre de 1998",
     "anioHistoria": 1998.745,
     "lugar": "Raccoon City: centro, torre del reloj, hospital, planta de tratamiento",
-    "ubicaciones": ["raccoon-city", "torre-reloj", "hospital-raccoon", "comisaria-rpd"],
-    "protagonistas": ["jill", "carlos"],
-    "antagonistas": ["nemesis", "nikolai"],
-    "amenazas": ["zombi", "nemesis", "hunter", "drain-deimos", "cerbero"],
-    "virus": ["t-virus"],
+    "ubicaciones": [
+      "raccoon-city",
+      "torre-reloj",
+      "hospital-raccoon",
+      "comisaria-rpd"
+    ],
+    "protagonistas": [
+      "jill",
+      "carlos"
+    ],
+    "antagonistas": [
+      "nemesis",
+      "nikolai"
+    ],
+    "amenazas": [
+      "zombi",
+      "nemesis",
+      "hunter",
+      "drain-deimos",
+      "cerbero"
+    ],
+    "virus": [
+      "t-virus"
+    ],
     "resumen": "Jill Valentine intenta escapar de Raccoon City mientras Umbrella suelta tras ella a Némesis, un arma biológica diseñada para exterminar a los miembros de S.T.A.R.S. La cuenta atrás termina con un misil sobre la ciudad.",
     "cuerpo": [
       "## Los últimos días de Raccoon City",
@@ -152,7 +262,14 @@
     "video": "32LSdT0dqxc",
     "color": "#b33a1a",
     "orden": 40,
-    "etiquetas": ["1998", "Némesis", "Jill", "Carlos", "U.B.C.S.", "misil"]
+    "etiquetas": [
+      "1998",
+      "Némesis",
+      "Jill",
+      "Carlos",
+      "U.B.C.S.",
+      "misil"
+    ]
   },
   "outbreak": {
     "titulo": "Resident Evil Outbreak",
@@ -165,11 +282,22 @@
     "ambientacion": "Septiembre de 1998",
     "anioHistoria": 1998.73,
     "lugar": "Raccoon City: bar J's, hospital, universidad, zoo, laboratorio",
-    "ubicaciones": ["raccoon-city", "hospital-raccoon"],
-    "protagonistas": ["alyssa"],
+    "ubicaciones": [
+      "raccoon-city",
+      "hospital-raccoon"
+    ],
+    "protagonistas": [
+      "alyssa"
+    ],
     "antagonistas": [],
-    "amenazas": ["zombi", "licker", "hunter"],
-    "virus": ["t-virus"],
+    "amenazas": [
+      "zombi",
+      "licker",
+      "hunter"
+    ],
+    "virus": [
+      "t-virus"
+    ],
     "resumen": "Ocho ciudadanos corrientes intentan sobrevivir a la caída de Raccoon City. Entre ellos, la periodista Alyssa Ashcroft, madre de Grace, protagonista de Resident Evil Requiem.",
     "cuerpo": [
       "## Gente normal en el fin del mundo",
@@ -178,12 +306,20 @@
       "## Alyssa Ashcroft",
       "La reportera Alyssa Ashcroft investiga a Umbrella mientras la ciudad cae. Su historia se retoma décadas después en Resident Evil Requiem, protagonizado por su hija Grace."
     ],
-    "curiosidades": ["Los personajes no podían curarse del todo: la infección solo se ralentizaba.", "Sus servidores oficiales cerraron, pero la comunidad los mantiene vivos con servidores propios."],
+    "curiosidades": [
+      "Los personajes no podían curarse del todo: la infección solo se ralentizaba.",
+      "Sus servidores oficiales cerraron, pero la comunidad los mantiene vivos con servidores propios."
+    ],
     "imagen": "",
-    "video": "",
+    "video": "bTMurb3xcC8",
     "color": "#6b5b3b",
     "orden": 45,
-    "etiquetas": ["1998", "Raccoon City", "online", "Alyssa"]
+    "etiquetas": [
+      "1998",
+      "Raccoon City",
+      "online",
+      "Alyssa"
+    ]
   },
   "code-veronica": {
     "titulo": "Resident Evil – Code: Veronica",
@@ -196,11 +332,33 @@
     "ambientacion": "Finales de diciembre de 1998",
     "anioHistoria": 1998.98,
     "lugar": "Isla Rockfort y base de Umbrella en la Antártida",
-    "ubicaciones": ["isla-rockfort", "base-antartica", "paris-umbrella"],
-    "protagonistas": ["claire", "chris", "steve"],
-    "antagonistas": ["alexia", "alfred", "wesker"],
-    "amenazas": ["zombi", "bandersnatch", "hunter", "nosferatu", "tyrant", "alexia"],
-    "virus": ["t-virus", "t-veronica"],
+    "ubicaciones": [
+      "isla-rockfort",
+      "base-antartica",
+      "paris-umbrella"
+    ],
+    "protagonistas": [
+      "claire",
+      "chris",
+      "steve"
+    ],
+    "antagonistas": [
+      "alexia",
+      "alfred",
+      "wesker"
+    ],
+    "amenazas": [
+      "zombi",
+      "bandersnatch",
+      "hunter",
+      "nosferatu",
+      "tyrant",
+      "alexia"
+    ],
+    "virus": [
+      "t-virus",
+      "t-veronica"
+    ],
     "resumen": "Tres meses después de Raccoon City, Claire es capturada en París y encerrada en una prisión de Umbrella en una isla remota. Allí la familia Ashford guarda su secreto más monstruoso: el Virus T-Veronica.",
     "cuerpo": [
       "## Capturada en París",
@@ -211,12 +369,25 @@
       "La persecución continúa en una base de Umbrella en la Antártida. Chris Redfield llega a la isla buscando a su hermana y se reencuentra con Albert Wesker, vivo y con poderes sobrehumanos, que trabaja ahora para una organización rival y quiere el cuerpo de Alexia. Steve se transforma por el virus en un monstruo y muere en brazos de Claire.",
       "Chris derrota a Alexia con el Linear Launcher, rescata a Claire y ambos escapan mientras la base se autodestruye, tras un duelo a puñetazos con Wesker que prometen terminar algún día."
     ],
-    "curiosidades": ["Fue el primer juego principal con escenarios en 3D en tiempo real en lugar de fondos prerenderizados.", "Su título original iba a ser Resident Evil 3.", "Capcom anunció un remake con el nombre «Resident Evil Veronica»."],
+    "curiosidades": [
+      "Fue el primer juego principal con escenarios en 3D en tiempo real en lugar de fondos prerenderizados.",
+      "Su título original iba a ser Resident Evil 3.",
+      "Capcom anunció un remake con el nombre «Resident Evil Veronica»."
+    ],
     "imagen": "",
     "video": "UgM3q1IJA0c",
     "color": "#4a1c5a",
     "orden": 50,
-    "etiquetas": ["1998", "Rockfort", "Antártida", "Ashford", "Alexia", "T-Veronica", "Claire", "Chris"]
+    "etiquetas": [
+      "1998",
+      "Rockfort",
+      "Antártida",
+      "Ashford",
+      "Alexia",
+      "T-Veronica",
+      "Claire",
+      "Chris"
+    ]
   },
   "umbrella-chronicles": {
     "titulo": "Resident Evil: The Umbrella Chronicles",
@@ -229,11 +400,28 @@
     "ambientacion": "1998 – febrero de 2003",
     "anioHistoria": 2003.1,
     "lugar": "Montañas Arklay, Raccoon City, instalaciones de Umbrella en el Cáucaso (Rusia)",
-    "ubicaciones": ["caucaso-umbrella", "raccoon-city", "mansion-spencer"],
-    "protagonistas": ["chris", "jill", "wesker"],
-    "antagonistas": ["sergei", "reina-roja"],
-    "amenazas": ["tyrant", "talos", "zombi"],
-    "virus": ["t-virus"],
+    "ubicaciones": [
+      "caucaso-umbrella",
+      "raccoon-city",
+      "mansion-spencer"
+    ],
+    "protagonistas": [
+      "chris",
+      "jill",
+      "wesker"
+    ],
+    "antagonistas": [
+      "sergei",
+      "reina-roja"
+    ],
+    "amenazas": [
+      "tyrant",
+      "talos",
+      "zombi"
+    ],
+    "virus": [
+      "t-virus"
+    ],
     "resumen": "Repasa RE0, RE1 y RE3 con escenas inéditas y narra en exclusiva la caída definitiva de Umbrella en 2003, en una fábrica rusa del Cáucaso.",
     "cuerpo": [
       "## El final de la corporación",
@@ -241,12 +429,20 @@
       "## Wesker y Sergei Vladimir",
       "En paralelo, Wesker se infiltra en la sede para robar los datos de investigación de Umbrella. Se enfrenta al coronel Sergei Vladimir, fiel a Spencer, que acaba transformado en un monstruo. Con los datos de Umbrella en manos de Wesker y los juicios contra la compañía, Umbrella queda disuelta: comienza la era del bioterrorismo."
     ],
-    "curiosidades": ["Contiene archivos que llenan huecos de la historia, como el pasado de Wesker y de los Ashford."],
+    "curiosidades": [
+      "Contiene archivos que llenan huecos de la historia, como el pasado de Wesker y de los Ashford."
+    ],
     "imagen": "",
-    "video": "",
+    "video": "gOZ1iYGvR9M",
     "color": "#5a5a5a",
     "orden": 55,
-    "etiquetas": ["2003", "Umbrella", "Rusia", "Reina Roja", "Wesker"]
+    "etiquetas": [
+      "2003",
+      "Umbrella",
+      "Rusia",
+      "Reina Roja",
+      "Wesker"
+    ]
   },
   "darkside-chronicles": {
     "titulo": "Resident Evil: The Darkside Chronicles",
@@ -259,23 +455,43 @@
     "ambientacion": "2002 (Operación Javier) · repasa 1998",
     "anioHistoria": 2002.5,
     "lugar": "Amparo (Sudamérica), Raccoon City, isla Rockfort",
-    "ubicaciones": ["amparo"],
-    "protagonistas": ["leon", "krauser", "claire"],
-    "antagonistas": ["javier-hidalgo"],
-    "amenazas": ["zombi", "hunter"],
-    "virus": ["t-veronica"],
+    "ubicaciones": [
+      "amparo"
+    ],
+    "protagonistas": [
+      "leon",
+      "krauser",
+      "claire"
+    ],
+    "antagonistas": [
+      "javier-hidalgo"
+    ],
+    "amenazas": [
+      "zombi",
+      "hunter"
+    ],
+    "virus": [
+      "t-veronica"
+    ],
     "resumen": "Revive RE2 y Code: Veronica e incluye una historia nueva: la misión de Leon y Jack Krauser contra un capo sudamericano que usa el Virus T-Veronica.",
     "cuerpo": [
       "## Operación Javier",
       "En 2002, Leon S. Kennedy, ya agente del gobierno, y el soldado Jack Krauser viajan al país sudamericano de Amparo para detener al narcotraficante Javier Hidalgo, que compró armas biológicas a Umbrella. Su hija Manuela fue infectada con T-Veronica para salvarle la vida, y Javier secuestraba chicas para obtener órganos compatibles.",
       "La misión explica cómo Krauser resulta herido y queda resentido con el gobierno, algo que lo llevará a traicionar a Leon en Resident Evil 4."
     ],
-    "curiosidades": ["Manuela Hidalgo es una de las pocas personas que conviven con T-Veronica sin perder la cordura."],
+    "curiosidades": [
+      "Manuela Hidalgo es una de las pocas personas que conviven con T-Veronica sin perder la cordura."
+    ],
     "imagen": "",
     "video": "",
     "color": "#3a5a3a",
     "orden": 58,
-    "etiquetas": ["2002", "Leon", "Krauser", "Sudamérica"]
+    "etiquetas": [
+      "2002",
+      "Leon",
+      "Krauser",
+      "Sudamérica"
+    ]
   },
   "re4": {
     "titulo": "Resident Evil 4",
@@ -288,11 +504,34 @@
     "ambientacion": "Otoño de 2004",
     "anioHistoria": 2004.8,
     "lugar": "Zona rural de España: la aldea, el castillo de Salazar y la isla de Saddler",
-    "ubicaciones": ["aldea-espana", "castillo-salazar", "isla-saddler"],
-    "protagonistas": ["leon", "ashley", "luis", "ada"],
-    "antagonistas": ["saddler", "salazar", "mendez", "krauser"],
-    "amenazas": ["ganado", "el-gigante", "regenerador", "verdugo", "garrador", "u3"],
-    "virus": ["las-plagas"],
+    "ubicaciones": [
+      "aldea-espana",
+      "castillo-salazar",
+      "isla-saddler"
+    ],
+    "protagonistas": [
+      "leon",
+      "ashley",
+      "luis",
+      "ada"
+    ],
+    "antagonistas": [
+      "saddler",
+      "salazar",
+      "mendez",
+      "krauser"
+    ],
+    "amenazas": [
+      "ganado",
+      "el-gigante",
+      "regenerador",
+      "verdugo",
+      "garrador",
+      "u3"
+    ],
+    "virus": [
+      "las-plagas"
+    ],
     "resumen": "Seis años después de Raccoon City, Leon, ahora agente especial, viaja a una aldea española para rescatar a la hija del presidente de EE. UU. Los aldeanos no son zombis: obedecen a un parásito.",
     "cuerpo": [
       "## La hija del presidente",
@@ -305,12 +544,25 @@
       "## «Caminos separados»",
       "La campaña de Ada (Separate Ways) cuenta los mismos hechos desde su lado: su misión para Wesker y cómo salva a Leon en las sombras una y otra vez. El remake de 2023 reconstruyó el juego con el RE Engine, más terror y un Luis y una Ashley con mucho más protagonismo."
     ],
-    "curiosidades": ["Cambió la saga y el género con su cámara al hombro, copiada después por muchos juegos de acción.", "El Comerciante («What are ya buyin'?») es uno de los personajes más queridos de la saga.", "Pasó por varias versiones descartadas; una de ellas acabó siendo Devil May Cry."],
+    "curiosidades": [
+      "Cambió la saga y el género con su cámara al hombro, copiada después por muchos juegos de acción.",
+      "El Comerciante («What are ya buyin'?») es uno de los personajes más queridos de la saga.",
+      "Pasó por varias versiones descartadas; una de ellas acabó siendo Devil May Cry."
+    ],
     "imagen": "/juego/img/escenarios/re4.webp",
     "video": "Id2EaldBaWw",
     "color": "#7a5a2a",
     "orden": 60,
-    "etiquetas": ["2004", "España", "Las Plagas", "Leon", "Ashley", "Ada", "Saddler", "Krauser"]
+    "etiquetas": [
+      "2004",
+      "España",
+      "Las Plagas",
+      "Leon",
+      "Ashley",
+      "Ada",
+      "Saddler",
+      "Krauser"
+    ]
   },
   "revelations": {
     "titulo": "Resident Evil: Revelations",
@@ -323,11 +575,28 @@
     "ambientacion": "2005 (con recuerdos de 2004)",
     "anioHistoria": 2005.3,
     "lugar": "Crucero Queen Zenobia (Mediterráneo), Terragrigia, montañas de Finlandia",
-    "ubicaciones": ["queen-zenobia", "terragrigia", "finlandia"],
-    "protagonistas": ["jill", "chris", "parker", "jessica"],
-    "antagonistas": ["lansdale", "veltro"],
-    "amenazas": ["ooze", "scagdead", "lepotitsa"],
-    "virus": ["t-abyss"],
+    "ubicaciones": [
+      "queen-zenobia",
+      "terragrigia",
+      "finlandia"
+    ],
+    "protagonistas": [
+      "jill",
+      "chris",
+      "parker"
+    ],
+    "antagonistas": [
+      "lansdale",
+      "veltro"
+    ],
+    "amenazas": [
+      "ooze",
+      "scagdead",
+      "lepotitsa"
+    ],
+    "virus": [
+      "t-abyss"
+    ],
     "resumen": "Jill Valentine busca a Chris en un crucero a la deriva en el Mediterráneo. A bordo, una nueva cepa creada a partir de un pez abisal y la sombra de la destrucción de una ciudad flotante.",
     "cuerpo": [
       "## Un barco fantasma",
@@ -336,12 +605,22 @@
       "En 2004, la ciudad flotante de Terragrigia, en el Mediterráneo, fue destruida con un satélite solar tras un ataque bioterrorista del grupo Veltro. El juego revela que el jefe de la F.B.C., Morgan Lansdale, orquestó el atentado para dar a su organización poder y presupuesto. Su caída permite a la B.S.A.A. convertirse en una organización bajo el amparo de la ONU.",
       "Episódico y pensado para portátil, combinó la exploración clásica de pasillos estrechos con la acción de las entregas modernas."
     ],
-    "curiosidades": ["El escáner Génesis permitía analizar enemigos y encontrar objetos ocultos.", "Introdujo el modo Raid, muy popular por su componente de rol y cooperativo."],
+    "curiosidades": [
+      "El escáner Génesis permitía analizar enemigos y encontrar objetos ocultos.",
+      "Introdujo el modo Raid, muy popular por su componente de rol y cooperativo."
+    ],
     "imagen": "",
-    "video": "",
+    "video": "Zn-dhvYybYg",
     "color": "#1a4a6a",
     "orden": 65,
-    "etiquetas": ["2005", "Jill", "Chris", "B.S.A.A.", "Mediterráneo", "T-Abyss"]
+    "etiquetas": [
+      "2005",
+      "Jill",
+      "Chris",
+      "B.S.A.A.",
+      "Mediterráneo",
+      "T-Abyss"
+    ]
   },
   "re5": {
     "titulo": "Resident Evil 5",
@@ -354,11 +633,33 @@
     "ambientacion": "Marzo de 2009 (DLC «Perdidos en las pesadillas»: 2006)",
     "anioHistoria": 2009.2,
     "lugar": "Kijuju (África), pantanos, ruinas Ndipaya, laboratorio de Tricell",
-    "ubicaciones": ["kijuju", "ruinas-ndipaya", "mansion-spencer-europa"],
-    "protagonistas": ["chris", "sheva"],
-    "antagonistas": ["wesker", "excella", "irving", "jill-p30"],
-    "amenazas": ["majini", "verdugo", "uroboros-criatura", "ndesu", "licker"],
-    "virus": ["las-plagas", "uroboros", "progenitor"],
+    "ubicaciones": [
+      "kijuju",
+      "ruinas-ndipaya",
+      "mansion-spencer-europa"
+    ],
+    "protagonistas": [
+      "chris",
+      "sheva"
+    ],
+    "antagonistas": [
+      "wesker",
+      "excella",
+      "irving",
+      "jill-p30"
+    ],
+    "amenazas": [
+      "majini",
+      "verdugo",
+      "uroboros-criatura",
+      "ndesu",
+      "licker"
+    ],
+    "virus": [
+      "las-plagas",
+      "uroboros",
+      "progenitor"
+    ],
     "resumen": "Chris Redfield y Sheva Alomar, de la B.S.A.A., investigan una venta de armas biológicas en Kijuju. El rastro les lleva hasta Albert Wesker y su plan para «elegir» qué humanos sobreviven.",
     "cuerpo": [
       "## Kijuju",
@@ -370,12 +671,25 @@
       "## El volcán",
       "Chris y Sheva liberan a Jill, persiguen a Wesker hasta un bombardero cargado de Uroboros y lo derriban. En el corazón de un volcán, mientras se hunde en la lava, Wesker es rematado con dos lanzacohetes. La era de Wesker termina... o eso parece."
     ],
-    "curiosidades": ["Primer juego principal con cooperativo completo para dos jugadores.", "El famoso «peñasco» al que Chris da puñetazos en el volcán se convirtió en un meme.", "El DLC «Fuga desesperada» cuenta cómo escapan Jill y Josh Stone."],
+    "curiosidades": [
+      "Primer juego principal con cooperativo completo para dos jugadores.",
+      "El famoso «peñasco» al que Chris da puñetazos en el volcán se convirtió en un meme.",
+      "El DLC «Fuga desesperada» cuenta cómo escapan Jill y Josh Stone."
+    ],
     "imagen": "/juego/img/escenarios/re5.webp",
     "video": "5lYNJQVz_Pc",
     "color": "#b37a1a",
     "orden": 70,
-    "etiquetas": ["2009", "África", "Kijuju", "Wesker", "Uroboros", "Tricell", "Sheva", "Jill"]
+    "etiquetas": [
+      "2009",
+      "África",
+      "Kijuju",
+      "Wesker",
+      "Uroboros",
+      "Tricell",
+      "Sheva",
+      "Jill"
+    ]
   },
   "revelations2": {
     "titulo": "Resident Evil: Revelations 2",
@@ -388,11 +702,24 @@
     "ambientacion": "2011 (y seis meses después)",
     "anioHistoria": 2011.4,
     "lugar": "Isla de Sushestvovanie (Europa del Este)",
-    "ubicaciones": ["sushestvovanie"],
-    "protagonistas": ["claire", "moira", "barry", "natalia"],
-    "antagonistas": ["alex-wesker"],
-    "amenazas": ["afligido", "revenant"],
-    "virus": ["t-phobos"],
+    "ubicaciones": [
+      "sushestvovanie"
+    ],
+    "protagonistas": [
+      "claire",
+      "moira",
+      "barry",
+      "natalia"
+    ],
+    "antagonistas": [
+      "alex-wesker"
+    ],
+    "amenazas": [
+      "afligido"
+    ],
+    "virus": [
+      "t-phobos"
+    ],
     "resumen": "Claire Redfield y Moira Burton despiertan en una prisión abandonada de una isla. Seis meses después, Barry Burton llega a buscar a su hija y encuentra a una niña misteriosa: Natalia.",
     "cuerpo": [
       "## TerraSave secuestrado",
@@ -400,12 +727,22 @@
       "## Alex Wesker",
       "Detrás está Alex Wesker, una de los niños del Proyecto Wesker de Spencer, enferma terminal y obsesionada con la inmortalidad: quiere trasladar su mente a otro cuerpo. Barry llega seis meses después, guiado por la pequeña Natalia Korda, que ve a los monstruos invisibles. El final varía según las decisiones de Moira."
     ],
-    "curiosidades": ["Inspiraciones de Kafka recorren todo el juego: Alex cita «La metamorfosis».", "El modo Raid regresó ampliado."],
+    "curiosidades": [
+      "Inspiraciones de Kafka recorren todo el juego: Alex cita «La metamorfosis».",
+      "El modo Raid regresó ampliado."
+    ],
     "imagen": "",
-    "video": "",
+    "video": "3IMxhH0o-LY",
     "color": "#4a3a2a",
     "orden": 72,
-    "etiquetas": ["2011", "Claire", "Barry", "Moira", "Alex Wesker", "Proyecto Wesker"]
+    "etiquetas": [
+      "2011",
+      "Claire",
+      "Barry",
+      "Moira",
+      "Alex Wesker",
+      "Proyecto Wesker"
+    ]
   },
   "re6": {
     "titulo": "Resident Evil 6",
@@ -418,11 +755,34 @@
     "ambientacion": "Diciembre de 2012 – junio de 2013",
     "anioHistoria": 2013.5,
     "lugar": "Tall Oaks (EE. UU.), Edonia (Europa del Este), Lanshiang (China)",
-    "ubicaciones": ["tall-oaks", "edonia", "lanshiang", "laboratorio-submarino"],
-    "protagonistas": ["leon", "helena", "chris", "piers", "jake", "sherry", "ada"],
-    "antagonistas": ["simmons", "carla"],
-    "amenazas": ["zombi", "javo", "ustanak", "haos", "chrysalid"],
-    "virus": ["c-virus"],
+    "ubicaciones": [
+      "tall-oaks",
+      "edonia",
+      "lanshiang",
+      "laboratorio-submarino"
+    ],
+    "protagonistas": [
+      "leon",
+      "helena",
+      "chris",
+      "piers",
+      "jake",
+      "sherry",
+      "ada"
+    ],
+    "antagonistas": [
+      "simmons",
+      "carla"
+    ],
+    "amenazas": [
+      "zombi",
+      "javo",
+      "ustanak",
+      "haos"
+    ],
+    "virus": [
+      "c-virus"
+    ],
     "resumen": "El ataque bioterrorista más grande de la historia: cuatro campañas entrelazadas siguen a Leon, Chris, Jake y Ada por tres continentes, hasta descubrir quién está detrás del Virus C.",
     "cuerpo": [
       "## El presidente infectado",
@@ -434,12 +794,26 @@
       "## Carla Radames y La Familia",
       "La campaña de Ada revela la verdad: Simmons, líder de una organización secreta llamada La Familia y obsesionado con Ada, intentó recrearla con el Virus C usando a la científica Carla Radames. Carla, con el rostro de Ada, se vengó lanzando el caos sobre el mundo. Leon y Helena derrotan a Simmons, convertido en un monstruo, y la verdadera Ada destruye el laboratorio de clones."
     ],
-    "curiosidades": ["Es el juego con más personajes jugables de la saga principal.", "El Virus C transforma a la gente en J'avo, que mutan partes del cuerpo cuando se les dispara.", "Incluye modo «Cazador de agentes»: juegas como monstruo e invades la partida de otro."],
+    "curiosidades": [
+      "Es el juego con más personajes jugables de la saga principal.",
+      "El Virus C transforma a la gente en J'avo, que mutan partes del cuerpo cuando se les dispara.",
+      "Incluye modo «Cazador de agentes»: juegas como monstruo e invades la partida de otro."
+    ],
     "imagen": "/juego/img/escenarios/re6.webp",
     "video": "8SlXT8JtYSM",
     "color": "#a3201a",
     "orden": 80,
-    "etiquetas": ["2013", "Virus C", "Leon", "Chris", "Jake", "Sherry", "Ada", "Simmons", "China"]
+    "etiquetas": [
+      "2013",
+      "Virus C",
+      "Leon",
+      "Chris",
+      "Jake",
+      "Sherry",
+      "Ada",
+      "Simmons",
+      "China"
+    ]
   },
   "re7": {
     "titulo": "Resident Evil 7: Biohazard",
@@ -452,11 +826,29 @@
     "ambientacion": "Julio de 2017",
     "anioHistoria": 2017.55,
     "lugar": "Plantación de la familia Baker en Dulvey, Luisiana",
-    "ubicaciones": ["dulvey-baker"],
-    "protagonistas": ["ethan", "mia", "zoe", "chris"],
-    "antagonistas": ["eveline", "jack", "marguerite", "lucas"],
-    "amenazas": ["moldeado", "jack", "marguerite"],
-    "virus": ["moho-e"],
+    "ubicaciones": [
+      "dulvey-baker"
+    ],
+    "protagonistas": [
+      "ethan",
+      "mia",
+      "zoe",
+      "chris"
+    ],
+    "antagonistas": [
+      "eveline",
+      "jack",
+      "marguerite",
+      "lucas"
+    ],
+    "amenazas": [
+      "moldeado",
+      "jack",
+      "marguerite"
+    ],
+    "virus": [
+      "moho-e"
+    ],
     "resumen": "Ethan Winters recibe un mensaje de su esposa Mia, desaparecida hace tres años, y la busca en una granja abandonada de Luisiana. La familia Baker le da la bienvenida... a su manera.",
     "cuerpo": [
       "## Un regreso a las raíces",
@@ -468,12 +860,25 @@
       "## No soy un héroe y El final de Zoe",
       "En los DLC, Chris (en la nueva Umbrella reformada, la «Blue Umbrella») atrapa a Lucas, y Joe Baker, el tío de Zoe, pelea a puñetazos para salvar a su sobrina."
     ],
-    "curiosidades": ["Se podía jugar entero en realidad virtual con PS VR.", "La demo «Beginning Hour» generó teorías durante meses sobre un dedo de maniquí.", "Ethan nunca muestra su cara en todo el juego."],
+    "curiosidades": [
+      "Se podía jugar entero en realidad virtual con PS VR.",
+      "La demo «Beginning Hour» generó teorías durante meses sobre un dedo de maniquí.",
+      "Ethan nunca muestra su cara en todo el juego."
+    ],
     "imagen": "/juego/img/escenarios/re7.webp",
-    "video": "",
+    "video": "RgYqQsbKn6w",
     "color": "#4a5a2a",
     "orden": 90,
-    "etiquetas": ["2017", "Luisiana", "Baker", "Ethan", "Mia", "Eveline", "Moho", "primera persona"]
+    "etiquetas": [
+      "2017",
+      "Luisiana",
+      "Baker",
+      "Ethan",
+      "Mia",
+      "Eveline",
+      "Moho",
+      "primera persona"
+    ]
   },
   "re8": {
     "titulo": "Resident Evil Village",
@@ -486,11 +891,35 @@
     "ambientacion": "Febrero de 2021 (DLC «La sombra de Rose»: unos 16 años después)",
     "anioHistoria": 2021.1,
     "lugar": "Una aldea aislada de Europa del Este: castillo Dimitrescu, casa Beneviento, embalse, fábrica",
-    "ubicaciones": ["aldea-europa", "castillo-dimitrescu", "casa-beneviento", "embalse-moreau", "fabrica-heisenberg"],
-    "protagonistas": ["ethan", "chris", "rose"],
-    "antagonistas": ["miranda", "dimitrescu", "donna", "moreau", "heisenberg"],
-    "amenazas": ["licantropo", "hijas-dimitrescu", "soldat", "moldeado"],
-    "virus": ["megamiceto", "cadou"],
+    "ubicaciones": [
+      "aldea-europa",
+      "castillo-dimitrescu",
+      "casa-beneviento",
+      "embalse-moreau",
+      "fabrica-heisenberg"
+    ],
+    "protagonistas": [
+      "ethan",
+      "chris",
+      "rose"
+    ],
+    "antagonistas": [
+      "miranda",
+      "dimitrescu",
+      "donna",
+      "moreau",
+      "heisenberg"
+    ],
+    "amenazas": [
+      "licantropo",
+      "hijas-dimitrescu",
+      "soldat",
+      "moldeado"
+    ],
+    "virus": [
+      "megamiceto",
+      "cadou"
+    ],
     "resumen": "Tres años después de Dulvey, Chris Redfield asesina a Mia ante los ojos de Ethan y se lleva a su hija Rose. Ethan la busca en una aldea nevada gobernada por cuatro señores monstruosos y su Madre.",
     "cuerpo": [
       "## El secuestro de Rose",
@@ -502,12 +931,25 @@
       "## La sombra de Rose",
       "Unos 16 años después, Rose, con poderes del moho, entra en la conciencia del Megamiceto para intentar librarse de ellos. Una figura misteriosa, «Michael», la protege. Es su padre."
     ],
-    "curiosidades": ["Lady Dimitrescu se convirtió en un fenómeno viral antes incluso del lanzamiento.", "El nombre «Village» esconde un guiño: las letras «VIII» del 8.", "El Duque, el comerciante obeso, parece saber mucho más de lo que dice."],
+    "curiosidades": [
+      "Lady Dimitrescu se convirtió en un fenómeno viral antes incluso del lanzamiento.",
+      "El nombre «Village» esconde un guiño: las letras «VIII» del 8.",
+      "El Duque, el comerciante obeso, parece saber mucho más de lo que dice."
+    ],
     "imagen": "/juego/img/escenarios/re8.webp",
     "video": "QKocYiRHYlI",
     "color": "#5a6a7a",
     "orden": 100,
-    "etiquetas": ["2021", "Europa", "Miranda", "Dimitrescu", "Heisenberg", "Ethan", "Rose", "Megamiceto"]
+    "etiquetas": [
+      "2021",
+      "Europa",
+      "Miranda",
+      "Dimitrescu",
+      "Heisenberg",
+      "Ethan",
+      "Rose",
+      "Megamiceto"
+    ]
   },
   "requiem": {
     "titulo": "Resident Evil Requiem",
@@ -520,11 +962,24 @@
     "ambientacion": "Casi tres décadas después de la destrucción de Raccoon City",
     "anioHistoria": 2026.2,
     "lugar": "Wrenwood y su hotel, centro de cuidados Rhodes Hill, ruinas de Raccoon City",
-    "ubicaciones": ["hotel-wrenwood", "rhodes-hill", "ruinas-raccoon"],
-    "protagonistas": ["grace", "leon"],
-    "antagonistas": ["gideon"],
-    "amenazas": ["zombi"],
-    "virus": ["t-virus"],
+    "ubicaciones": [
+      "hotel-wrenwood",
+      "rhodes-hill",
+      "ruinas-raccoon"
+    ],
+    "protagonistas": [
+      "grace",
+      "leon"
+    ],
+    "antagonistas": [
+      "gideon"
+    ],
+    "amenazas": [
+      "zombi"
+    ],
+    "virus": [
+      "t-virus"
+    ],
     "resumen": "Grace Ashcroft, analista del FBI e hija de la periodista Alyssa Ashcroft, investiga unas muertes extrañas en un hotel cercano a las ruinas de Raccoon City, el mismo donde su madre fue asesinada hace ocho años. Leon S. Kennedy sigue la misma pista.",
     "cuerpo": [
       "## Grace Ashcroft",
@@ -535,12 +990,23 @@
       "Un antiguo empleado de Umbrella, el doctor Victor Gideon, ha seguido experimentando con personas y fabricando armas biológicas. Captura a Grace y la lleva al centro de cuidados crónicos Rhodes Hill. La historia termina regresando a las ruinas de Raccoon City y a los secretos que Umbrella dejó enterrados allí.",
       "> Esta ficha evita a propósito los giros finales. Puedes ampliarla desde la app de administración."
     ],
-    "curiosidades": ["Se anunció en el Summer Game Fest de junio de 2025.", "Es el regreso de la saga principal a Raccoon City tras casi tres décadas.", "Capcom lo promocionó también con un cortometraje de acción real."],
+    "curiosidades": [
+      "Se anunció en el Summer Game Fest de junio de 2025.",
+      "Es el regreso de la saga principal a Raccoon City tras casi tres décadas.",
+      "Capcom lo promocionó también con un cortometraje de acción real."
+    ],
     "imagen": "/juego/img/escenarios/re9.webp",
     "video": "9lrThxCoznw",
     "color": "#7a1a2a",
     "orden": 110,
-    "etiquetas": ["2026", "Grace", "Leon", "Raccoon City", "Gideon", "Wrenwood"]
+    "etiquetas": [
+      "2026",
+      "Grace",
+      "Leon",
+      "Raccoon City",
+      "Gideon",
+      "Wrenwood"
+    ]
   },
   "spinoffs-no-canon": {
     "titulo": "Spin-offs no canon",
@@ -570,6 +1036,9 @@
     "video": "",
     "color": "#444444",
     "orden": 900,
-    "etiquetas": ["no canon", "spin-off"]
+    "etiquetas": [
+      "no canon",
+      "spin-off"
+    ]
   }
 }

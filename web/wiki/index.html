@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+  ============================================================================
+   UMBRELLA ARCHIVES · Wiki de la saga Resident Evil
+   index.html — Estructura de la wiki (aplicación de una sola página)
+  ============================================================================
+   Rutas (en el hash de la URL):
+     #/                         portada
+     #/s/<seccion>              listado de una sección (juegos, personajes...)
+     #/f/<seccion>/<id>         ficha
+     #/cronologia               línea temporal
+     #/mapa                     mapa del mundo y de Raccoon City
+     #/buscar/<texto>           búsqueda
+   Todo el contenido llega de la base de datos por /api/wiki.
+  ============================================================================
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050506">
+  <meta name="description" content="Wiki de Resident Evil: historia completa de los juegos y películas canon, personajes, bestiario, virus, organizaciones, cronología y mapa interactivo.">
+  <title>Umbrella Archives · Wiki</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☣%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500;600&family=Share+Tech+Mono&family=Special+Elite&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="../comun/base.css">
+  <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== CABECERA ===================== -->
+  <header class="cabecera" id="cabecera">
+    <div class="cabecera-in">
+      <a class="marca" href="#/" aria-label="Umbrella Archives, portada">
+        <span id="marca-logo"></span>
+        <span class="marca-texto"><b>UMBRELLA</b><i>ARCHIVES</i></span>
+      </a>
+      <nav class="menu" id="menu" aria-label="Secciones"></nav>
+      <form class="buscador" id="buscador" role="search" autocomplete="off">
+        <label class="oculto-visual" for="buscar">Buscar en la wiki</label>
+        <input id="buscar" type="search" placeholder="Buscar… ( / )" maxlength="60">
+        <div class="sugerencias" id="sugerencias" role="listbox" hidden></div>
+      </form>
+      <button class="btn-icono" id="btn-ambiente" type="button" title="Sonido ambiente" aria-pressed="false">🔇</button>
+      <button class="btn-icono hamburguesa" id="btn-menu" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </div>
+    <div class="cabecera-barra" id="barra-progreso"></div>
+  </header>
+
+  <!-- ===================== CONTENIDO ===================== -->
+  <main id="contenido" tabindex="-1">
+    <div class="cargando" id="cargando">
+      <div class="cargando-anillo"></div>
+      <p class="mono">ACCEDIENDO A LOS ARCHIVOS DE UMBRELLA…</p>
+    </div>
+  </main>
+
+  <!-- ===================== PIE ===================== -->
+  <footer class="pie">
+    <div class="contenedor pie-in">
+      <p><span id="pie-logo"></span> <b>UMBRELLA ARCHIVES</b> · Proyecto fan sin ánimo de lucro.</p>
+      <p class="pie-legal">Resident Evil y todos sus personajes © CAPCOM. Los vídeos pertenecen a sus canales oficiales de YouTube. Textos originales de esta wiki.</p>
+      <p><a href="/">Portal</a> · <a href="/juego/">Jugar al escape room</a> · <a href="#/cronologia">Cronología</a> · <a href="#/mapa">Mapa</a></p>
+    </div>
+  </footer>
+
+  <!-- Visor de vídeo -->
+  <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Vídeo">
+    <button class="visor-cerrar" type="button" aria-label="Cerrar vídeo">✕</button>
+    <div class="visor-marco" id="visor-marco"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
+  <script src="../comun/efectos.js"></script>
+  <script src="wiki.js"></script>
+</body>
+</html>
