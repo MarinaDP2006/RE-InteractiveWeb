@@ -14,3 +14,4 @@ admin/dist/
 Thumbs.db
 .vscode/
 .idea/
+build-admin/

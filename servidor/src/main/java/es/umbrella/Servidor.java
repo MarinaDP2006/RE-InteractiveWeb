@@ -6,6 +6,8 @@
  *  No necesita ninguna dependencia (solo el driver de PostgreSQL si se usa
  *  DATABASE_URL, que el Dockerfile ya incluye).
  *
+ *  Uso:  java -cp build es.umbrella.Servidor [carpeta-del-proyecto]
+ *
  *  Variables de entorno (todas opcionales):
  *    PORT            puerto HTTP (por defecto 8080; Render la define sola)
  *    WEB_DIR         carpeta de la web          (por defecto ./web)
@@ -15,6 +17,9 @@
  *    ADMIN_USER      usuario del administrador  (por defecto "admin")
  *    ADMIN_PASSWORD  contraseña inicial del administrador
  *    ADMIN_RESET     "true" para restablecer la contraseña con ADMIN_PASSWORD
+ *
+ *  La app de administración también puede arrancarlo dentro de sí misma
+ *  (servidor local) con Servidor.arrancar(...).
  * ============================================================================
  */
 package es.umbrella;
@@ -31,35 +36,77 @@ import java.util.concurrent.TimeUnit;
 
 public final class Servidor {
 
+    /** Servidor en marcha (para poder pararlo desde la app de administración). */
+    public static final class Instancia {
+        private final HttpServer http;
+        private final ScheduledExecutorService tareas;
+        private final Actividad actividad;
+        private final String almacen;
+        private final int puerto;
+
+        private Instancia(HttpServer http, ScheduledExecutorService tareas, Actividad actividad, String almacen, int puerto) {
+            this.http = http;
+            this.tareas = tareas;
+            this.actividad = actividad;
+            this.almacen = almacen;
+            this.puerto = puerto;
+        }
+
+        public void detener() {
+            actividad.volcar();
+            tareas.shutdownNow();
+            http.stop(1);
+        }
+
+        public String almacenamiento() {
+            return almacen;
+        }
+
+        public int puerto() {
+            return puerto;
+        }
+    }
+
     private Servidor() {
     }
 
-    /** Carpeta raíz del proyecto (primer argumento opcional; por defecto, la carpeta actual). */
-    private static Path raiz = Path.of("").toAbsolutePath();
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        Path raiz = Path.of("").toAbsolutePath();
         if (args.length > 0 && !args[0].isBlank()) {
             raiz = Path.of(args[0]).toAbsolutePath().normalize();
         }
         int puerto = Integer.parseInt(env("PORT", "8080"));
-        Path web = carpeta("WEB_DIR", "web");
+        Path web = carpeta(raiz, "WEB_DIR", "web");
         Path datos = raiz.resolve(env("DATA_DIR", "data")).toAbsolutePath().normalize();
-        Path semilla = carpeta("SEED_DIR", "semilla");
-        Files.createDirectories(datos);
-
-        if (!Files.isDirectory(web)) {
-            System.err.println("ERROR: no encuentro la carpeta de la web: " + web);
-            System.exit(1);
-        }
-
-        BaseDatos db;
+        Path semilla = carpeta(raiz, "SEED_DIR", "semilla");
         try {
-            db = new BaseDatos(Almacenamiento.crear(datos), datos, semilla);
+            Instancia s = arrancar(web, datos, semilla, puerto);
+            Runtime.getRuntime().addShutdownHook(new Thread(s::detener));
+            System.out.println("""
+
+                     ██╗   ██╗███╗   ███╗██████╗ ██████╗ ███████╗██╗     ██╗      █████╗
+                     ██║   ██║████╗ ████║██╔══██╗██╔══██╗██╔════╝██║     ██║     ██╔══██╗
+                     ██║   ██║██╔████╔██║██████╔╝██████╔╝█████╗  ██║     ██║     ███████║
+                     ██║   ██║██║╚██╔╝██║██╔══██╗██╔══██╗██╔══╝  ██║     ██║     ██╔══██║
+                     ╚██████╔╝██║ ╚═╝ ██║██████╔╝██║  ██║███████╗███████╗███████╗██║  ██║
+                      ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
+                                        A R C H I V E S  ·  v""" + Api.VERSION);
+            System.out.println("  Web:    " + web);
+            System.out.println("  Datos:  " + s.almacenamiento());
+            System.out.println("  Abre    http://localhost:" + puerto + "   (Wiki: /wiki/  ·  Juego: /juego/)");
         } catch (IOException e) {
-            System.err.println("ERROR al abrir la base de datos: " + e.getMessage());
+            System.err.println("ERROR al arrancar el servidor: " + e.getMessage());
             System.exit(1);
-            return;
         }
+    }
+
+    /** Arranca el servidor y devuelve la instancia en marcha. */
+    public static Instancia arrancar(Path web, Path datos, Path semilla, int puerto) throws IOException {
+        Files.createDirectories(datos);
+        if (!Files.isDirectory(web)) {
+            throw new IOException("No encuentro la carpeta de la web: " + web);
+        }
+        BaseDatos db = new BaseDatos(Almacenamiento.crear(datos), datos, semilla);
         Seguridad seguridad = new Seguridad(db, datos);
         Actividad actividad = new Actividad(db);
         Juego juego = new Juego(db);
@@ -88,24 +135,8 @@ public final class Servidor {
             }
         }, 30, 3600, TimeUnit.SECONDS);
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            actividad.volcar();
-            servidor.stop(1);
-        }));
-
         servidor.start();
-        System.out.println("""
-
-                 ██╗   ██╗███╗   ███╗██████╗ ██████╗ ███████╗██╗     ██╗      █████╗
-                 ██║   ██║████╗ ████║██╔══██╗██╔══██╗██╔════╝██║     ██║     ██╔══██╗
-                 ██║   ██║██╔████╔██║██████╔╝██████╔╝█████╗  ██║     ██║     ███████║
-                 ██║   ██║██║╚██╔╝██║██╔══██╗██╔══██╗██╔══╝  ██║     ██║     ██╔══██║
-                 ╚██████╔╝██║ ╚═╝ ██║██████╔╝██║  ██║███████╗███████╗███████╗██║  ██║
-                  ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
-                                    A R C H I V E S  ·  v""" + Api.VERSION);
-        System.out.println("  Web:    " + web);
-        System.out.println("  Datos:  " + db.descripcionAlmacen());
-        System.out.println("  Abre    http://localhost:" + puerto + "   (Wiki: /wiki/  ·  Juego: /juego/)");
+        return new Instancia(servidor, tareas, actividad, db.descripcionAlmacen(), puerto);
     }
 
     private static String env(String nombre, String porDefecto) {
@@ -113,8 +144,8 @@ public final class Servidor {
         return v == null || v.isBlank() ? porDefecto : v.trim();
     }
 
-    /** Busca la carpeta en ./ y, si no está, en ../ (por si se arranca desde servidor/). */
-    private static Path carpeta(String variable, String nombre) {
+    /** Busca la carpeta en la raíz y, si no está, en la carpeta de arriba. */
+    private static Path carpeta(Path raiz, String variable, String nombre) {
         String v = System.getenv(variable);
         if (v != null && !v.isBlank()) {
             return Path.of(v).toAbsolutePath().normalize();
