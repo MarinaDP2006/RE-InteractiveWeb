@@ -391,3 +391,33 @@
   .tc-rutas { grid-template-columns: repeat(2, 1fr); }
   .tc-ruta img { width: 84px; height: 84px; }
 }
+
+/* ===================== HUD DE SALA ESTILO RE (arma y munición) ===================== */
+.exp-estado { top: auto; bottom: 18px; right: 20px; z-index: 6; }
+.exp-arma {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 0;
+  padding: 8px 16px 6px 26px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.75) 30%);
+  border-right: 2px solid rgba(232, 224, 208, 0.6);
+}
+.exp-arma-nombre { font: 500 0.72rem/1 "Share Tech Mono", "Courier New", monospace; letter-spacing: 0.35em; color: rgba(232, 224, 208, 0.7); }
+.exp-arma .exp-municion { padding: 0; background: none; border: 0; }
+.exp-arma .exp-municion b { font: 300 2.6rem/1 Oswald, sans-serif; color: #f2ede4; text-shadow: 0 0 12px rgba(0, 0, 0, 0.9); letter-spacing: 0.02em; }
+
+/* ===================== AGARRE: FORCEJEA ===================== */
+.exp-agarre {
+  position: absolute; inset: 0; z-index: 8; display: grid; place-content: center; text-align: center; gap: 6px; cursor: pointer;
+  background: radial-gradient(ellipse at center, rgba(120, 0, 0, 0.15), rgba(60, 0, 0, 0.55) 70%);
+  animation: agarre 0.25s ease;
+}
+@keyframes agarre { from { opacity: 0; transform: scale(1.15); } }
+.exp-agarre p { margin: 0; font: 500 0.9rem "Share Tech Mono", monospace; letter-spacing: 0.4em; color: #ffb3b3; }
+.exp-agarre strong { font: 900 clamp(2.4rem, 7vw, 4.6rem)/1 Cinzel, serif; color: #fff; letter-spacing: 0.12em; text-shadow: 0 0 30px #c1121f, 0 4px 0 #400; animation: latidoAgarre 0.35s ease-in-out infinite alternate; }
+@keyframes latidoAgarre { to { transform: scale(1.06); } }
+.exp-agarre span { font: 400 0.95rem Oswald, sans-serif; letter-spacing: 0.1em; color: #e8e0d0; }
+.exp-agarre kbd { padding: 1px 6px; border: 1px solid #aaa; border-radius: 3px; font: 0.85rem "Share Tech Mono", monospace; }
+.exp-agarre-barra { width: min(380px, 70vw); height: 8px; margin: 8px auto 0; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.3); }
+.exp-agarre-barra i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #8a0a12, #ff3b3b); box-shadow: 0 0 12px #ff2020; transition: width 0.08s; }
+
+.exp-botones .exp-b-apuntar.activo { background: rgba(255, 30, 30, 0.45); border-color: #ff4040; }
+.exp-ayuda { opacity: 0.55; }

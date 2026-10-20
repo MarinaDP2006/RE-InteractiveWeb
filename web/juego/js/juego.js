@@ -34,6 +34,7 @@ const Juego = (() => {
   let ultimoGuardado = null;  // JSON de la última máquina de escribir
   let sesionDesde = 0;        // Marca de tiempo desde la que corre el reloj
   let token = 0;              // Invalida tareas asíncronas obsoletas
+  let ultimaSala = null;      // Última sala visitada: fondo de las escenas cinemáticas
   // Gráficos (render3d.js): calidad bajo|alto|ultra|auto, escalado UMBRA-SR, transiciones y FPS.
   let opciones = { sonido: true, reducir: false, calidad: "auto", escalado: "auto", transiciones: true, fps: false };
 
@@ -147,7 +148,7 @@ const Juego = (() => {
     const modal = document.getElementById(id);
     modal.hidden = false;
     const enfocable = modal.querySelector("input, button:not(.modal-cerrar)") || modal.querySelector("button");
-    if (enfocable) setTimeout(() => enfocable.focus(), 50);
+    if (enfocable) setTimeout(() => enfocable.focus({ preventScroll: true }), 50);
   }
 
   function cerrarModal(id) {
@@ -175,6 +176,8 @@ const Juego = (() => {
     cont.className = `escena-contenido paso-${clase || "vacio"}`;
     cont.innerHTML = "";
     cont.scrollTop = 0;
+    // Un focus() puede desplazar contenedores con overflow:hidden: se recolocan siempre.
+    document.querySelectorAll("#pantalla-juego, .escena, #app").forEach((el) => { el.scrollTop = 0; el.scrollLeft = 0; });
     return cont;
   }
 
@@ -333,10 +336,48 @@ const Juego = (() => {
    *  Flujo principal: capítulos y pasos
    * ---------------------------------------------------------------- */
 
+  /**
+   * Reproduce un vídeo a pantalla completa (tráiler o cinemática que el
+   * administrador asigna a cada archivo). Admite YouTube o un .mp4/.webm subido.
+   */
+  function reproducirVideo(valor, titulo) {
+    return new Promise((resolver) => {
+      const s = String(valor || "").trim();
+      const yt = s.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/) || s.match(/^([\w-]{11})$/);
+      const archivo = /\.(mp4|webm)(\?|$)/i.test(s);
+      if (!yt && !archivo) { resolver(); return; }
+      const capa = document.createElement("div");
+      capa.className = "video-intro";
+      capa.innerHTML = `
+        <div class="video-intro-marco">${yt
+          ? `<iframe src="https://www.youtube-nocookie.com/embed/${yt[1]}?autoplay=1&rel=0&modestbranding=1&controls=1" title="${escapar(titulo || "Vídeo")}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`
+          : `<video src="${escapar(s)}" autoplay playsinline></video>`}</div>
+        <p class="video-intro-titulo">${escapar(titulo || "")}</p>
+        <button class="btn btn-principal video-intro-saltar" type="button">Continuar ▸</button>`;
+      document.body.appendChild(capa);
+      Sonido.ambienteOff();
+      const fin = () => { capa.remove(); document.removeEventListener("keydown", tecla); resolver(); };
+      const tecla = (e) => { if (e.key === "Escape" || e.key === "Enter") fin(); };
+      document.addEventListener("keydown", tecla);
+      $(".video-intro-saltar", capa).addEventListener("click", fin, { once: true });
+      const v = $("video", capa);
+      if (v) v.addEventListener("ended", fin, { once: true });
+    });
+  }
+
   /** Arranca (o reanuda) el capítulo actual mostrando su tarjeta de título. */
-  function iniciarCapitulo() {
-    const mio = ++token;
+  async function iniciarCapitulo() {
     const cap = capActual();
+    // Vídeo de introducción del archivo (si el administrador lo ha configurado).
+    const video = (CONFIG.videos || {})[cap.id];
+    if (video && E.paso === 0 && E.ruta === null && E.videoVisto !== cap.id) {
+      E.videoVisto = cap.id;
+      mostrarPantalla("pantalla-juego");
+      limpiarEscena("vacio");
+      await reproducirVideo(video, `${cap.juego} · ${cap.titulo}`);
+      if (!E) return;
+    }
+    const mio = ++token;
     mostrarPantalla("pantalla-juego");
     aplicarTema(cap);
     Render3D.Transicion.revelar(1300);
@@ -469,13 +510,14 @@ const Juego = (() => {
       if (paso.dar) darObjetos(paso.dar);
       $(".narracion-ayuda", cont).remove();
       boton.classList.remove("oculto");
-      boton.focus();
+      boton.focus({ preventScroll: true });
       botonUnaVez(boton, avanzar);
     },
 
     /* ── EXPLORAR: sala 2D con el escenario real y el personaje recorriéndola (motor2d.js) ── */
     explorar(paso, mio) {
       const cont = limpiarEscena("explorar");
+      if (paso.imagen) ultimaSala = paso.imagen;
       // NPC, puntos y enemigos también pueden depender de tus decisiones.
       const sala = {
         ...paso,
@@ -507,132 +549,23 @@ const Juego = (() => {
       });
     },
 
-    /* ── RADIO: los personajes hablan en inglés (voz) con subtítulos en español ── */
+    /* ── ESCENA CINEMÁTICA (antes «chat»): diálogo de película al estilo Resident Evil ── */
     async chat(paso, mio) {
-      const cont = limpiarEscena("radio");
-      const prota = protagonista();
-      const frecuencia = (137 + (paso.titulo.length * 7.3) % 20).toFixed(2);
-      cont.innerHTML = `
-        <div class="radio">
-          <div class="radio-aparato">
-            <div class="radio-antena" aria-hidden="true"></div>
-            <div class="radio-pantalla">
-              <span class="radio-freq">${frecuencia} MHz</span>
-              <span class="radio-canal">${escapar(paso.titulo)}</span>
-              <span class="radio-led" aria-hidden="true"></span>
-            </div>
-            <div class="radio-rejilla" aria-hidden="true">${"<i></i>".repeat(14)}</div>
-          </div>
-          <div class="radio-interlocutor" aria-live="polite">
-            <img class="radio-retrato" src="" alt="">
-            <div class="radio-bocadillo">
-              <strong class="radio-nombre"></strong>
-              <p class="radio-subtitulo">Sintonizando…</p>
-            </div>
-          </div>
-          <p class="radio-ayuda">Toca para pasar a la siguiente frase</p>
-          <ol class="radio-registro" aria-label="Transcripción"></ol>
-          <div class="radio-opciones"></div>
-        </div>`;
-      const caja = $(".radio", cont);
-      const retrato = $(".radio-retrato", cont);
-      const nombre = $(".radio-nombre", cont);
-      const subtitulo = $(".radio-subtitulo", cont);
-      const registro = $(".radio-registro", cont);
-      const zonaOpciones = $(".radio-opciones", cont);
-      let saltar = false;
-      $(".radio-interlocutor", cont).addEventListener("click", () => { saltar = true; });
-
-      Sonido.radioEstatica(true);
-      Sonido.radioClic();
-      const fin = () => { Sonido.radioEstatica(false); };
-
-      function anotar(de, texto, sistema) {
-        const li = document.createElement("li");
-        li.className = sistema ? "sistema" : de === prota ? "propio" : "";
-        li.innerHTML = sistema ? escapar(texto) : `<b style="color:${(PERSONAJES[de] || {}).color || "#ccc"}">${escapar(nombreDe(de))}:</b> ${escapar(texto)}`;
-        registro.prepend(li);
-      }
-
-      /** Una frase: retrato y subtítulo escribiéndose. */
-      async function decir(linea) {
-        saltar = false;
-        if (linea.sistema) {
-          caja.classList.remove("hablando");
-          retrato.src = "";
-          retrato.hidden = true;
-          nombre.textContent = "";
-          subtitulo.textContent = `— ${linea.sistema} —`;
-          subtitulo.classList.add("sistema");
-          Sonido.radioClic(true);
-          anotar(null, linea.sistema, true);
-          if (linea.efecto && !aplicarEfecto(linea.efecto)) return false;
-          await esperar(1400);
-          return mio === token;
-        }
-        const p = PERSONAJES[linea.de] || {};
-        retrato.hidden = false;
-        retrato.src = Retratos.de(linea.de);
-        nombre.textContent = nombreDe(linea.de);
-        nombre.style.color = p.color || "#ccc";
-        subtitulo.classList.remove("sistema");
-        subtitulo.textContent = "";
-        caja.classList.add("hablando");
-        caja.classList.toggle("propio", linea.de === prota);
-        Sonido.radioClic();
-        await escribir(subtitulo, linea.t, () => saltar, mio, 24);
-        if (mio !== token) return false;
-        if (!saltar) await esperar(Math.min(2600, 500 + linea.t.length * 28));
-        subtitulo.textContent = linea.t;
-        caja.classList.remove("hablando");
-        Sonido.radioClic(true);
-        anotar(linea.de, linea.t);
-        if (linea.efecto && !aplicarEfecto(linea.efecto)) return false;
-        await esperar(saltar ? 120 : 380);
-        return mio === token;
-      }
-
-      function elegir(opciones) {
-        return new Promise((resolver) => {
-          zonaOpciones.innerHTML = "";
-          opciones.forEach((opcion) => {
-            const b = document.createElement("button");
-            b.type = "button";
-            b.className = "radio-opcion";
-            b.textContent = opcion.t;
-            b.addEventListener("click", () => { zonaOpciones.innerHTML = ""; resolver(opcion); });
-            zonaOpciones.appendChild(b);
-          });
-          zonaOpciones.querySelector("button")?.focus();
-        });
-      }
-
-      for (const linea of paso.guion) {
-        if (mio !== token) return fin();
-        if (!cumple(linea)) continue;
-        if (linea.opciones) {
-          caja.classList.add("eligiendo");
-          const elegida = await elegir(linea.opciones.filter(cumple));
-          caja.classList.remove("eligiendo");
-          if (mio !== token) return fin();
-          if (!(await decir({ de: prota, t: elegida.t }))) return fin();
-          if (elegida.marca) E.marcas[elegida.marca] = true;
-          if (elegida.efecto && !aplicarEfecto(elegida.efecto)) return fin();
-          for (const respuesta of elegida.resp || []) {
-            if (!cumple(respuesta)) continue;
-            if (!(await decir(respuesta))) return fin();
-          }
-        } else if (!(await decir(linea))) {
-          return fin();
-        }
-      }
-
-      fin();
-      Sonido.radioClic(true);
-      subtitulo.textContent = "— Fin de la transmisión —";
-      subtitulo.classList.add("sistema");
-      zonaOpciones.innerHTML = `<button class="btn btn-principal" type="button">Cortar la radio ▸</button>`;
-      botonUnaVez($("button", zonaOpciones), avanzar);
+      const cont = limpiarEscena("cine");
+      const ok = await Cinematica.reproducir(paso, {
+        contenedor: cont,
+        protagonista: protagonista(),
+        fondo: paso.imagen || ultimaSala || capActual().fondoImagen,
+        personaje: (id) => PERSONAJES[id],
+        nombre: nombreDe,
+        retrato: (id) => Retratos.de(id),
+        cuerpo: (id) => Retratos.cuerpo(id),
+        cumple,
+        marcar: (m) => { E.marcas[m] = true; },
+        aplicarEfecto,
+        vigente: () => mio === token && E && E.salud > 0
+      });
+      if (ok && mio === token) avanzar();
     },
 
     /* ── ENCUENTRO: QTE contra un monstruo (machacar botón o esquivar) ── */
@@ -733,7 +666,7 @@ const Juego = (() => {
             boton.textContent = "Continuar ▸";
             mensaje.after(boton);
             botonUnaVez(boton, avanzar);
-            boton.focus();
+            boton.focus({ preventScroll: true });
           } else {
             mensaje.classList.add("mal");
             Sonido.error();
@@ -819,7 +752,7 @@ const Juego = (() => {
         resultado.textContent = "Guardando…";
         for (let i = 0; i < 6; i++) { Sonido.tecla(); await esperar(70); }
         try {
-          const r = await Api.guardar(E.id, datos);
+          const r = await Api.guardar(E.id, datos, E.nombre);
           E.id = r.id;
           ultimoGuardado = JSON.stringify(E);
           almacen.escribir(CLAVE_PARTIDA, ultimoGuardado);
@@ -903,7 +836,7 @@ const Juego = (() => {
       // pointerdown responde mejor que click en móviles (sin retardo).
       boton.addEventListener("pointerdown", (e) => { e.preventDefault(); pulsar(); });
       document.addEventListener("keydown", tecla);
-      boton.focus();
+      boton.focus({ preventScroll: true });
 
       (function tic(ahora) {
         if (terminado) return;
@@ -1008,7 +941,7 @@ const Juego = (() => {
 
       boton.addEventListener("pointerdown", (e) => { e.preventDefault(); pulsar(); });
       document.addEventListener("keydown", tecla);
-      boton.focus();
+      boton.focus({ preventScroll: true });
       setTimeout(nuevaRonda, 500);
     });
   }
@@ -1128,7 +1061,7 @@ const Juego = (() => {
     const mio = ++token;
     const cap = capActual();
     const suelto = E.modo === "suelto";
-    const ultimo = E.capitulo >= HISTORIA.capitulos.length - 1;
+    const ultimo = siguienteActivo(E.capitulo) === -1;
     const otros = rutasDe(cap).filter((_, i) => i !== E.ruta).map((r) => nombreDe(r.protagonista));
     const cont = limpiarEscena("fin-capitulo");
     cont.innerHTML = `
@@ -1149,7 +1082,7 @@ const Juego = (() => {
       if (mio !== token) return;
       if (suelto) { almacen.borrar(CLAVE_PARTIDA); E = null; ultimoGuardado = null; volverAlTitulo(); return; }
       if (ultimo) { pantallaFinal(); return; }
-      E.capitulo++;
+      E.capitulo = siguienteActivo(E.capitulo);
       E.paso = 0;
       E.ruta = null;
       E.salud = Math.min(SALUD_MAX, E.salud + 30); // Un respiro entre capítulos
@@ -1218,7 +1151,7 @@ const Juego = (() => {
     const lista = $("#final-ranking");
     lista.innerHTML = "<li>Enviando tu expediente a la B.S.A.A.…</li>";
     try {
-      const r = await Api.enviarRanking(E.nombre, segundos, E.muertes);
+      const r = await Api.enviarRanking(E.nombre, segundos, E.muertes, protagonista());
       pintarRanking(lista, r.ranking, E.nombre);
     } catch (err) {
       lista.innerHTML = `<li>${escapar(err.message)}</li>`;
@@ -1292,12 +1225,25 @@ const Juego = (() => {
     iniciarCapitulo();
   }
 
+  /* ------------------------------------------------------------------
+   *  Configuración del administrador (servidor: /api/juego/config)
+   * ---------------------------------------------------------------- */
+  let CONFIG = { archivos: {}, videos: {} };
+  /** ¿El administrador ha dejado abierto este archivo? */
+  const archivoActivo = (i) => (CONFIG.archivos || {})[HISTORIA.capitulos[i].id] !== false;
+  /** Índice del siguiente archivo abierto después de «desde» (-1 si no hay más). */
+  function siguienteActivo(desde) {
+    for (let i = desde + 1; i < HISTORIA.capitulos.length; i++) if (archivoActivo(i)) return i;
+    return -1;
+  }
+
   /** Capítulo elegido en «Elegir archivo» (null = campaña completa). */
   let capituloSuelto = null;
 
   function nuevaPartida(nombre) {
     const limpio = nombre.trim().slice(0, 20) || "Superviviente";
-    empezar(capituloSuelto === null ? nuevoEstado(limpio) : nuevoEstado(limpio, capituloSuelto, "suelto"));
+    const primero = Math.max(0, siguienteActivo(-1));
+    empezar(capituloSuelto === null ? nuevoEstado(limpio, primero) : nuevoEstado(limpio, capituloSuelto, "suelto"));
   }
 
   /** Rejilla con los 8 archivos para jugar uno suelto con cualquier personaje. */
@@ -1305,7 +1251,7 @@ const Juego = (() => {
     const lista = $("#selector-lista");
     lista.innerHTML = HISTORIA.capitulos.map((cap, i) => `
       <li>
-        <button class="selector-archivo" type="button" data-cap="${i}">
+        <button class="selector-archivo${archivoActivo(i) ? "" : " bloqueado"}" type="button" data-cap="${i}" ${archivoActivo(i) ? "" : "disabled title=\"Archivo cerrado temporalmente\""}>
           <span class="selector-num">${ROMANOS[i]}</span>
           <span class="selector-info">
             <strong>${escapar(cap.juego)}</strong>
@@ -1513,8 +1459,21 @@ const Juego = (() => {
       if (e.key.toLowerCase() === "r") abrirArchivos();
     });
 
-    // Comprobación del servidor: si no responde, avisamos en el título.
-    Api.estado().catch(() => {
+    // Configuración del administrador: archivos abiertos, vídeos, mensaje del día...
+    Api.visita();
+    Api.config().then((r) => {
+      CONFIG = { archivos: {}, videos: {}, ...(r.config || {}) };
+      const msg = $("#mensaje-dia");
+      if (!r.abierto) {
+        msg.innerHTML = `⛔ ${escapar(r.mensaje || "El juego está cerrado temporalmente.")}`;
+        msg.hidden = false;
+        document.querySelectorAll(".menu-titulo .btn").forEach((b) => { if (b.id !== "btn-opciones") b.disabled = true; });
+      } else if (CONFIG.mensajeDia) {
+        msg.textContent = CONFIG.mensajeDia;
+        msg.hidden = false;
+      }
+      if (CONFIG.rankingAbierto === false) $("#btn-ranking").hidden = true;
+    }).catch(() => {
       $("#aviso-servidor").hidden = false;
     });
   }

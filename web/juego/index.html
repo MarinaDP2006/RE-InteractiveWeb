@@ -9,7 +9,7 @@
    y juego.js muestra/oculta cada una con la clase .activa.
 
      #pantalla-titulo   → menú principal
-     #pantalla-juego    → HUD + escena (narración, salas, chats, puzzles...)
+     #pantalla-juego    → HUD + escena (narración, salas, cinemáticas, puzzles...)
      #pantalla-muerte   → "HAS MUERTO"
      #pantalla-final    → epílogo, rango y ranking
 
@@ -22,7 +22,7 @@
   <!-- viewport-fit=cover: ocupa también la zona del "notch" en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#050505">
-  <title>Archivos Umbrella </title>
+  <title>Umbrella Archives · El Juego</title>
 
   <!-- Icono: símbolo de riesgo biológico en SVG incrustado (no requiere archivo) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☣%3C/text%3E%3C/svg%3E">
@@ -32,15 +32,16 @@
        Nosifer (letras que gotean sangre) · Oswald (interfaz y HUD) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Nosifer&family=Oswald:wght@400;600&family=Special+Elite&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Nosifer&family=Oswald:wght@300;400;600&family=Share+Tech+Mono&family=Special+Elite&display=swap">
 
-  <!-- Hojas de estilo (en orden: base → efectos → juego → chat) -->
-  <link rel="stylesheet" href="css/base.css?v=6">
-  <link rel="stylesheet" href="css/efectos.css?v=6">
-  <link rel="stylesheet" href="css/juego.css?v=6">
-  <link rel="stylesheet" href="css/radio.css?v=6">
-  <link rel="stylesheet" href="css/explorar.css?v=6">
-  <link rel="stylesheet" href="css/umbra.css?v=6">
+  <!-- Hojas de estilo (en orden: base → efectos → juego → salas → cine) -->
+  <link rel="stylesheet" href="css/base.css?v=7">
+  <link rel="stylesheet" href="css/efectos.css?v=7">
+  <link rel="stylesheet" href="css/juego.css?v=7">
+
+  <link rel="stylesheet" href="css/explorar.css?v=7">
+  <link rel="stylesheet" href="css/umbra.css?v=7">
+  <link rel="stylesheet" href="css/cine.css?v=7">
 </head>
 
 <body>
@@ -73,7 +74,8 @@
           <span class="titulo-re">RESIDENT EVIL</span>
           <span class="titulo-archivos">Archivos Umbrella</span>
         </h1>
-        <p class="titulo-sub">De Raccoon City a Requiem · 8 archivos · 20 supervivientes · radio</p>
+        <p class="titulo-sub">De Raccoon City a Requiem · 8 archivos · 20 supervivientes</p>
+        <p id="mensaje-dia" class="mensaje-dia" hidden></p>
 
         <nav class="menu-titulo" aria-label="Menú">
           <button id="btn-nueva" class="btn btn-principal" type="button">Nueva partida</button>
@@ -82,10 +84,11 @@
           <button id="btn-cargar" class="btn btn-secundario" type="button">Cargar con código</button>
           <button id="btn-ranking" class="btn btn-secundario" type="button">Ranking de supervivientes</button>
           <button id="btn-opciones" class="btn btn-secundario" type="button">Opciones</button>
+          <a class="btn btn-secundario" href="/wiki/">Abrir la wiki</a>
         </nav>
 
         <p id="aviso-servidor" class="aviso-servidor" hidden>
-          ⚠ No se puede contactar con el servidor Java. Arráncalo con <code>iniciar.bat</code> (Windows) o <code>./iniciar.sh</code> y abre <code>http://localhost:8080</code>.
+          ⚠ No se puede contactar con el servidor de Umbrella. Si lo usas en tu PC, arráncalo con <code>iniciar.bat</code> y abre <code>http://localhost:8080/juego/</code>.
         </p>
       </div>
 
@@ -104,13 +107,13 @@
         </div>
         <div class="hud-centro">
           <span id="hud-capitulo">Archivo I</span>
-          <span class="hud-tiempo-caja">⏱ <span id="hud-tiempo">00:00</span> · 🎞️ <span id="hud-cintas">0</span> · 🔫 <span id="hud-municion">0</span></span>
+          <span class="hud-tiempo-caja"><small>TIEMPO</small> <span id="hud-tiempo">00:00</span> <small>CINTAS</small> <span id="hud-cintas">0</span> <small>MUNICIÓN</small> <span id="hud-municion">0</span></span>
         </div>
         <nav class="hud-botones" aria-label="Acciones">
-          <button id="hud-archivos" type="button" title="Archivos (R)" aria-label="Archivos">📁<span>Archivos</span></button>
-          <button id="hud-inventario" type="button" title="Inventario (I)" aria-label="Inventario">🎒<span>Objetos</span></button>
+          <button id="hud-archivos" type="button" title="Archivos (R)" aria-label="Archivos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h7l2 2h9v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Archivos</span></button>
+          <button id="hud-inventario" type="button" title="Inventario (I)" aria-label="Inventario"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5h8v2M3 12h18" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Objetos</span></button>
           <button id="hud-sonido" type="button" title="Sonido" aria-label="Activar o silenciar sonido">🔊</button>
-          <button id="hud-menu" type="button" title="Menú" aria-label="Menú">☰</button>
+          <button id="hud-menu" type="button" title="Pausa" aria-label="Pausa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4"/></svg></button>
         </nav>
       </header>
 
@@ -169,6 +172,7 @@
       <p>Recomendado para <strong>mayores de 18 años</strong>. Para una experiencia más suave, activa «Reducir destellos» en Opciones.</p>
       <p class="aviso-auriculares">🎧 Mejor con auriculares y la luz apagada.</p>
       <button id="btn-aviso-aceptar" class="btn btn-peligro" type="button">Soy mayor de edad. Entrar.</button>
+      <a class="btn btn-secundario" href="/">Volver al portal</a>
     </div>
   </div>
 
@@ -291,21 +295,23 @@
 
   <!-- ============================== SCRIPTS ==============================
        Orden importante: primero los datos, luego utilidades y por último el motor. -->
-  <script src="js/historia/base.js?v=6"></script>
-  <script src="js/historia/re2.js?v=6"></script>
-  <script src="js/historia/re3.js?v=6"></script>
-  <script src="js/historia/re4.js?v=6"></script>
-  <script src="js/historia/re5.js?v=6"></script>
-  <script src="js/historia/re6.js?v=6"></script>
-  <script src="js/historia/re7.js?v=6"></script>
-  <script src="js/historia/re8.js?v=6"></script>
-  <script src="js/historia/re9.js?v=6"></script>
-  <script src="js/retratos.js?v=6"></script>
-  <script src="js/sonido.js?v=6"></script>
-  <script src="js/efectos.js?v=6"></script>
-  <script src="js/api.js?v=6"></script>
-  <script src="js/render3d.js?v=6"></script>
-  <script src="js/motor2d.js?v=6"></script>
-  <script src="js/juego.js?v=6"></script>
+  <script src="js/historia/base.js?v=7"></script>
+  <script src="js/historia/re2.js?v=7"></script>
+  <script src="js/historia/re3.js?v=7"></script>
+  <script src="js/historia/re4.js?v=7"></script>
+  <script src="js/historia/re5.js?v=7"></script>
+  <script src="js/historia/re6.js?v=7"></script>
+  <script src="js/historia/re7.js?v=7"></script>
+  <script src="js/historia/re8.js?v=7"></script>
+  <script src="js/historia/re9.js?v=7"></script>
+  <script src="js/retratos.js?v=7"></script>
+  <script src="js/sonido.js?v=7"></script>
+  <script src="js/efectos.js?v=7"></script>
+  <script src="js/api.js?v=7"></script>
+  <script src="js/render3d.js?v=7"></script>
+  <script src="js/terror.js?v=7"></script>
+  <script src="js/cinematica.js?v=7"></script>
+  <script src="js/motor2d.js?v=7"></script>
+  <script src="js/juego.js?v=7"></script>
 </body>
 </html>

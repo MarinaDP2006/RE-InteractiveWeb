@@ -189,6 +189,173 @@ const Sonido = (() => {
   }
 
   /* ------------------------------------------------------------------
+   *  SONIDOS DE TERROR ESPACIALES (director del miedo, terror.js)
+   *  Con panorámica estéreo y una reverberación generada por código:
+   *  suenan "en la habitación", a tu izquierda, detrás de una pared...
+   * ---------------------------------------------------------------- */
+  let reverbSala = null;
+  /** Reverberación de sala: respuesta al impulso de ruido que decae (2,8 s). */
+  function salaReverb() {
+    if (reverbSala || !ctx) return reverbSala;
+    const dur = 2.8, n = Math.floor(ctx.sampleRate * dur);
+    const ir = ctx.createBuffer(2, n, ctx.sampleRate);
+    for (let c = 0; c < 2; c++) {
+      const d = ir.getChannelData(c);
+      for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3.2);
+    }
+    const conv = ctx.createConvolver();
+    conv.buffer = ir;
+    const gHumedo = ctx.createGain();
+    gHumedo.gain.value = 0.55;
+    conv.connect(gHumedo).connect(maestro);
+    reverbSala = conv;
+    return reverbSala;
+  }
+  /** Nodo de salida con panorámica (-1 izquierda … 1 derecha) y envío a la reverberación. */
+  function espacio(pan = 0, humedad = 0.6) {
+    const entrada = ctx.createGain();
+    const p = ctx.createStereoPanner ? ctx.createStereoPanner() : ctx.createGain();
+    if (p.pan) p.pan.value = Math.max(-1, Math.min(1, pan));
+    entrada.connect(p).connect(maestro);
+    const envio = ctx.createGain();
+    envio.gain.value = humedad;
+    entrada.connect(envio).connect(salaReverb());
+    return entrada;
+  }
+  /** Ruido filtrado enviado a un nodo concreto (versión espacial de rafaga). */
+  function rafagaEn(destino, { dur = 0.2, vol = 0.4, tipo = "lowpass", f = 1000, f2 = null, q = 1, retraso = 0 }) {
+    const t = ctx.currentTime + retraso;
+    const fuente = ctx.createBufferSource();
+    fuente.buffer = bufferRuido(dur);
+    const bq = ctx.createBiquadFilter();
+    bq.type = tipo; bq.frequency.setValueAtTime(f, t);
+    if (f2) bq.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    bq.Q.value = q;
+    const gn = ctx.createGain();
+    gn.gain.setValueAtTime(0.0001, t);
+    gn.gain.exponentialRampToValueAtTime(vol, t + 0.006);
+    gn.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    fuente.connect(bq).connect(gn).connect(destino);
+    fuente.start(t);
+  }
+  function tonoEn(destino, { tipo = "sine", f = 440, f2 = null, dur = 0.3, vol = 0.3, retraso = 0, filtro = null, ataque = 0.01 }) {
+    const t = ctx.currentTime + retraso;
+    const osc = ctx.createOscillator();
+    osc.type = tipo; osc.frequency.setValueAtTime(f, t);
+    if (f2) osc.frequency.exponentialRampToValueAtTime(Math.max(1, f2), t + dur);
+    const gn = ctx.createGain();
+    gn.gain.setValueAtTime(0.0001, t);
+    gn.gain.exponentialRampToValueAtTime(vol, t + ataque);
+    gn.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    let s = osc;
+    if (filtro) { const bq = ctx.createBiquadFilter(); bq.type = filtro.tipo || "lowpass"; bq.frequency.value = filtro.f; bq.Q.value = filtro.q || 1; osc.connect(bq); s = bq; }
+    s.connect(gn).connect(destino);
+    osc.start(t); osc.stop(t + dur + 0.05);
+  }
+
+  /** Pasos pesados que se acercan o se alejan (Mr. X, Jack Baker...). */
+  function pasosPesados(pan = 0, n = 6, acercandose = true) {
+    if (!listo()) return;
+    const d = espacio(pan, 0.8);
+    for (let i = 0; i < n; i++) {
+      const k = acercandose ? (i + 1) / n : 1 - i / n;
+      const v = 0.12 + k * 0.5;
+      tonoEn(d, { f: 70, f2: 38, dur: 0.32, vol: v, retraso: i * 0.62 });
+      rafagaEn(d, { dur: 0.16, vol: v * 0.6, tipo: "lowpass", f: 420, f2: 120, retraso: i * 0.62 });
+    }
+  }
+  /** Pasos rápidos de alguien que corre en la oscuridad. */
+  function carrera(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 0.7);
+    for (let i = 0; i < 9; i++) rafagaEn(d, { dur: 0.06, vol: 0.18 + Math.random() * 0.1, tipo: "lowpass", f: 700, retraso: i * 0.17 });
+  }
+  /** Portazo lejano. */
+  function portazo(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 1);
+    tonoEn(d, { f: 90, f2: 30, dur: 0.6, vol: 0.7 });
+    rafagaEn(d, { dur: 0.4, vol: 0.6, tipo: "lowpass", f: 1400, f2: 120 });
+    rafagaEn(d, { dur: 0.08, vol: 0.4, tipo: "highpass", f: 2600 });
+  }
+  /** Susurro ininteligible muy cerca del oído. */
+  function susurro(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 0.25);
+    const silabas = 5 + Math.floor(Math.random() * 6);
+    for (let i = 0; i < silabas; i++) {
+      const f = 1200 + Math.random() * 2400;
+      rafagaEn(d, { dur: 0.12 + Math.random() * 0.15, vol: 0.05 + Math.random() * 0.05, tipo: "bandpass", f, f2: f * (0.7 + Math.random() * 0.6), q: 6, retraso: i * 0.16 + Math.random() * 0.05 });
+    }
+  }
+  /** Metal arrastrado por el suelo (una tubería, un hacha...). */
+  function arrastre(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 0.9);
+    tonoEn(d, { tipo: "sawtooth", f: 1900, f2: 1300, dur: 1.8, vol: 0.05, ataque: 0.3, filtro: { tipo: "bandpass", f: 2200, q: 8 } });
+    tonoEn(d, { tipo: "sawtooth", f: 2470, f2: 2100, dur: 1.6, vol: 0.03, ataque: 0.3, filtro: { tipo: "bandpass", f: 2600, q: 10 } });
+    rafagaEn(d, { dur: 1.8, vol: 0.12, tipo: "bandpass", f: 3000, q: 2 });
+  }
+  /** Respiración ronca a tu espalda. */
+  function respiracion(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 0.2);
+    for (let i = 0; i < 3; i++) {
+      rafagaEn(d, { dur: 0.9, vol: 0.09, tipo: "bandpass", f: 520, f2: 380, q: 1.5, retraso: i * 1.7 });
+      tonoEn(d, { tipo: "sawtooth", f: 60, f2: 52, dur: 0.8, vol: 0.03, retraso: i * 1.7 + 0.1, filtro: { f: 300 } });
+    }
+  }
+  /** Golpe sordo en el techo o detrás de la pared. */
+  function golpeSordo(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 1);
+    tonoEn(d, { f: 58, f2: 30, dur: 0.5, vol: 0.55 });
+    rafagaEn(d, { dur: 0.25, vol: 0.3, tipo: "lowpass", f: 300 });
+  }
+  /** Grito humano lejano que se corta. */
+  function gritoLejano(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 1);
+    const base = 520 + Math.random() * 200;
+    tonoEn(d, { tipo: "sawtooth", f: base, f2: base * 1.6, dur: 1.1, vol: 0.05, ataque: 0.15, filtro: { tipo: "bandpass", f: 1400, q: 3 } });
+    tonoEn(d, { tipo: "sawtooth", f: base * 1.01, f2: base * 1.5, dur: 1.0, vol: 0.04, ataque: 0.15, filtro: { tipo: "bandpass", f: 2600, q: 4 } });
+  }
+  /** Chisporroteo de un fluorescente que falla. */
+  function chispazo() {
+    if (!listo()) return;
+    const d = espacio((Math.random() - 0.5) * 1.2, 0.3);
+    for (let i = 0; i < 4; i++) rafagaEn(d, { dur: 0.03, vol: 0.12, tipo: "highpass", f: 3500, retraso: i * 0.05 + Math.random() * 0.03 });
+    tonoEn(d, { tipo: "square", f: 120, dur: 0.3, vol: 0.02 });
+  }
+  /** Golpe orquestal disonante (aparece una amenaza). */
+  function stinger() {
+    if (!listo()) return;
+    const d = espacio(0, 0.9);
+    [65.4, 69.3, 98, 103.8, 138.6, 146.8].forEach((f, i) => tonoEn(d, { tipo: i % 2 ? "sawtooth" : "square", f, f2: f * 0.98, dur: 2.2, vol: 0.08, filtro: { f: 1800 } }));
+    rafagaEn(d, { dur: 1.4, vol: 0.5, tipo: "lowpass", f: 3000, f2: 200 });
+    tonoEn(d, { tipo: "sine", f: 40, f2: 28, dur: 2.5, vol: 0.6 });
+  }
+  /** Cuerdas que suben hasta romper (antes de un susto). */
+  function crescendo(segundos = 2.5) {
+    if (!listo()) return;
+    const d = espacio(0, 0.6);
+    [311, 329.6, 349.2].forEach((f) => tonoEn(d, { tipo: "sawtooth", f, f2: f * 1.12, dur: segundos, vol: 0.05, ataque: segundos * 0.9, filtro: { tipo: "bandpass", f: 900, q: 2 } }));
+  }
+  /** Cristal que se rompe. */
+  function cristal(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 0.8);
+    rafagaEn(d, { dur: 0.5, vol: 0.4, tipo: "highpass", f: 4000 });
+    for (let i = 0; i < 6; i++) tonoEn(d, { f: 2500 + Math.random() * 3000, dur: 0.25, vol: 0.05, retraso: 0.05 + Math.random() * 0.3 });
+  }
+  /** Llanto de bebé muy lejano (Beneviento, orfanato...). */
+  function llanto(pan = 0) {
+    if (!listo()) return;
+    const d = espacio(pan, 1);
+    for (let i = 0; i < 3; i++) tonoEn(d, { tipo: "triangle", f: 480, f2: 380, dur: 0.7, vol: 0.04, ataque: 0.1, retraso: i * 0.9, filtro: { tipo: "bandpass", f: 900, q: 2 } });
+  }
+
+  /* ------------------------------------------------------------------
    *  Capas continuas: ambiente, latido y sala segura
    * ---------------------------------------------------------------- */
 
@@ -550,6 +717,8 @@ const Sonido = (() => {
     iniciar, tecla, mensaje, golpe, golpeSeco, susto, grunido, exito, error, campana, curar, muerte,
     disparo, paso, gemido, trueno, ambienteOn, ambienteOff, latidoOn, latidoOff, salaSegura, setActivo,
     musica, pararMusica, tension, radioClic, radioEstatica,
+    pasosPesados, carrera, portazo, susurro, arrastre, respiracion, golpeSordo, gritoLejano,
+    chispazo, stinger, crescendo, cristal, llanto,
     get activo() { return activo; }
   };
 })();

@@ -135,11 +135,11 @@
 }
 
 /* Textos, radio y puzzles: una leve inclinación 3D que sigue al ratón. */
-.escena-contenido:not(.paso-explorar) {
+.escena-contenido:not(.paso-explorar):not(.paso-cine) {
   perspective: 1400px;
 }
 
-.escena-contenido:not(.paso-explorar) > * {
+.escena-contenido:not(.paso-explorar):not(.paso-cine) > * {
   transform: rotateY(calc(var(--tilt-x, 0) * 1.8deg)) rotateX(calc(var(--tilt-y, 0) * -1.4deg));
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -220,7 +220,7 @@ body.reducir-destellos .pantalla.activa {
   animation: aparecer 0.5s ease;
 }
 
-body.graficos-bajo .escena-contenido:not(.paso-explorar) > *,
+body.graficos-bajo .escena-contenido:not(.paso-explorar):not(.paso-cine) > *,
 body.graficos-bajo .escena-fondo,
 body.graficos-bajo #pantalla-titulo .titulo-contenido,
 body.reducir-destellos .escena-fondo {
@@ -234,7 +234,7 @@ body.reducir-destellos .escena-fondo.con-imagen { animation: none; }
   .escena-contenido > *,
   .pantalla.activa { animation: aparecer 0.4s ease; }
   .escena-fondo.con-imagen { animation: none; }
-  .escena-contenido:not(.paso-explorar) > *,
+  .escena-contenido:not(.paso-explorar):not(.paso-cine) > *,
   #pantalla-titulo.con-3d .titulo-contenido { transform: none; }
 }
 .escena { overflow: hidden; }
