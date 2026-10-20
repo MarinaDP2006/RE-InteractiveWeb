@@ -41,10 +41,11 @@ final class PanelJuego extends JPanel implements VentanaPrincipal.Seccion {
 
     private static final long serialVersionUID = 1L;
 
-    /** Los 8 archivos del juego (id → nombre). */
+    /** Los 9 archivos del juego (id → nombre). */
     private static final String[][] ARCHIVOS = {
-            {"re2", "I · Resident Evil 2"}, {"re3", "II · Resident Evil 3"}, {"re4", "III · Resident Evil 4"}, {"re5", "IV · Resident Evil 5"},
-            {"re6", "V · Resident Evil 6"}, {"re7", "VI · Resident Evil 7"}, {"re8", "VII · Resident Evil Village"}, {"re9", "VIII · Resident Evil Requiem"}};
+            {"re1", "I · Resident Evil"}, {"re2", "II · Resident Evil 2"}, {"re3", "III · Resident Evil 3"}, {"re4", "IV · Resident Evil 4"},
+            {"re5", "V · Resident Evil 5"}, {"re6", "VI · Resident Evil 6"}, {"re7", "VII · Resident Evil 7"}, {"re8", "VIII · Resident Evil Village"},
+            {"re9", "IX · Resident Evil Requiem"}};
 
     private final Cliente cliente;
     private final JTabbedPane pestanas = new JTabbedPane();
@@ -106,7 +107,8 @@ final class PanelJuego extends JPanel implements VentanaPrincipal.Seccion {
     private static String resumenPartida(Map<String, Object> d) {
         try {
             Map<String, Object> e = Json.leerObjeto(Json.texto(d, "estado", "{}"));
-            long cap = Json.numero(e, "capitulo", 0);
+            // Juego 3D (version 3): "nivel" 0-8 desde RE1 · juego clásico: "capitulo" 0-7 desde RE2.
+            long cap = Json.numero(e, "version", 0) == 3 ? Json.numero(e, "nivel", 0) : Json.numero(e, "capitulo", 0) + 1;
             return (cap >= 0 && cap < ARCHIVOS.length ? ARCHIVOS[(int) cap][1] : "Archivo " + cap)
                     + " · salud " + Json.numero(e, "salud", 0) + " · ☠ " + Json.numero(e, "muertes", 0);
         } catch (IllegalArgumentException ex) {

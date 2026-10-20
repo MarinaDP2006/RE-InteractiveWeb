@@ -99,7 +99,31 @@ public final class BaseDatos {
         try (DirectoryStream<Path> ds = Files.newDirectoryStream(carpetaSemilla, "*.json")) {
             for (Path p : ds) {
                 String col = p.getFileName().toString().replaceFirst("\\.json$", "");
-                if (!NOMBRE.matcher(col).matches() || colecciones.containsKey(col)) {
+                if (!NOMBRE.matcher(col).matches()) {
+                    continue;
+                }
+                if (colecciones.containsKey(col)) {
+                    // Los puzzles nuevos de una actualización del juego se añaden
+                    // solos (sin tocar los que el administrador haya editado).
+                    if ("puzzles".equals(col)) {
+                        try {
+                            Map<String, Map<String, Object>> semilla = convertir(Json.leerObjeto(Files.readString(p, StandardCharsets.UTF_8)));
+                            Map<String, Map<String, Object>> c = colecciones.get(col);
+                            int n = 0;
+                            for (Map.Entry<String, Map<String, Object>> e : semilla.entrySet()) {
+                                if (!c.containsKey(e.getKey())) {
+                                    c.put(e.getKey(), e.getValue());
+                                    n++;
+                                }
+                            }
+                            if (n > 0) {
+                                persistir(col);
+                                System.out.println("[DB] Puzzles nuevos añadidos desde la semilla: " + n);
+                            }
+                        } catch (RuntimeException ex) {
+                            System.err.println("[DB] Semilla no válida " + p.getFileName() + ": " + ex.getMessage());
+                        }
+                    }
                     continue;
                 }
                 try {

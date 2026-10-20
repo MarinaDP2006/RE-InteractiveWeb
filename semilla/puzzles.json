@@ -1,4 +1,24 @@
 {
+  "re1": {
+    "juego": "Resident Evil",
+    "descripcion": "Jill · Los cuatro escudos de la puerta del patio: Viento, Luna, Estrella, Sol.",
+    "soluciones": [
+      "VIENTO,LUNA,ESTRELLA,SOL"
+    ],
+    "exito": "Los cuatro escudos encajan. Los cerrojos de la puerta del patio se descorren uno a uno con un eco metálico que recorre toda la mansión.",
+    "fallo": "Los escudos se atascan. Al otro lado de la pared algo arrastra los pies… y se detiene a escuchar.",
+    "orden": 0
+  },
+  "re1_lab": {
+    "juego": "Resident Evil",
+    "descripcion": "Jill · Contraseña del laboratorio bajo la mansión: MOLE (la palabra del diario de los investigadores).",
+    "soluciones": [
+      "MOLE"
+    ],
+    "exito": "ACCESO AUTORIZADO. Las puertas blindadas del laboratorio se abren con un siseo de gas refrigerante. Huele a formol.",
+    "fallo": "CONTRASEÑA INCORRECTA. Una luz roja barre la sala y, en algún tanque, algo golpea el cristal.",
+    "orden": 0
+  },
   "re2": {
     "juego": "Resident Evil 2",
     "descripcion": "Leon · Estatua de la diosa: León → Unicornio → Doncella.",

@@ -5,7 +5,8 @@ Proyecto fan de **Resident Evil** con tres piezas:
 | Pieza | Qué es | Dónde |
 |---|---|---|
 | **Wiki** | Toda la saga canon: 17 juegos, 9 películas y series, 68 personajes, 46 criaturas, 13 agentes biológicos, 14 organizaciones, 47 ubicaciones, cronología de 1919 a hoy, mapa mundial y plano de Raccoon City, 23 tráileres oficiales. | `/wiki/` |
-| **Juego** | Escape room de terror en 3D (motor UMBRA), de RE2 a Requiem, 20 personajes jugables, cinemáticas al estilo RE, director del miedo, linterna, láser, agarres, puzzles validados en el servidor. | `/juego/` |
+| **Juego 3D** | Survival horror en primera persona (Three.js) con los **9 Resident Evil principales**, de la mansión Spencer (RE1) a Requiem: salas en 3D con texturas PBR, linterna con sombras, zombis y B.O.W. con IA, perseguidores (Mr. X, Némesis, Jack, Dimitrescu, Ustanak), jefes finales, compañeros que disparan, llaves, documentos, puzzles validados en el servidor, mapa, inventario, máquinas de escribir y ranking. | `/juego/` |
+| **Juego clásico** | La versión anterior en 2.5D (escape room con 20 personajes y cinemáticas). | `/juego/clasico.html` |
 | **Umbrella Admin** | App de Windows para gestionarlo todo con un único administrador: wiki, juego, acceso público, imágenes y vídeos, base de datos y copias de seguridad. | `UmbrellaAdmin.exe` |
 
 > ⚠ El juego contiene violencia explícita y gore. +18.
@@ -135,12 +136,45 @@ Cada `git push` vuelve a publicar la web sola. El plan gratuito «duerme» el se
 
 **¿Olvidaste la contraseña?** En Render → Environment: pon `ADMIN_RESET` = `true` y una nueva `ADMIN_PASSWORD`, guarda (se reinicia), entra, y después borra `ADMIN_RESET`.
 
+## El juego 3D
+
+Abre `/juego/`. **Nueva partida** juega la campaña completa (archivo I → IX); **Elegir archivo** juega uno suelto. El administrador puede cerrar archivos o poner un vídeo de introducción desde la app (pestaña *Juego*).
+
+| Archivo | Juego | Protagonista | Lugar | Jefe |
+|---|---|---|---|---|
+| I | Resident Evil | Jill (+ Chris) | Mansión Spencer | Tyrant T-002 |
+| II | Resident Evil 2 | Leon (+ Ada) | Comisaría de Raccoon City · NEST | G (William Birkin) |
+| III | Resident Evil 3 | Jill (+ Carlos) | Calles de Raccoon · torre del reloj | Némesis |
+| IV | Resident Evil 4 | Leon (+ Luis) | Pueblo de los Ganados · castillo Salazar | Bitores Méndez |
+| V | Resident Evil 5 | Chris (+ Sheva) | Kijuju · muelle · laboratorio de Tricell | Albert Wesker |
+| VI | Resident Evil 6 | Jake (+ Sherry) | Edonia | Ustanak |
+| VII | Resident Evil 7 | Ethan (+ Mia) | Casa de los Baker | Jack Baker |
+| VIII | Resident Evil Village | Ethan | La aldea · castillo Dimitrescu · casa Beneviento | Madre Miranda |
+| IX | Resident Evil Requiem | Grace (+ Leon) | Hotel Wrenwood | Victor Gideon |
+
+**Controles (teclado y ratón)**
+
+| Tecla | Acción |
+|---|---|
+| Ratón | Mirar (haz clic en la pantalla para capturar el ratón) |
+| W A S D · Mayús | Moverse · correr |
+| Clic derecho · clic izquierdo | Apuntar con láser · disparar (apuntando quieto, la mira se cierra y el tiro es más preciso; la cabeza hace triple daño) |
+| R · V · F | Recargar · cuchillo · linterna |
+| 1 · 2 | Pistola · escopeta |
+| E | Abrir puertas, recoger, leer, examinar, usar la máquina de escribir. Si un enemigo te agarra: pulsa E o Espacio muy rápido |
+| H | Curarse con lo que tengas |
+| Tab / I · M · J | Inventario (usar y combinar hierbas) · mapa · archivos leídos |
+| Esc | Pausa (opciones: calidad hasta *Ultra* con supermuestreo 4K, brillo, campo de visión, sensibilidad, sonido, reducir destellos) |
+
+En móvil aparecen un joystick y botones táctiles. Las partidas se guardan en la máquina de escribir (gasta una cinta de tinta) en el navegador y en el servidor: el **código** que te da sirve para seguir en otro dispositivo (*Cargar con código*).
+
 ## 4. Estructura
 
 ```
 servidor/   Servidor Java 21 sin dependencias: API, base de datos UmbraDB (JSON o PostgreSQL),
             admin único (PBKDF2), estadísticas, subidas, copias de seguridad
-web/        Portal (index.html), wiki/, juego/, comun/ (estilos y efectos compartidos)
+web/        Portal (index.html), wiki/, juego/ (3D: index.html + 3d/motor y 3d/niveles;
+            clásico 2.5D: clasico.html + js/), comun/ (estilos y efectos compartidos)
 semilla/    Datos iniciales: wiki, puzzles y configuración (se cargan la primera vez)
 admin/      App de escritorio Umbrella Admin (Java Swing)
 Dockerfile, render.yaml           Despliegue en Render

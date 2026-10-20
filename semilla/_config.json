@@ -32,12 +32,12 @@
     "mensajeDia": "",
     "dificultad": "normal",
     "archivos": {
-      "re2": true, "re3": true, "re4": true, "re5": true,
+      "re1": true, "re2": true, "re3": true, "re4": true, "re5": true,
       "re6": true, "re7": true, "re8": true, "re9": true
     },
     "videos": {
       "intro": "",
-      "re2": "", "re3": "", "re4": "", "re5": "",
+      "re1": "", "re2": "", "re3": "", "re4": "", "re5": "",
       "re6": "", "re7": "", "re8": "", "re9": ""
     },
     "efectos": {
