@@ -98,7 +98,7 @@ final class VentanaLogin extends JFrame {
         c.gridx = 0;
         c.gridy = 3;
         c.gridwidth = 2;
-        JLabel ayuda = Tema.etiqueta("<html><span style='font-size:9px'>En Render: la dirección de tu web (p. ej. https://re-wiki-game.onrender.com).<br>"
+        JLabel ayuda = Tema.etiqueta("<html><span style='font-size:9px'>En Render: la dirección de tu web (https://umbrella-archives.onrender.com).<br>"
                 + "Si estaba dormido, la primera conexión puede tardar hasta un minuto.</span></html>");
         form.add(ayuda, c);
         c.gridy = 4;

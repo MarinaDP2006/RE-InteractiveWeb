@@ -31,7 +31,7 @@ Hay **un administrador distinto en cada servidor**, porque cada uno guarda sus p
 |---|---|---|---|---|
 | **`iniciar.bat`** (web en tu PC) | `http://localhost:8080` | `http://localhost:8090` | `admin` | En la ventana negra la primera vez y en `data\ADMIN_INICIAL.txt` (carpeta del proyecto) |
 | **App · «Usar el servidor de este PC»** | `http://localhost:8081` | `http://localhost:8091` | `admin` | La app la rellena sola. También en `Documentos\UmbrellaAdmin\servidor-local\data\ADMIN_INICIAL.txt` |
-| **Web publicada en Render** | `https://re-wiki-game.onrender.com` | — | `admin` | La que escribiste en `ADMIN_PASSWORD` al crear el servicio (Render → *Environment*) |
+| **Web publicada en Render** | `https://umbrella-archives.onrender.com` | — | `admin` | La que escribiste en `ADMIN_PASSWORD` al crear el servicio (Render → *Environment*) |
 
 - Los dos servidores del PC pueden estar abiertos a la vez sin molestarse (8080 y 8081). Si un puerto ya lo usa otro programa, cada servidor salta solo a su puerto de reserva y lo dice en pantalla.
 - 🔐 **Las contraseñas no se suben a GitHub** (el repositorio es público). Para tenerlas a mano, el archivo **`CONTRASEÑAS.txt`** de la carpeta del proyecto las recoge en tu PC; está excluido de Git.
@@ -63,7 +63,7 @@ También está en la página del repositorio → **Releases** → *Umbrella Admi
 1. Abre **Umbrella Admin** desde el acceso directo.
 2. Si Windows muestra **«Windows protegió su PC»** (SmartScreen), es porque la app no está firmada con un certificado de pago: pulsa **Más información** → **Ejecutar de todas formas**. Solo pasa la primera vez.
 3. En la ventana de acceso:
-   - **Web publicada en Render**: en *Servidor* escribe su dirección (p. ej. `https://re-wiki-game.onrender.com`), usuario `admin` y la contraseña que pusiste en `ADMIN_PASSWORD`. Si la web estaba dormida, la primera conexión tarda hasta un minuto.
+   - **Web publicada en Render**: en *Servidor* escribe su dirección (p. ej. `https://umbrella-archives.onrender.com`), usuario `admin` y la contraseña que pusiste en `ADMIN_PASSWORD`. Si la web estaba dormida, la primera conexión tarda hasta un minuto.
    - **Sin Internet / para probar**: pulsa **«Usar el servidor de este PC»**. La app arranca la web dentro de tu PC (`http://localhost:8081`) y rellena sola el usuario y la contraseña de la primera vez. Cámbiala después en **Ajustes**.
 4. La app recuerda los servidores y el usuario (nunca la contraseña).
 
@@ -129,7 +129,7 @@ Sin `DATABASE_URL` la web funciona igual, pero los datos vuelven a los originale
 3. Te pedirá:
    - `ADMIN_PASSWORD`: la contraseña del administrador (mínimo 10 caracteres).
    - `DATABASE_URL`: la de Neon del paso anterior (o vacío).
-4. Espera a que termine el despliegue (unos minutos). Tu web estará en `https://re-wiki-game.onrender.com` (o el nombre que te asigne Render).
+4. Espera a que termine el despliegue (unos minutos). Tu web estará en `https://umbrella-archives.onrender.com` (o el nombre que te asigne Render).
 5. Abre **Umbrella Admin** y entra con esa dirección, usuario `admin` y tu contraseña.
 
 Cada `git push` vuelve a publicar la web sola. El plan gratuito «duerme» el servidor tras 15 minutos sin visitas: la primera visita tarda hasta un minuto en despertarlo.

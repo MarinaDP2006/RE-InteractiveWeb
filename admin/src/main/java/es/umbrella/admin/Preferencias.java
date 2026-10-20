@@ -46,7 +46,10 @@ final class Preferencias {
         }
     }
 
-    /** Servidores usados (el más reciente primero). */
+    /** La web publicada en Internet (Render). Es el servidor por defecto. */
+    static final String WEB_PUBLICADA = "https://umbrella-archives.onrender.com";
+
+    /** Servidores: primero la web publicada, luego los usados (el más reciente primero). */
     @SuppressWarnings("unchecked")
     List<String> servidores() {
         List<String> l = new ArrayList<>();
@@ -55,6 +58,8 @@ final class Preferencias {
                 l.add(String.valueOf(o));
             }
         }
+        l.remove(WEB_PUBLICADA);
+        l.add(0, WEB_PUBLICADA);
         // Los dos servidores locales: iniciar.bat (8080) y el integrado en la app (8081).
         for (String local : new String[]{"http://localhost:8080", "http://localhost:8081"}) {
             if (!l.contains(local)) {

@@ -10,7 +10,7 @@
 # =============================================================================
 services:
   - type: web
-    name: re-wiki-game            # será https://re-wiki-game.onrender.com (si está libre)
+    name: umbrella-archives       # publicada en https://umbrella-archives.onrender.com
     runtime: docker
     plan: free
     dockerfilePath: ./Dockerfile
