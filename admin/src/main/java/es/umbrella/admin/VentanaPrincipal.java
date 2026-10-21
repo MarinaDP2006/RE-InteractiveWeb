@@ -98,7 +98,6 @@ final class VentanaPrincipal extends JFrame {
         anadir(menu, grupo, "resumen", "◉  Panel", new PanelResumen(cliente));
         anadir(menu, grupo, "acceso", "⛨  Acceso público", new PanelAcceso(cliente));
         anadir(menu, grupo, "wiki", "☰  Wiki", new PanelWiki(cliente));
-        anadir(menu, grupo, "juego", "☣  Juego", new PanelJuego(cliente));
         anadir(menu, grupo, "archivos", "▣  Imágenes y vídeos", new PanelArchivos(cliente));
         anadir(menu, grupo, "db", "⛁  Base de datos", new PanelBaseDatos(cliente));
         anadir(menu, grupo, "copias", "⟲  Copias de seguridad", new PanelCopias(cliente));

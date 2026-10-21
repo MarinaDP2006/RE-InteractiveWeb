@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Ndesu"><title>Ndesu</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#4f453b"/><stop offset=".6" stop-color="#1b1714"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="58"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8e8073" stop-opacity=".55"/><stop offset="1" stop-color="#3d352d" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#afa69c" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M290.3 477.8 Q131.9 471.9 87.9 492.1" stroke-width="14.8"/><path d="M290.1 474.3 Q184.7 448.2 71.1 482.8" stroke-width="18"/><path d="M312.1 536.2 Q321.8 532.2 215 609.4" stroke-width="21.1"/><path d="M385.5 579 Q415.1 649 364.4 737.9" stroke-width="20.1"/><path d="M433 574.9 Q429.8 652.4 466.5 681.3" stroke-width="25"/><path d="M497.7 520.6 Q506.1 629 615 581.3" stroke-width="25.6"/><path d="M296.9 508.4 Q159.1 522.2 70.3 592.9" stroke-width="18.1"/><path d="M457.5 376.2 Q416 242.6 523.6 268.4" stroke-width="30.1"/></g>
+      <path d="M547.3 504.6 Q567.1 539.2 538.5 559.5 Q509.8 579.8 480.3 586.1 Q450.7 592.4 425.3 613.8 Q400 635.1 371.3 621.7 Q342.7 608.4 309 601.6 Q275.3 594.7 280.8 555.9 Q286.4 517.1 246.1 493.5 Q205.9 470 228.4 439.1 Q250.9 408.3 261.4 375.1 Q272 342 304.7 330.4 Q337.4 318.8 368.7 324.5 Q400 330.3 435.7 314 Q471.4 297.6 495.5 324 Q519.6 350.4 547.4 373.9 Q575.2 397.4 551.4 433.7 Q527.5 470 547.3 504.6Z" fill="#08080a" opacity=".95"/>
+      <circle cx="400" cy="450" r="16" fill="#ebe9e6"/>
+      <g fill="#fff" opacity=".25"><circle cx="536.1" cy="379.2" r="7.9"/><circle cx="276.1" cy="319.2" r="9.3"/><circle cx="477" cy="505.4" r="9.7"/><circle cx="431" cy="410.5" r="10.5"/><circle cx="433" cy="511.1" r="10.6"/><circle cx="308.5" cy="706.3" r="5.6"/><circle cx="336.2" cy="201.7" r="8.3"/><circle cx="554.6" cy="607.8" r="4.9"/><circle cx="538" cy="569.3" r="7.7"/><circle cx="508.2" cy="219.8" r="8"/><circle cx="241.5" cy="636.1" r="9.9"/><circle cx="312.5" cy="313.3" r="6"/><circle cx="241.1" cy="433.6" r="3.8"/><circle cx="237.9" cy="752.5" r="4.7"/><circle cx="540.9" cy="554.6" r="2.1"/><circle cx="314.8" cy="457.5" r="9.4"/><circle cx="349.3" cy="257.7" r="3.9"/><circle cx="496.6" cy="491.1" r="9.7"/><circle cx="493.2" cy="386.6" r="3.5"/><circle cx="348.8" cy="562.8" r="3.2"/><circle cx="497.4" cy="202.5" r="6.9"/><circle cx="255" cy="272.9" r="10.4"/><circle cx="438.9" cy="399.8" r="10"/><circle cx="253.3" cy="679.9" r="4.3"/><circle cx="564.1" cy="479.3" r="7.6"/><circle cx="361.8" cy="383.1" r="5.6"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#a99e94" stroke-width="4" opacity=".6"/>
+    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#cac3bd">B.O.W. · B.O.W. CON PLAGA</text>
+    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="62" font-weight="900" letter-spacing="4" fill="#f2ecdf">NDESU</text>
+    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#c8102e"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

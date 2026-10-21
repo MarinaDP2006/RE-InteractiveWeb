@@ -1,6 +1,6 @@
 @echo off
 REM ===========================================================================
-REM  iniciar.bat — Arranca la web (portal, wiki y juego) en tu PC
+REM  iniciar.bat — Arranca la web (portal y wiki) en tu PC
 REM  Requisito: Java JDK 21 o superior  (compruébalo con: java -version)
 REM
 REM  Uso:  doble clic   → http://localhost:8080

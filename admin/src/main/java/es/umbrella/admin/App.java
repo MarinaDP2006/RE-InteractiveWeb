@@ -4,9 +4,8 @@
  * ============================================================================
  *  Gestiona desde Windows todo el proyecto:
  *    · Panel con estadísticas de visitas y estado del servidor.
- *    · Acceso público: abrir o cerrar la wiki y el juego (mantenimiento).
+ *    · Acceso público: abrir o cerrar la wiki (mantenimiento).
  *    · Wiki: crear, editar, ocultar y borrar fichas; secciones y portada.
- *    · Juego: archivos activos, vídeos, puzzles, partidas y ranking.
  *    · Archivos multimedia: subir imágenes y vídeos.
  *    · Base de datos completa, copias de seguridad, registro y contraseña.
  *    · Servidor local integrado para trabajar sin Internet.

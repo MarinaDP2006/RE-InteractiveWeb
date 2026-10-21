@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Drain Deimos"><title>Drain Deimos</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#3b3026"/><stop offset=".6" stop-color="#14100d"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="48"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#736558" stop-opacity=".55"/><stop offset="1" stop-color="#2d251d" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#9c9289" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M470.2 554.7 Q565.6 627.6 575.7 681.8" stroke-width="22"/><path d="M469.8 385 Q555.4 388.3 589.1 239.7" stroke-width="28.2"/><path d="M355.1 369.6 Q311.7 384.5 306.8 261.4" stroke-width="15.6"/><path d="M307.9 409.8 Q275.7 393.8 217.6 350.8" stroke-width="26.4"/><path d="M509.1 456.1 Q571.7 458.9 675.1 435.1" stroke-width="27"/><path d="M388.8 579.4 Q338.4 749.3 370 763.2" stroke-width="17"/><path d="M509.4 458.3 Q617.9 481.4 620.9 446.5" stroke-width="27.8"/><path d="M298.1 428.7 Q141.9 389.9 126.2 359" stroke-width="18.6"/></g>
+      <path d="M516.8 493.2 Q512.1 516.4 494.3 531.5 Q476.6 546.6 464.9 572.5 Q453.2 598.4 426.6 593 Q400 587.5 378.7 580.2 Q357.3 573 341.5 558.6 Q325.7 544.3 302.9 532 Q280.1 519.7 256.8 494.8 Q233.5 470 264.2 448.2 Q294.9 426.5 287.7 388.5 Q280.5 350.5 309.8 336.6 Q339 322.7 369.5 335.5 Q400 348.3 425.2 348.2 Q450.5 348.1 483.5 350.8 Q516.5 353.5 530 382 Q543.5 410.5 532.5 440.3 Q521.5 470 516.8 493.2Z" fill="#08080a" opacity=".95"/>
+      <circle cx="381.6" cy="458.9" r="9" fill="#e6e4e1"/><circle cx="435.8" cy="454.9" r="6" fill="#e6e4e1"/>
+      <g fill="#fff" opacity=".25"><circle cx="448.2" cy="542.5" r="4.3"/><circle cx="521" cy="258.4" r="10"/><circle cx="535.6" cy="522.1" r="3"/><circle cx="428.5" cy="245.8" r="4.7"/><circle cx="424" cy="724" r="9.4"/><circle cx="425.5" cy="299.9" r="6.3"/><circle cx="477.9" cy="399.7" r="5.2"/><circle cx="311.3" cy="369.8" r="3.1"/><circle cx="465.8" cy="428.1" r="2.5"/><circle cx="283.5" cy="426" r="5.5"/><circle cx="310" cy="580.7" r="7"/><circle cx="346.5" cy="729.1" r="10"/><circle cx="447.3" cy="344" r="8.1"/><circle cx="297.2" cy="560.6" r="10.1"/><circle cx="288.3" cy="732.4" r="9"/><circle cx="533.6" cy="713.2" r="5.9"/><circle cx="247.2" cy="290" r="6.2"/><circle cx="364.2" cy="446.4" r="4.9"/><circle cx="378.3" cy="637.5" r="6.9"/><circle cx="363.3" cy="463" r="6.9"/><circle cx="303.7" cy="645.4" r="4.2"/><circle cx="557.6" cy="372.7" r="10.2"/><circle cx="376.9" cy="294.7" r="4.9"/><circle cx="242" cy="232.9" r="4.7"/><circle cx="377" cy="317.7" r="7.8"/><circle cx="471" cy="408" r="8.9"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#94897f" stroke-width="4" opacity=".6"/>
+    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#bdb7b0">B.O.W. · INSECTO MUTADO</text>
+    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="62" font-weight="900" letter-spacing="4" fill="#f2ecdf">DRAIN DEIMOS</text>
+    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#2a2a30"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

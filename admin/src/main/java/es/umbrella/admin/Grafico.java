@@ -2,7 +2,7 @@
  * ============================================================================
  *  Grafico.java — Gráfico de barras apiladas de las visitas (30 días).
  * ============================================================================
- *  Cada día: portal + wiki + juego apilados, y una línea con los visitantes
+ *  Cada día: portal + wiki apilados, y una línea con los visitantes
  *  únicos. Al pasar el ratón por encima se ve el detalle del día.
  * ============================================================================
  */
@@ -28,8 +28,8 @@ import java.util.Map;
 final class Grafico extends JComponent {
 
     private static final long serialVersionUID = 1L;
-    private static final String[] SERIES = {"portal", "wiki", "juego"};
-    private static final Color[] COLORES = {new Color(0x8a8a96), new Color(0xc8102e), new Color(0xd4a020)};
+    private static final String[] SERIES = {"portal", "wiki"};
+    private static final Color[] COLORES = {new Color(0x8a8a96), new Color(0xc8102e)};
 
     private List<Map<String, Object>> dias = new ArrayList<>();
     private int resaltado = -1;
@@ -134,8 +134,8 @@ final class Grafico extends JComponent {
         g.draw(linea);
         // Leyenda
         int lx = izq + 6;
-        String[] nombres = {"Portal", "Wiki", "Juego"};
-        for (int s = 0; s < 3; s++) {
+        String[] nombres = {"Portal", "Wiki"};
+        for (int s = 0; s < nombres.length; s++) {
             g.setColor(COLORES[s]);
             g.fillRect(lx, 4, 10, 10);
             g.setColor(Tema.TEXTO_SUAVE);
@@ -149,8 +149,7 @@ final class Grafico extends JComponent {
         // Detalle del día bajo el ratón
         if (resaltado >= 0) {
             Map<String, Object> d = dias.get(resaltado);
-            String txt = Json.texto(d, "dia", "") + " · portal " + Json.numero(d, "portal", 0) + " · wiki " + Json.numero(d, "wiki", 0)
-                    + " · juego " + Json.numero(d, "juego", 0) + " · únicos " + Json.numero(d, "unicos", 0);
+            String txt = Json.texto(d, "dia", "") + " · portal " + Json.numero(d, "portal", 0) + " · wiki " + Json.numero(d, "wiki", 0) + " · únicos " + Json.numero(d, "unicos", 0);
             g.setFont(Tema.fuente(Font.BOLD, 11));
             int tw = g.getFontMetrics().stringWidth(txt) + 16;
             int tx = Math.min(w - tw - 4, Math.max(izq, (int) (izq + resaltado * paso) - tw / 2));

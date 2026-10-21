@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Tyrant"><title>Tyrant</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#4f1b1b"/><stop offset=".6" stop-color="#1b0909"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="92"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8e4a4a" stop-opacity=".55"/><stop offset="1" stop-color="#3d1515" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#af7f7f" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M357 368.7 Q379.9 242.8 300.5 235.5" stroke-width="27.2"/><path d="M420.2 361.9 Q446.4 263.7 453.9 181.9" stroke-width="16.6"/><path d="M392 579.7 Q309.1 717 382.1 714.3" stroke-width="27.1"/><path d="M290.8 482.9 Q282.4 481 182.6 495.7" stroke-width="15.1"/><path d="M309.2 408 Q155.2 377 109.3 271.5" stroke-width="18.2"/></g>
+      <path d="M529.2 490.5 Q499 511 491.9 532.9 Q484.7 554.7 462.5 561 Q440.3 567.3 420.2 574.2 Q400 581.1 375.9 583.6 Q351.9 586.2 317.9 586.1 Q284 586 277.5 554.7 Q271.1 523.4 258.7 496.7 Q246.3 470 253.1 441 Q259.9 412 293.3 404.4 Q326.8 396.8 338.1 372.4 Q349.5 348 374.7 333.5 Q400 318.9 422.6 339.9 Q445.1 361 462.5 375.6 Q479.9 390.1 514.1 399.3 Q548.3 408.6 553.8 439.3 Q559.3 470 529.2 490.5Z" fill="#08080a" opacity=".95"/>
+      <circle cx="387.2" cy="444" r="9" fill="#ebdfdf"/><circle cx="434.2" cy="445.7" r="6" fill="#ebdfdf"/>
+      <g fill="#fff" opacity=".25"><circle cx="366.4" cy="569.6" r="10.3"/><circle cx="255.8" cy="347.3" r="4.2"/><circle cx="548.3" cy="388.5" r="4.4"/><circle cx="287.6" cy="549" r="2.6"/><circle cx="443.8" cy="698.6" r="2.9"/><circle cx="562.6" cy="754.6" r="2.9"/><circle cx="283.3" cy="407.7" r="3.3"/><circle cx="563.1" cy="396.6" r="6.5"/><circle cx="346.5" cy="737.1" r="10"/><circle cx="546.5" cy="610.5" r="4.4"/><circle cx="352.1" cy="653" r="10.8"/><circle cx="523.7" cy="750.5" r="2"/><circle cx="501" cy="599.9" r="6.7"/><circle cx="475.1" cy="674" r="10.1"/><circle cx="476.5" cy="699.7" r="4.1"/><circle cx="388.6" cy="419.5" r="10.1"/><circle cx="362.1" cy="489.3" r="9.5"/><circle cx="377.2" cy="455.9" r="7.6"/><circle cx="505.1" cy="299.6" r="5.4"/><circle cx="520.6" cy="490.7" r="7.1"/><circle cx="331.9" cy="602.7" r="8.6"/><circle cx="487.9" cy="501.7" r="4"/><circle cx="273.3" cy="675.3" r="10.8"/><circle cx="392.5" cy="206.8" r="7.2"/><circle cx="401.7" cy="216.5" r="10.4"/><circle cx="278" cy="374" r="9.1"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#a97575" stroke-width="4" opacity=".6"/>
+    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#caaaaa">B.O.W. · B.O.W. DEFINITIVO</text>
+    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="62" font-weight="900" letter-spacing="4" fill="#f2ecdf">TYRANT</text>
+    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#c8102e"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

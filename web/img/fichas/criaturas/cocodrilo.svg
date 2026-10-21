@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Cocodrilo gigante"><title>Cocodrilo gigante</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#3b4530"/><stop offset=".6" stop-color="#141710"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="85"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#738065" stop-opacity=".55"/><stop offset="1" stop-color="#2d3525" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#9ca692" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M291.4 487.5 Q240 556.9 135.8 512.6" stroke-width="19.2"/><path d="M334.5 381.6 Q218.6 338.2 259.4 280.2" stroke-width="20.6"/><path d="M361.1 367.1 Q316.2 381.5 322.1 263.8" stroke-width="24.1"/><path d="M439.2 367.2 Q499.5 386.6 482.9 252.4" stroke-width="29.6"/><path d="M299.7 424.9 Q286.9 391.1 158.8 361.6" stroke-width="23.2"/></g>
+      <path d="M533.3 498.8 Q539 527.6 521.1 550.3 Q503.1 573.1 475 578.2 Q447 583.3 423.5 619.1 Q400 654.9 371.7 630.7 Q343.5 606.4 310.6 599.4 Q277.7 592.3 280.9 555.1 Q284.1 518 253.1 494 Q222.1 470 242.7 441.7 Q263.2 413.3 286.3 396.4 Q309.4 379.4 320.8 342.9 Q332.2 306.3 366.1 317.7 Q400 329.2 435.5 313.8 Q471.1 298.4 500.6 319.1 Q530.2 339.8 524.2 380.4 Q518.3 421 522.9 445.5 Q527.6 470 533.3 498.8Z" fill="#08080a" opacity=".95"/>
+      <circle cx="380.5" cy="442.8" r="9" fill="#e6e9e4"/><circle cx="432.5" cy="453.3" r="6" fill="#e6e9e4"/>
+      <g fill="#fff" opacity=".25"><circle cx="333.8" cy="544.7" r="9.5"/><circle cx="559.4" cy="526.6" r="6.9"/><circle cx="564.7" cy="210.1" r="2.7"/><circle cx="345.3" cy="734.4" r="4.6"/><circle cx="488.6" cy="672.3" r="5.5"/><circle cx="352.8" cy="344.6" r="7.1"/><circle cx="458.7" cy="218.1" r="4.1"/><circle cx="257.2" cy="522.4" r="3.9"/><circle cx="329.3" cy="642.4" r="10.6"/><circle cx="309.6" cy="307.4" r="5.9"/><circle cx="374" cy="390" r="7.4"/><circle cx="521.4" cy="291.3" r="10.2"/><circle cx="252.9" cy="425.6" r="3.4"/><circle cx="249.4" cy="690.4" r="5.9"/><circle cx="317.6" cy="449.9" r="6.2"/><circle cx="342.6" cy="487.1" r="7.7"/><circle cx="568" cy="658.1" r="2.5"/><circle cx="290.2" cy="549.7" r="5.4"/><circle cx="235" cy="515.5" r="9.3"/><circle cx="437.8" cy="440.5" r="9.6"/><circle cx="345.7" cy="500.4" r="6.4"/><circle cx="313.2" cy="415" r="10.8"/><circle cx="353.9" cy="550.8" r="4.7"/><circle cx="473.1" cy="580.6" r="2.5"/><circle cx="274" cy="674" r="8"/><circle cx="434" cy="520.7" r="5.6"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#949e89" stroke-width="4" opacity=".6"/>
+    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#bdc3b7">B.O.W. · ANIMAL MUTADO</text>
+    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="43" font-weight="900" letter-spacing="4" fill="#f2ecdf">COCODRILO GIGANTE</text>
+    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#2a2a30"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

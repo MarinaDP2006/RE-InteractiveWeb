@@ -2,8 +2,8 @@
  * ============================================================================
  *  Actividad.java — Estadísticas de visitas y registro de acciones del admin.
  * ============================================================================
- *  · Estadísticas: contadores por día (visitas al portal, a la wiki y al juego,
- *    visitantes únicos, partidas guardadas, puzzles...) y las fichas de la
+ *  · Estadísticas: contadores por día (visitas al portal y a la wiki,
+ *    visitantes únicos...) y las fichas de la
  *    wiki más vistas. Se acumulan en memoria y se guardan cada minuto en la
  *    colección "estadisticas" (así no se escribe en disco con cada visita).
  *  · Registro: cada acción del administrador (inicio de sesión, cambios en la

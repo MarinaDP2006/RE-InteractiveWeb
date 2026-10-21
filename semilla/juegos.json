@@ -51,7 +51,7 @@
       "Es el único juego principal sin baúles: los objetos se dejan en el suelo en cualquier sala.",
       "El modo extra «Wesker Mode» del remaster permite jugar con un Wesker de ojos rojos con poderes sobrehumanos."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/QbjC_WZy_jo/maxresdefault.jpg",
     "video": "QbjC_WZy_jo",
     "color": "#8a6d3b",
     "orden": 10,
@@ -118,7 +118,7 @@
       "La frase «Jill sandwich» de Barry y el doblaje original se convirtieron en memes legendarios.",
       "Tiene varios finales según quién sobreviva: Rebecca, Barry, Jill o Chris."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/IjxFtFwY6jk/maxresdefault.jpg",
     "video": "IjxFtFwY6jk",
     "color": "#3b5a8a",
     "orden": 20,
@@ -191,7 +191,7 @@
       "El remake vendió más de 15 millones de copias y ganó numerosos premios.",
       "En los modos extra se juega como HUNK, «la Muerte», y como un trozo de tofu."
     ],
-    "imagen": "/juego/img/escenarios/re2.webp",
+    "imagen": "/img/escenarios/re2.webp",
     "video": "u3wS-Q2KBpk",
     "color": "#9c1c1c",
     "orden": 30,
@@ -258,7 +258,7 @@
       "El minijuego «Los Mercenarios» nació en este juego.",
       "Incluye el famoso esquive en el momento justo, rehecho en el remake con cámara lenta."
     ],
-    "imagen": "/juego/img/escenarios/re3.webp",
+    "imagen": "/img/escenarios/re3.webp",
     "video": "32LSdT0dqxc",
     "color": "#b33a1a",
     "orden": 40,
@@ -310,7 +310,7 @@
       "Los personajes no podían curarse del todo: la infección solo se ralentizaba.",
       "Sus servidores oficiales cerraron, pero la comunidad los mantiene vivos con servidores propios."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/bTMurb3xcC8/maxresdefault.jpg",
     "video": "bTMurb3xcC8",
     "color": "#6b5b3b",
     "orden": 45,
@@ -374,7 +374,7 @@
       "Su título original iba a ser Resident Evil 3.",
       "Capcom anunció un remake con el nombre «Resident Evil Veronica»."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/UgM3q1IJA0c/maxresdefault.jpg",
     "video": "UgM3q1IJA0c",
     "color": "#4a1c5a",
     "orden": 50,
@@ -432,7 +432,7 @@
     "curiosidades": [
       "Contiene archivos que llenan huecos de la historia, como el pasado de Wesker y de los Ashford."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/gOZ1iYGvR9M/hqdefault.jpg",
     "video": "gOZ1iYGvR9M",
     "color": "#5a5a5a",
     "orden": 55,
@@ -482,8 +482,8 @@
     "curiosidades": [
       "Manuela Hidalgo es una de las pocas personas que conviven con T-Veronica sin perder la cordura."
     ],
-    "imagen": "",
-    "video": "",
+    "imagen": "https://i.ytimg.com/vi/elWw-mbYvik/hqdefault.jpg",
+    "video": "elWw-mbYvik",
     "color": "#3a5a3a",
     "orden": 58,
     "etiquetas": [
@@ -549,7 +549,7 @@
       "El Comerciante («What are ya buyin'?») es uno de los personajes más queridos de la saga.",
       "Pasó por varias versiones descartadas; una de ellas acabó siendo Devil May Cry."
     ],
-    "imagen": "/juego/img/escenarios/re4.webp",
+    "imagen": "/img/escenarios/re4.webp",
     "video": "Id2EaldBaWw",
     "color": "#7a5a2a",
     "orden": 60,
@@ -609,7 +609,7 @@
       "El escáner Génesis permitía analizar enemigos y encontrar objetos ocultos.",
       "Introdujo el modo Raid, muy popular por su componente de rol y cooperativo."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/Zn-dhvYybYg/hqdefault.jpg",
     "video": "Zn-dhvYybYg",
     "color": "#1a4a6a",
     "orden": 65,
@@ -676,7 +676,7 @@
       "El famoso «peñasco» al que Chris da puñetazos en el volcán se convirtió en un meme.",
       "El DLC «Fuga desesperada» cuenta cómo escapan Jill y Josh Stone."
     ],
-    "imagen": "/juego/img/escenarios/re5.webp",
+    "imagen": "/img/escenarios/re5.webp",
     "video": "5lYNJQVz_Pc",
     "color": "#b37a1a",
     "orden": 70,
@@ -731,7 +731,7 @@
       "Inspiraciones de Kafka recorren todo el juego: Alex cita «La metamorfosis».",
       "El modo Raid regresó ampliado."
     ],
-    "imagen": "",
+    "imagen": "https://i.ytimg.com/vi/3IMxhH0o-LY/maxresdefault.jpg",
     "video": "3IMxhH0o-LY",
     "color": "#4a3a2a",
     "orden": 72,
@@ -799,7 +799,7 @@
       "El Virus C transforma a la gente en J'avo, que mutan partes del cuerpo cuando se les dispara.",
       "Incluye modo «Cazador de agentes»: juegas como monstruo e invades la partida de otro."
     ],
-    "imagen": "/juego/img/escenarios/re6.webp",
+    "imagen": "/img/escenarios/re6.webp",
     "video": "8SlXT8JtYSM",
     "color": "#a3201a",
     "orden": 80,
@@ -865,7 +865,7 @@
       "La demo «Beginning Hour» generó teorías durante meses sobre un dedo de maniquí.",
       "Ethan nunca muestra su cara en todo el juego."
     ],
-    "imagen": "/juego/img/escenarios/re7.webp",
+    "imagen": "/img/escenarios/re7.webp",
     "video": "RgYqQsbKn6w",
     "color": "#4a5a2a",
     "orden": 90,
@@ -936,7 +936,7 @@
       "El nombre «Village» esconde un guiño: las letras «VIII» del 8.",
       "El Duque, el comerciante obeso, parece saber mucho más de lo que dice."
     ],
-    "imagen": "/juego/img/escenarios/re8.webp",
+    "imagen": "/img/escenarios/re8.webp",
     "video": "QKocYiRHYlI",
     "color": "#5a6a7a",
     "orden": 100,
@@ -995,7 +995,7 @@
       "Es el regreso de la saga principal a Raccoon City tras casi tres décadas.",
       "Capcom lo promocionó también con un cortometraje de acción real."
     ],
-    "imagen": "/juego/img/escenarios/re9.webp",
+    "imagen": "/img/escenarios/re9.webp",
     "video": "9lrThxCoznw",
     "color": "#7a1a2a",
     "orden": 110,
@@ -1032,7 +1032,7 @@
       "Ninguno de ellos afecta a la cronología de esta wiki."
     ],
     "curiosidades": [],
-    "imagen": "",
+    "imagen": "/img/fichas/juegos/spinoffs-no-canon.svg",
     "video": "",
     "color": "#444444",
     "orden": 900,
