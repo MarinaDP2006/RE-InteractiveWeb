@@ -19,7 +19,7 @@ El resultado final es exactamente lo que hay en este repositorio: si te atascas,
 | **Abril** | Pruebas, accesibilidad y ajustes · borrador de la memoria | 11, 12 |
 | **Mayo** | Memoria final, presentación y ensayo de la defensa · **entrega** | 12, 13 |
 
-Ritmo recomendado: **4 o 5 sesiones de trabajo por semana**. Deja libres las vacaciones de Navidad y Semana Santa como margen para recuperar retrasos.
+Ritmo recomendado: **4 sesiones de 3 horas por semana** (unas 104 sesiones en total, como en el presupuesto de la propuesta). Deja libres las vacaciones de Navidad y Semana Santa como margen para recuperar retrasos.
 
 > Regla de oro: al acabar cada sesión, guarda el trabajo en Git (paso 2.4). Así nunca pierdes nada y el historial demuestra tu trabajo.
 
