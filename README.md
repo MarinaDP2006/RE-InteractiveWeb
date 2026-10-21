@@ -29,7 +29,6 @@ La web funciona solo en tu ordenador: no está publicada en ningún sitio.
 
 ```
 ├── arrancar-web.bat          Compila el servidor y abre la web en el navegador
-├── tutorial.md               Paso a paso para construir el proyecto hasta mayo de 2027
 │
 ├── contenido/                TEXTOS DE LA WIKI (un archivo JSON por sección)
 │   ├── configuracion.json      menú de secciones y textos de la portada
@@ -57,7 +56,7 @@ La web funciona solo en tu ordenador: no está publicada en ningún sitio.
 │       ├── retratos/             fotos de personajes y criaturas
 │       ├── cuerpo-entero/        personajes de cuerpo entero (fichas)
 │       ├── escenarios/           fondos de juegos y lugares
-│       ├── ilustraciones/        dibujos propios para fichas sin foto
+│       ├── ilustraciones/        dibujos propios para las fichas sin foto
 │       └── logo.svg              logotipo (también icono de la pestaña)
 │
 ├── servidor/src/main/java/es/umbrella/   PROGRAMA QUE SIRVE LA WEB (Java 21)
@@ -67,9 +66,6 @@ La web funciona solo en tu ordenador: no está publicada en ningún sitio.
 │   ├── Contenido.java          lee los JSON de contenido/
 │   ├── Miembros.java           acceso con Google
 │   └── Json.java · Peticion.java   utilidades
-│
-└── herramientas/
-    └── generar-ilustraciones.js  dibuja las ilustraciones de las fichas sin foto
 ```
 
 ---

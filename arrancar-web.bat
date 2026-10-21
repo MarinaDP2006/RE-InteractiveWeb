@@ -7,7 +7,7 @@ REM  Uso:  doble clic          → http://localhost:8080
 REM        arrancar-web.bat 9090 → en otro puerto
 REM
 REM  Para «Únete para ver lo oculto», pon tu id de cliente de Google en la
-REM  línea GOOGLE_CLIENT_ID de abajo (mira el paso 9 de tutorial.md).
+REM  línea GOOGLE_CLIENT_ID de abajo (lo explica el paso 10 del tutorial).
 REM ===========================================================================
 chcp 65001 >nul
 cd /d "%~dp0"
