@@ -20,7 +20,4 @@
       <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
     </g>
     <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#a97575" stroke-width="4" opacity=".6"/>
-    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#caaaaa">B.O.W. · B.O.W. DEFINITIVO</text>
-    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="62" font-weight="900" letter-spacing="4" fill="#f2ecdf">TYRANT</text>
-    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#c8102e"/>
   <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

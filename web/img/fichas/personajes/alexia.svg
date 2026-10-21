@@ -15,7 +15,4 @@
       <path d="M190 780 C200 650 270 600 340 585 L350 540 C320 520 300 470 300 400 C300 320 345 270 400 270 C455 270 500 320 500 400 C500 470 480 520 450 540 L460 585 C530 600 600 650 610 780 Z" fill="url(#luz)" opacity=".55"/>
     </g>
     <g transform="rotate(-12 560 210)"><rect x="447" y="180" width="193" height="56" fill="none" stroke="#c8102e" stroke-width="5" opacity=".85"/><text x="467" y="218" textLength="153" lengthAdjust="spacingAndGlyphs" font-family="Oswald, 'Arial Narrow', 'Segoe UI', Arial, sans-serif" font-size="28" font-weight="600" fill="#c8102e" opacity=".9">FALLECIDO</text></g>
-    <text x="120" y="840" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="4" fill="#dcb9ee">EXPEDIENTE · ALEXIA</text>
-    <text x="400" y="905" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="53" font-weight="900" letter-spacing="4" fill="#f2ecdf">ALEXIA ASHFORD</text>
-    <text x="400" y="975" text-anchor="middle" font-family="Oswald, 'Arial Narrow', 'Segoe UI', Arial, sans-serif" font-size="22" letter-spacing="3" fill="#a8a094">LA REINA DEL T-VERONICA</text>
   <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>
