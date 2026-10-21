@@ -1,8 +1,5 @@
-# Finales de línea: los scripts de Linux y el Dockerfile siempre en LF,
-# los .bat de Windows en CRLF (si no, Docker o cmd podrían fallar).
+# Finales de línea: los .bat de Windows siempre en CRLF (si no, cmd puede fallar).
 * text=auto
-*.sh text eol=lf
-Dockerfile text eol=lf
 *.bat text eol=crlf
 # Imágenes: binarias, sin conversiones
 *.webp binary

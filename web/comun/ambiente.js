@@ -1,12 +1,12 @@
 /* ============================================================================
- *  comun/efectos.js — Efectos de ambiente compartidos por el portal y la wiki
+ *  comun/ambiente.js — Efectos de ambiente compartidos por el portal y la wiki
  * ============================================================================
  *  · Grano de película generado por código (sin imágenes).
  *  · Lluvia en un <canvas> con profundidad (gotas lejanas lentas y finas).
  *  · Relámpagos aleatorios con trueno sintetizado.
  *  · Ambiente sonoro opcional (lluvia + zumbido grave) con Web Audio.
  *  · Utilidades: logotipo de Umbrella en SVG, peticiones a la API, aparición
- *    de elementos al hacer scroll y registro de visitas.
+ *    de elementos al hacer scroll.
  * ========================================================================== */
 "use strict";
 
@@ -216,14 +216,10 @@ const Umbra = (() => {
     return d;
   }
 
-  function visita(seccion) {
-    api("/api/visita", { seccion }).catch(() => { /* no es importante */ });
-  }
-
   /** Escapa texto para insertarlo como HTML. */
   function esc(s) {
     return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
-  return { iniciar, logo, api, visita, esc, Audio, almacen, observarRevelar, reducir };
+  return { iniciar, logo, api, esc, Audio, almacen, observarRevelar, reducir };
 })();

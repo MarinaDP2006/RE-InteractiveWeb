@@ -3,7 +3,7 @@
  *  Peticion.java — Envoltorio cómodo sobre HttpExchange.
  * ============================================================================
  *  Lectura del cuerpo con límite de tamaño, parámetros de la URL, cookies,
- *  IP real (detrás del proxy de Render) y respuestas JSON comprimidas.
+ *  IP del visitante y respuestas JSON comprimidas.
  * ============================================================================
  */
 package es.umbrella;
@@ -88,15 +88,7 @@ final class Peticion {
         return ex.getRequestHeaders().getFirst(nombre);
     }
 
-    /** IP del cliente; en Render la real viene en X-Forwarded-For. */
-    String ip() {
-        String xff = cabecera("X-Forwarded-For");
-        if (xff != null && !xff.isBlank()) {
-            return xff.split(",")[0].trim();
-        }
-        return ex.getRemoteAddress().getAddress().getHostAddress();
-    }
-
+    /** Valor de una cookie de la petición, o null. */
     String cookie(String nombre) {
         List<String> cookies = ex.getRequestHeaders().get("Cookie");
         if (cookies == null) {

@@ -10,7 +10,6 @@
  *    boolean → Boolean
  *    null    → null
  *
- *  Lo comparten el servidor y la app de administración (que tiene su copia).
  */
 package es.umbrella;
 

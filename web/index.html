@@ -4,8 +4,6 @@
    UMBRELLA ARCHIVES · index.html — Portal de entrada
   ============================================================================
    Tres «puertas» que llevan a la wiki: la portada, la cronología y el mapa.
-   Si el administrador cierra la wiki, las puertas se ven apagadas con el
-   aviso de cerrado. El anuncio opcional se escribe desde la app de gestión.
   ============================================================================
 -->
 <html lang="es">
@@ -21,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Crimson+Pro:ital@0;1&family=Oswald:wght@400;500;600&family=Share+Tech+Mono&display=swap">
-  <link rel="stylesheet" href="comun/base.css">
+  <link rel="stylesheet" href="comun/estilos.css">
   <style>
     body { overflow: hidden; height: 100vh; height: 100dvh; }
     .portal { position: relative; z-index: 2; height: 100%; display: grid; grid-template-rows: auto 1fr auto; }
@@ -30,7 +28,6 @@
     @keyframes girarLento { to { transform: rotate(360deg); } }
     .portal-cab h1 { margin: 14px 0 0; font: 900 clamp(1.8rem, 5vw, 3.4rem)/1 var(--f-titulo); letter-spacing: .22em; }
     .portal-cab p { margin: 6px 0 0; font: .78rem var(--f-mono); letter-spacing: .5em; color: var(--rojo-vivo); }
-    .anuncio { margin-top: 12px; padding: .45em 1em; border: 1px solid var(--ambar); border-radius: 999px; color: #ffd76a; font: 500 .85rem var(--f-ui); letter-spacing: .06em; }
 
     .puertas { display: flex; gap: 2px; padding: 22px clamp(12px, 3vw, 40px); min-height: 0; }
     .puerta {
@@ -47,9 +44,6 @@
     .puerta h2 { margin: .2em 0 .15em; font: 900 clamp(1.4rem, 3vw, 3.6rem)/.95 var(--f-titulo); letter-spacing: .03em; }
     .puerta p { margin: 0; max-width: 46ch; color: var(--texto-suave); font-size: 1.05rem; }
     .puerta .btn { margin-top: 20px; }
-    .puerta.cerrada .puerta-fondo { filter: grayscale(1) brightness(.25); }
-    .puerta.cerrada .btn { border-color: #555; }
-    .estado-cerrado { display: inline-block; margin-top: 12px; padding: .3em .8em; border: 1px solid var(--rojo); color: #ffb3bb; font: .78rem var(--f-mono); letter-spacing: .2em; }
     .portal-pie { padding: 10px 16px 18px; text-align: center; font: .76rem var(--f-ui); letter-spacing: .1em; color: var(--texto-tenue); }
     .portal-pie b { color: var(--texto-suave); }
     @media (max-width: 760px) {
@@ -62,12 +56,11 @@
 </head>
 <body>
   <div class="portal">
-    <!-- Cabecera: logotipo girando, nombre y anuncio opcional -->
+    <!-- Cabecera: logotipo girando y nombre -->
     <header class="portal-cab">
       <span id="logo"></span>
       <h1>UMBRELLA ARCHIVES</h1>
       <p>RESIDENT EVIL · WIKI · ARCHIVO</p>
-      <div class="anuncio" id="anuncio" hidden></div>
     </header>
     <!-- Las tres puertas de entrada -->
     <main class="puertas">
@@ -78,7 +71,6 @@
           <h2>WIKI</h2>
           <p>La historia completa de la saga: juegos y películas canon, personajes, bestiario, virus, cronología y mapa interactivo.</p>
           <span class="btn btn-rojo">Abrir los archivos</span>
-          <div id="estado-wiki"></div>
         </div>
       </a>
       <a class="puerta puerta-wiki-extra" href="/wiki/#/cronologia">
@@ -104,23 +96,11 @@
     <footer class="portal-pie"><b>UMBRELLA ARCHIVES</b> · 2026</footer>
   </div>
   <!-- Efectos de ambiente y utilidades comunes (objeto Umbra) -->
-  <script src="comun/efectos.js"></script>
+  <script src="comun/ambiente.js"></script>
   <script>
-    /* Arranque del portal: efectos, logotipo, visita y estado de la wiki. */
-    (async () => {
-      Umbra.iniciar();
-      document.getElementById("logo").innerHTML = Umbra.logo();
-      Umbra.visita("portal");
-      try {
-        // El servidor dice si hay anuncio y si la wiki está abierta.
-        const p = await Umbra.api("/api/portal");
-        if (p.anuncio) { const a = document.getElementById("anuncio"); a.textContent = p.anuncio; a.hidden = false; }
-        if (!p.vistaAdmin && (!p.wiki || p.wiki.publica === false)) {
-          document.querySelectorAll(".puerta").forEach((d) => d.classList.add("cerrada"));
-          document.getElementById("estado-wiki").innerHTML = '<span class="estado-cerrado">CERRADO TEMPORALMENTE</span>';
-        }
-      } catch { /* el portal funciona igualmente */ }
-    })();
+    /* Arranque del portal: efectos de ambiente y logotipo. */
+    Umbra.iniciar();
+    document.getElementById("logo").innerHTML = Umbra.logo();
   </script>
 </body>
 </html>

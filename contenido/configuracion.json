@@ -1,11 +1,4 @@
 {
-  "acceso": {
-    "anuncio": "",
-    "wiki": {
-      "publica": true,
-      "mensaje": "La wiki está en mantenimiento. Los archivos de Umbrella vuelven pronto."
-    }
-  },
   "wiki": {
     "secciones": [
       {

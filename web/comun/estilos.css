@@ -157,14 +157,6 @@ a.chip:hover, button.chip:hover { border-color: var(--rojo); color: var(--texto)
 .mono { font-family: var(--f-mono); }
 [hidden] { display: none !important; }
 
-/* Aviso de vista previa del admin */
-.aviso-admin {
-  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 200;
-  padding: .55em 1.1em; border: 1px solid var(--ambar); border-radius: 999px;
-  background: rgba(20, 16, 6, .92); color: #ffd76a; font: 500 .8rem var(--f-ui); letter-spacing: .1em;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, .6);
-}
-
 /* Aparición al hacer scroll */
 .revelar { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
 .revelar.visible { opacity: 1; transform: none; }

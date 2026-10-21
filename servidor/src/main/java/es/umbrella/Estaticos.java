@@ -1,11 +1,10 @@
 /*
  * ============================================================================
- *  Estaticos.java — Sirve la web (carpeta web/) y los archivos subidos.
+ *  Estaticos.java — Sirve los archivos de la carpeta web/
  * ============================================================================
  *  · /            → portal de entrada a la wiki
  *  · /wiki/...    → la wiki     (si está cerrada al público: página de mantenimiento)
  *  · /img/...     → imágenes de las fichas
- *  · /subidas/... → imágenes y vídeos subidos desde la app de administración
  *
  *  Protección contra "path traversal", caché del navegador (imágenes 7 días,
  *  HTML/CSS/JS revalidados), gzip y peticiones Range para vídeo.
@@ -53,13 +52,9 @@ final class Estaticos implements HttpHandler {
             Map.entry("webmanifest", "application/manifest+json"));
 
     private final Path raiz;
-    private final Api api;
-    private final Subidas subidas;
 
-    Estaticos(Path raiz, Api api, Subidas subidas) {
+    Estaticos(Path raiz) {
         this.raiz = raiz;
-        this.api = api;
-        this.subidas = subidas;
     }
 
     @Override
@@ -72,22 +67,11 @@ final class Estaticos implements HttpHandler {
             }
             String ruta = p.ruta;
 
-            if (ruta.startsWith("/subidas/")) {
-                subidas.servir(p, ruta.substring("/subidas/".length()));
-                return;
-            }
             // /wiki → /wiki/  (las rutas relativas de la página dependen de la barra final)
-            if (ruta.equals("/wiki") || ruta.equals("/admin")) {
+            if (ruta.equals("/wiki")) {
                 p.redirigir(ruta + "/");
                 return;
             }
-            // Secciones cerradas al público (el admin con "Ver como admin" sí entra).
-            boolean esHtml = ruta.endsWith("/") || ruta.endsWith(".html");
-            if (ruta.startsWith("/wiki/") && !api.wikiAbierta(p) && esHtml) {
-                cerrado(p, "wiki");
-                return;
-            }
-
             if (ruta.endsWith("/")) {
                 ruta += "index.html";
             }
@@ -141,31 +125,10 @@ final class Estaticos implements HttpHandler {
         return punto < 0 ? "" : nombre.substring(punto + 1).toLowerCase(Locale.ROOT);
     }
 
-    /** Página de mantenimiento (web/cerrado.html con el mensaje del admin). */
-    private void cerrado(Peticion p, String seccion) throws IOException {
-        Map<String, Object> a = api.acceso();
-        String mensaje = Json.texto(Json.objeto(a, seccion), "mensaje", "");
-        if (mensaje.isBlank()) {
-            mensaje = "Esta sección está cerrada temporalmente. Vuelve pronto, superviviente.";
-        }
-        Path plantilla = raiz.resolve("cerrado.html");
-        String html = Files.exists(plantilla) ? Files.readString(plantilla, StandardCharsets.UTF_8)
-                : "<!doctype html><meta charset=utf-8><title>Cerrado</title><h1>{{SECCION}}</h1><p>{{MENSAJE}}</p>";
-        html = html.replace("{{SECCION}}", "La Wiki")
-                .replace("{{MENSAJE}}", escapar(mensaje));
-        p.ex.getResponseHeaders().set("Cache-Control", "no-store");
-        p.ex.getResponseHeaders().set("Retry-After", "600");
-        p.enviar(503, "text/html; charset=utf-8", html.getBytes(StandardCharsets.UTF_8));
-    }
-
     private void noEncontrado(Peticion p) throws IOException {
         Path pagina = raiz.resolve("404.html");
         byte[] html = Files.exists(pagina) ? Files.readAllBytes(pagina)
                 : "<!doctype html><meta charset=utf-8><title>404</title><h1>404 — Archivo perdido</h1><a href=\"/\">Volver</a>".getBytes(StandardCharsets.UTF_8);
         p.enviar(404, "text/html; charset=utf-8", html);
-    }
-
-    static String escapar(String s) {
-        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     }
 }

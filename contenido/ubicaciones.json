@@ -26,7 +26,7 @@
     "estado": "",
     "resumen": "Las montañas boscosas al noroeste de Raccoon City donde estaban la mansión Spencer y los laboratorios de Umbrella.",
     "cuerpo": ["Los asesinatos de Arklay de mayo a julio de 1998 llevaron a S.T.A.R.S. a investigar."],
-    "imagen": "/img/fichas/ubicaciones/montanas-arklay.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/montanas-arklay.svg",
     "orden": 20
   },
   "mansion-spencer": {
@@ -41,7 +41,7 @@
     "estado": "Destruida el 25 de julio de 1998",
     "resumen": "La mansión diseñada por George Trevor para Spencer, llena de trampas y puzzles, que escondía el laboratorio Arklay.",
     "cuerpo": ["Construida en 1967, era la tapadera de los laboratorios de Umbrella en Arklay. Su arquitecto y su familia fueron víctimas de los experimentos. Se autodestruyó al final del primer juego."],
-    "imagen": "/img/fichas/ubicaciones/mansion-spencer.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/mansion-spencer.svg",
     "orden": 30
   },
   "laboratorio-arklay": {
@@ -56,7 +56,7 @@
     "estado": "Destruido",
     "resumen": "El laboratorio donde Umbrella creó a los Hunter y al Tyrant T-002.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/laboratorio-arklay.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/laboratorio-arklay.svg",
     "orden": 35
   },
   "ecliptic-express": {
@@ -71,7 +71,7 @@
     "estado": "Descarrilado",
     "resumen": "Un tren de lujo de Umbrella atacado por las sanguijuelas de Marcus la noche del 23 de julio de 1998.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/ecliptic-express.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/ecliptic-express.svg",
     "orden": 40
   },
   "centro-formacion-umbrella": {
@@ -86,7 +86,7 @@
     "estado": "Destruido",
     "resumen": "La escuela donde James Marcus formó a los futuros científicos de Umbrella, entre ellos Wesker y Birkin.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/centro-formacion-umbrella.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/centro-formacion-umbrella.svg",
     "orden": 45
   },
   "comisaria-rpd": {
@@ -266,7 +266,7 @@
     "estado": "",
     "resumen": "Donde Claire fue capturada al principio de Code: Veronica.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/paris-umbrella.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/paris-umbrella.svg",
     "orden": 100
   },
   "isla-rockfort": {
@@ -281,7 +281,7 @@
     "estado": "Destruida",
     "resumen": "La isla privada de los Ashford, con prisión, base militar, palacio y laboratorios.",
     "cuerpo": ["Un ataque de la organización de Wesker liberó el Virus-T en la isla en diciembre de 1998."],
-    "imagen": "/img/fichas/ubicaciones/isla-rockfort.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/isla-rockfort.svg",
     "orden": 110
   },
   "base-antartica": {
@@ -296,7 +296,7 @@
     "estado": "Destruida",
     "resumen": "La base de transporte de Umbrella donde Alexia Ashford hibernaba.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/base-antartica.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/base-antartica.svg",
     "orden": 115
   },
   "amparo": {
@@ -311,7 +311,7 @@
     "estado": "",
     "resumen": "El país sudamericano donde Leon y Krauser llevaron a cabo la Operación Javier.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/amparo.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/amparo.svg",
     "orden": 120
   },
   "caucaso-umbrella": {
@@ -326,7 +326,7 @@
     "estado": "Destruidas",
     "resumen": "Las últimas instalaciones de Umbrella, destruidas en febrero de 2003.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/caucaso-umbrella.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/caucaso-umbrella.svg",
     "orden": 125
   },
   "aldea-espana": {
@@ -386,7 +386,7 @@
     "estado": "Destruida",
     "resumen": "Una ciudad flotante ecológica en el Mediterráneo destruida en 2004 con un satélite solar tras un ataque bioterrorista.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/terragrigia.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/terragrigia.svg",
     "orden": 145
   },
   "queen-zenobia": {
@@ -401,7 +401,7 @@
     "estado": "Hundido",
     "resumen": "El crucero a la deriva donde se desarrolla Revelations.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/queen-zenobia.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/queen-zenobia.svg",
     "orden": 150
   },
   "finlandia": {
@@ -416,7 +416,7 @@
     "estado": "",
     "resumen": "La zona nevada donde Chris y Jessica buscaban pistas de Veltro.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/finlandia.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/finlandia.svg",
     "orden": 152
   },
   "mansion-spencer-europa": {
@@ -431,7 +431,7 @@
     "estado": "",
     "resumen": "La mansión donde Wesker mató a Spencer y donde Jill desapareció (DLC «Perdidos en las pesadillas»).",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/mansion-spencer-europa.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/mansion-spencer-europa.svg",
     "orden": 155
   },
   "kijuju": {
@@ -476,7 +476,7 @@
     "estado": "",
     "resumen": "La isla de Alex Wesker, con una prisión abandonada, una aldea y una torre.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/sushestvovanie.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/sushestvovanie.svg",
     "orden": 170
   },
   "edonia": {
@@ -491,7 +491,7 @@
     "estado": "",
     "resumen": "País en guerra civil donde Chris perdió a su escuadrón y Jake conoció a Sherry.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/edonia.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/edonia.svg",
     "orden": 175
   },
   "tall-oaks": {
@@ -536,7 +536,7 @@
     "estado": "Destruido",
     "resumen": "La base submarina donde nació el HAOS y donde Piers se sacrificó.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/laboratorio-submarino.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/laboratorio-submarino.svg",
     "orden": 187
   },
   "dulvey-baker": {
@@ -642,7 +642,7 @@
     "estado": "",
     "resumen": "El aeropuerto atacado con el Virus-T en Resident Evil: Degeneration.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/harvardville.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/harvardville.svg",
     "orden": 230
   },
   "republica-eslava": {
@@ -658,7 +658,7 @@
     "estado": "",
     "resumen": "País en guerra civil donde se usaron plagas como armas, en Resident Evil: Damnation.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/republica-eslava.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/republica-eslava.svg",
     "orden": 235
   },
   "nueva-york": {
@@ -674,7 +674,7 @@
     "estado": "",
     "resumen": "La ciudad atacada por Glenn Arias con el Virus-A en Resident Evil: Vendetta.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/nueva-york.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/nueva-york.svg",
     "orden": 240
   },
   "penamstan": {
@@ -690,7 +690,7 @@
     "estado": "",
     "resumen": "País de la guerra civil donde soldados estadounidenses fueron expuestos al Virus-T, en Infinite Darkness.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/penamstan.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/penamstan.svg",
     "orden": 245
   },
   "alcatraz": {
@@ -706,7 +706,7 @@
     "estado": "",
     "resumen": "La antigua prisión donde se reúnen Leon, Chris, Jill, Claire y Rebecca en Death Island.",
     "cuerpo": [],
-    "imagen": "/img/fichas/ubicaciones/alcatraz.svg",
+    "imagen": "/img/ilustraciones/ubicaciones/alcatraz.svg",
     "orden": 250
   }
 }

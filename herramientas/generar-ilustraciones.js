@@ -3,7 +3,7 @@
  *  generar-ilustraciones.js — Ilustraciones originales para las fichas sin imagen.
  *  Las ilustraciones no llevan el nombre escrito: la web ya lo pone encima.
  * ============================================================================
- *  Recorre semilla/*.json y, a cada ficha con "imagen" vacía, le dibuja una
+ *  Recorre contenido/*.json y, a cada ficha con "imagen" vacía, le dibuja una
  *  ilustración SVG propia según su sección y le asigna la ruta:
  *
  *    juegos          → carátula con emblema, título y año
@@ -16,7 +16,7 @@
  *
  *  Son dibujos originales (sin material de terceros), ligeros y
  *  deterministas: la misma ficha produce siempre la misma ilustración.
- *  El administrador puede sustituirlos cuando quiera desde Umbrella Admin.
+ *  Para cambiar una por una foto, pon su ruta en el campo «imagen» del JSON.
  *
  *  Uso (desde la carpeta del proyecto):   node herramientas/generar-ilustraciones.js
  *  Con --todas regenera también las ilustraciones ya asignadas por este script.
@@ -27,9 +27,9 @@ const fs = require("fs");
 const path = require("path");
 
 const RAIZ = path.resolve(__dirname, "..");
-const SEMILLA = path.join(RAIZ, "semilla");
-const DESTINO = path.join(RAIZ, "web", "img", "fichas");
-const RUTA_WEB = "/img/fichas";
+const SEMILLA = path.join(RAIZ, "contenido");
+const DESTINO = path.join(RAIZ, "web", "img", "ilustraciones");
+const RUTA_WEB = "/img/ilustraciones";
 const TODAS = process.argv.includes("--todas");
 
 const W = 800, H = 1000;
@@ -367,4 +367,4 @@ for (const [seccion, dibujar] of Object.entries(PLANTILLAS)) {
   console.log(`${seccion.padEnd(15)} ${n} ilustraciones`);
   total += n;
 }
-console.log(`Total: ${total} ilustraciones en web/img/fichas/`);
+console.log(`Total: ${total} ilustraciones en web/img/ilustraciones/`);

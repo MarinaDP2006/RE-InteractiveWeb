@@ -1,20 +1,14 @@
-# Datos de ejecución (base de datos local, copias, contraseña inicial)
-data/
+# Datos que crea el servidor al usarlo (miembros que entran con Google)
+datos/
 
-# Compilación
+# Programa compilado
 build/
-out/
 *.class
-fuentes.txt
-lib/*.jar
-admin/dist/
 
 # Sistema y editores
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-build-admin/
-dist/
-CONTRASEÑAS.txt
 .claude/
+node_modules/

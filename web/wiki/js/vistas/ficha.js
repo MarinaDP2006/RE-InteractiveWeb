@@ -131,9 +131,6 @@
     if (f.anio) chips.push(`<span class="chip">${esc(f.anio)}</span>`);
     (f.etiquetas || []).slice(0, 6).forEach((e) => chips.push(`<button class="chip" type="button" data-buscar="${esc(e)}">#${esc(e)}</button>`));
 
-    // Avisa al servidor de la visita (para las «fichas más vistas» del panel de administración).
-    Umbra.api(`/api/wiki/${encodeURIComponent(sec)}/${encodeURIComponent(id)}`).catch(() => {});
-
     pintar(`
       <section class="ficha-hero" style="--c:${esc(f.color || "#c8102e")}">
         <div class="ficha-hero-fondo" style="--img:${fondo ? `url('${esc(fondo)}')` : "none"};--blur:${cuerpoImg ? "6px" : "0"}"></div>

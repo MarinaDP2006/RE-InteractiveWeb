@@ -21,7 +21,7 @@
       "El Virus-T destruye la mayor parte del cerebro y deja solo los instintos más básicos. El metabolismo se acelera y provoca un hambre insaciable. Los infectados pierden sensibilidad al dolor, se mueven torpemente y atacan mordiendo, lo que contagia a sus víctimas.",
       "En los remakes son mucho más duros: pueden resistir varios disparos en la cabeza, se arrastran sin piernas y se levantan cuando crees que han caído. Los de Resident Evil 6, creados con el Virus C, pueden correr y usar armas."
     ],
-    "imagen": "/img/personajes/zombi.webp",
+    "imagen": "/img/retratos/zombi.webp",
     "color": "#9aa58c",
     "orden": 10
   },
@@ -39,7 +39,7 @@
     "cuerpo": [
       "Introducidos en el remake de 2002: los zombis abatidos en la mansión vuelven a levantarse más rápidos y agresivos al cabo de un tiempo. Por eso el queroseno y el mechero son tan valiosos."
     ],
-    "imagen": "/img/fichas/criaturas/crimson-head.svg",
+    "imagen": "/img/ilustraciones/criaturas/crimson-head.svg",
     "color": "#b03a2a",
     "orden": 15
   },
@@ -61,7 +61,7 @@
     "cuerpo": [
       "Los perros de la mansión Spencer mataron a Joseph Frost en la primera escena del primer juego. El susto del pasillo en el que saltan por la ventana es uno de los momentos más célebres del terror en videojuegos."
     ],
-    "imagen": "/img/personajes/perro.webp",
+    "imagen": "/img/retratos/perro.webp",
     "color": "#6a3a2a",
     "orden": 20
   },
@@ -83,7 +83,7 @@
     "cuerpo": [
       "Umbrella diseñó al Hunter como un soldado barato y obediente. Existen variantes: Hunter β en Raccoon City, Hunter γ (con aspecto de anfibio que se traga a sus víctimas) y otros. Su ataque de decapitación es una muerte instantánea."
     ],
-    "imagen": "/img/personajes/hunter.webp",
+    "imagen": "/img/retratos/hunter.webp",
     "color": "#5a6a3a",
     "orden": 30
   },
@@ -101,7 +101,7 @@
     "cuerpo": [
       "Las Quimeras del laboratorio caen desde los conductos de ventilación. Son uno de los experimentos más grotescos de la mansión."
     ],
-    "imagen": "/img/fichas/criaturas/chimera.svg",
+    "imagen": "/img/ilustraciones/criaturas/chimera.svg",
     "color": "#5a5a3a",
     "orden": 35
   },
@@ -119,7 +119,7 @@
     "cuerpo": [
       "Yawn se alimentó del Virus-T hasta alcanzar un tamaño colosal. Se enfrenta al jugador dos veces y es uno de los jefes más memorables del primer juego."
     ],
-    "imagen": "/img/fichas/criaturas/yawn.svg",
+    "imagen": "/img/ilustraciones/criaturas/yawn.svg",
     "color": "#4a6a3a",
     "orden": 40
   },
@@ -137,7 +137,7 @@
     "cuerpo": [
       "Regada con agua contaminada por el Virus-T, la Planta 42 creció hasta ocupar habitaciones enteras. Se puede debilitar antes de luchar preparando el herbicida V-JOLT."
     ],
-    "imagen": "/img/fichas/criaturas/planta-42.svg",
+    "imagen": "/img/ilustraciones/criaturas/planta-42.svg",
     "color": "#3a6a2a",
     "orden": 45
   },
@@ -157,7 +157,7 @@
       "En 1967, Lisa Trevor, de 14 años, y su madre fueron llevadas a la mansión como «invitadas». Su madre murió; Lisa fue infectada con variantes del Virus Progenitor una y otra vez, y su cuerpo absorbió todas.",
       "Lleva las caras de sus víctimas cosidas a la suya, buscando a su madre. Sus células fueron la clave para que William Birkin descubriera el Virus-G. Su historia, contada a través de diarios, es una de las más tristes de la saga."
     ],
-    "imagen": "/img/fichas/criaturas/lisa-trevor.svg",
+    "imagen": "/img/ilustraciones/criaturas/lisa-trevor.svg",
     "color": "#7a6a5a",
     "orden": 50
   },
@@ -175,7 +175,7 @@
     "cuerpo": [
       "El T-001 fue un modelo inestable con un corazón al descubierto y garras largas."
     ],
-    "imagen": "/img/fichas/criaturas/proto-tyrant.svg",
+    "imagen": "/img/ilustraciones/criaturas/proto-tyrant.svg",
     "color": "#8a5a5a",
     "orden": 55
   },
@@ -199,7 +199,7 @@
       "Solo una persona entre diez millones tiene los genes adecuados para convertirse en Tyrant sin perder la forma humana. El T-002 de la mansión, el T-103 de la serie de Mr. X, el T-078 de Rockfort y el T-A.L.O.S. de 2003 son algunas versiones.",
       "Cuando reciben demasiado daño o se quitan su abrigo limitador, entran en «modo Super Tyrant»: el corazón queda expuesto y las garras crecen."
     ],
-    "imagen": "/img/fichas/criaturas/tyrant.svg",
+    "imagen": "/img/ilustraciones/criaturas/tyrant.svg",
     "color": "#7a2a2a",
     "orden": 60
   },
@@ -218,7 +218,7 @@
     "cuerpo": [
       "Wesker lo liberó para medir su potencia contra S.T.A.R.S. Su corazón expuesto y su garra gigante lo convirtieron en el primer gran jefe de la saga."
     ],
-    "imagen": "/img/fichas/criaturas/tyrant-t002.svg",
+    "imagen": "/img/ilustraciones/criaturas/tyrant-t002.svg",
     "color": "#7a3a3a",
     "orden": 61
   },
@@ -237,7 +237,7 @@
     "cuerpo": [
       "Tras el asesinato de Marcus en 1988, sus sanguijuelas lo devoraron y la reina asumió su identidad. Puede adoptar la apariencia de un Marcus joven y controlar a todas las sanguijuelas."
     ],
-    "imagen": "/img/fichas/criaturas/reina-sanguijuela.svg",
+    "imagen": "/img/ilustraciones/criaturas/reina-sanguijuela.svg",
     "color": "#4a3a2a",
     "orden": 65
   },
@@ -258,7 +258,7 @@
     "cuerpo": [
       "El Licker aparece por primera vez en la comisaría del R.P.D., en un pasillo con una ventana rota y un cadáver sin cabeza. Es completamente ciego, pero oye cualquier paso. Su lengua puede atravesar a una persona."
     ],
-    "imagen": "/img/personajes/licker.webp",
+    "imagen": "/img/retratos/licker.webp",
     "color": "#8a2a2a",
     "orden": 70
   },
@@ -277,7 +277,7 @@
     "cuerpo": [
       "En el remake de 2019, Mr. X se convirtió en una leyenda: sus pasos resuenan por la comisaría y puede seguirte de habitación en habitación. Solo las salas seguras te protegen. Al final muta en Super Tyrant."
     ],
-    "imagen": "/img/personajes/mrx.webp",
+    "imagen": "/img/retratos/mrx.webp",
     "color": "#3a3a3a",
     "orden": 75
   },
@@ -296,7 +296,7 @@
     "cuerpo": [
       "En su primera forma aún sostiene una barra de hierro; en la última es una masa de carne con bocas. Busca a familiares compatibles para implantarles embriones."
     ],
-    "imagen": "/img/personajes/g_adulto.webp",
+    "imagen": "/img/retratos/g_adulto.webp",
     "color": "#9a4a3a",
     "orden": 80
   },
@@ -314,7 +314,7 @@
     "cuerpo": [
       "Un ojo enorme, brazos largos y la capacidad de implantar más embriones."
     ],
-    "imagen": "/img/personajes/g_adulto.webp",
+    "imagen": "/img/retratos/g_adulto.webp",
     "color": "#7a5a5a",
     "orden": 85
   },
@@ -332,7 +332,7 @@
     "cuerpo": [
       "Las Ivy envenenan con su ácido. Tienen un núcleo que hay que destruir."
     ],
-    "imagen": "/img/personajes/ivy.webp",
+    "imagen": "/img/retratos/ivy.webp",
     "color": "#4a6a3a",
     "orden": 90
   },
@@ -350,7 +350,7 @@
     "cuerpo": [
       "Inspirado en la leyenda urbana de los cocodrilos de las alcantarillas, apareció en el RE2 original y regresó en el remake."
     ],
-    "imagen": "/img/fichas/criaturas/cocodrilo.svg",
+    "imagen": "/img/ilustraciones/criaturas/cocodrilo.svg",
     "color": "#5a6a4a",
     "orden": 95
   },
@@ -370,7 +370,7 @@
       "Desarrollado en la división europea de Umbrella, Némesis lleva un parásito que le permite seguir órdenes complejas y usar armas como el lanzacohetes.",
       "Persigue a Jill por toda Raccoon City. Cada vez que lo derrota muta: pierde la gabardina, se vuelve un perro gigante (remake) y al final una masa de tentáculos."
     ],
-    "imagen": "/img/personajes/nemesis.webp",
+    "imagen": "/img/retratos/nemesis.webp",
     "color": "#4a2a3a",
     "orden": 100
   },
@@ -388,7 +388,7 @@
     "cuerpo": [
       "En el remake de RE3 pueden implantar parásitos en Jill que obligan a usar hierbas verdes para curarse."
     ],
-    "imagen": "/img/fichas/criaturas/drain-deimos.svg",
+    "imagen": "/img/ilustraciones/criaturas/drain-deimos.svg",
     "color": "#5a4a3a",
     "orden": 105
   },
@@ -406,7 +406,7 @@
     "cuerpo": [
       "Umbrella los fabricaba en Rockfort como alternativa barata al Tyrant."
     ],
-    "imagen": "/img/fichas/criaturas/bandersnatch.svg",
+    "imagen": "/img/ilustraciones/criaturas/bandersnatch.svg",
     "color": "#7a7a6a",
     "orden": 110
   },
@@ -424,7 +424,7 @@
     "cuerpo": [
       "Ciego, con un gas venenoso que exhala, Nosferatu persigue a Chris en el tejado de la base antártica."
     ],
-    "imagen": "/img/fichas/criaturas/nosferatu.svg",
+    "imagen": "/img/ilustraciones/criaturas/nosferatu.svg",
     "color": "#8a8aaa",
     "orden": 115
   },
@@ -443,7 +443,7 @@
     "cuerpo": [
       "Fue el último intento de Umbrella de convencer a los militares de comprar sus armas. Chris y Jill lo destruyeron en 2003."
     ],
-    "imagen": "/img/fichas/criaturas/talos.svg",
+    "imagen": "/img/ilustraciones/criaturas/talos.svg",
     "color": "#5a5a7a",
     "orden": 120
   },
@@ -461,7 +461,7 @@
     "cuerpo": [
       "A diferencia de los zombis, los Ganados conservan su inteligencia y hablan. Si les disparas en la cabeza, a veces de su cuello brota una plaga con tentáculos."
     ],
-    "imagen": "/img/personajes/ganado.webp",
+    "imagen": "/img/retratos/ganado.webp",
     "color": "#c8a888",
     "orden": 130
   },
@@ -480,7 +480,7 @@
     "cuerpo": [
       "Su rugido de motosierra en la plaza del pueblo es el sonido más temido del RE4."
     ],
-    "imagen": "/img/personajes/salvador.webp",
+    "imagen": "/img/retratos/salvador.webp",
     "color": "#8a6a4a",
     "orden": 132
   },
@@ -499,7 +499,7 @@
     "cuerpo": [
       "Leon lo enfrenta en un claro junto al pueblo."
     ],
-    "imagen": "/img/personajes/gigante.webp",
+    "imagen": "/img/retratos/gigante.webp",
     "color": "#8a7a6a",
     "orden": 135
   },
@@ -518,7 +518,7 @@
     "cuerpo": [
       "Solo muere si se destruyen todas las plagas que tiene dentro, que se ven con la mira térmica."
     ],
-    "imagen": "/img/personajes/regenerador.webp",
+    "imagen": "/img/retratos/regenerador.webp",
     "color": "#9a9a8a",
     "orden": 140
   },
@@ -537,7 +537,7 @@
     "cuerpo": [
       "Su exoesqueleto es casi impenetrable; congelarlo con nitrógeno líquido lo deja vulnerable."
     ],
-    "imagen": "/img/fichas/criaturas/verdugo.svg",
+    "imagen": "/img/ilustraciones/criaturas/verdugo.svg",
     "color": "#4a4a3a",
     "orden": 145
   },
@@ -555,7 +555,7 @@
     "cuerpo": [
       "Como el Licker, el Garrador caza por el oído."
     ],
-    "imagen": "/img/fichas/criaturas/garrador.svg",
+    "imagen": "/img/ilustraciones/criaturas/garrador.svg",
     "color": "#5a5a5a",
     "orden": 150
   },
@@ -574,7 +574,7 @@
     "cuerpo": [
       "Persigue a Leon por un laberinto de contenedores."
     ],
-    "imagen": "/img/fichas/criaturas/u3.svg",
+    "imagen": "/img/ilustraciones/criaturas/u3.svg",
     "color": "#6a5a4a",
     "orden": 155
   },
@@ -592,7 +592,7 @@
     "cuerpo": [
       "El T-Abyss, que combina el Virus-T con un pez abisal, deforma el cuerpo y le da afinidad con el agua."
     ],
-    "imagen": "/img/fichas/criaturas/ooze.svg",
+    "imagen": "/img/ilustraciones/criaturas/ooze.svg",
     "color": "#9ab0c0",
     "orden": 160
   },
@@ -610,7 +610,7 @@
     "cuerpo": [
       "Uno de los enemigos más resistentes del crucero."
     ],
-    "imagen": "/img/fichas/criaturas/scagdead.svg",
+    "imagen": "/img/ilustraciones/criaturas/scagdead.svg",
     "color": "#8a9aaa",
     "orden": 162
   },
@@ -628,7 +628,7 @@
     "cuerpo": [
       "Se usó en el atentado de Terragrigia."
     ],
-    "imagen": "/img/fichas/criaturas/lepotitsa.svg",
+    "imagen": "/img/ilustraciones/criaturas/lepotitsa.svg",
     "color": "#aaaa9a",
     "orden": 164
   },
@@ -646,7 +646,7 @@
     "cuerpo": [
       "Su nombre significa «espíritus malignos» en suajili. Pueden usar armas de fuego y motocicletas."
     ],
-    "imagen": "/img/personajes/majini.webp",
+    "imagen": "/img/retratos/majini.webp",
     "color": "#6a4a34",
     "orden": 170
   },
@@ -665,7 +665,7 @@
     "cuerpo": [
       "Inspirado en El Ejecutor de los grabados medievales. Su golpe es mortal."
     ],
-    "imagen": "/img/personajes/verdugo.webp",
+    "imagen": "/img/retratos/verdugo.webp",
     "color": "#4a3020",
     "orden": 172
   },
@@ -684,7 +684,7 @@
     "cuerpo": [
       "Excella acabó así al final de RE5."
     ],
-    "imagen": "/img/fichas/criaturas/uroboros-criatura.svg",
+    "imagen": "/img/ilustraciones/criaturas/uroboros-criatura.svg",
     "color": "#2a2a2a",
     "orden": 175
   },
@@ -701,7 +701,7 @@
     "debilidad": "Cañón satelital",
     "resumen": "Un gigante de Kijuju, primo africano de El Gigante, al que se derrota con un arma satelital.",
     "cuerpo": [],
-    "imagen": "/img/fichas/criaturas/ndesu.svg",
+    "imagen": "/img/ilustraciones/criaturas/ndesu.svg",
     "color": "#7a6a5a",
     "orden": 177
   },
@@ -717,7 +717,7 @@
     "debilidad": "Disparos a la cabeza",
     "resumen": "Víctimas del T-Phobos que se transformaron al sentir miedo. Gritan y llevan armas improvisadas.",
     "cuerpo": [],
-    "imagen": "/img/fichas/criaturas/afligido.svg",
+    "imagen": "/img/ilustraciones/criaturas/afligido.svg",
     "color": "#9a8a7a",
     "orden": 180
   },
@@ -735,7 +735,7 @@
     "cuerpo": [
       "El nombre viene de «diablo» en serbocroata. Pueden convertirse en crisálidas y renacer como criaturas aún peores."
     ],
-    "imagen": "/img/personajes/jo.webp",
+    "imagen": "/img/retratos/jo.webp",
     "color": "#c8a888",
     "orden": 190
   },
@@ -754,7 +754,7 @@
     "cuerpo": [
       "El Némesis de RE6: persigue a Jake y Sherry por medio mundo."
     ],
-    "imagen": "/img/personajes/ustanak.webp",
+    "imagen": "/img/retratos/ustanak.webp",
     "color": "#9a8f8f",
     "orden": 195
   },
@@ -771,7 +771,7 @@
     "debilidad": "Su núcleo",
     "resumen": "Una criatura colosal nacida de un capullo en el laboratorio submarino. Piers se sacrificó para destruirla.",
     "cuerpo": [],
-    "imagen": "/img/fichas/criaturas/haos.svg",
+    "imagen": "/img/ilustraciones/criaturas/haos.svg",
     "color": "#6a4a7a",
     "orden": 197
   },
@@ -790,7 +790,7 @@
     "cuerpo": [
       "Salen de las paredes y del suelo de la casa Baker. Hay variantes gordas que vomitan ácido y otras que se arrastran a cuatro patas."
     ],
-    "imagen": "/img/personajes/moldeado.webp",
+    "imagen": "/img/retratos/moldeado.webp",
     "color": "#1e1a14",
     "orden": 200
   },
@@ -808,7 +808,7 @@
     "cuerpo": [
       "El asedio a la aldea al principio de Village recuerda a la plaza de RE4, pero con hombres lobo. Su líder es Urias, un gigante con un martillo."
     ],
-    "imagen": "/img/personajes/licantropo.webp",
+    "imagen": "/img/retratos/licantropo.webp",
     "color": "#8a7a6a",
     "orden": 210
   },
@@ -826,7 +826,7 @@
     "cuerpo": [
       "Solo son vulnerables cuando el aire frío las expone."
     ],
-    "imagen": "/img/personajes/hija.webp",
+    "imagen": "/img/retratos/hija.webp",
     "color": "#efe2da",
     "orden": 215
   },
@@ -842,7 +842,7 @@
     "debilidad": "El núcleo de su pecho",
     "resumen": "Soldados de Heisenberg: cadáveres con un taladro en el brazo y un corazón mecánico.",
     "cuerpo": [],
-    "imagen": "/img/fichas/criaturas/soldat.svg",
+    "imagen": "/img/ilustraciones/criaturas/soldat.svg",
     "color": "#7a7a7a",
     "orden": 220
   },
@@ -860,7 +860,7 @@
     "cuerpo": [
       "Controlaba la seguridad, las puertas y las armas de la base del Cáucaso hasta que Wesker y los equipos antiumbrella acabaron con ella."
     ],
-    "imagen": "/img/fichas/criaturas/reina-roja.svg",
+    "imagen": "/img/ilustraciones/criaturas/reina-roja.svg",
     "color": "#c02020",
     "orden": 230
   }

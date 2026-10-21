@@ -25,8 +25,8 @@
     ],
     "estado": "Vivo",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/leon.webp",
-    "cuerpoImagen": "/img/cuerpos/leon.webp",
+    "imagen": "/img/retratos/leon.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/leon.webp",
     "resumen": "Un policía novato que sobrevivió a su primer día de trabajo en Raccoon City y se convirtió en el agente más curtido del gobierno de EE. UU. contra el bioterrorismo.",
     "cuerpo": [
       "## El peor primer día de la historia",
@@ -73,8 +73,8 @@
     ],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/claire.webp",
-    "cuerpoImagen": "/img/cuerpos/claire.webp",
+    "imagen": "/img/retratos/claire.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/claire.webp",
     "resumen": "Estudiante universitaria que llegó a Raccoon City buscando a su hermano Chris. Desde entonces ha dedicado su vida a proteger a las víctimas del bioterrorismo.",
     "cuerpo": [
       "## Buscando a Chris",
@@ -124,8 +124,8 @@
     ],
     "estado": "Vivo",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/chris.webp",
-    "cuerpoImagen": "/img/cuerpos/chris.webp",
+    "imagen": "/img/retratos/chris.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/chris.webp",
     "resumen": "Ex piloto de la Fuerza Aérea y tirador de S.T.A.R.S. que sobrevivió a la mansión Spencer y lleva más de veinte años en guerra contra el bioterrorismo y contra Albert Wesker.",
     "cuerpo": [
       "## La mansión",
@@ -170,8 +170,8 @@
     ],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/jill.webp",
-    "cuerpoImagen": "/img/cuerpos/jill.webp",
+    "imagen": "/img/retratos/jill.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/jill.webp",
     "resumen": "Especialista en explosivos y cerraduras de S.T.A.R.S. Sobrevivió a la mansión, escapó de Némesis en Raccoon City y pagó un precio terrible a manos de Wesker.",
     "cuerpo": [
       "## Dos pesadillas en tres meses",
@@ -213,8 +213,8 @@
     ],
     "estado": "Viva",
     "rol": "Antiheroína",
-    "imagen": "/img/personajes/ada.webp",
-    "cuerpoImagen": "/img/cuerpos/ada.webp",
+    "imagen": "/img/retratos/ada.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/ada.webp",
     "resumen": "Agente libre misteriosa, siempre de rojo, cuyo verdadero nombre y lealtades nadie conoce. Su relación con Leon es de las más famosas de la saga.",
     "cuerpo": [
       "## Raccoon City",
@@ -261,8 +261,8 @@
     "peliculas": [],
     "estado": "Muerto (2009)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/wesker.webp",
-    "cuerpoImagen": "/img/cuerpos/wesker.webp",
+    "imagen": "/img/retratos/wesker.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/wesker.webp",
     "resumen": "Científico de Umbrella, traidor de S.T.A.R.S. y uno de los niños del Proyecto Wesker de Spencer. Con un virus en la sangre y gafas de sol eternas, quiso convertir a la humanidad en una nueva especie.",
     "cuerpo": [
       "## El Proyecto Wesker",
@@ -305,7 +305,7 @@
     ],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/fichas/personajes/rebecca.svg",
+    "imagen": "/img/ilustraciones/personajes/rebecca.svg",
     "cuerpoImagen": "",
     "resumen": "Médica del equipo Bravo con 18 años. Sobrevivió al Ecliptic Express y a la mansión, y acabó siendo una brillante investigadora de vacunas.",
     "cuerpo": [
@@ -337,7 +337,7 @@
     "peliculas": [],
     "estado": "Desconocido (oficialmente muerto)",
     "rol": "Protagonista",
-    "imagen": "/img/fichas/personajes/billy.svg",
+    "imagen": "/img/ilustraciones/personajes/billy.svg",
     "cuerpoImagen": "",
     "resumen": "Ex marine condenado a muerte por una masacre en África que dice no haber cometido. Escapó en Arklay y salvó la vida de Rebecca.",
     "cuerpo": [
@@ -369,7 +369,7 @@
     "peliculas": [],
     "estado": "Vivo",
     "rol": "Aliado",
-    "imagen": "/img/fichas/personajes/barry.svg",
+    "imagen": "/img/ilustraciones/personajes/barry.svg",
     "cuerpoImagen": "",
     "resumen": "Veterano del equipo Alpha y experto en armas. Wesker lo chantajeó en la mansión amenazando a su familia.",
     "cuerpo": [
@@ -402,8 +402,8 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Aliada · Protagonista en RE6",
-    "imagen": "/img/personajes/sherry.webp",
-    "cuerpoImagen": "/img/cuerpos/sherry.webp",
+    "imagen": "/img/retratos/sherry.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/sherry.webp",
     "resumen": "Hija de William y Annette Birkin. Su padre mutado le implantó un embrión del Virus-G; sobrevivió y su cuerpo quedó con una regeneración extraordinaria.",
     "cuerpo": [
       "Con 12 años, Sherry sobrevivió a Raccoon City protegida por Claire y Leon. El gobierno la retuvo durante años por el virus de su sangre. Como agente, en 2012 escoltó a Jake Muller en Edonia, con quien desarrolló una amistad muy especial."
@@ -434,8 +434,8 @@
     "peliculas": [],
     "estado": "Vivo",
     "rol": "Aliado",
-    "imagen": "/img/personajes/carlos.webp",
-    "cuerpoImagen": "/img/cuerpos/carlos.webp",
+    "imagen": "/img/retratos/carlos.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/carlos.webp",
     "resumen": "Joven mercenario sudamericano contratado por Umbrella. Descubrió que su empresa lo había enviado al matadero y ayudó a Jill a escapar.",
     "cuerpo": [
       "Carlos fue enviado a Raccoon City con el pelotón de la U.B.C.S. Cuando Jill fue infectada por Némesis, recorrió el hospital para conseguir la vacuna. Escapó con ella justo antes del misil."
@@ -466,8 +466,8 @@
     "peliculas": [],
     "estado": "Muerto (remake) / desconocido (original)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/nikolai.webp",
-    "cuerpoImagen": "/img/cuerpos/nikolai.webp",
+    "imagen": "/img/retratos/nikolai.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/nikolai.webp",
     "resumen": "Veterano de la U.B.C.S. que en secreto era un supervisor de Umbrella, enviado a recoger datos de combate de los B.O.W. a costa de la vida de sus compañeros.",
     "cuerpo": [
       "Nikolai quería vender por su cuenta los datos de los B.O.W. y la vacuna. Traicionó a Carlos, Mikhail y Jill. En el original huía en helicóptero si el jugador lo permitía; en el remake muere a manos de Jill."
@@ -494,7 +494,7 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Aliado",
-    "imagen": "/img/personajes/mikhail.webp",
+    "imagen": "/img/retratos/mikhail.webp",
     "cuerpoImagen": "",
     "resumen": "Líder de pelotón que protegió a los civiles en Raccoon City y se sacrificó haciendo estallar una granada contra Némesis.",
     "cuerpo": [
@@ -521,8 +521,8 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Aliado",
-    "imagen": "/img/personajes/tyrell.webp",
-    "cuerpoImagen": "/img/cuerpos/tyrell.webp",
+    "imagen": "/img/retratos/tyrell.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/tyrell.webp",
     "resumen": "Mercenario de la U.B.C.S. añadido en el remake de RE3. Murió deteniendo a Némesis en NEST 2 para que Jill pudiera escapar.",
     "cuerpo": [
       "Tyrell, irónico y práctico, ayudó a Jill y Carlos a coordinar la evacuación del metro. Se sacrificó en el laboratorio de Umbrella frente a Némesis."
@@ -550,7 +550,7 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Aliado",
-    "imagen": "/img/personajes/brad.webp",
+    "imagen": "/img/retratos/brad.webp",
     "cuerpoImagen": "",
     "resumen": "Piloto del equipo Alpha que huyó con el helicóptero en la mansión y volvió para rescatar a los supervivientes. Fue la primera víctima de Némesis.",
     "cuerpo": [
@@ -580,7 +580,7 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Aliado",
-    "imagen": "/img/personajes/marvin.webp",
+    "imagen": "/img/retratos/marvin.webp",
     "cuerpoImagen": "",
     "resumen": "Oficial de la comisaría que recibe a Leon y Claire herido y mordido. Les da las primeras pistas y se queda atrás.",
     "cuerpo": [
@@ -605,7 +605,7 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Aliado",
-    "imagen": "/img/fichas/personajes/steve.svg",
+    "imagen": "/img/ilustraciones/personajes/steve.svg",
     "cuerpoImagen": "",
     "resumen": "Adolescente encerrado en Rockfort con su padre, empleado de Umbrella. Ayudó a Claire y murió transformado por el T-Veronica.",
     "cuerpo": [
@@ -633,8 +633,8 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/sheva.webp",
-    "cuerpoImagen": "/img/cuerpos/sheva.webp",
+    "imagen": "/img/retratos/sheva.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/sheva.webp",
     "resumen": "Huérfana por culpa de un ataque de Umbrella en su infancia, se unió a la B.S.A.A. y fue la compañera de Chris en Kijuju.",
     "cuerpo": [
       "Sus padres murieron en un brote causado por Umbrella. Sheva conoce la región, habla el idioma local y es experta en arco y explosivos. Estuvo junto a Chris hasta el final en el volcán."
@@ -662,8 +662,8 @@
     "peliculas": [],
     "estado": "Muerto (2013)",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/piers.webp",
-    "cuerpoImagen": "/img/cuerpos/piers.webp",
+    "imagen": "/img/retratos/piers.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/piers.webp",
     "resumen": "El mejor tirador de la B.S.A.A. y la mano derecha de Chris. Se inyectó el Virus C para salvarle y se quedó atrás en el laboratorio submarino.",
     "cuerpo": [
       "Piers admiraba profundamente a Chris y fue quien lo trajo de vuelta tras su amnesia. En el último combate contra el HAOS se inyectó el virus, ganó poderes eléctricos y empujó a Chris a la cápsula de escape antes de morir."
@@ -691,8 +691,8 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/helena.webp",
-    "cuerpoImagen": "/img/cuerpos/helena.webp",
+    "imagen": "/img/retratos/helena.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/helena.webp",
     "resumen": "Compañera de Leon en Tall Oaks. Simmons la chantajeó con la vida de su hermana para que facilitara el ataque contra el presidente.",
     "cuerpo": [
       "Su hermana Deborah fue convertida en un monstruo por el Virus C. Helena confesó a Leon su papel y le ayudó a desenmascarar a Simmons."
@@ -719,8 +719,8 @@
     "peliculas": [],
     "estado": "Vivo",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/jake.webp",
-    "cuerpoImagen": "/img/cuerpos/jake.webp",
+    "imagen": "/img/retratos/jake.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/jake.webp",
     "resumen": "Mercenario de Europa del Este, hijo ilegítimo de Albert Wesker. Su sangre contiene la clave para una vacuna contra el Virus C.",
     "cuerpo": [
       "Creció sin padre y en la pobreza. Cuando descubrió quién era Wesker, pidió 50 millones de dólares por su sangre... y acabó rebajando el precio a 50 dólares para salvar al mundo."
@@ -751,8 +751,8 @@
     "peliculas": [],
     "estado": "Muerto (2021)",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/ethan.webp",
-    "cuerpoImagen": "/img/cuerpos/ethan.webp",
+    "imagen": "/img/retratos/ethan.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/ethan.webp",
     "resumen": "Ingeniero de sistemas sin entrenamiento militar que se adentró en la casa de los Baker para buscar a su esposa. Pierde la mano. Varias veces.",
     "cuerpo": [
       "## Dulvey",
@@ -788,7 +788,7 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/mia.webp",
+    "imagen": "/img/retratos/mia.webp",
     "cuerpoImagen": "",
     "resumen": "Esposa de Ethan. Escoltaba a Eveline en el petrolero Annabelle cuando todo se torció.",
     "cuerpo": [
@@ -815,8 +815,8 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Protagonista (La sombra de Rose)",
-    "imagen": "/img/personajes/rose.webp",
-    "cuerpoImagen": "/img/cuerpos/rose.webp",
+    "imagen": "/img/retratos/rose.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/rose.webp",
     "resumen": "Hija de Ethan y Mia, nacida con poderes del moho. Miranda quería su cuerpo para resucitar a su hija Eva.",
     "cuerpo": [
       "Rose fue el objetivo de toda la aldea. Unos 16 años después, odiada por sus poderes, entró en la conciencia del Megamiceto para librarse de ellos, guiada por una presencia que resultó ser su padre."
@@ -844,8 +844,8 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Protagonista",
-    "imagen": "/img/personajes/grace.webp",
-    "cuerpoImagen": "/img/cuerpos/grace.webp",
+    "imagen": "/img/retratos/grace.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/grace.webp",
     "resumen": "Analista técnica del FBI e hija de Alyssa Ashcroft. Investiga unas muertes en el hotel donde su madre fue asesinada hace ocho años.",
     "cuerpo": [
       "Grace no es una soldado: es metódica, introvertida y vulnerable, y su miedo es parte del juego. Su investigación la lleva a manos del doctor Victor Gideon y a descubrir que su pasado está unido a Umbrella más de lo que imaginaba."
@@ -876,8 +876,8 @@
     "peliculas": [],
     "estado": "Muerta (asesinada)",
     "rol": "Superviviente",
-    "imagen": "/img/personajes/alyssa.webp",
-    "cuerpoImagen": "/img/cuerpos/alyssa.webp",
+    "imagen": "/img/retratos/alyssa.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/alyssa.webp",
     "resumen": "Periodista que sobrevivió a Raccoon City investigando a Umbrella. Madre de Grace.",
     "cuerpo": [
       "Alyssa fue una de las protagonistas civiles de Outbreak. Siguió investigando a Umbrella durante años, hasta que fue asesinada. Su muerte es el punto de partida de Resident Evil Requiem."
@@ -902,7 +902,7 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Aliada",
-    "imagen": "/img/personajes/ashley.webp",
+    "imagen": "/img/retratos/ashley.webp",
     "cuerpoImagen": "",
     "resumen": "Estudiante universitaria secuestrada por Los Iluminados e infectada con una plaga para controlar al presidente de EE. UU.",
     "cuerpo": [
@@ -932,8 +932,8 @@
     "peliculas": [],
     "estado": "Muerto (2004)",
     "rol": "Aliado",
-    "imagen": "/img/personajes/luis.webp",
-    "cuerpoImagen": "/img/cuerpos/luis.webp",
+    "imagen": "/img/retratos/luis.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/luis.webp",
     "resumen": "Investigador español que trabajó con Saddler y quiso redimirse robando una muestra de la Plaga. Fue asesinado por Saddler.",
     "cuerpo": [
       "Exinvestigador de Umbrella en Europa, Luis volvió a su tierra y fue reclutado por Los Iluminados. Arrepentido, ayudó a Leon y le dio el medicamento para frenar la plaga antes de morir."
@@ -966,8 +966,8 @@
     ],
     "estado": "Viva",
     "rol": "Apoyo",
-    "imagen": "/img/personajes/hunnigan.webp",
-    "cuerpoImagen": "/img/cuerpos/hunnigan.webp",
+    "imagen": "/img/retratos/hunnigan.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/hunnigan.webp",
     "resumen": "Agente de enlace que da apoyo a Leon desde la distancia en sus misiones.",
     "cuerpo": [
       "Profesional y seca, Hunnigan es la voz de las comunicaciones de Leon. Sus llamadas por el comunicador son tan icónicas como el propio juego."
@@ -996,8 +996,8 @@
     "peliculas": [],
     "estado": "Muerto (2004)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/krauser.webp",
-    "cuerpoImagen": "/img/cuerpos/krauser.webp",
+    "imagen": "/img/retratos/krauser.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/krauser.webp",
     "resumen": "Soldado de élite y antiguo compañero de Leon que, tras una lesión, fingió su muerte y se infectó con una plaga para conseguir poder.",
     "cuerpo": [
       "Tras la Operación Javier, Krauser perdió su carrera por una herida en el brazo. Se unió a Wesker, aceptó una plaga y se enfrentó a Leon con cuchillo en una de las peleas más memorables de la saga."
@@ -1028,7 +1028,7 @@
     "peliculas": [],
     "estado": "Muerto (2006)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/spencer.svg",
+    "imagen": "/img/ilustraciones/personajes/spencer.svg",
     "cuerpoImagen": "",
     "resumen": "Aristócrata británico obsesionado con convertirse en dios de una nueva humanidad. Fundó Umbrella como tapadera de sus investigaciones.",
     "cuerpo": [
@@ -1060,7 +1060,7 @@
     "peliculas": [],
     "estado": "Muerto (1988)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/james-marcus.svg",
+    "imagen": "/img/ilustraciones/personajes/james-marcus.svg",
     "cuerpoImagen": "",
     "resumen": "Científico cofundador de Umbrella. Combinó el Progenitor con ADN de sanguijuela y creó el Virus-T.",
     "cuerpo": [
@@ -1092,8 +1092,8 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/birkin.webp",
-    "cuerpoImagen": "/img/cuerpos/birkin.webp",
+    "imagen": "/img/retratos/birkin.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/birkin.webp",
     "resumen": "Genio de Umbrella que creó el Virus-G. Tiroteado por los suyos, se lo inyectó y se convirtió en una criatura en constante mutación.",
     "cuerpo": [
       "Birkin dedicó su vida a la investigación, hasta descuidar a su esposa Annette y a su hija Sherry. Cuando Umbrella intentó robarle el Virus-G, se transformó en G, que mutó en cinco formas cada vez más grotescas hasta ser destruido en el tren de NEST."
@@ -1123,7 +1123,7 @@
     "peliculas": [],
     "estado": "Muerta (1998)",
     "rol": "Antagonista / trágica",
-    "imagen": "/img/fichas/personajes/annette.svg",
+    "imagen": "/img/ilustraciones/personajes/annette.svg",
     "cuerpoImagen": "",
     "resumen": "Esposa de William y madre de Sherry. Intentó destruir el Virus-G mientras su marido mutado la buscaba.",
     "cuerpo": [
@@ -1152,7 +1152,7 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/irons.svg",
+    "imagen": "/img/ilustraciones/personajes/irons.svg",
     "cuerpoImagen": "",
     "resumen": "Jefe de policía corrupto que ocultó los incidentes de Umbrella a cambio de dinero y saboteó la defensa de la comisaría.",
     "cuerpo": [
@@ -1182,7 +1182,7 @@
     "peliculas": [],
     "estado": "Muerta (1998)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/alexia.svg",
+    "imagen": "/img/ilustraciones/personajes/alexia.svg",
     "cuerpoImagen": "",
     "resumen": "Niña prodigio que con diez años se graduó en la universidad. Creó el T-Veronica y se congeló 15 años para dominarlo.",
     "cuerpo": [
@@ -1214,7 +1214,7 @@
     "peliculas": [],
     "estado": "Muerto (1998)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/alfred.svg",
+    "imagen": "/img/ilustraciones/personajes/alfred.svg",
     "cuerpoImagen": "",
     "resumen": "Gemelo de Alexia, mentalmente inestable, que se disfrazaba de su hermana mientras ella dormía congelada.",
     "cuerpo": [
@@ -1245,8 +1245,8 @@
     "peliculas": [],
     "estado": "Muerto (2004)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/saddler.webp",
-    "cuerpoImagen": "/img/cuerpos/saddler.webp",
+    "imagen": "/img/retratos/saddler.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/saddler.webp",
     "resumen": "Líder carismático de la secta que resucitó Las Plagas. Quería dominar el mundo infectando a la hija del presidente.",
     "cuerpo": [
       "Con la Plaga dominante, Saddler controla a los Ganados y puede transformarse en una criatura gigante con patas de araña. Leon lo mata con un lanzacohetes que le lanza Ada."
@@ -1275,7 +1275,7 @@
     "peliculas": [],
     "estado": "Muerto (2004)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/salazar.webp",
+    "imagen": "/img/retratos/salazar.webp",
     "cuerpoImagen": "",
     "resumen": "Joven castellano de aspecto infantil cuya familia selló Las Plagas siglos atrás y que, sin embargo, las liberó.",
     "cuerpo": [
@@ -1303,7 +1303,7 @@
     "peliculas": [],
     "estado": "Muerto (2004)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/mendez.webp",
+    "imagen": "/img/retratos/mendez.webp",
     "cuerpoImagen": "",
     "resumen": "El gigantesco jefe del pueblo, leal a Saddler, que estrangula a Leon en su primer encuentro.",
     "cuerpo": [
@@ -1331,8 +1331,8 @@
     "peliculas": [],
     "estado": "Muerta (2009)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/excella.webp",
-    "cuerpoImagen": "/img/cuerpos/excella.webp",
+    "imagen": "/img/retratos/excella.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/excella.webp",
     "resumen": "Ambiciosa heredera de Tricell que financió el proyecto de Wesker. Él la utilizó y la desechó infectándola con Uroboros.",
     "cuerpo": [
       "Excella soñaba con ser la reina del nuevo mundo de Wesker. Acabó siendo un experimento más: una masa de tentáculos de Uroboros."
@@ -1360,7 +1360,7 @@
     "peliculas": [],
     "estado": "Muerto (2009)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/irving.svg",
+    "imagen": "/img/ilustraciones/personajes/irving.svg",
     "cuerpoImagen": "",
     "resumen": "Traficante de armas biológicas que trataba en el mercado negro de Kijuju. Murió transformado por una plaga gigante.",
     "cuerpo": [
@@ -1388,8 +1388,8 @@
     "peliculas": [],
     "estado": "Liberada (2009)",
     "rol": "Antagonista forzada",
-    "imagen": "/img/personajes/jill_p30.webp",
-    "cuerpoImagen": "/img/cuerpos/jill_p30.webp",
+    "imagen": "/img/retratos/jill_p30.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/jill_p30.webp",
     "resumen": "La versión de Jill controlada por Wesker con un dispositivo en el pecho y el compuesto P30.",
     "cuerpo": [
       "Con capucha y traje de combate, la Jill controlada lucha contra Chris y Sheva con una agilidad sobrehumana hasta que le arrancan el dispositivo del pecho."
@@ -1418,7 +1418,7 @@
     "peliculas": [],
     "estado": "Muerto (2013)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/simmons.webp",
+    "imagen": "/img/retratos/simmons.webp",
     "cuerpoImagen": "",
     "resumen": "Líder de La Familia, una organización secreta que manipula el mundo desde las sombras. Ordenó la destrucción de Raccoon City y provocó el ataque de Tall Oaks.",
     "cuerpo": [
@@ -1448,7 +1448,7 @@
     "peliculas": [],
     "estado": "Muerta (2013)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/carla.webp",
+    "imagen": "/img/retratos/carla.webp",
     "cuerpoImagen": "",
     "resumen": "Científica que desarrolló el Virus C. Simmons la transformó físicamente en Ada Wong; ella se vengó destruyendo el mundo.",
     "cuerpo": [
@@ -1480,7 +1480,7 @@
     ],
     "estado": "Muerto (2013)",
     "rol": "Aliado",
-    "imagen": "/img/personajes/benford.webp",
+    "imagen": "/img/retratos/benford.webp",
     "cuerpoImagen": "",
     "resumen": "Amigo y superior de Leon. Iba a revelar al mundo la verdad sobre Raccoon City cuando fue infectado y Leon tuvo que matarlo.",
     "cuerpo": [
@@ -1509,7 +1509,7 @@
     "peliculas": [],
     "estado": "Muerta (2017)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/eveline.webp",
+    "imagen": "/img/retratos/eveline.webp",
     "cuerpoImagen": "",
     "resumen": "Arma biológica con forma de niña, creada a partir del Moho. Controla la mente de los infectados y solo deseaba una familia.",
     "cuerpo": [
@@ -1540,7 +1540,7 @@
     "peliculas": [],
     "estado": "Muerto (2017)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/jack.webp",
+    "imagen": "/img/retratos/jack.webp",
     "cuerpoImagen": "",
     "resumen": "Ex marine y padre de familia convertido por Eveline en un perseguidor que regenera cualquier herida.",
     "cuerpo": [
@@ -1568,7 +1568,7 @@
     "peliculas": [],
     "estado": "Muerta (2017)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/marguerite.svg",
+    "imagen": "/img/ilustraciones/personajes/marguerite.svg",
     "cuerpoImagen": "",
     "resumen": "La madre de los Baker, que controla enjambres de insectos mutantes en la casa vieja.",
     "cuerpo": [
@@ -1597,7 +1597,7 @@
     "peliculas": [],
     "estado": "Muerto (2017)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/lucas.webp",
+    "imagen": "/img/retratos/lucas.webp",
     "cuerpoImagen": "",
     "resumen": "El hijo sádico de los Baker, que ya era cruel antes de la infección. Diseña trampas mortales y espía para The Connections.",
     "cuerpo": [
@@ -1625,7 +1625,7 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Aliada",
-    "imagen": "/img/personajes/zoe.webp",
+    "imagen": "/img/retratos/zoe.webp",
     "cuerpoImagen": "",
     "resumen": "La única Baker que resistió el control de Eveline. Guió a Ethan por teléfono.",
     "cuerpo": [
@@ -1654,8 +1654,8 @@
     "peliculas": [],
     "estado": "Muerta (2021)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/miranda.webp",
-    "cuerpoImagen": "/img/cuerpos/miranda.webp",
+    "imagen": "/img/retratos/miranda.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/miranda.webp",
     "resumen": "Científica que, tras perder a su hija en 1919, encontró el Megamiceto y se convirtió en una diosa para la aldea. Fue mentora de Spencer.",
     "cuerpo": [
       "Miranda ganó la capacidad de cambiar de forma y de controlar el moho. Inspiró al joven Oswell Spencer, que después fundaría Umbrella con su símbolo. Llevaba cien años intentando resucitar a Eva."
@@ -1685,8 +1685,8 @@
     "peliculas": [],
     "estado": "Muerta (2021)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/dimitrescu.webp",
-    "cuerpoImagen": "/img/cuerpos/dimitrescu.webp",
+    "imagen": "/img/retratos/dimitrescu.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/dimitrescu.webp",
     "resumen": "Aristócrata de 2,9 metros que bebe sangre humana en su castillo, con sus tres hijas hechas de enjambres de insectos.",
     "cuerpo": [
       "Su Cadou le dio regeneración a cambio de una necesidad constante de sangre. Persigue a Ethan por el castillo con sus garras hasta transformarse en un dragón alado."
@@ -1716,7 +1716,7 @@
     "peliculas": [],
     "estado": "Muerta (2021)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/donna.webp",
+    "imagen": "/img/retratos/donna.webp",
     "cuerpoImagen": "",
     "resumen": "Tímida señora que habla a través de su muñeca Angie y provoca alucinaciones. Su casa contiene la secuencia más aterradora del juego.",
     "cuerpo": [
@@ -1744,7 +1744,7 @@
     "peliculas": [],
     "estado": "Muerto (2021)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/moreau.webp",
+    "imagen": "/img/retratos/moreau.webp",
     "cuerpoImagen": "",
     "resumen": "Deforme y despreciado por los demás señores, Moreau ansía el amor de Madre Miranda. Se transforma en un pez gigante.",
     "cuerpo": [
@@ -1771,8 +1771,8 @@
     "peliculas": [],
     "estado": "Muerto (2021)",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/heisenberg.webp",
-    "cuerpoImagen": "/img/cuerpos/heisenberg.webp",
+    "imagen": "/img/retratos/heisenberg.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/heisenberg.webp",
     "resumen": "Controla los campos magnéticos y el metal. Odia a Miranda y propone a Ethan una alianza para destruirla.",
     "cuerpo": [
       "Heisenberg crea soldados mezclando cadáveres y máquinas. Cuando Ethan rechaza su oferta, lo enfrenta con un robot gigante hecho de chatarra."
@@ -1798,7 +1798,7 @@
     "peliculas": [],
     "estado": "Desconocido",
     "rol": "Mercader",
-    "imagen": "/img/personajes/duque.webp",
+    "imagen": "/img/retratos/duque.webp",
     "cuerpoImagen": "",
     "resumen": "Mercader obeso y misterioso que vende y cocina para Ethan. Parece saber más de lo que dice.",
     "cuerpo": [
@@ -1824,7 +1824,7 @@
     "peliculas": [],
     "estado": "Desconocido",
     "rol": "Mercader",
-    "imagen": "/img/personajes/comerciante.webp",
+    "imagen": "/img/retratos/comerciante.webp",
     "cuerpoImagen": "",
     "resumen": "Vendedor encapuchado que aparece en los lugares más absurdos de España para vender y mejorar armas a Leon.",
     "cuerpo": [
@@ -1852,8 +1852,8 @@
     "peliculas": [],
     "estado": "Desconocido",
     "rol": "Antagonista",
-    "imagen": "/img/personajes/gideon.webp",
-    "cuerpoImagen": "/img/cuerpos/gideon.webp",
+    "imagen": "/img/retratos/gideon.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/gideon.webp",
     "resumen": "Antiguo científico de Umbrella que ha seguido experimentando con personas. Captura a Grace Ashcroft por motivos que la historia va revelando.",
     "cuerpo": [
       "Gideon dirige experimentos con humanos y creación de armas biológicas desde el centro de cuidados Rhodes Hill."
@@ -1882,7 +1882,7 @@
     "peliculas": [],
     "estado": "Muerta (2011)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/alex-wesker.svg",
+    "imagen": "/img/ilustraciones/personajes/alex-wesker.svg",
     "cuerpoImagen": "",
     "resumen": "Una de los niños del Proyecto Wesker, «hermana adoptiva» de Albert. Buscaba la inmortalidad trasladando su conciencia a otro cuerpo.",
     "cuerpo": [
@@ -1910,7 +1910,7 @@
     "peliculas": [],
     "estado": "Viva (según el final canon)",
     "rol": "Protagonista",
-    "imagen": "/img/fichas/personajes/moira.svg",
+    "imagen": "/img/ilustraciones/personajes/moira.svg",
     "cuerpoImagen": "",
     "resumen": "Hija mayor de Barry, con un trauma con las armas. Compañera de Claire en la isla.",
     "cuerpo": [
@@ -1936,7 +1936,7 @@
     "peliculas": [],
     "estado": "Viva",
     "rol": "Aliada",
-    "imagen": "/img/fichas/personajes/natalia.svg",
+    "imagen": "/img/ilustraciones/personajes/natalia.svg",
     "cuerpoImagen": "",
     "resumen": "Niña capaz de percibir a los monstruos invisibles. Alex Wesker la eligió como su recipiente.",
     "cuerpo": [
@@ -1964,7 +1964,7 @@
     "peliculas": [],
     "estado": "Vivo",
     "rol": "Protagonista",
-    "imagen": "/img/fichas/personajes/parker.svg",
+    "imagen": "/img/ilustraciones/personajes/parker.svg",
     "cuerpoImagen": "",
     "resumen": "Agente italiano de la B.S.A.A., veterano de Terragrigia, compañero de Jill en el Queen Zenobia.",
     "cuerpo": [
@@ -1992,7 +1992,7 @@
     "peliculas": [],
     "estado": "Detenido",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/lansdale.svg",
+    "imagen": "/img/ilustraciones/personajes/lansdale.svg",
     "cuerpoImagen": "",
     "resumen": "Director de la Comisión Federal de Bioterrorismo que orquestó en secreto el ataque de Terragrigia.",
     "cuerpo": [
@@ -2020,7 +2020,7 @@
     "peliculas": [],
     "estado": "Vivo",
     "rol": "Comando de Umbrella",
-    "imagen": "/img/fichas/personajes/hunk.svg",
+    "imagen": "/img/ilustraciones/personajes/hunk.svg",
     "cuerpoImagen": "",
     "resumen": "Líder del escuadrón Alpha del Servicio de Seguridad de Umbrella. Siempre es el único superviviente de sus misiones.",
     "cuerpo": [
@@ -2051,7 +2051,7 @@
     "peliculas": [],
     "estado": "Muerto (2003)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/sergei.svg",
+    "imagen": "/img/ilustraciones/personajes/sergei.svg",
     "cuerpoImagen": "",
     "resumen": "Coronel ruso fiel a Spencer y responsable de los Tyrant de la serie T-103. Murió combatiendo a Wesker en 2003.",
     "cuerpo": [
@@ -2080,7 +2080,7 @@
     "peliculas": [],
     "estado": "Muerto (2002)",
     "rol": "Antagonista",
-    "imagen": "/img/fichas/personajes/javier-hidalgo.svg",
+    "imagen": "/img/ilustraciones/personajes/javier-hidalgo.svg",
     "cuerpoImagen": "",
     "resumen": "Narcotraficante que compró armas biológicas a Umbrella y usó el T-Veronica para salvar a su hija Manuela.",
     "cuerpo": [
@@ -2108,8 +2108,8 @@
     "peliculas": [],
     "estado": "Vivo",
     "rol": "Aliado",
-    "imagen": "/img/personajes/josh.webp",
-    "cuerpoImagen": "/img/cuerpos/josh.webp",
+    "imagen": "/img/retratos/josh.webp",
+    "cuerpoImagen": "/img/cuerpo-entero/josh.webp",
     "resumen": "Mentor de Sheva y líder de la unidad local de la B.S.A.A. Escapó con Jill en «Fuga desesperada».",
     "cuerpo": [
       "Josh rescata a Chris y Sheva en el clímax de RE5 a bordo de un helicóptero."

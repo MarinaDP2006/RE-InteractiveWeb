@@ -11,7 +11,7 @@
      #/cronologia               línea temporal
      #/mapa                     mapa del mundo y de Raccoon City
      #/buscar/<texto>           búsqueda
-   Todo el contenido llega de la base de datos por /api/wiki.
+   El contenido sale de la carpeta contenido/ a través de /api/wiki.
    El código está repartido en wiki/js/ (ver el orden de los <script> al final).
   ============================================================================
 -->
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500;600&family=Share+Tech+Mono&family=Special+Elite&display=swap">
   <!-- Estilos del mapa (Leaflet), comunes de la web y propios de la wiki -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="../comun/base.css">
+  <link rel="stylesheet" href="../comun/estilos.css">
   <link rel="stylesheet" href="wiki.css">
 </head>
 <body>
@@ -99,7 +99,7 @@
   <!-- Librería del mapa (se carga sin bloquear la página) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
   <!-- Efectos de ambiente y utilidades comunes (objeto Umbra) -->
-  <script src="../comun/efectos.js"></script>
+  <script src="../comun/ambiente.js"></script>
   <!-- Código de la wiki, en este orden: núcleo → piezas → vistas → miembros → cabecera → arranque -->
   <script src="js/nucleo.js"></script>
   <script src="js/piezas.js"></script>

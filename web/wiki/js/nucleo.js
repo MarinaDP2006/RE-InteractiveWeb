@@ -25,7 +25,6 @@ const Wiki = (() => {
     datos: {},           // id de sección → lista de fichas ordenadas
     indice: new Map(),   // "seccion/id" → ficha
     porId: new Map(),    // id → {seccion, ficha} (primera coincidencia)
-    vistaAdmin: false,   // el administrador está viendo la web («Ver como admin»)
     miembro: null        // datos del miembro con sesión de Google, o null
   };
 
