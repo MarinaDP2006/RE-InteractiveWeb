@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- *  PanelAcceso.java — Abrir o cerrar la wiki y el juego al público.
+ *  PanelAcceso.java — Abrir o cerrar la wiki al público.
  * ============================================================================
  *  Cerrado = el público ve una página de mantenimiento con tu mensaje.
  *  Tú sigues pudiendo verlo con «Ver como admin».
@@ -30,9 +30,7 @@ final class PanelAcceso extends JPanel implements VentanaPrincipal.Seccion {
 
     private final Cliente cliente;
     private final JCheckBox wiki = interruptor("La wiki está abierta al público");
-    private final JCheckBox juego = interruptor("El juego está abierto al público");
     private final JTextArea msgWiki = area();
-    private final JTextArea msgJuego = area();
     private final JTextField anuncio = new JTextField();
     private Map<String, Object> actual = new LinkedHashMap<>();
 
@@ -43,13 +41,12 @@ final class PanelAcceso extends JPanel implements VentanaPrincipal.Seccion {
         JButton guardar = Tema.botonRojo("Guardar cambios");
         guardar.addActionListener(e -> guardar());
         add(Tema.cabecera("Acceso público",
-                "Abre o cierra cada parte de la web. Cuando está cerrada, los visitantes ven una página de mantenimiento con tu mensaje. "
+                "Abre o cierra la wiki. Cuando está cerrada, los visitantes ven una página de mantenimiento con tu mensaje. "
                         + "Tú puedes seguir viéndola con «Ver como admin».", guardar), BorderLayout.NORTH);
 
-        JPanel cuerpo = new JPanel(new GridLayout(1, 2, 16, 0));
+        JPanel cuerpo = new JPanel(new GridLayout(1, 1, 16, 0));
         cuerpo.setOpaque(false);
         cuerpo.add(bloque("WIKI", wiki, msgWiki, "/wiki/"));
-        cuerpo.add(bloque("JUEGO", juego, msgJuego, "/juego/"));
 
         JPanel pie = Tema.tarjeta();
         pie.setLayout(new BorderLayout(10, 8));
@@ -134,12 +131,9 @@ final class PanelAcceso extends JPanel implements VentanaPrincipal.Seccion {
                 actual = new LinkedHashMap<>();
             }
             wiki.setSelected(Json.logico(Json.objeto(actual, "wiki"), "publica", true));
-            juego.setSelected(Json.logico(Json.objeto(actual, "juego"), "publico", true));
             msgWiki.setText(Json.texto(Json.objeto(actual, "wiki"), "mensaje", ""));
-            msgJuego.setText(Json.texto(Json.objeto(actual, "juego"), "mensaje", ""));
             anuncio.setText(Json.texto(actual, "anuncio", ""));
             pintarInterruptor(wiki);
-            pintarInterruptor(juego);
         });
     }
 
@@ -147,19 +141,15 @@ final class PanelAcceso extends JPanel implements VentanaPrincipal.Seccion {
         Map<String, Object> a = new LinkedHashMap<>(actual);
         a.remove("id");
         a.remove("_actualizado");
+        a.remove("juego");
         Map<String, Object> w = new LinkedHashMap<>();
         w.put("publica", wiki.isSelected());
         w.put("mensaje", msgWiki.getText().trim());
-        Map<String, Object> j = new LinkedHashMap<>();
-        j.put("publico", juego.isSelected());
-        j.put("mensaje", msgJuego.getText().trim());
         a.put("wiki", w);
-        a.put("juego", j);
         a.put("anuncio", anuncio.getText().trim());
         Tarea.ejecutar(this, "Guardando el acceso…", () -> cliente.put("/api/admin/acceso", a), r -> {
             actual = Json.objeto(r, "acceso");
-            Tarea.info(this, "Cambios guardados. La web ya muestra el nuevo estado.<br>Wiki: <b>" + (wiki.isSelected() ? "abierta" : "cerrada")
-                    + "</b> · Juego: <b>" + (juego.isSelected() ? "abierto" : "cerrado") + "</b>");
+            Tarea.info(this, "Cambios guardados. La web ya muestra el nuevo estado.<br>Wiki: <b>" + (wiki.isSelected() ? "abierta" : "cerrada") + "</b>");
         });
     }
 }

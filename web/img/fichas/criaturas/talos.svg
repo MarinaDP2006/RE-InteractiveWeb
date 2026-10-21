@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="T-A.L.O.S."><title>T-A.L.O.S.</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#3b3b4f"/><stop offset=".6" stop-color="#14141b"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="62"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#73738e" stop-opacity=".55"/><stop offset="1" stop-color="#2d2d3d" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#9c9caf" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M414.6 361 Q460.2 307.5 434.2 214" stroke-width="22.7"/><path d="M493.3 528.3 Q528.2 551.3 620.4 607.7" stroke-width="14.7"/><path d="M301.6 420.9 Q304.6 345.3 184.8 362.7" stroke-width="21"/><path d="M386.8 360.8 Q439.8 267.3 363.9 170.7" stroke-width="21.4"/></g>
+      <path d="M537.1 501.6 Q552.4 533.1 523.8 549.1 Q495.2 565.2 478.1 591.4 Q461.1 617.6 430.6 605.1 Q400 592.6 379.7 580.3 Q359.4 567.9 323.9 574.8 Q288.3 581.7 286.9 549.6 Q285.5 517.4 289.8 493.7 Q294 470 286.1 444.8 Q278.2 419.5 300 405.7 Q321.9 391.9 331 358.5 Q340 325.2 370 326.9 Q400 328.7 422.9 343.9 Q445.9 359.2 476.1 361.4 Q506.4 363.6 508.9 393.7 Q511.5 423.8 516.6 446.9 Q521.8 470 537.1 501.6Z" fill="#08080a" opacity=".95"/>
+      <circle cx="383.3" cy="446.8" r="9" fill="#e6e6eb"/><circle cx="434.8" cy="448.4" r="6" fill="#e6e6eb"/>
+      <g fill="#fff" opacity=".25"><circle cx="350.3" cy="242.2" r="9.3"/><circle cx="285" cy="608.4" r="2.3"/><circle cx="286.4" cy="511" r="7.3"/><circle cx="251.5" cy="677.4" r="8.4"/><circle cx="415.4" cy="700.5" r="7.3"/><circle cx="475.4" cy="633.7" r="5.7"/><circle cx="330.7" cy="514.9" r="9.5"/><circle cx="249.4" cy="568" r="7.3"/><circle cx="467.6" cy="380.2" r="4.3"/><circle cx="311" cy="687.5" r="2.4"/><circle cx="369" cy="328.7" r="3.1"/><circle cx="394.5" cy="463.5" r="8.9"/><circle cx="312.8" cy="411.6" r="9.5"/><circle cx="518.6" cy="291.1" r="6.8"/><circle cx="314.4" cy="594.9" r="10.8"/><circle cx="260.7" cy="660.6" r="5.5"/><circle cx="359.9" cy="660.7" r="4.8"/><circle cx="476.3" cy="705.6" r="9.8"/><circle cx="510.2" cy="262.8" r="2.4"/><circle cx="395.8" cy="335.6" r="7.8"/><circle cx="235.9" cy="313.1" r="9.2"/><circle cx="291.9" cy="665.6" r="10.1"/><circle cx="535.8" cy="738.8" r="9.2"/><circle cx="315.4" cy="357.7" r="3"/><circle cx="313.7" cy="479.8" r="3"/><circle cx="474.6" cy="717" r="7.5"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#9494a9" stroke-width="4" opacity=".6"/>
+    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#bdbdca">B.O.W. · TYRANT MECANIZADO</text>
+    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="62" font-weight="900" letter-spacing="4" fill="#f2ecdf">T-A.L.O.S.</text>
+    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#c8102e"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

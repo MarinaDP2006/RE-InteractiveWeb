@@ -12,7 +12,7 @@
       "El Progenitor por sí solo es demasiado letal e inestable; todos los virus de Umbrella son modificaciones suyas."
     ],
     "efectos": "Mutación celular extrema; la mayoría de los huéspedes mueren.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/progenitor.svg",
     "color": "#d0b040",
     "orden": 10
   },
@@ -29,11 +29,12 @@
       "En animales y con manipulación genética da lugar a armas biológicas (B.O.W.) como los Hunter o los Tyrant. Su filtración en el laboratorio Arklay en 1998 provocó la destrucción de Raccoon City."
     ],
     "efectos": "Zombificación, regeneración celular, mutaciones secundarias (Licker, Crimson Head).",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/t-virus.svg",
     "color": "#3aa0d0",
     "orden": 20
   },
   "g-virus": {
+    "oculto": true,
     "titulo": "Virus-G (Golgotha)",
     "tipo": "Virus de diseño",
     "creador": "William Birkin",
@@ -46,11 +47,12 @@
       "Sherry Birkin sobrevivió gracias a la vacuna DEVIL y su cuerpo quedó con una regeneración extraordinaria."
     ],
     "efectos": "Mutación continua, reproducción por embriones, regeneración.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/g-virus.svg",
     "color": "#a040a0",
     "orden": 30
   },
   "t-veronica": {
+    "oculto": true,
     "titulo": "Virus T-Veronica",
     "tipo": "Virus de diseño",
     "creador": "Alexia Ashford (1983)",
@@ -60,7 +62,7 @@
     "resumen": "Creado combinando el Progenitor con ADN de hormiga reina. Para asimilarlo sin perder la mente hacen falta 15 años de hibernación.",
     "cuerpo": ["Alexia se lo inyectó con 12 años y se congeló. Con él, la sangre del huésped se vuelve inflamable y puede controlar a otras criaturas como una reina a su colmena. Wesker y Manuela Hidalgo también tuvieron relación con este virus."],
     "efectos": "Control de la sangre, piroquinesis, mutación insectoide.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/t-veronica.svg",
     "color": "#c06040",
     "orden": 40
   },
@@ -77,11 +79,12 @@
       "Después, Tricell y Wesker desarrollaron versiones nuevas (Tipo 2 y Tipo 3) para Kijuju. Se pueden extraer con una dosis fuerte de radiación."
     ],
     "efectos": "Control mental jerárquico, fuerza, mutaciones.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/las-plagas.svg",
     "color": "#8a6a2a",
     "orden": 50
   },
   "t-abyss": {
+    "oculto": true,
     "titulo": "Virus T-Abyss",
     "tipo": "Virus de diseño",
     "creador": "Veltro / F.B.C.",
@@ -91,11 +94,12 @@
     "resumen": "Mezcla del Virus-T con un pez de las profundidades. Convierte a sus víctimas en los Ooze.",
     "cuerpo": ["Se utilizó en el atentado de Terragrigia y en el Queen Zenobia. Se transmite por el agua."],
     "efectos": "Deformación acuática, piel viscosa.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/t-abyss.svg",
     "color": "#2a6aa0",
     "orden": 60
   },
   "uroboros": {
+    "oculto": true,
     "titulo": "Uroboros",
     "tipo": "Virus de diseño",
     "creador": "Albert Wesker / Tricell",
@@ -105,7 +109,7 @@
     "resumen": "El proyecto final de Wesker: un virus que mata o transforma a todos excepto a los «elegidos» genéticamente compatibles.",
     "cuerpo": ["Basado en el Progenitor y en la flor Escalera del Sol. Los incompatibles se convierten en masas de gusanos negros. Wesker pensaba liberarlo en la atmósfera con misiles."],
     "efectos": "Absorción, tentáculos, selección genética.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/uroboros.svg",
     "color": "#202020",
     "orden": 70
   },
@@ -119,11 +123,12 @@
     "resumen": "Un virus que solo se activa con el miedo. Quien siente pánico se transforma en un Afligido.",
     "cuerpo": ["Alex Wesker lo diseñó para encontrar a alguien capaz de superar el miedo y así poder trasladar su mente a un cuerpo «perfecto»."],
     "efectos": "Mutación activada por miedo.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/t-phobos.svg",
     "color": "#806050",
     "orden": 80
   },
   "c-virus": {
+    "oculto": true,
     "titulo": "Virus C",
     "tipo": "Virus de diseño",
     "creador": "Carla Radames",
@@ -133,7 +138,7 @@
     "resumen": "Un virus capaz de producir tres tipos de resultado: zombis rápidos, J'avo inteligentes o crisálidas de las que nacen criaturas nuevas.",
     "cuerpo": ["Combinaba el Virus-G, el T-Veronica y otros. Se liberó en Edonia, Tall Oaks y Lanshiang. La sangre de Jake Muller permitió fabricar una vacuna."],
     "efectos": "Zombificación, mutación parcial, crisálidas.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/c-virus.svg",
     "color": "#3aa060",
     "orden": 90
   },
@@ -147,7 +152,7 @@
     "resumen": "Un virus que hace que los zombis obedezcan órdenes y distingan amigos de enemigos.",
     "cuerpo": ["Glenn Arias quiso liberarlo en Nueva York como venganza por la muerte de su familia. Rebecca Chambers creó un antídoto."],
     "efectos": "Zombis controlables.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/a-virus.svg",
     "color": "#a03030",
     "orden": 95
   },
@@ -161,11 +166,12 @@
     "resumen": "Un hongo que regenera cualquier herida y somete la voluntad del infectado a su núcleo, Eveline.",
     "cuerpo": ["The Connections desarrolló el moho como arma de control mental. Los Baker y Ethan quedaron infectados. Solo un suero hecho con la sangre de Eveline puede neutralizarlo."],
     "efectos": "Regeneración, alucinaciones, control mental, moldeados.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/moho-e.svg",
     "color": "#4a3a20",
     "orden": 100
   },
   "megamiceto": {
+    "oculto": true,
     "titulo": "Megamiceto",
     "tipo": "Organismo colectivo",
     "creador": "Natural (descubierto por Miranda en 1919)",
@@ -175,7 +181,7 @@
     "resumen": "Un hongo gigantesco bajo la aldea que guarda la conciencia y los recuerdos de todos los que absorbe.",
     "cuerpo": ["Miranda lo encontró en una cueva tras perder a su hija. Le dio la capacidad de cambiar de forma y vivir más de un siglo. Ethan lo destruyó con una bomba en 2021."],
     "efectos": "Memoria colectiva, metamorfosis.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/megamiceto.svg",
     "color": "#6a4a20",
     "orden": 110
   },
@@ -189,7 +195,7 @@
     "resumen": "Un parásito derivado del Megamiceto que Miranda implantaba a los aldeanos. Casi todos morían; los supervivientes se convertían en Licántropos o en señores.",
     "cuerpo": ["Su nombre significa «regalo» en rumano. Solo cuatro huéspedes, los cuatro señores, lo aceptaron conservando la mente."],
     "efectos": "Transformación, poderes únicos según el huésped.",
-    "imagen": "",
+    "imagen": "/img/fichas/virus/cadou.svg",
     "color": "#8a4a4a",
     "orden": 120
   }

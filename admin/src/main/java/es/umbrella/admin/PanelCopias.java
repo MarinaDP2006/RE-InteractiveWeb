@@ -52,7 +52,7 @@ final class PanelCopias extends JPanel implements VentanaPrincipal.Seccion {
         this.cliente = cliente;
         setOpaque(false);
         add(Tema.cabecera("Copias de seguridad",
-                "Guarda y recupera toda la base de datos (wiki, juego, configuración) y, si quieres, también las imágenes y vídeos subidos."), BorderLayout.NORTH);
+                "Guarda y recupera toda la base de datos (wiki y configuración) y, si quieres, también las imágenes y vídeos subidos."), BorderLayout.NORTH);
 
         JPanel servidor = new JPanel(new BorderLayout(0, 8));
         servidor.setOpaque(false);

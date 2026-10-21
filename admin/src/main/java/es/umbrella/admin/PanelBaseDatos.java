@@ -2,7 +2,7 @@
  * ============================================================================
  *  PanelBaseDatos.java — Explorador completo de la base de datos.
  * ============================================================================
- *  Todas las colecciones (wiki, juego y sistema) y todos sus documentos, con
+ *  Todas las colecciones (wiki y sistema) y todos sus documentos, con
  *  editor JSON, creación, borrado, vaciado y recuperación de la semilla.
  * ============================================================================
  */

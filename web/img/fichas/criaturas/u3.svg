@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="U-3 («It»)"><title>U-3 («It»)</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#453b30"/><stop offset=".6" stop-color="#171410"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="71"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#807365" stop-opacity=".55"/><stop offset="1" stop-color="#352d25" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#a69c92" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M296.5 432.7 Q179.5 400.4 77.5 353.6" stroke-width="18.3"/><path d="M509 484.6 Q543.8 448.4 700 510.2" stroke-width="15"/><path d="M377.1 362.4 Q326.2 256.9 339.6 186.2" stroke-width="28.1"/><path d="M355.2 369.6 Q348.1 262.6 309.8 267.9" stroke-width="28.7"/><path d="M313.2 402.4 Q325.6 303.3 191.9 307.9" stroke-width="30.3"/></g>
+      <path d="M548.2 500.8 Q548.6 531.6 543.6 570.1 Q538.6 608.6 507.4 631.2 Q476.1 653.8 438.1 638.6 Q400 623.5 362 638.4 Q324.1 653.3 305.7 617.9 Q287.4 582.6 259 561.4 Q230.6 540.2 219.5 505.1 Q208.5 470 237.3 442.3 Q266.1 414.5 282.4 391.6 Q298.7 368.7 315.8 338.3 Q332.9 307.9 366.4 326.3 Q400 344.7 423.6 350.3 Q447.3 355.9 486 350.5 Q524.8 345.2 550.5 371.1 Q576.2 397 562 433.5 Q547.7 470 548.2 500.8Z" fill="#08080a" opacity=".95"/>
+      <circle cx="400" cy="450" r="16" fill="#e9e6e4"/>
+      <g fill="#fff" opacity=".25"><circle cx="373.2" cy="511" r="3.6"/><circle cx="374.6" cy="458.3" r="10"/><circle cx="334.4" cy="368.1" r="9.8"/><circle cx="303.5" cy="220.3" r="2.3"/><circle cx="350.3" cy="203.9" r="4.2"/><circle cx="312.8" cy="596.1" r="3.1"/><circle cx="521.4" cy="589.7" r="3.6"/><circle cx="514.1" cy="451.6" r="3.4"/><circle cx="462" cy="680.5" r="9.7"/><circle cx="515.6" cy="271.3" r="2.6"/><circle cx="250.2" cy="622.7" r="10.2"/><circle cx="371.4" cy="503.6" r="4.1"/><circle cx="310.4" cy="264.5" r="10.5"/><circle cx="277" cy="373.1" r="4.7"/><circle cx="435.9" cy="449.3" r="9.1"/><circle cx="552" cy="571.3" r="7.6"/><circle cx="442.9" cy="733.2" r="11"/><circle cx="389.5" cy="284.7" r="2.5"/><circle cx="260.8" cy="705" r="10"/><circle cx="388.8" cy="212.8" r="10.1"/><circle cx="256.9" cy="675.6" r="8.2"/><circle cx="462.9" cy="372" r="3.2"/><circle cx="370.9" cy="632" r="4.9"/><circle cx="492.1" cy="424.9" r="10.4"/><circle cx="266" cy="259.6" r="6.7"/><circle cx="447.7" cy="408.7" r="5.8"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#9e9489" stroke-width="4" opacity=".6"/>
+    <text x="400" y="823" text-anchor="middle" font-family="'Share Tech Mono', Consolas, 'Courier New', monospace" font-size="20" letter-spacing="5" fill="#c3bdb7">B.O.W. · B.O.W.</text>
+    <text x="400" y="915" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="62" font-weight="900" letter-spacing="4" fill="#f2ecdf">U-3 («IT»)</text>
+    <rect x="310" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="348" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="386" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="424" y="955" width="30" height="10" rx="2" fill="#c8102e"/><rect x="462" y="955" width="30" height="10" rx="2" fill="#c8102e"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

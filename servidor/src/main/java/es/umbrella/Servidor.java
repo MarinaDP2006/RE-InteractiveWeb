@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- *  Servidor.java — Punto de entrada de UMBRELLA ARCHIVES (Wiki + Juego).
+ *  Servidor.java — Punto de entrada de UMBRELLA ARCHIVES (Wiki de Resident Evil).
  * ============================================================================
  *  Servidor HTTP de la librería estándar de Java 21 con hilos virtuales.
  *  No necesita ninguna dependencia (solo el driver de PostgreSQL si se usa
@@ -10,6 +10,7 @@
  *
  *  Variables de entorno (todas opcionales):
  *    PORT            puerto HTTP (por defecto 8080; Render la define sola)
+ *    GOOGLE_CLIENT_ID  id de cliente OAuth de Google para «Únete para ver lo oculto»
  *    WEB_DIR         carpeta de la web          (por defecto ./web)
  *    DATA_DIR        carpeta de datos           (por defecto ./data)
  *    SEED_DIR        carpeta de datos iniciales (por defecto ./semilla)
@@ -93,7 +94,7 @@ public final class Servidor {
                                         A R C H I V E S  ·  v""" + Api.VERSION);
             System.out.println("  Web:    " + web);
             System.out.println("  Datos:  " + s.almacenamiento());
-            System.out.println("  Abre    http://localhost:" + s.puerto() + "   (Wiki: /wiki/  ·  Juego: /juego/)");
+            System.out.println("  Abre    http://localhost:" + s.puerto() + "   (Wiki: /wiki/)");
         } catch (IOException e) {
             System.err.println("ERROR al arrancar el servidor: " + e.getMessage());
             System.exit(1);
@@ -109,9 +110,8 @@ public final class Servidor {
         BaseDatos db = new BaseDatos(Almacenamiento.crear(datos), datos, semilla);
         Seguridad seguridad = new Seguridad(db, datos);
         Actividad actividad = new Actividad(db);
-        Juego juego = new Juego(db);
         Subidas subidas = new Subidas(db.almacen());
-        Api api = new Api(db, seguridad, actividad, juego, subidas);
+        Api api = new Api(db, seguridad, actividad, subidas, new Miembros(db));
 
         HttpServer servidor = crearHttp(puerto);
         puerto = servidor.getAddress().getPort();

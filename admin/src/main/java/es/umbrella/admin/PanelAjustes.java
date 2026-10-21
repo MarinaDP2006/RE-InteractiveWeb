@@ -56,7 +56,7 @@ final class PanelAjustes extends JPanel implements VentanaPrincipal.Seccion {
         t.setForeground(Tema.TEXTO);
         cred.add(t, c);
         c.gridy++;
-        cred.add(Tema.etiqueta("<html><span style='font-size:10px'>Solo existe un administrador para la wiki y el juego. "
+        cred.add(Tema.etiqueta("<html><span style='font-size:10px'>Solo existe un administrador para la wiki. "
                 + "Al cambiar la contraseña se cierran las demás sesiones abiertas.<br>Mínimo 10 caracteres. Usa letras, números y símbolos.</span></html>"), c);
         c.gridwidth = 1;
         fila(cred, c, "Contraseña actual", actual);

@@ -7,12 +7,12 @@
  *  · Todo se mantiene en memoria (rápido) y cada cambio se escribe en el
  *    almacenamiento elegido: archivos JSON o PostgreSQL (ver Almacenamiento).
  *  · La primera vez se rellena con los datos de la carpeta semilla/ (la wiki,
- *    los puzzles, la configuración del juego...).
+ *    la configuración del portal...).
  *  · Copias de seguridad en ZIP, automáticas cada 24 h y manuales desde la
  *    app de administración (que además se las descarga a tu PC).
  *
  *  Colecciones del sistema (nunca salen por la API pública):
- *    _config, puzzles, partidas, ranking, estadisticas, registro
+ *    _config, estadisticas, registro
  * ============================================================================
  */
 package es.umbrella;
@@ -103,26 +103,8 @@ public final class BaseDatos {
                     continue;
                 }
                 if (colecciones.containsKey(col)) {
-                    // Los puzzles nuevos de una actualización del juego se añaden
-                    // solos (sin tocar los que el administrador haya editado).
-                    if ("puzzles".equals(col)) {
-                        try {
-                            Map<String, Map<String, Object>> semilla = convertir(Json.leerObjeto(Files.readString(p, StandardCharsets.UTF_8)));
-                            Map<String, Map<String, Object>> c = colecciones.get(col);
-                            int n = 0;
-                            for (Map.Entry<String, Map<String, Object>> e : semilla.entrySet()) {
-                                if (!c.containsKey(e.getKey())) {
-                                    c.put(e.getKey(), e.getValue());
-                                    n++;
-                                }
-                            }
-                            if (n > 0) {
-                                persistir(col);
-                                System.out.println("[DB] Puzzles nuevos añadidos desde la semilla: " + n);
-                            }
-                        } catch (RuntimeException ex) {
-                            System.err.println("[DB] Semilla no válida " + p.getFileName() + ": " + ex.getMessage());
-                        }
+                    if (!col.startsWith("_")) {
+                        actualizarDesdeSemilla(col, p);
                     }
                     continue;
                 }
@@ -134,6 +116,46 @@ public final class BaseDatos {
                     System.err.println("[DB] Semilla no válida " + p.getFileName() + ": " + ex.getMessage());
                 }
             }
+        }
+    }
+
+    /**
+     * Fichas de la wiki ya guardadas: las imágenes se movieron de /juego/img/ a
+     * /img/ al retirar el juego; las fichas sin imagen o sin tráiler reciben los de la
+     * semilla, y las marcadas como ocultas en la semilla pasan a estar ocultas.
+     * No toca ninguna imagen que el administrador haya puesto a mano.
+     */
+    private void actualizarDesdeSemilla(String col, Path archivoSemilla) {
+        try {
+            Map<String, Map<String, Object>> semilla = convertir(Json.leerObjeto(Files.readString(archivoSemilla, StandardCharsets.UTF_8)));
+            Map<String, Map<String, Object>> c = colecciones.get(col);
+            int n = 0;
+            for (Map.Entry<String, Map<String, Object>> e : c.entrySet()) {
+                Map<String, Object> ficha = e.getValue();
+                Map<String, Object> original = semilla.get(e.getKey());
+                for (String campo : List.of("imagen", "cuerpoImagen", "video")) {
+                    Object valor = ficha.get(campo);
+                    String actual = valor instanceof String s ? s : "";
+                    String nuevo = actual.startsWith("/juego/img/") ? "/img/" + actual.substring("/juego/img/".length()) : actual;
+                    if (nuevo.isBlank() && original != null && original.get(campo) instanceof String s && !s.isBlank()) {
+                        nuevo = s;
+                    }
+                    if (!nuevo.equals(actual)) {
+                        ficha.put(campo, nuevo);
+                        n++;
+                    }
+                }
+                if (original != null && !ficha.containsKey("oculto") && Boolean.TRUE.equals(original.get("oculto"))) {
+                    ficha.put("oculto", true);
+                    n++;
+                }
+            }
+            if (n > 0) {
+                persistir(col);
+                System.out.println("[DB] Fichas actualizadas desde la semilla en " + col + ": " + n);
+            }
+        } catch (RuntimeException | IOException ex) {
+            System.err.println("[DB] Semilla no válida " + archivoSemilla.getFileName() + ": " + ex.getMessage());
         }
     }
 
@@ -223,7 +245,7 @@ public final class BaseDatos {
         return true;
     }
 
-    /** Vacía una colección entera (p. ej. reiniciar el ranking). */
+    /** Vacía una colección entera (p. ej. borrar el registro). */
     public synchronized void vaciar(String coleccion) throws IOException {
         validarNombre(coleccion, "colección");
         colecciones.put(coleccion, new LinkedHashMap<>());

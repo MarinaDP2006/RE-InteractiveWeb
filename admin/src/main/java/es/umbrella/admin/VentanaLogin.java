@@ -74,7 +74,7 @@ final class VentanaLogin extends JFrame {
         t.setFont(Tema.fuente(Font.BOLD, 24));
         t.setForeground(Tema.TEXTO);
         cab.add(t, BorderLayout.CENTER);
-        JLabel s = new JLabel("Gestión de la Wiki y el Juego · acceso restringido", SwingConstants.CENTER);
+        JLabel s = new JLabel("Gestión de la Wiki · acceso restringido", SwingConstants.CENTER);
         s.setForeground(Tema.ROJO_VIVO);
         s.setFont(Tema.PEQUENA);
         cab.add(s, BorderLayout.SOUTH);

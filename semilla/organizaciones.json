@@ -15,7 +15,7 @@
       "## La nueva Umbrella",
       "Años después, una Umbrella reformada (conocida por los fans como «Blue Umbrella») trabajó para combatir las armas biológicas y colaboró con Chris Redfield en Luisiana."
     ],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/umbrella.svg",
     "color": "#c8102e",
     "orden": 10
   },
@@ -28,7 +28,7 @@
     "miembros": ["chris", "jill", "barry", "rebecca", "wesker", "brad"],
     "resumen": "El Servicio de Tácticas Especiales y Rescate de la policía de Raccoon City, con los equipos Alpha y Bravo.",
     "cuerpo": ["S.T.A.R.S. se fundó para gestionar situaciones de rehenes y terrorismo. Tras el incidente de la mansión fueron desacreditados por el jefe Irons, al servicio de Umbrella, y Némesis fue creado para eliminarlos."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/stars.svg",
     "color": "#d4a020",
     "orden": 20
   },
@@ -41,7 +41,7 @@
     "miembros": ["leon", "marvin", "irons"],
     "resumen": "La policía de Raccoon City, con sede en un antiguo museo de arte. Cayó la noche del brote.",
     "cuerpo": ["Su comisaría, llena de estatuas, pasadizos y puzzles, es uno de los escenarios más reconocibles de los videojuegos."],
-    "imagen": "/juego/img/escenarios/re2_vestibulo.webp",
+    "imagen": "/img/escenarios/re2_vestibulo.webp",
     "color": "#2a3a5a",
     "orden": 30
   },
@@ -54,7 +54,7 @@
     "miembros": ["carlos", "nikolai", "mikhail", "tyrell"],
     "resumen": "Los mercenarios de Umbrella enviados a Raccoon City en teoría para rescatar civiles; en la práctica, como carne de cañón.",
     "cuerpo": ["Formada por soldados con pasados turbios, la U.B.C.S. fue aniquilada en horas. Sus supervisores encubiertos recogían datos de combate."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/ubcs.svg",
     "color": "#4a5a3a",
     "orden": 40
   },
@@ -67,7 +67,7 @@
     "miembros": ["chris", "jill", "sheva", "piers", "josh", "parker"],
     "resumen": "La alianza internacional contra el bioterrorismo fundada, entre otros, por Chris y Jill. Desde 2005 opera bajo el amparo de la ONU.",
     "cuerpo": ["Nació como organización privada financiada por farmacéuticas. Tras la caída de la F.B.C. pasó a depender de Naciones Unidas, con divisiones en todo el mundo. En Village se insinúa que algunas de sus unidades usan B.O.W."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/bsaa.svg",
     "color": "#2a5a8a",
     "orden": 50
   },
@@ -80,7 +80,7 @@
     "miembros": ["leon", "sherry", "hunnigan", "benford"],
     "resumen": "La división antiterrorista que responde directamente al presidente de EE. UU. y para la que trabaja Leon.",
     "cuerpo": ["Creada por Adam Benford para actuar contra amenazas biológicas sin pasar por la burocracia."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/dso.svg",
     "color": "#3a4a6a",
     "orden": 55
   },
@@ -93,7 +93,7 @@
     "miembros": ["lansdale", "parker"],
     "resumen": "La Comisión Federal de Bioterrorismo, rival de la B.S.A.A., cuyo director provocó el atentado de Terragrigia.",
     "cuerpo": ["La F.B.C. fue disuelta tras descubrirse la conspiración de Morgan Lansdale."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/fbc.svg",
     "color": "#5a5a6a",
     "orden": 60
   },
@@ -106,7 +106,7 @@
     "miembros": ["claire", "moira"],
     "resumen": "Organización no gubernamental que da ayuda humanitaria a las víctimas de ataques biológicos.",
     "cuerpo": ["Claire Redfield es su miembro más conocido."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/terrasave.svg",
     "color": "#3a8a5a",
     "orden": 65
   },
@@ -119,7 +119,7 @@
     "miembros": ["excella"],
     "resumen": "La compañía que absorbió los restos de Umbrella en África y financió el Proyecto Uroboros de Wesker.",
     "cuerpo": ["Su familia fundadora, los Travis, tenía relación con la expedición que descubrió el Progenitor. Excella Gionne dirigía su división africana."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/tricell.svg",
     "color": "#3a6a8a",
     "orden": 70
   },
@@ -132,7 +132,7 @@
     "miembros": ["saddler", "salazar", "mendez"],
     "resumen": "La secta de España que veneraba Las Plagas. Osmund Saddler la convirtió en un ejército.",
     "cuerpo": ["Los monjes encapuchados del castillo de Salazar, con su cántico y sus túnicas, son su imagen más reconocible."],
-    "imagen": "/juego/img/personajes/monje.webp",
+    "imagen": "/img/personajes/monje.webp",
     "color": "#5a2a4a",
     "orden": 75
   },
@@ -145,7 +145,7 @@
     "miembros": ["simmons", "carla"],
     "resumen": "Una sociedad secreta que controla gobiernos desde las sombras. Fue quien ordenó destruir Raccoon City.",
     "cuerpo": ["Derek Simmons, su líder en 2013, usaba el Virus C para sus fines."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/la-familia.svg",
     "color": "#4a3a3a",
     "orden": 80
   },
@@ -158,7 +158,7 @@
     "miembros": ["carla"],
     "resumen": "El grupo terrorista de Carla Radames, haciéndose pasar por Ada Wong.",
     "cuerpo": [],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/neo-umbrella.svg",
     "color": "#7a1a2a",
     "orden": 85
   },
@@ -171,7 +171,7 @@
     "miembros": ["mia", "lucas"],
     "resumen": "Organización que creó el moho y a Eveline a partir de las investigaciones de Miranda.",
     "cuerpo": ["Chris y la nueva Umbrella la desmantelaron tras el incidente de Luisiana."],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/connections.svg",
     "color": "#4a4a2a",
     "orden": 90
   },
@@ -184,7 +184,7 @@
     "miembros": [],
     "resumen": "El grupo terrorista que atacó Terragrigia, manipulado en secreto por Morgan Lansdale.",
     "cuerpo": [],
-    "imagen": "",
+    "imagen": "/img/fichas/organizaciones/veltro.svg",
     "color": "#3a3a5a",
     "orden": 95
   }

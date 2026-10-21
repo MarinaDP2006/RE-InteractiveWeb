@@ -3,8 +3,7 @@
  *  Multimedia.java — Subir imágenes y vídeos al servidor y elegirlos.
  * ============================================================================
  *  Los archivos subidos se sirven en  /subidas/<nombre>  y se pueden usar en
- *  cualquier ficha de la wiki (imagen, vídeo) o en el juego (vídeos de
- *  introducción de cada archivo).
+ *  cualquier ficha de la wiki (imagen, vídeo).
  * ============================================================================
  */
 package es.umbrella.admin;
@@ -133,7 +132,7 @@ final class Multimedia {
             p.setBorder(Tema.margen(14));
             p.add(Tema.etiqueta(archivos.isEmpty()
                     ? "<html>Aún no has subido nada. Usa «Subir…» o la sección «Imágenes y vídeos».<br>"
-                    + "También puedes escribir rutas de imágenes del juego, p. ej. <b>/juego/img/personajes/leon.webp</b></html>"
+                    + "También puedes escribir rutas de imágenes de la web, p. ej. <b>/img/personajes/leon.webp</b></html>"
                     : "Elige un archivo:"), BorderLayout.NORTH);
             p.add(Tema.scroll(lista), BorderLayout.CENTER);
             JPanel b = new JPanel(new FlowLayout(FlowLayout.RIGHT));

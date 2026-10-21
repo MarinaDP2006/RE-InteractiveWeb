@@ -1,6 +1,6 @@
 /*
  * ============================================================================
- *  Seguridad.java — El ÚNICO administrador de la web y del juego.
+ *  Seguridad.java — El ÚNICO administrador de la web.
  * ============================================================================
  *  · La contraseña se guarda como hash PBKDF2-SHA256 (210.000 iteraciones)
  *    con sal aleatoria, en la colección _config (documento "admin").

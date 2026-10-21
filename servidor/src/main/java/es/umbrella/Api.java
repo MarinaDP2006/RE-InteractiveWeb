@@ -10,19 +10,19 @@
  *    GET  /api/wiki/buscar?q=texto       búsqueda en todas las secciones
  *    GET  /api/wiki/{seccion}            fichas de una sección
  *    GET  /api/wiki/{seccion}/{id}       una ficha
- *    GET  /api/juego/config              archivos activos, vídeos, mensaje del día...
- *    POST /api/juego/verificar           {"puzzle","respuesta"} → {"correcto","mensaje"}
- *    POST /api/juego/guardar             {"id","estado","nombre"} → {"id":"ABCD-1234"}
- *    GET  /api/juego/cargar?id=ABCD-1234
- *    GET  /api/juego/ranking             top 10
- *    POST /api/juego/ranking             {"nombre","segundos","muertes","personaje"}
+ *    GET  /api/miembro                   ¿hay sesión de miembro? + id de cliente de Google
+ *    POST /api/miembro/google            {"credential"} → abre la sesión (cookie)
+ *    POST /api/miembro/salir             cierra la sesión
  *    GET  /api/vista?ticket=..&destino=/wiki/   vista previa del admin (cookie)
+ *
+ *  Las fichas con "oculto": true solo se ven completas con sesión de miembro
+ *  (o como admin); al resto les llega solo {id, oculto, orden}.
  *
  *  ADMINISTRACIÓN (cabecera Authorization: Bearer <token>)
  *    POST   /api/admin/login             {"usuario","clave"} → {"token"}
  *    POST   /api/admin/logout
  *    GET    /api/admin/resumen           panel principal
- *    GET|PUT /api/admin/acceso           abrir / cerrar la wiki y el juego al público
+ *    GET|PUT /api/admin/acceso           abrir / cerrar la wiki al público
  *    GET    /api/admin/db                colecciones
  *    GET    /api/admin/db/{col}          documentos
  *    DELETE /api/admin/db/{col}          vaciar colección
@@ -61,9 +61,7 @@ final class Api implements HttpHandler {
     static final String VERSION = "1.0.0";
 
     private static final int MAX_JSON = 2 * 1024 * 1024;
-    private static final int MAX_JSON_PUBLICO = 96 * 1024;
     private static final int MAX_ZIP = 300 * 1024 * 1024;
-    private static final long RETRASO_FALLO_MS = 300;
 
     /** Colecciones que la app no puede leer ni tocar por la API genérica. */
     private static final Set<String> PROTEGIDOS = Set.of("_config/admin");
@@ -71,16 +69,16 @@ final class Api implements HttpHandler {
     private final BaseDatos db;
     private final Seguridad seguridad;
     private final Actividad actividad;
-    private final Juego juego;
     private final Subidas subidas;
+    private final Miembros miembros;
     private final long arranque = System.currentTimeMillis();
 
-    Api(BaseDatos db, Seguridad seguridad, Actividad actividad, Juego juego, Subidas subidas) {
+    Api(BaseDatos db, Seguridad seguridad, Actividad actividad, Subidas subidas, Miembros miembros) {
         this.db = db;
         this.seguridad = seguridad;
         this.actividad = actividad;
-        this.juego = juego;
         this.subidas = subidas;
+        this.miembros = miembros;
     }
 
     @Override
@@ -134,9 +132,6 @@ final class Api implements HttpHandler {
         return Json.logico(Json.objeto(acceso(), "wiki"), "publica", true) || seguridad.esVistaAdmin(p);
     }
 
-    boolean juegoAbierto(Peticion p) {
-        return Json.logico(Json.objeto(acceso(), "juego"), "publico", true) || seguridad.esVistaAdmin(p);
-    }
 
     private void exigir(boolean abierto, String seccion) {
         if (!abierto) {
@@ -152,8 +147,6 @@ final class Api implements HttpHandler {
         r.put("version", VERSION);
         r.put("wiki", Map.of("publica", Json.logico(Json.objeto(a, "wiki"), "publica", true),
                 "mensaje", Json.texto(Json.objeto(a, "wiki"), "mensaje", "")));
-        r.put("juego", Map.of("publico", Json.logico(Json.objeto(a, "juego"), "publico", true),
-                "mensaje", Json.texto(Json.objeto(a, "juego"), "mensaje", "")));
         r.put("anuncio", Json.texto(a, "anuncio", ""));
         r.put("vistaAdmin", seguridad.esVistaAdmin(p));
         return r;
@@ -172,13 +165,13 @@ final class Api implements HttpHandler {
             case "POST visita" -> {
                 Map<String, Object> d = p.json(4096);
                 String sec = Json.texto(d, "seccion", "");
-                if (Set.of("portal", "wiki", "juego").contains(sec)) {
+                if (Set.of("portal", "wiki").contains(sec)) {
                     actividad.visita(sec, p.ip());
                 }
                 p.responderJson(200, Peticion.ok());
             }
             case "GET wiki" -> wiki(p);
-            case "GET juego", "POST juego" -> juegoPublico(p);
+            case "GET miembro", "POST miembro" -> miembro(p);
             case "GET vista" -> vista(p);
             default -> throw new Peticion.ErrorHttp(404, "Ruta de API desconocida: " + p.ruta);
         }
@@ -197,8 +190,6 @@ final class Api implements HttpHandler {
         }
         r.put("secciones", secciones);
         r.put("fichas", fichas);
-        r.put("supervivientes", db.contar("ranking"));
-        r.put("puzzles", db.contar("puzzles"));
         return r;
     }
 
@@ -227,19 +218,64 @@ final class Api implements HttpHandler {
     }
 
     private List<Map<String, Object>> publicados(String col) {
+        return publicados(col, true);
+    }
+
+    /** Fichas publicadas; las ocultas se reducen a {id, oculto, orden} si no se pueden ver. */
+    private List<Map<String, Object>> publicados(String col, boolean verOcultos) {
         List<Map<String, Object>> lista = new ArrayList<>();
         for (Map<String, Object> d : db.listar(col)) {
             if (Json.logico(d, "publicado", true)) {
                 d.remove("_actualizado");
-                lista.add(d);
+                lista.add(verOcultos || !Json.logico(d, "oculto", false) ? d : sellada(d));
             }
         }
         lista.sort(Comparator.comparingLong((Map<String, Object> d) -> Json.numero(d, "orden", 9999)));
         return lista;
     }
 
+    /** Lo único que se sabe de una ficha oculta sin sesión de miembro. */
+    private static Map<String, Object> sellada(Map<String, Object> d) {
+        Map<String, Object> s = new LinkedHashMap<>();
+        s.put("id", d.get("id"));
+        s.put("oculto", true);
+        s.put("orden", d.getOrDefault("orden", 9999));
+        return s;
+    }
+
+    /** ¿Esta petición puede ver los expedientes ocultos? (miembro o admin) */
+    private boolean verOcultos(Peticion p) {
+        return seguridad.esVistaAdmin(p) || miembros.actual(p) != null;
+    }
+
+    private void miembro(Peticion p) throws Exception {
+        String accion = p.metodo + " " + (p.parte(2) == null ? "" : p.parte(2));
+        boolean https = "https".equalsIgnoreCase(p.cabecera("X-Forwarded-Proto"));
+        switch (accion) {
+            case "GET " -> {
+                Map<String, Object> r = Peticion.ok("miembro", miembros.actual(p));
+                r.put("google", miembros.clientId());
+                p.responderJson(200, r);
+            }
+            case "POST google" -> {
+                Map<String, Object> d = p.json(8192);
+                String token = miembros.entrar(Json.texto(d, "credential", null));
+                p.ex.getResponseHeaders().add("Set-Cookie", Miembros.COOKIE + "=" + token
+                        + "; Path=/; HttpOnly; SameSite=Lax; Max-Age=" + Miembros.DURACION_SEG + (https ? "; Secure" : ""));
+                p.responderJson(200, Peticion.ok());
+            }
+            case "POST salir" -> {
+                miembros.salir(p);
+                p.ex.getResponseHeaders().add("Set-Cookie", Miembros.COOKIE + "=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0");
+                p.responderJson(200, Peticion.ok());
+            }
+            default -> throw new Peticion.ErrorHttp(404, "Ruta de API desconocida: " + p.ruta);
+        }
+    }
+
     private void wiki(Peticion p) throws IOException {
         exigir(wikiAbierta(p), "wiki");
+        boolean ver = verOcultos(p);
         String col = p.parte(2);
         String id = p.parte(3);
         if (col == null) {
@@ -257,19 +293,22 @@ final class Api implements HttpHandler {
             return;
         }
         if ("buscar".equals(col)) {
-            p.responderJson(200, Peticion.ok("resultados", buscar(p.parametro("q", ""))));
+            p.responderJson(200, Peticion.ok("resultados", buscar(p.parametro("q", ""), ver)));
             return;
         }
         if (!esSeccionWiki(col)) {
             throw new Peticion.ErrorHttp(404, "Sección de la wiki desconocida");
         }
         if (id == null) {
-            p.responderJson(200, Peticion.ok("fichas", publicados(col)));
+            p.responderJson(200, Peticion.ok("fichas", publicados(col, ver)));
             return;
         }
         Map<String, Object> doc = db.obtener(col, id);
         if (doc == null || !Json.logico(doc, "publicado", true)) {
             throw new Peticion.ErrorHttp(404, "Ficha no encontrada");
+        }
+        if (!ver && Json.logico(doc, "oculto", false)) {
+            throw new Peticion.ErrorHttp(403, "Únete para ver lo oculto");
         }
         doc.remove("_actualizado");
         actividad.fichaVista(col, id);
@@ -281,7 +320,7 @@ final class Api implements HttpHandler {
     }
 
     /** Búsqueda simple por texto en título, alias, resumen y etiquetas, con puntuación. */
-    private List<Map<String, Object>> buscar(String q) {
+    private List<Map<String, Object>> buscar(String q, boolean verOcultos) {
         String consulta = plano(q).trim();
         List<Map<String, Object>> resultados = new ArrayList<>();
         if (consulta.length() < 2) {
@@ -291,6 +330,9 @@ final class Api implements HttpHandler {
         for (Map<String, Object> sec : seccionesWiki()) {
             String col = Json.texto(sec, "id", "");
             for (Map<String, Object> d : publicados(col)) {
+                if (!verOcultos && Json.logico(d, "oculto", false)) {
+                    continue;
+                }
                 String titulo = plano(Json.texto(d, "titulo", ""));
                 String resto = plano(Json.texto(d, "alias", "") + " " + Json.texto(d, "resumen", "") + " "
                         + String.valueOf(d.getOrDefault("etiquetas", "")) + " " + Json.texto(d, "subtitulo", ""));
@@ -328,57 +370,6 @@ final class Api implements HttpHandler {
         }
         resultados.sort(Comparator.comparingLong((Map<String, Object> r) -> -Json.numero(r, "puntos", 0)));
         return resultados.size() > 40 ? new ArrayList<>(resultados.subList(0, 40)) : resultados;
-    }
-
-    private void juegoPublico(Peticion p) throws Exception {
-        String accion = p.metodo + " " + p.parte(2);
-        if ("GET config".equals(accion)) {
-            // La configuración se sirve siempre (el juego necesita saber si está cerrado).
-            Map<String, Object> r = Peticion.ok("config", juego.config());
-            r.put("abierto", juegoAbierto(p));
-            r.put("mensaje", Json.texto(Json.objeto(acceso(), "juego"), "mensaje", ""));
-            p.responderJson(200, r);
-            return;
-        }
-        exigir(juegoAbierto(p), "juego");
-        switch (accion) {
-            case "POST verificar" -> {
-                Map<String, Object> d = p.json(MAX_JSON_PUBLICO);
-                Map<String, Object> r = juego.verificar(Json.texto(d, "puzzle", null), Json.texto(d, "respuesta", ""));
-                if (Boolean.TRUE.equals(r.get("correcto"))) {
-                    actividad.contar("puzzlesResueltos");
-                } else {
-                    actividad.contar("puzzlesFallados");
-                    Thread.sleep(RETRASO_FALLO_MS);
-                }
-                p.responderJson(200, r);
-            }
-            case "POST guardar" -> {
-                Map<String, Object> d = p.json(MAX_JSON_PUBLICO);
-                String id = juego.guardar(Json.texto(d, "id", null), Json.texto(d, "estado", null), Json.texto(d, "nombre", ""));
-                actividad.contar("partidasGuardadas");
-                p.responderJson(200, Peticion.ok("id", id));
-            }
-            case "GET cargar" -> {
-                String id = p.parametro("id", "").trim().toUpperCase(Locale.ROOT);
-                String estado = juego.cargar(id);
-                if (estado == null) {
-                    throw new Peticion.ErrorHttp(404, "No existe ninguna partida con ese código");
-                }
-                Map<String, Object> r = Peticion.ok("id", id);
-                r.put("estado", estado);
-                p.responderJson(200, r);
-            }
-            case "GET ranking" -> p.responderJson(200, Peticion.ok("ranking", juego.top(10)));
-            case "POST ranking" -> {
-                Map<String, Object> d = p.json(4096);
-                juego.anadirRanking(Json.texto(d, "nombre", ""), Json.numero(d, "segundos", 0),
-                        Json.numero(d, "muertes", 0), Json.texto(d, "personaje", ""));
-                actividad.contar("campanasCompletadas");
-                p.responderJson(200, Peticion.ok("ranking", juego.top(10)));
-            }
-            default -> throw new Peticion.ErrorHttp(404, "Ruta de API desconocida: " + p.ruta);
-        }
     }
 
     /** Canjea el ticket de la app por la cookie de vista previa y redirige. */
@@ -445,8 +436,7 @@ final class Api implements HttpHandler {
                 if ("PUT".equals(m)) {
                     Map<String, Object> d = p.json(MAX_JSON);
                     db.guardar("_config", "acceso", d);
-                    actividad.registrar(ip, "acceso", "Wiki pública: " + Json.logico(Json.objeto(d, "wiki"), "publica", true)
-                            + " · Juego público: " + Json.logico(Json.objeto(d, "juego"), "publico", true));
+                    actividad.registrar(ip, "acceso", "Wiki pública: " + Json.logico(Json.objeto(d, "wiki"), "publica", true));
                 }
                 p.responderJson(200, Peticion.ok("acceso", acceso()));
             }
@@ -532,7 +522,7 @@ final class Api implements HttpHandler {
             Map<String, Object> e = db.obtener("estadisticas", d);
             Map<String, Object> dia = new LinkedHashMap<>();
             dia.put("dia", d);
-            for (String campo : List.of("portal", "wiki", "juego", "unicos", "partidasGuardadas", "puzzlesResueltos", "puzzlesFallados", "campanasCompletadas")) {
+            for (String campo : List.of("portal", "wiki", "unicos")) {
                 dia.put(campo, Json.numero(e, campo, 0));
             }
             dias.add(dia);
@@ -550,7 +540,6 @@ final class Api implements HttpHandler {
             populares.sort(Comparator.comparingLong((Map<String, Object> x) -> -Json.numero(x, "vistas", 0)));
         }
         r.put("populares", populares.size() > 15 ? populares.subList(0, 15) : populares);
-        r.put("ranking", juego.top(5));
         r.put("copias", db.listarCopias().size());
         return r;
     }

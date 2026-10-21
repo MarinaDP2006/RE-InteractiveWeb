@@ -29,7 +29,6 @@ final class PanelResumen extends JPanel implements VentanaPrincipal.Seccion {
     private final JLabel aviso = new JLabel();
     private final Grafico grafico = new Grafico();
     private final JLabel populares = new JLabel();
-    private final JLabel ranking = new JLabel();
     private final JLabel contenido = new JLabel();
 
     PanelResumen(Cliente cliente) {
@@ -51,7 +50,7 @@ final class PanelResumen extends JPanel implements VentanaPrincipal.Seccion {
 
         JPanel fila = new JPanel(new GridLayout(1, 4, 12, 0));
         fila.setOpaque(false);
-        String[] titulos = {"VISITAS HOY", "ÚNICOS HOY", "FICHAS DE LA WIKI", "SUPERVIVIENTES"};
+        String[] titulos = {"VISITAS HOY", "ÚNICOS HOY", "FICHAS DE LA WIKI", "VISITAS 30 DÍAS"};
         for (int i = 0; i < 4; i++) {
             JPanel t = Tema.tarjeta();
             t.setLayout(new BorderLayout(0, 4));
@@ -83,12 +82,11 @@ final class PanelResumen extends JPanel implements VentanaPrincipal.Seccion {
         graf.add(tg, BorderLayout.NORTH);
         graf.add(grafico, BorderLayout.CENTER);
 
-        JPanel abajo = new JPanel(new GridLayout(1, 4, 12, 0));
+        JPanel abajo = new JPanel(new GridLayout(1, 3, 12, 0));
         abajo.setOpaque(false);
         abajo.add(caja("Servidor", servidor));
         abajo.add(caja("Contenido", contenido));
         abajo.add(caja("Fichas más vistas", populares));
-        abajo.add(caja("Mejores supervivientes", ranking));
 
         JPanel medio = new JPanel(new BorderLayout(0, 12));
         medio.setOpaque(false);
@@ -128,15 +126,15 @@ final class PanelResumen extends JPanel implements VentanaPrincipal.Seccion {
         List<Map<String, Object>> dias = Cliente.lista(r, "dias");
         grafico.datos(dias);
         Map<String, Object> hoy = dias.isEmpty() ? Map.of() : dias.get(dias.size() - 1);
-        long visitas = Json.numero(hoy, "portal", 0) + Json.numero(hoy, "wiki", 0) + Json.numero(hoy, "juego", 0);
+        long visitas = Json.numero(hoy, "portal", 0) + Json.numero(hoy, "wiki", 0);
         long total30 = 0;
         for (Map<String, Object> d : dias) {
-            total30 += Json.numero(d, "portal", 0) + Json.numero(d, "wiki", 0) + Json.numero(d, "juego", 0);
+            total30 += Json.numero(d, "portal", 0) + Json.numero(d, "wiki", 0);
         }
         cifras[0].setText(String.valueOf(visitas));
-        pies[0].setText(total30 + " en 30 días");
+        pies[0].setText("Portal " + Json.numero(hoy, "portal", 0) + " · wiki " + Json.numero(hoy, "wiki", 0));
         cifras[1].setText(String.valueOf(Json.numero(hoy, "unicos", 0)));
-        pies[1].setText("Puzzles resueltos hoy: " + Json.numero(hoy, "puzzlesResueltos", 0));
+        pies[1].setText("visitantes distintos");
 
         Map<String, Object> cols = Json.objeto(r, "colecciones");
         long fichas = 0;
@@ -147,25 +145,21 @@ final class PanelResumen extends JPanel implements VentanaPrincipal.Seccion {
             fichas += n;
             sb.append(Tarea.escapar(Json.texto(s, "titulo", id))).append(": <b style='color:#e8e2d6'>").append(n).append("</b><br>");
         }
-        sb.append("Puzzles: <b style='color:#e8e2d6'>").append(Json.numero(cols, "puzzles", 0)).append("</b><br>");
-        sb.append("Partidas guardadas: <b style='color:#e8e2d6'>").append(Json.numero(cols, "partidas", 0)).append("</b>");
         contenido.setText(sb.append("</html>").toString());
         cifras[2].setText(String.valueOf(fichas));
         pies[2].setText(Cliente.lista(r, "secciones").size() + " secciones");
-        cifras[3].setText(String.valueOf(Json.numero(cols, "ranking", 0)));
-        pies[3].setText("en el ranking");
+        cifras[3].setText(String.valueOf(total30));
+        pies[3].setText("portal + wiki");
 
         Map<String, Object> acceso = Json.objeto(r, "acceso");
         boolean wiki = Json.logico(Json.objeto(acceso, "wiki"), "publica", true);
-        boolean juego = Json.logico(Json.objeto(acceso, "juego"), "publico", true);
         long seg = Json.numero(r, "segundosActivo", 0);
         servidor.setText("<html>Versión: <b style='color:#e8e2d6'>" + Json.texto(r, "version", "?") + "</b><br>"
                 + "Activo desde hace: <b style='color:#e8e2d6'>" + (seg / 3600) + " h " + (seg % 3600 / 60) + " min</b><br>"
                 + "Memoria: " + Json.numero(r, "memoriaUsadaMB", 0) + " / " + Json.numero(r, "memoriaMaxMB", 0) + " MB<br>"
                 + "Java " + Tarea.escapar(Json.texto(r, "java", "")) + "<br>"
                 + "Datos: " + Tarea.escapar(Json.texto(r, "almacenamiento", "")) + "<br>"
-                + "Wiki: " + (wiki ? "<b style='color:#4cc46a'>PÚBLICA</b>" : "<b style='color:#ff2a3d'>CERRADA</b>")
-                + " · Juego: " + (juego ? "<b style='color:#4cc46a'>PÚBLICO</b>" : "<b style='color:#ff2a3d'>CERRADO</b>") + "<br>"
+                + "Wiki: " + (wiki ? "<b style='color:#4cc46a'>PÚBLICA</b>" : "<b style='color:#ff2a3d'>CERRADA</b>") + "<br>"
                 + "Copias en el servidor: " + Json.numero(r, "copias", 0) + "</html>");
 
         boolean enRender = Json.logico(r, "enRender", false);
@@ -189,17 +183,5 @@ final class PanelResumen extends JPanel implements VentanaPrincipal.Seccion {
         }
         populares.setText(pop.append("</html>").toString());
 
-        StringBuilder rk = new StringBuilder("<html>");
-        List<Map<String, Object>> lr = Cliente.lista(r, "ranking");
-        if (lr.isEmpty()) {
-            rk.append("Nadie ha completado aún la campaña.");
-        }
-        for (int i = 0; i < lr.size(); i++) {
-            Map<String, Object> e = lr.get(i);
-            long s = Json.numero(e, "segundos", 0);
-            rk.append(i + 1).append(". <b style='color:#e8e2d6'>").append(Tarea.escapar(Json.texto(e, "nombre", ""))).append("</b> · ")
-                    .append(s / 3600).append("h ").append(s % 3600 / 60).append("m · ☠ ").append(Json.numero(e, "muertes", 0)).append("<br>");
-        }
-        ranking.setText(rk.append("</html>").toString());
     }
 }

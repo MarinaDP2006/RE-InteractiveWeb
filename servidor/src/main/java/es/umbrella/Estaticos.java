@@ -2,9 +2,9 @@
  * ============================================================================
  *  Estaticos.java — Sirve la web (carpeta web/) y los archivos subidos.
  * ============================================================================
- *  · /            → portal (elige Wiki o Juego)
+ *  · /            → portal de entrada a la wiki
  *  · /wiki/...    → la wiki     (si está cerrada al público: página de mantenimiento)
- *  · /juego/...   → el juego    (ídem)
+ *  · /img/...     → imágenes de las fichas
  *  · /subidas/... → imágenes y vídeos subidos desde la app de administración
  *
  *  Protección contra "path traversal", caché del navegador (imágenes 7 días,
@@ -77,7 +77,7 @@ final class Estaticos implements HttpHandler {
                 return;
             }
             // /wiki → /wiki/  (las rutas relativas de la página dependen de la barra final)
-            if (ruta.equals("/wiki") || ruta.equals("/juego") || ruta.equals("/admin")) {
+            if (ruta.equals("/wiki") || ruta.equals("/admin")) {
                 p.redirigir(ruta + "/");
                 return;
             }
@@ -85,10 +85,6 @@ final class Estaticos implements HttpHandler {
             boolean esHtml = ruta.endsWith("/") || ruta.endsWith(".html");
             if (ruta.startsWith("/wiki/") && !api.wikiAbierta(p) && esHtml) {
                 cerrado(p, "wiki");
-                return;
-            }
-            if (ruta.startsWith("/juego/") && !api.juegoAbierto(p) && esHtml) {
-                cerrado(p, "juego");
                 return;
             }
 
@@ -155,7 +151,7 @@ final class Estaticos implements HttpHandler {
         Path plantilla = raiz.resolve("cerrado.html");
         String html = Files.exists(plantilla) ? Files.readString(plantilla, StandardCharsets.UTF_8)
                 : "<!doctype html><meta charset=utf-8><title>Cerrado</title><h1>{{SECCION}}</h1><p>{{MENSAJE}}</p>";
-        html = html.replace("{{SECCION}}", "wiki".equals(seccion) ? "La Wiki" : "El Juego")
+        html = html.replace("{{SECCION}}", "La Wiki")
                 .replace("{{MENSAJE}}", escapar(mensaje));
         p.ex.getResponseHeaders().set("Cache-Control", "no-store");
         p.ex.getResponseHeaders().set("Retry-After", "600");

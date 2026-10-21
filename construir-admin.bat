@@ -44,7 +44,7 @@ xcopy /e /i /q semilla dist\entrada\semilla >nul
 
 echo [4/5] Creando UmbrellaAdmin.exe con Java incluido (tarda un minuto)...
 jpackage --type app-image --name UmbrellaAdmin --app-version %VERSION% --vendor "Umbrella Archives" ^
-  --description "Administración de la Wiki y el Juego de Umbrella Archives" ^
+  --description "Administración de la Wiki de Umbrella Archives" ^
   --input dist\entrada --main-jar UmbrellaAdmin.jar --main-class es.umbrella.admin.App ^
   --icon admin\umbrella.ico --add-modules %MODULOS% --java-options "-Dfile.encoding=UTF-8" ^
   --dest dist
