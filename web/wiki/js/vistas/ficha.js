@@ -55,7 +55,7 @@
     const foto = f.imagen ? `<div class="dossier-foto"><img src="${esc(f.imagen)}" alt="" loading="lazy"></div>` : "";
     return `<aside class="dossier"><div class="dossier-papel">
       <span class="sello">${f.canon === false ? "NO CANON" : "CLASIFICADO"}</span>
-      <h3>UMBRELLA · EXPEDIENTE</h3>
+      <h3>UMBRELLA</h3>
       ${foto}<dl>${filas}</dl></div></aside>`;
   }
 

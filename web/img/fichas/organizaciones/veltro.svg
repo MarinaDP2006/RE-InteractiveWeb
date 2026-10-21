@@ -11,6 +11,4 @@
     <g fill="#1a1a28" stroke="#9393a4" stroke-width="10"><polygon points="400,180 625,310 625,570 400,700 175,570 175,310"/></g>
     <g fill="none" stroke="#61617b" stroke-width="3" opacity=".7" transform="translate(400 440) scale(.88) translate(-400 -440)"><polygon points="400,180 625,310 625,570 400,700 175,570 175,310"/></g>
     <text x="400" y="506.5" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="190" font-weight="900" letter-spacing="6" fill="#f2ecdf">IL</text>
-    <text x="400" y="820" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="58" font-weight="900" letter-spacing="4" fill="#f2ecdf">IL VELTRO</text>
-    <text x="400" y="960" text-anchor="middle" font-family="Oswald, 'Arial Narrow', 'Segoe UI', Arial, sans-serif" font-size="22" font-style="italic" letter-spacing="2" fill="#a8a094">Grupo bioterrorista</text>
   <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

@@ -1,6 +1,7 @@
 /*
  * ============================================================================
  *  generar-ilustraciones.js — Ilustraciones originales para las fichas sin imagen.
+ *  Las ilustraciones no llevan el nombre escrito: la web ya lo pone encima.
  * ============================================================================
  *  Recorre semilla/*.json y, a cada ficha con "imagen" vacía, le dibuja una
  *  ilustración SVG propia según su sección y le asigna la ruta:
@@ -202,9 +203,6 @@ function personaje(id, f) {
       <path d="M190 780 C200 650 270 600 340 585 L350 540 C320 520 300 470 300 400 C300 320 345 270 400 270 C455 270 500 320 500 400 C500 470 480 520 450 540 L460 585 C530 600 600 650 610 780 Z" fill="url(#luz)" opacity=".55"/>
     </g>
     <g transform="rotate(-12 560 210)"><rect x="${640 - sello.length * 17 - 40}" y="180" width="${sello.length * 17 + 40}" height="56" fill="none" stroke="#c8102e" stroke-width="5" opacity=".85"/><text x="${640 - sello.length * 17 - 20}" y="218" textLength="${sello.length * 17}" lengthAdjust="spacingAndGlyphs" font-family="${F_UI}" font-size="28" font-weight="600" fill="#c8102e" opacity=".9">${esc(sello)}</text></g>
-    <text x="120" y="840" font-family="${F_MONO}" font-size="20" letter-spacing="4" fill="${tono(c, 0.45)}">EXPEDIENTE · ${esc(id.toUpperCase())}</text>
-    ${textoCentrado(f.titulo, { y: 905, max: 18, tam: 58, min: 36, x: 400 })}
-    <text x="400" y="975" text-anchor="middle" font-family="${F_UI}" font-size="22" letter-spacing="3" fill="#a8a094">${esc((f.alias || f.rol || "").toUpperCase().slice(0, 44))}</text>
   ` + acabado());
 }
 
@@ -224,9 +222,6 @@ function criatura(id, f) {
   let burbujas = "";
   for (let i = 0; i < 26; i++) burbujas += `<circle cx="${r1(230 + rnd() * 340)}" cy="${r1(200 + rnd() * 560)}" r="${r1(2 + rnd() * 9)}"/>`;
   const ojos = rnd() < 0.7 ? `<circle cx="${r1(370 + rnd() * 20)}" cy="${r1(440 + rnd() * 20)}" r="9" fill="${tono(c, 0.85)}"/><circle cx="${r1(420 + rnd() * 20)}" cy="${r1(440 + rnd() * 20)}" r="6" fill="${tono(c, 0.85)}"/>` : `<circle cx="400" cy="450" r="16" fill="${tono(c, 0.85)}"/>`;
-  // Nivel de peligro: cinco segmentos, encendidos hasta su nivel (1 a 5).
-  const nivel = Math.max(1, Math.min(5, f.peligrosidad || 3));
-  const peligro = [0, 1, 2, 3, 4].map((i) => `<rect x="${310 + i * 38}" y="955" width="30" height="10" rx="2" fill="${i < nivel ? "#c8102e" : "#2a2a30"}"/>`).join("");
   const extra = `<linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${tono(c, 0.15)}" stop-opacity=".55"/><stop offset="1" stop-color="${tono(c, -0.5)}" stop-opacity=".9"/></linearGradient>
     <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
     <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>`;
@@ -243,9 +238,6 @@ function criatura(id, f) {
       <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
     </g>
     <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="${tono(c, 0.35)}" stroke-width="4" opacity=".6"/>
-    <text x="400" y="823" text-anchor="middle" font-family="${F_MONO}" font-size="20" letter-spacing="5" fill="${tono(c, 0.6)}">B.O.W. · ${esc((f.tipo || "ESPÉCIMEN").toUpperCase().slice(0, 30))}</text>
-    ${textoCentrado(f.titulo, { y: 915, max: 18, tam: 62, min: 36 })}
-    ${peligro}
   ` + acabado());
 }
 
@@ -281,9 +273,6 @@ function virus(id, f) {
     <g clip-path="url(#lente)"><rect width="${W}" height="${H}" fill="url(#campo)"/>${celulas}
       <g stroke="#fff" stroke-width="1.5" opacity=".35">${marcas}<line x1="70" y1="440" x2="730" y2="440"/></g>
       <circle cx="400" cy="440" r="330" fill="none" stroke="#000" stroke-width="60" opacity=".5" filter="url(#brillo)"/></g>
-    <text x="400" y="835" text-anchor="middle" font-family="${F_MONO}" font-size="20" letter-spacing="5" fill="${tono(c, 0.6)}">MUESTRA · ×${Math.floor(20 + rnd() * 80) * 1000}${f.anio ? " · " + esc(f.anio) : ""}</text>
-    ${textoCentrado(tituloCorto(f.titulo), { y: 915, max: 20, tam: 62, min: 36 })}
-    <text x="400" y="972" text-anchor="middle" font-family="${F_UI}" font-size="22" letter-spacing="3" fill="#a8a094">${esc((f.tipo || "").toUpperCase().slice(0, 44))}</text>
   ` + acabado());
 }
 
@@ -310,8 +299,6 @@ function organizacion(id, f) {
     <g fill="${tono(c, -0.55)}" stroke="${tono(c, 0.45)}" stroke-width="10">${insignia}</g>
     <g fill="none" stroke="${tono(c, 0.2)}" stroke-width="3" opacity=".7" transform="translate(400 440) scale(.88) translate(-400 -440)">${insignia}</g>
     <text x="400" y="${440 + t * 0.35}" text-anchor="middle" font-family="${F_TITULO}" font-size="${t}" font-weight="900" letter-spacing="6" fill="#f2ecdf">${esc(s)}</text>
-    ${textoCentrado(f.titulo, { y: 820, max: 20, tam: 58, min: 34 })}
-    <text x="400" y="960" text-anchor="middle" font-family="${F_UI}" font-size="22" font-style="italic" letter-spacing="2" fill="#a8a094">${esc(lema.length > 52 ? lema.slice(0, 50) + "…" : lema)}</text>
   ` + acabado());
 }
 
@@ -343,9 +330,6 @@ function ubicacion(id, f) {
     <g transform="translate(700 110)" fill="none" stroke="${tono(c, 0.5)}" stroke-width="2"><circle r="40"/><path d="M0 -52 L10 0 L0 52 L-10 0 Z" fill="${tono(c, 0.3)}"/></g><text x="700" y="64" text-anchor="middle" font-family="${F_MONO}" font-size="18" fill="${tono(c, 0.6)}">N</text>
     <text x="60" y="110" font-family="${F_MONO}" font-size="22" letter-spacing="4" fill="${tono(c, 0.6)}">${esc(lat)}  ${esc(lng)}</text>
     <text x="60" y="140" font-family="${F_MONO}" font-size="18" letter-spacing="4" fill="#a8a094">${esc(((f.region || f.pais || "") + "").toUpperCase().slice(0, 38))}</text>
-    <rect x="0" y="790" width="${W}" height="210" fill="#050506" opacity=".72"/>
-    ${textoCentrado(f.titulo, { y: 880, max: 20, tam: 60, min: 34 })}
-    <text x="400" y="975" text-anchor="middle" font-family="${F_UI}" font-size="22" letter-spacing="3" fill="#a8a094">${esc(((f.tipo || "") + (f.anio ? " · " + f.anio : "")).toUpperCase().slice(0, 46))}</text>
   ` + acabado());
 }
 

@@ -11,6 +11,4 @@
     <g fill="#5f480e" stroke="#e7cb84" stroke-width="10"><circle cx="400" cy="440" r="250"/></g>
     <g fill="none" stroke="#ddb34d" stroke-width="3" opacity=".7" transform="translate(400 440) scale(.88) translate(-400 -440)"><circle cx="400" cy="440" r="250"/></g>
     <text x="400" y="481.3" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="118" font-weight="900" letter-spacing="6" fill="#f2ecdf">STAR</text>
-    <text x="400" y="820" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', Georgia, 'Times New Roman', serif" font-size="58" font-weight="900" letter-spacing="4" fill="#f2ecdf">S.T.A.R.S.</text>
-    <text x="400" y="960" text-anchor="middle" font-family="Oswald, 'Arial Narrow', 'Segoe UI', Arial, sans-serif" font-size="22" font-style="italic" letter-spacing="2" fill="#a8a094">Special Tactics And Rescue Service</text>
   <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>
