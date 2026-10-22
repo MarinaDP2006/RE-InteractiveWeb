@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="HAOS"><title>HAOS</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#45304f"/><stop offset=".6" stop-color="#17101b"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="39"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#80658e" stop-opacity=".55"/><stop offset="1" stop-color="#35253d" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#a692af" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M432.9 365 Q512.4 255 506.3 130.6" stroke-width="22.6"/><path d="M507.9 491.2 Q636.1 521.3 653.8 519.9" stroke-width="23.7"/><path d="M299.7 515.2 Q155.1 538 63.8 621.7" stroke-width="19.5"/><path d="M498.9 518.2 Q611.7 616.1 712.2 622.4" stroke-width="17.3"/></g>
+      <path d="M531.5 498.6 Q537.9 527.1 516 545.6 Q494.2 564.2 473.3 580.3 Q452.4 596.5 426.2 604.7 Q400 612.9 372.2 608.5 Q344.5 604.1 323.9 585.4 Q303.3 566.7 277.1 549.2 Q250.8 531.8 246.5 500.9 Q242.3 470 263.9 446.3 Q285.5 422.6 290.6 394.1 Q295.6 365.6 325.4 363.8 Q355.2 361.9 377.6 340.3 Q400 318.7 426.6 330.2 Q453.2 341.7 465.3 367.1 Q477.4 392.6 504.5 404.1 Q531.5 415.5 528.3 442.8 Q525.2 470 531.5 498.6Z" fill="#08080a" opacity=".95"/>
+      <circle cx="375.6" cy="451.9" r="9" fill="#e9e4eb"/><circle cx="433.9" cy="449.3" r="6" fill="#e9e4eb"/>
+      <g fill="#fff" opacity=".25"><circle cx="465.9" cy="265.7" r="9.3"/><circle cx="257.1" cy="387.8" r="5.5"/><circle cx="544.9" cy="564" r="8.6"/><circle cx="477.5" cy="748.6" r="4.4"/><circle cx="346.8" cy="279.6" r="7.7"/><circle cx="274.2" cy="672.1" r="7.3"/><circle cx="314.7" cy="710.4" r="3.9"/><circle cx="380.9" cy="487" r="6.4"/><circle cx="458.2" cy="527.7" r="5.3"/><circle cx="512" cy="709.4" r="7.4"/><circle cx="552.5" cy="262.5" r="9.1"/><circle cx="240.4" cy="240.4" r="2.1"/><circle cx="522.1" cy="606.7" r="8.1"/><circle cx="525.8" cy="247" r="2.7"/><circle cx="545.3" cy="628.8" r="8.3"/><circle cx="375.3" cy="535.6" r="5"/><circle cx="563.9" cy="468.2" r="4.7"/><circle cx="413.5" cy="606.8" r="2.7"/><circle cx="520.6" cy="388" r="10.8"/><circle cx="471" cy="291.1" r="4.2"/><circle cx="254.8" cy="231.5" r="7.8"/><circle cx="353.1" cy="552.9" r="9.4"/><circle cx="539.6" cy="270.4" r="3.1"/><circle cx="505.8" cy="261.1" r="6.6"/><circle cx="468" cy="479.6" r="9.3"/><circle cx="249.4" cy="694.7" r="6.6"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#9e89a9" stroke-width="4" opacity=".6"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>

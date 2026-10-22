@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Garrador"><title>Garrador</title><defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#3b3b3b"/><stop offset=".6" stop-color="#141414"/><stop offset="1" stop-color="#050506"/></radialGradient>
+    <radialGradient id="vineta" cx="50%" cy="50%" r="72%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".85"/></radialGradient>
+    <filter id="grano" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="74"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .09 0"/></filter>
+    <filter id="brillo"><feGaussianBlur stdDeviation="14"/></filter>
+    <linearGradient id="liquido" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#737373" stop-opacity=".55"/><stop offset="1" stop-color="#2d2d2d" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="vidrio" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/><stop offset=".85" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <clipPath id="tanque"><rect x="210" y="150" width="380" height="640" rx="60"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#fondo)"/>
+    <rect x="180" y="100" width="440" height="60" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <rect x="180" y="780" width="440" height="70" rx="10" fill="#1a1a1f" stroke="#2c2c34" stroke-width="3"/>
+    <g clip-path="url(#tanque)">
+      <rect x="210" y="150" width="380" height="640" fill="url(#liquido)"/>
+      <circle cx="400" cy="470" r="200" fill="#9c9c9c" opacity=".35" filter="url(#brillo)"/>
+      <g stroke="#08080a" fill="none" stroke-linecap="round" opacity=".92"><path d="M435.2 574.2 Q461.2 740.4 516.3 814.6" stroke-width="28.7"/><path d="M488.3 535.5 Q654.6 672.9 682.9 679.9" stroke-width="24"/><path d="M428.7 576.2 Q386.3 639.8 473.8 743.4" stroke-width="17.8"/><path d="M312.7 403.1 Q307.2 409.6 228.9 338.9" stroke-width="19.2"/><path d="M387.1 579.2 Q342.2 704.6 371.4 712.5" stroke-width="30.5"/><path d="M496.9 417.9 Q637.1 384.8 716.7 299.8" stroke-width="17.1"/><path d="M327.1 552.4 Q332.2 645.9 191.1 705.9" stroke-width="23.2"/><path d="M498.2 420.4 Q619.4 382.8 710 313.3" stroke-width="25.1"/></g>
+      <path d="M522.2 495.9 Q525.2 521.9 509.3 542.7 Q493.5 563.5 469.9 572.7 Q446.3 581.9 423.2 593 Q400 604.2 375.3 596.7 Q350.6 589.2 336.3 568.6 Q322 548 304.5 532.4 Q287 516.8 288.6 493.4 Q290.2 470 279.2 442.7 Q268.1 415.4 288.5 397.1 Q308.8 378.8 329.8 365.1 Q350.8 351.3 375.4 331.6 Q400 311.9 428.8 321.4 Q457.6 330.9 484.7 344.6 Q511.7 358.3 517.7 388.5 Q523.7 418.8 521.5 444.4 Q519.2 470 522.2 495.9Z" fill="#08080a" opacity=".95"/>
+      <circle cx="381.3" cy="454.7" r="9" fill="#e6e6e6"/><circle cx="427.2" cy="454.7" r="6" fill="#e6e6e6"/>
+      <g fill="#fff" opacity=".25"><circle cx="498.2" cy="600.8" r="10.3"/><circle cx="474.8" cy="269.5" r="2.3"/><circle cx="371.5" cy="738.5" r="8.2"/><circle cx="410.2" cy="475.4" r="6.4"/><circle cx="401.3" cy="417.8" r="9.9"/><circle cx="326.6" cy="707" r="10.1"/><circle cx="534.7" cy="580.3" r="10.3"/><circle cx="231" cy="474.1" r="3.2"/><circle cx="315.5" cy="352.4" r="3.2"/><circle cx="543.6" cy="440.5" r="8.5"/><circle cx="379.5" cy="595.3" r="3.4"/><circle cx="454.9" cy="582.3" r="9.6"/><circle cx="471.9" cy="463.8" r="3.7"/><circle cx="340.5" cy="472.1" r="7.6"/><circle cx="448.1" cy="232.8" r="9.6"/><circle cx="250.9" cy="488.5" r="3.7"/><circle cx="482.5" cy="475.1" r="10.5"/><circle cx="391.7" cy="320.5" r="6.8"/><circle cx="479.9" cy="704.4" r="9.2"/><circle cx="505.3" cy="723" r="2.1"/><circle cx="283.7" cy="222.5" r="5.3"/><circle cx="564" cy="449.8" r="4.8"/><circle cx="548.4" cy="646.6" r="5.9"/><circle cx="330.8" cy="420" r="9.6"/><circle cx="415.1" cy="678.4" r="3.3"/><circle cx="457.2" cy="264" r="10.6"/></g>
+      <rect x="210" y="150" width="380" height="640" fill="url(#vidrio)"/>
+    </g>
+    <rect x="210" y="150" width="380" height="640" rx="60" fill="none" stroke="#949494" stroke-width="4" opacity=".6"/>
+  <rect width="800" height="1000" filter="url(#grano)"/><rect width="800" height="1000" fill="url(#vineta)"/></svg>
