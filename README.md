@@ -108,7 +108,7 @@ La aplicación valida el ID token en Java, crea una cookie y protege expedientes
 
 ## 3. Publicar en Render
 
-El repositorio incluye **`Dockerfile`** y **`render.yaml`**. Render debe ejecutar **un servicio web Docker**, no un Static Site: la wiki necesita la API Java para servir contenido y validar a los miembros.
+El repositorio incluye **`Dockerfile`** y **`render.yaml`** (despliegue opcional; también hay alternativas en la sección 7). Render debe ejecutar **un servicio web Docker**, no un Static Site: la wiki necesita la API Java para servir contenido y validar a los miembros.
 
 1. Abre [Render Dashboard](https://dashboard.render.com/) e inicia sesión.
 2. Conecta tu cuenta GitHub a Render, otorgando acceso al repositorio `MarinaDP2006/RE-InteractiveWeb`.
@@ -136,7 +136,70 @@ git pull origin main
 
 Edita archivos, verifica la web localmente y sube tus cambios mediante Git. Los pushes a `main` pueden desencadenar un redeploy si activas Auto-Deploy en Render.
 
-## 5. Estado de trabajo
+
+## 6. Guardar usuarios y sesiones de Google sin perderlos al reiniciar
+
+El proyecto ahora incluye `AlmacenMiembros.java` y `database/supabase.sql`. **No necesitas una base de datos para navegar por la wiki**; solo para conservar los usuarios y las sesiones cuando publicas el servidor.
+
+### Crear la base de datos gratuita
+
+1. Regístrate en [Supabase](https://supabase.com/dashboard) y crea un proyecto **Free**. Anota la contraseña de la base de datos en un gestor privado, sin subirla al repositorio.
+2. Dentro del proyecto, abre **SQL Editor**.
+3. Copia y ejecuta **todo** el archivo `database/supabase.sql`. Crea las tablas `miembros` y `sesiones` y activa restricciones de acceso.
+4. Busca **Project URL** en **Project Settings → API**. Tendrá el formato `https://identificador.supabase.co`.
+5. En el apartado de claves del proyecto, copia la clave secreta **service_role** (en proyectos nuevos puede aparecer como clave secreta del servidor; para esta implementación usa la clave legacy `service_role` compatible con la cabecera Bearer). **Nunca la escribas en HTML ni JavaScript, ni en un commit.** Es una credencial privada con permisos amplios.
+
+### Configurar el servidor Java
+
+En PowerShell de Windows, solo para la terminal actual:
+
+```powershell
+$env:GOOGLE_CLIENT_ID = "TU_CLIENT_ID_DE_GOOGLE.apps.googleusercontent.com"
+$env:SUPABASE_URL = "https://TU-PROYECTO.supabase.co"
+$env:SUPABASE_SERVICE_ROLE_KEY = "TU_CLAVE_PRIVADA_SERVICE_ROLE"
+cmd /c arrancar-web.bat
+```
+
+Con esas tres variables el servidor Java validará las credenciales de Google, registrará el perfil (identificador Google, correo, nombre y foto), creará una sesión aleatoria de 30 días y guardará únicamente el **hash SHA-256** de la cookie de sesión en Supabase. Cuando cierres sesión se elimina el registro correspondiente; tras reiniciar el servidor el lector puede continuar con su sesión mientras siga vigente.
+
+Si no se establecen `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY`, el proyecto conserva su funcionamiento **local de desarrollo**, con `datos/miembros.json` y sesiones en memoria. **No usar este modo local en un hosting sin disco persistente.** Si una de las dos variables está mal configurada, el servicio dará error en vez de simular un acceso persistente.
+
+En el hosting que elijas, añade las tres variables como **secretos/variables del servicio**, no al repositorio. Para proteger a los visitantes, sirve la aplicación bajo HTTPS.
+
+### Qué información se conserva
+
+- Tabla `miembros`: identificador inmutable `sub` de Google, correo verificado, nombre, foto, alta y último acceso.
+- Tabla `sesiones`: hash del token aleatorio de sesión, identificador del usuario y fecha de caducidad.
+- **No** se guardan contraseñas de Google, tokens de acceso de Google, ni imágenes de los usuarios como archivos; solo la URL de su foto.
+
+**Estado:** la integración está implementada en código, pero **todavía no se ha probado contra un proyecto Supabase real** ni auditado para un lanzamiento público. Supabase Free puede pausar proyectos sin actividad y tiene límites de recursos. La protección frente a solicitudes falsificadas (CSRF), la verificación completa del origen y los controles antiabuso siguen pendientes.
+
+## 7. Sin Render: alternativa con más disponibilidad
+
+La opción que mejor conserva el backend Java es **Oracle Cloud Always Free**. Requiere crear una máquina virtual Linux, instalar Java 21 o Docker, configurar un dominio y HTTPS con proxy inverso, y arrancar la aplicación como servicio de sistema. No ofrece una garantía de funcionamiento ininterrumpido: Oracle documenta la posible recuperación de máquinas consideradas inactivas. El uso fuera de los recursos Always Free puede tener coste.
+
+Pasos de infraestructura:
+
+1. Crear cuenta en [Oracle Cloud](https://www.oracle.com/cloud/free/) y seleccionar exclusivamente recursos con etiqueta **Always Free**.
+2. Crear una máquina virtual elegible, añadir la clave SSH y configurar las reglas de red necesarias.
+3. Clonar el repositorio en la VM: `git clone https://github.com/MarinaDP2006/RE-InteractiveWeb.git`.
+4. Instalar Docker y ejecutar la imagen creada con el `Dockerfile`, o instalar Java 21 y compilar con `javac`.
+5. Guardar `GOOGLE_CLIENT_ID`, `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` en variables protegidas del servicio; no enviarlas a GitHub.
+6. Configurar dominio y proxy HTTPS (Caddy o Nginx con certificado TLS), y registrar ese **origen HTTPS exacto** en Google Cloud.
+7. Activar inicio automático, reinicios tras errores, monitorización y copias de seguridad de los datos. Confirmar que la conexión con Supabase funcione desde la VM.
+8. Abrir el dominio y verificar inicio de sesión, fichas privadas, salida y persistencia tras reiniciar el proceso.
+
+**Otra opción** es Cloudflare Workers Free con una base de datos D1: suele responder sin arranque de una máquina virtual, pero requiere **reescribir** la API Java en un entorno compatible con Workers; el `Dockerfile` de este proyecto no se ejecuta directamente allí.
+
+## 8. Registro de cambios realizados en estos repositorios
+
+**Web:** portada simplificada, navegación directa, feedback de acceso, validación de ID de Google en Java, protección de fichas ocultas, cookie de sesión segura en Render HTTPS, scripts locales que conservan las variables de entorno, Dockerfile/render.yaml opcionales y capa persistente Supabase para perfiles y sesiones. Imágenes y rutas de recursos conservadas.
+
+**Juego Grietas & Gears:** Windows como única distribución prevista, cambios de atmósfera y cámara 3D y mejora de colisiones, con el instalador y las rutas narrativas **todavía pendientes de pruebas completas**. Las imágenes de ambos repositorios se conservan.
+
+**Sobre borrar el proyecto:** eliminar todos los archivos salvo este README también borraría el programa, los recursos visuales y la aplicación necesaria para desplegar y probar el login. Por eso el repositorio principal sigue conteniendo el código y las imágenes. El tutorial permite recrearlo desde cero en un ordenador limpio sin perderlos.
+
+## 9. Estado de trabajo
 
 Consulta [TAREAS-PENDIENTES.md](TAREAS-PENDIENTES.md) para las tareas terminadas y pendientes de verificación.
 
