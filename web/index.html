@@ -21,21 +21,29 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Crimson+Pro:ital@0;1&family=Oswald:wght@400;500;600&family=Share+Tech+Mono&display=swap">
   <link rel="stylesheet" href="comun/estilos.css">
   <style>
-    body { overflow: hidden; height: 100vh; height: 100dvh; }
-    .portal { position: relative; z-index: 2; height: 100%; display: grid; grid-template-rows: auto 1fr auto; }
+    body { overflow-x: hidden; overflow-y: auto; min-height: 100vh; }
+    .saltar-portal { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 10px 16px; background: var(--rojo); color: #fff; }
+    .saltar-portal:focus { left: 8px; }
+    .portal-intro { color: var(--texto-suave); max-width: 62ch; padding: 0 12px; font-size: 1rem; line-height: 1.5; }
+    .accesos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 9px; margin: 4px auto 16px; padding: 0 18px; }
+    .accesos a { text-decoration: none; color: var(--texto); background: rgba(24,24,30,.88); border: 1px solid var(--borde); border-radius: 999px; padding: .45em 1.15em; font: 500 .88rem var(--f-ui); letter-spacing: .04em; }
+    .accesos a:hover, .accesos a:focus-visible { background: var(--rojo-oscuro); border-color: var(--rojo-vivo); outline: 2px solid transparent; }
+    .portal-cta { display: inline-block; margin-top: 14px; padding: .55em 1.1em; border-radius: 6px; color: #fff; background: var(--rojo); text-decoration: none; font: 500 1rem var(--f-ui); }
+    .portal-cta:hover, .portal-cta:focus-visible { background: #a40b25; outline: 2px solid #fff; outline-offset: 3px; }
+    .portal { position: relative; z-index: 2; min-height: 100vh; display: grid; grid-template-rows: auto auto auto 1fr auto; }
     .portal-cab { display: flex; flex-direction: column; align-items: center; padding: 34px 16px 10px; text-align: center; }
-    .portal-cab .logo-umbrella { font-size: 74px; animation: girarLento 60s linear infinite; filter: drop-shadow(0 0 30px rgba(200, 16, 46, .5)); }
+    .portal-cab .logo-umbrella { font-size: 74px;  filter: drop-shadow(0 0 30px rgba(200, 16, 46, .5)); }
     @keyframes girarLento { to { transform: rotate(360deg); } }
     .portal-cab h1 { margin: 14px 0 0; font: 900 clamp(1.8rem, 5vw, 3.4rem)/1 var(--f-titulo); letter-spacing: .22em; }
     .portal-cab p { margin: 6px 0 0; font: .78rem var(--f-mono); letter-spacing: .5em; color: var(--rojo-vivo); }
 
-    .puertas { display: flex; gap: 2px; padding: 22px clamp(12px, 3vw, 40px); min-height: 0; }
+    .puertas { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; padding: 12px clamp(12px, 3vw, 40px) 26px; min-height: 420px; }
     .puerta {
-      position: relative; flex: 1; display: flex; align-items: flex-end; text-decoration: none; overflow: hidden; isolation: isolate;
-      border: 1px solid #1d1d24; border-radius: 10px; transition: flex 0.8s cubic-bezier(.2, .7, .2, 1), border-color .4s, box-shadow .4s;
+      position: relative; display: flex; align-items: flex-end; text-decoration: none; overflow: hidden; isolation: isolate;
+      border: 1px solid #1d1d24; border-radius: 10px; transition: border-color .25s, box-shadow .25s;
       min-height: 0;
     }
-    .puerta:hover, .puerta:focus-visible { flex: 1.5; border-color: var(--rojo); box-shadow: 0 0 60px rgba(200, 16, 46, .25); outline: none; }
+    .puerta:hover, .puerta:focus-visible { border-color: var(--rojo); box-shadow: 0 0 60px rgba(200, 16, 46, .25); outline: none; }
     .puerta-fondo { position: absolute; inset: -3%; z-index: -2; background: var(--img) center / cover; filter: saturate(.45) brightness(.38) contrast(1.2); transform: scale(1.05); transition: transform 6s ease, filter .8s; }
     .puerta:hover .puerta-fondo { transform: scale(1.14); filter: saturate(.8) brightness(.55) contrast(1.15); }
     .puerta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(5, 5, 6, .95) 5%, rgba(5, 5, 6, .2) 60%, rgba(5, 5, 6, .55)); }
@@ -47,23 +55,39 @@
     .portal-pie { padding: 10px 16px 18px; text-align: center; font: .76rem var(--f-ui); letter-spacing: .1em; color: var(--texto-tenue); }
     .portal-pie b { color: var(--texto-suave); }
     @media (max-width: 760px) {
-      body { overflow: auto; height: auto; }
-      .puertas { flex-direction: column; }
-      .puerta { min-height: 38vh; }
-      .puerta:hover { flex: 1; }
+      .portal-cab { padding-top: 28px; }
+      .portal-cab h1 { letter-spacing: .08em; }
+      .portal-cab p { letter-spacing: .17em; }
+      .puertas { grid-template-columns: 1fr; min-height: 0; }
+      .puerta { min-height: 240px; }
+      .puerta h2 { font-size: clamp(1.6rem, 7vw, 2.3rem); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .portal-cab .logo-umbrella, .puerta-fondo { animation: none !important; transition: none !important; }
+      .puerta:hover .puerta-fondo { transform: none; }
     }
   </style>
 </head>
 <body>
+  <a class="saltar-portal" href="#portal-contenido">Saltar al contenido</a>
   <div class="portal">
     <!-- Cabecera: logotipo girando y nombre -->
     <header class="portal-cab">
       <span id="logo"></span>
       <h1>UMBRELLA ARCHIVES</h1>
       <p>RESIDENT EVIL · WIKI · ARCHIVO</p>
+      <div class="portal-intro">Explora el universo Resident Evil: personajes, juegos, criaturas y acontecimientos, en un solo lugar.</div>
+      <a class="portal-cta" href="/wiki/">Explorar la wiki →</a>
     </header>
+    <nav class="accesos" aria-label="Accesos rápidos">
+      <a href="/wiki/#/s/juegos">Juegos</a>
+      <a href="/wiki/#/s/personajes">Personajes</a>
+      <a href="/wiki/#/s/criaturas">Bestiario</a>
+      <a href="/wiki/#/cronologia">Cronología</a>
+      <a href="/wiki/#/mapa">Mapa</a>
+    </nav>
     <!-- Las tres puertas de entrada -->
-    <main class="puertas">
+    <main class="puertas" id="portal-contenido">
       <a class="puerta" id="puerta-wiki" href="/wiki/">
         <div class="puerta-fondo" style="--img:url('/img/escenarios/re2_vestibulo.webp')"></div>
         <div class="puerta-in">
