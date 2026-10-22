@@ -4,6 +4,18 @@ Proyecto final individual: wiki de *Resident Evil* con Java 21, HTML, CSS y Java
 
 > **Imágenes**: se conservan todas las imágenes y recursos gráficos existentes. No es necesario descargarlas de fuentes externas si clonas el repositorio completo.
 
+## Pruebas automáticas de la web
+
+El archivo `scripts/smoke-test.py` prueba, sin instalar paquetes Python adicionales, que el servidor Java responde en la portada, la wiki y la API, que las rutas inválidas fallan correctamente y que los expedientes ocultos permanecen protegidos para visitantes sin sesión. GitHub Actions ejecuta estas pruebas cada vez que se actualiza `main`. No sustituyen las pruebas manuales del inicio de sesión con Google, que siguen pendientes.
+
+Para ejecutarlas localmente, arranca el servidor en el puerto 18080 en una terminal y ejecuta en otra:
+
+```powershell
+$env:PORT = '18080'
+# Arranca el servidor Java con arrancar-web.bat o java -cp build es.umbrella.Servidor .
+python scripts/smoke-test.py
+```
+
 ## 1. Crear y arrancar el proyecto desde cero (Windows y VS Code)
 
 Esta guía sirve para preparar un ordenador nuevo, descargar el código del proyecto y ponerlo a funcionar desde cero. **No hace falta crear una aplicación Angular, instalar Node.js, Maven ni ninguna base de datos para la versión local.**
