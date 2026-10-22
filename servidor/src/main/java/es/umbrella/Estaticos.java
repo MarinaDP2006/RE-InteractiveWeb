@@ -53,8 +53,9 @@ final class Estaticos implements HttpHandler {
 
     private final Path raiz;
 
-    Estaticos(Path raiz) {
-        this.raiz = raiz;
+    /** Fija la raíz real del sitio para evitar escapes mediante enlaces simbólicos. */
+    Estaticos(Path raiz) throws IOException {
+        this.raiz = raiz.toRealPath();
     }
 
     @Override
@@ -110,12 +111,15 @@ final class Estaticos implements HttpHandler {
         }
     }
 
+    /** Resuelve archivos únicamente dentro de web/, incluso si existen enlaces simbólicos. */
     private Path resolver(String ruta) {
         try {
             String decodificada = java.net.URLDecoder.decode(ruta.replace("+", "%2B"), StandardCharsets.UTF_8);
             Path candidato = raiz.resolve(decodificada.substring(1)).normalize();
-            return candidato.startsWith(raiz) ? candidato : null;
-        } catch (IllegalArgumentException e) { // incluye InvalidPathException
+            if (!candidato.startsWith(raiz) || !Files.exists(candidato)) return null;
+            Path real = candidato.toRealPath();
+            return real.startsWith(raiz) ? real : null;
+        } catch (IllegalArgumentException | IOException e) { // incluye rutas ilegales y enlaces rotos
             return null;
         }
     }
