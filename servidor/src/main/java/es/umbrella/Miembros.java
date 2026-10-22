@@ -38,6 +38,7 @@ final class Miembros {
     static final int DURACION_SEG = 30 * 24 * 3600;
 
     private final String clientId;
+    private final AlmacenMiembros persistente = new AlmacenMiembros();
     private final Path archivo;
     private final HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(8)).build();
     private final SecureRandom azar = new SecureRandom();
@@ -50,9 +51,9 @@ final class Miembros {
     Miembros(Path carpetaDatos) throws IOException {
         String id = System.getenv("GOOGLE_CLIENT_ID");
         this.clientId = id == null ? "" : id.trim();
-        Files.createDirectories(carpetaDatos);
+        if (!persistente.activo()) Files.createDirectories(carpetaDatos);
         this.archivo = carpetaDatos.resolve("miembros.json");
-        if (Files.exists(archivo)) {
+        if (!persistente.activo() && Files.exists(archivo)) {
             for (Map.Entry<String, Object> e : Json.leerObjeto(Files.readString(archivo, StandardCharsets.UTF_8)).entrySet()) {
                 if (e.getValue() instanceof Map<?, ?> v) {
                     registro.put(e.getKey(), (Map<String, Object>) v);
@@ -103,16 +104,21 @@ final class Miembros {
         m.put("nombre", Json.texto(info, "name", correo));
         m.put("foto", Json.texto(info, "picture", ""));
         m.put("ultimoAcceso", Instant.now().toString());
-        guardar();
-
         String token = aleatorio();
-        sesiones.put(token, new Object[] {id, System.currentTimeMillis() + DURACION_SEG * 1000L});
+        if (persistente.activo()) {
+            persistente.guardarMiembro(id, m);
+            persistente.guardarSesion(token, id, Instant.now().plusSeconds(DURACION_SEG));
+        } else {
+            guardar();
+            sesiones.put(token, new Object[] {id, System.currentTimeMillis() + DURACION_SEG * 1000L});
+        }
         return token;
     }
 
     /** Miembro con sesión abierta en esta petición (nombre y foto), o null. */
-    Map<String, Object> actual(Peticion p) {
+    Map<String, Object> actual(Peticion p) throws IOException {
         String c = p.cookie(COOKIE);
+        if (persistente.activo()) return persistente.obtenerMiembro(c);
         Object[] s = c == null ? null : sesiones.get(c);
         if (s == null || (long) s[1] < System.currentTimeMillis()) {
             return null;
@@ -128,8 +134,12 @@ final class Miembros {
     }
 
     /** Cierra la sesión de esta petición. */
-    void salir(Peticion p) {
+    void salir(Peticion p) throws IOException {
         String c = p.cookie(COOKIE);
+        if (persistente.activo()) {
+            persistente.revocar(c);
+            return;
+        }
         if (c != null) {
             sesiones.remove(c);
         }
