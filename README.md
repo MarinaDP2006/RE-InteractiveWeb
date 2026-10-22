@@ -3,12 +3,9 @@
 
 **Estado actual:** este repositorio conserva el diseño del portal y de la wiki, los archivos **HTML, CSS y todas las imágenes**. La versión en la rama `main` es **solo una maqueta visual**: no hay JavaScript funcional, servidor Java, API, registro, búsqueda real ni base de datos. No se deben introducir credenciales reales en estas pantallas.
 
-El proyecto anterior con backend Java, contenido JSON, Docker, Render y scripts se ha archivado íntegro en la rama [`archivo-backend-previo-maqueta-2026-10`](https://github.com/MarinaDP2006/RE-InteractiveWeb/tree/archivo-backend-previo-maqueta-2026-10). La rama `main` es el punto de partida limpio para reconstruirlo.
-
 > **Regla permanente:** no borrar ni sustituir recursos en `web/img/`, los archivos `.html` actuales, `web/comun/estilos.css`, `web/wiki/wiki.css` ni `web/wiki/maqueta.css`. El objetivo es reutilizar el aspecto actual, no rehacerlo con un tema genérico.
 
 ## Parte A. Ver el diseño actual en Windows y Visual Studio Code
-
 1. Instala [Visual Studio Code](https://code.visualstudio.com/) y [Git](https://git-scm.com/downloads).
 2. Abre PowerShell y ejecuta:
 
@@ -25,7 +22,6 @@ code .
 No hay que instalar Node.js ni Java para **ver la maqueta**, y no hay que arrancar Docker ni un servidor Java.
 
 ### Páginas que puedes previsualizar
-
 - `web/index.html`: portal original adaptado a la maqueta.
 - `web/wiki/index.html`: portada de secciones.
 - `web/wiki/juegos.html`, `personajes.html`, `criaturas.html`, `virus.html`, `organizaciones.html`, `lugares.html` y `peliculas.html`.
@@ -34,7 +30,6 @@ No hay que instalar Node.js ni Java para **ver la maqueta**, y no hay que arranc
 Las tarjetas contienen **textos de muestra**, conservan imágenes del repositorio y enlazan por HTML. Ni la búsqueda ni el registro almacenan información.
 
 ## Parte B. Arquitectura definitiva que vamos a construir
-
 La nueva aplicación se hará desde cero y **en carpetas nuevas**, conservando `web/` como la referencia visual:
 
 ```RE-InteractiveWeb/
@@ -54,9 +49,7 @@ La nueva aplicación se hará desde cero y **en carpetas nuevas**, conservando `
 Es importante: *gratis* significa **plan gratuito sujeto a límites y condiciones**, no recursos ilimitados de por vida. Nunca habilites facturación ni una opción que genere costes sin revisarla antes.
 
 ## Parte C. Instalar herramientas en VS Code
-
 Instala, de fuentes oficiales:
-
 1. Git y Visual Studio Code.
 2. **Node.js LTS** con npm. Verifica `node --version` y `npm --version`.
 3. **JDK 21** de Eclipse Temurin. Verifica `java -version` y `javac -version`.
@@ -66,7 +59,6 @@ Instala, de fuentes oficiales:
 No hace falta instalar MySQL local para empezar. La base de datos inicial será Cloud Firestore, con cuota gratuita y persistencia gestionada.
 
 ## Parte D. Crear Angular desde cero
-
 Abre la terminal integrada de VS Code en la raíz del repositorio:
 
 ```powershell
@@ -117,13 +109,11 @@ export const routes: Routes = [
 **Nota:** Angular puede cambiar los nombres de sus clases y archivos según la versión. Comprueba las clases generadas antes de copiar los imports.
 
 ### Conservar el diseño antiguo
-
 Usa `web/index.html`, `web/wiki/index.html`, `web/wiki/maqueta.css` y el resto de CSS como referencia para crear las plantillas y los estilos SCSS de Angular. Copia los recursos desde `web/img/` a la carpeta pública de Angular (habitualmente `public/img/`) sin borrar los originales. No copies `/api/` ni scripts obsoletos: el diseño estático **no tiene backend**.
 
 Para imágenes en Angular usarás rutas como `/img/escenarios/re2_vestibulo.webp`. Comienza por el componente de portada y después reproduce las tarjetas, filtros, ficha, cronología y mapa.
 
 ## Parte E. Registro e inicio de sesión gratis con Firebase
-
 1. Crea un proyecto en [Firebase Console](https://console.firebase.google.com/). Elige **Spark (sin coste)** y revisa la cuota disponible.
 2. Registra una aplicación web y copia la configuración pública que muestra Firebase.
 3. En **Authentication → Sign-in method**, habilita **Correo electrónico/contraseña**. No actives Google hasta que lo decidamos.
@@ -137,7 +127,6 @@ npm install firebase @angular/fire
 Puedes inicializar con AngularFire usando las instrucciones actuales de su documentación oficial, ya que sus APIs pueden cambiar.
 
 ### Modelo de datos recomendado
-
 ```text
 usuarios/{uid}
   nombre: string
@@ -149,7 +138,6 @@ usuarios/{uid}
 No almacenes contraseñas en Firestore: **Firebase Authentication administra las contraseñas**, no tu aplicación.
 
 ### Reglas mínimas para perfiles privados
-
 ```text
 rules_version = '2';
 service cloud.firestore {
@@ -164,16 +152,10 @@ service cloud.firestore {
 Estas reglas son un punto de partida. Antes de publicar habrá que limitar campos, validar tipos, separar escrituras administrativas y revisar las consultas.
 
 ### Flujo de acceso
-
-En `acceso`: formularios de registro, entrar, recuperar contraseña y cerrar sesión. Valida campos y errores; guarda el perfil bajo el `uid` que proporciona Firebase; usa guardias Angular para páginas privadas; **nunca confíes solo en los guardias del navegador para proteger datos**, porque la seguridad real está en las reglas de Firestore.
-
-Firebase puede tener límites de usuarios, operaciones y tráfico. Comprueba siempre las cuotas del plan Spark antes de activar funcionalidades adicionales.
+En `acceso`: formularios de registro, entrar, recuperar contraseña y cerrar sesión. Valida campos y errores; guarda el perfil bajo el `uid` que proporciona Firebase; usa guardias Angular para páginas privadas; **nunca confíes solo en los guardias del navegador para proteger datos**, porque la seguridad real está en las reglas de Firestore. Firebase puede tener límites de usuarios, operaciones y tráfico. Comprueba siempre las cuotas del plan Spark antes de activar funcionalidades adicionales.
 
 ## Parte F. API Node.js (solo si se necesita)
-
-Angular necesita Node para compilar, **pero no exige un servidor Node en producción** si las operaciones se hacen de forma segura desde Firebase y el contenido es estático.
-
-Para una API de administración propia en el futuro:
+Angular necesita Node para compilar, **pero no exige un servidor Node en producción** si las operaciones se hacen de forma segura desde Firebase y el contenido es estático. Para una API de administración propia en el futuro:
 
 ```powershell
 cd ..
@@ -196,10 +178,9 @@ app.listen(port, '0.0.0.0', () => console.log('API en puerto ' + port));
 
 Ejecuta `node server.js`. Antes de añadir rutas de administración, implementa verificación de tokens de Firebase, autorización de roles, CORS restringido, rate limiting, validación de entradas y registro seguro de errores.
 
-Si realmente necesitas un servidor remoto, **Render Free** puede ejecutar Node dentro de sus condiciones y cuotas, pero se suspende por inactividad y no es adecuado para tareas siempre encendidas. **No es necesario para la primera versión**.
+Si  necesitas un servidor remoto, **Render Free** puede ejecutar Node dentro de sus condiciones y cuotas, pero se suspende por inactividad y no es adecuado para tareas siempre encendidas. **No es necesario para la primera versión**.
 
 ## Parte G. Aplicación Windows con JavaFX
-
 La aplicación JavaFX tendrá su propia ventana para gestionar el proyecto: botones **Abrir Umbrella Archives**, **Estado del sitio**, **Abrir carpeta del proyecto** y **Configuración**. El inicio de sesión seguirá ocurriendo de forma segura en Angular/Firebase, no mediante contraseñas guardadas por JavaFX.
 
 1. Comprueba JDK 21 y Maven.
@@ -242,7 +223,6 @@ public class UmbrellaLauncher extends Application {
 La URL de ejemplo debe sustituirse **después del despliegue real**. El navegador del sistema garantiza mejor compatibilidad con Angular moderno y el inicio de sesión que un `WebView` antiguo. En una fase posterior se puede evaluar `javafx-web`, pero hay que probar sus limitaciones con Firebase.
 
 5. Ejecuta en la carpeta del proyecto JavaFX:
-
 ```powershell
 mvn clean javafx:run
 ```
@@ -254,7 +234,6 @@ mvn clean javafx:run
 ## Parte H. Publicar sin pagar (con límites)
 
 ### Opción recomendada: Angular + Firebase
-
 1. Instala Firebase CLI: `npm install -g firebase-tools`.
 2. Inicia sesión: `firebase login`.
 3. Compila desde `angular-app`: `ng build`.
@@ -266,11 +245,9 @@ mvn clean javafx:run
 El plan Spark tiene cuotas de Hosting, Authentication y Firestore. No añadas productos que exijan facturación sin verificarlo. Si cambias a otro proveedor, Cloudflare Pages Free es una alternativa para los archivos estáticos, mientras Firebase sigue sirviendo el login y los perfiles.
 
 ### ¿Y MySQL?
-
 MySQL es gratuito como software, pero **un servidor MySQL público y persistente no tiene por qué ser gratuito**. Para evitar costes inesperados, empieza con Firestore bajo Spark. Si más adelante necesitas SQL relacional, valora Supabase Free/Postgres u otro proveedor y sus límites; no conectes nunca Angular directamente con una contraseña de base de datos.
 
 ## Parte I. Orden real de construcción
-
 1. Conservar y verificar el diseño HTML/CSS e imágenes.
 2. Instalar herramientas y generar el proyecto Angular.
 3. Migrar pantalla a pantalla sin perder la estética original.
@@ -283,11 +260,6 @@ MySQL es gratuito como software, pero **un servidor MySQL público y persistente
 10. Realizar pruebas de accesibilidad, seguridad, móviles y Windows antes de llamar al proyecto terminado.
 
 ## Sobre Render y la antigua aplicación Java
-
-La maqueta actual **no tiene Dockerfile, render.yaml ni servidor**. El servicio Render antiguo que ejecutaba Java deja de ser compatible con el código nuevo de `main`. Si está conectado con autodespliegue, hay que **desactivar su autodespliegue o sustituirlo por un Static Site** para evitar errores al hacer push. No crees servidores duplicados por inercia.
-
-El backend anterior, incluidos sus archivos y tutoriales, está en la rama de respaldo. No lo utilices como backend público sin revisar su seguridad.
+La maqueta actual **no tiene Dockerfile, render.yaml ni servidor**. El servicio Render antiguo que ejecutaba Java deja de ser compatible con el código nuevo de `main`. Si está conectado con autodespliegue, hay que **desactivar su autodespliegue o sustituirlo por un Static Site** para evitar errores al hacer push. No crees servidores duplicados por inercia. El backend anterior, incluidos sus archivos y tutoriales, está en la rama de respaldo. No lo utilices como backend público sin revisar su seguridad.
 
 ---
-
-Proyecto de fans no oficial y de uso educativo. Resident Evil es propiedad de sus respectivos titulares.
