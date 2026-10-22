@@ -1,6 +1,4 @@
 # UMBRELLA ARCHIVES · Resident Evil
-## Maqueta visual conservada y tutorial para construir la aplicación nueva desde cero
-
 **Estado actual:** este repositorio conserva el diseño del portal y de la wiki, los archivos **HTML, CSS y todas las imágenes**. La versión en la rama `main` es **solo una maqueta visual**: no hay JavaScript funcional, servidor Java, API, registro, búsqueda real ni base de datos. No se deben introducir credenciales reales en estas pantallas.
 
 > **Regla permanente:** no borrar ni sustituir recursos en `web/img/`, los archivos `.html` actuales, `web/comun/estilos.css`, `web/wiki/wiki.css` ni `web/wiki/maqueta.css`. El objetivo es reutilizar el aspecto actual, no rehacerlo con un tema genérico.
