@@ -17,6 +17,18 @@ Actualizado: 22 de octubre de 2026. Estado revisado sobre `main`.
 - [ ] Conectar cuenta Render, crear el servicio y verificar URL real publicada.
 - [ ] Completar seguridad del login y persistencia de miembros en hosting.
 
+## Implementado en esta revisión
+- [x] Clase `AlmacenMiembros.java` para perfiles y sesiones persistentes mediante la API REST de Supabase, guardando hashes de tokens.
+- [x] Integrada la persistencia opcional en `Miembros.java`; respaldo local de desarrollo si no hay configuración.
+- [x] Esquema SQL privado con tablas de miembros y sesiones en `database/supabase.sql`.
+- [x] README ampliado con preparación del proyecto desde cero, Google OAuth, Supabase Free y alojamiento alternativo sin Render.
+- [x] Workflow Java 21 para compilación y comprobación básica de rutas HTTP.
+- [x] Ninguna imagen del proyecto eliminada.
+- [ ] Ejecutar y revisar una compilación de GitHub Actions completa.
+- [ ] Configurar un proyecto real en Supabase y probar persistencia de usuarios, reinicios y cierre de sesión.
+- [ ] Configurar alojamiento siempre disponible dentro de un plan gratuito, sin garantías de uptime.
+- [ ] Auditoría de CSRF, rate limiting, almacenamiento y políticas de privacidad.
+
 ## Pendiente prioritario
 - [ ] Crear/configurar el cliente OAuth 2.0 de Google y establecer `GOOGLE_CLIENT_ID` para el origen real.
 - [ ] Probar en navegador todo el flujo Google: entrar, refrescar, abrir fichas ocultas y salir.
