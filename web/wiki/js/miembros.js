@@ -50,7 +50,7 @@
       pintarBoton();
       Wiki.enrutar();
     } catch (e) {
-      $("#unirse-aviso").textContent = e.message;
+      $("#unirse-aviso").textContent = e?.message || "No se pudo completar el acceso. Inténtalo de nuevo.";
     }
   }
 
@@ -63,7 +63,7 @@
     destino.innerHTML = "";
     if (!clienteGoogle) {
       // Sin configurar en el servidor: no hay botón que mostrar.
-      $("#unirse-aviso").textContent = "Acceso no disponible en este momento.";
+      $("#unirse-aviso").textContent = "El acceso con Google aún no está configurado en este servidor.";
       return;
     }
     try {
@@ -85,16 +85,20 @@
     try {
       await Umbra.api("/api/miembro/salir", {});
     } catch (e) {
-      const aviso = $("#unirse-aviso");
-      if (aviso) aviso.textContent = "No se pudo cerrar la sesión. Inténtalo de nuevo.";
       abrir();
+      const aviso = $("#unirse-aviso");
+      if (aviso) aviso.textContent = "No se pudo cerrar la sesión. Comprueba la conexión e inténtalo de nuevo.";
       return;
     }
     if (window.google?.accounts?.id) google.accounts.id.disableAutoSelect();
     W.miembro = null;
-    await Wiki.cargar();
+    try {
+      await Wiki.cargar();
+      Wiki.enrutar();
+    } catch (error) {
+      console.error("No se pudo actualizar la wiki tras salir:", error);
+    }
     pintarBoton();
-    Wiki.enrutar();
   }
 
   /** Botón de la cabecera: «Únete» sin sesión, «Salir» con sesión. */
