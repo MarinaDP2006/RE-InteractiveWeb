@@ -1,116 +1,12 @@
 <!doctype html>
-<!--
-  ============================================================================
-   UMBRELLA ARCHIVES · Wiki de la saga Resident Evil
-   wiki/index.html — Estructura de la wiki (aplicación de una sola página)
-  ============================================================================
-   Rutas (en el hash de la URL):
-     #/                         portada
-     #/s/<seccion>              listado de una sección (juegos, personajes...)
-     #/f/<seccion>/<id>         ficha
-     #/cronologia               línea temporal
-     #/mapa                     mapa del mundo y de Raccoon City
-     #/buscar/<texto>           búsqueda
-   El contenido sale de la carpeta contenido/ a través de /api/wiki.
-   El código está repartido en wiki/js/ (ver el orden de los <script> al final).
-  ============================================================================
--->
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#050506">
-  <meta name="description" content="Wiki de Resident Evil: juegos, películas y series, personajes, bestiario, agentes biológicos, organizaciones, ubicaciones, cronología y mapa.">
-  <title>Umbrella Archives</title>
-  <!-- Icono de la pestaña: el logotipo de la web -->
-  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
-  <!-- Tipografías: Cinzel (títulos), Crimson Pro (texto), Oswald (interfaz), Share Tech Mono y Special Elite (detalles) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500;600&family=Share+Tech+Mono&family=Special+Elite&display=swap">
-  <!-- Estilos del mapa (Leaflet), comunes de la web y propios de la wiki -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="../comun/estilos.css">
-  <link rel="stylesheet" href="wiki.css">
-</head>
-<body>
-  <!-- Enlace para teclado / lector de pantalla: salta directo al contenido -->
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
-
-  <!-- ===================== CABECERA ===================== -->
-  <header class="cabecera" id="cabecera">
-    <div class="cabecera-in">
-      <!-- Logotipo: vuelve a la portada -->
-      <a class="marca" href="#/" aria-label="Umbrella Archives, portada">
-        <span id="marca-logo"></span>
-        <span class="marca-texto"><b>UMBRELLA</b><i>ARCHIVES</i></span>
-      </a>
-      <!-- Menú de secciones (lo rellena cabecera.js) -->
-      <nav class="menu" id="menu" aria-label="Secciones"></nav>
-      <!-- Buscador con sugerencias -->
-      <form class="buscador" id="buscador" role="search" autocomplete="off">
-        <label class="oculto-visual" for="buscar">Buscar en la wiki</label>
-        <input id="buscar" type="search" placeholder="Buscar… ( / )" maxlength="60">
-        <div class="sugerencias" id="sugerencias" role="listbox" hidden></div>
-      </form>
-      <!-- Acceso de miembros («Únete» / «Salir») -->
-      <button class="btn-unirse" id="btn-unirse" type="button"><span>Únete</span></button>
-      <!-- Sonido ambiente y menú móvil (iconos SVG puestos por cabecera.js) -->
-      <button class="btn-icono" id="btn-ambiente" type="button" title="Sonido ambiente" aria-pressed="false"></button>
-      <button class="btn-icono hamburguesa" id="btn-menu" type="button" aria-label="Abrir menú" aria-expanded="false"></button>
-    </div>
-    <!-- Barra de progreso de lectura -->
-    <div class="cabecera-barra" id="barra-progreso"></div>
-  </header>
-
-  <!-- ===================== CONTENIDO ===================== -->
-  <!-- Cada vista (portada, sección, ficha…) se pinta aquí dentro -->
-  <main id="contenido" tabindex="-1">
-    <div class="cargando" id="cargando">
-      <div class="cargando-anillo"></div>
-      <p class="mono">ACCEDIENDO A LOS ARCHIVOS DE UMBRELLA…</p>
-    </div>
-  </main>
-
-  <!-- ===================== PIE ===================== -->
-  <footer class="pie">
-    <div class="contenedor pie-in">
-      <p><b>UMBRELLA ARCHIVES</b> · 2026</p>
-    </div>
-  </footer>
-
-  <!-- Visor de tráileres a pantalla completa -->
-  <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Vídeo">
-    <button class="visor-cerrar" type="button" aria-label="Cerrar vídeo"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2"/></svg></button>
-    <div class="visor-marco" id="visor-marco"></div>
-  </div>
-
-  <!-- Ventana «Únete para ver lo oculto» con el botón de Google -->
-  <div class="unirse" id="unirse" hidden role="dialog" aria-modal="true" aria-labelledby="unirse-titulo">
-    <div class="unirse-caja">
-      <button class="unirse-cerrar" type="button" aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2"/></svg></button>
-      <div class="unirse-logo" id="unirse-logo"></div>
-      <h2 id="unirse-titulo">Únete para ver lo oculto</h2>
-      <div class="google-boton" id="google-boton"></div>
-      <p class="unirse-aviso" id="unirse-aviso" role="status"></p>
-    </div>
-  </div>
-
-  <!-- Librería del mapa (se carga sin bloquear la página) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
-  <!-- Efectos de ambiente y utilidades comunes (objeto Umbra) -->
-  <script src="../comun/ambiente.js"></script>
-  <!-- Código de la wiki, en este orden: núcleo → piezas → vistas → miembros → cabecera → arranque -->
-  <script src="js/nucleo.js"></script>
-  <script src="js/piezas.js"></script>
-  <script src="js/vistas/portada.js"></script>
-  <script src="js/vistas/seccion.js"></script>
-  <script src="js/vistas/ficha.js"></script>
-  <script src="js/vistas/cronologia.js"></script>
-  <script src="js/vistas/mapa.js"></script>
-  <script src="js/vistas/buscar.js"></script>
-  <script src="js/miembros.js"></script>
-  <script src="js/cabecera.js"></script>
-  <script src="js/arranque.js"></script>
-</body>
-</html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Maqueta estática visual de Centro de archivos en Umbrella Archives">
+<title>Centro de archivos | Umbrella Archives</title>
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../comun/estilos.css"><link rel="stylesheet" href="wiki.css"><link rel="stylesheet" href="maqueta.css"></head><body>
+<div class="prototype-bar">VISTA DE DISEÑO · NO HAY REGISTRO, BÚSQUEDA NI DATOS DINÁMICOS</div>
+<header class="proto-header"><a class="proto-logo" href="../index.html"><b>UMBRELLA</b> ARCHIVES</a>
+<nav class="proto-nav" aria-label="Secciones"><a href="index.html" aria-current="page">Inicio</a><a href="juegos.html" >Juegos</a><a href="personajes.html" >Personajes</a><a href="criaturas.html" >Bestiario</a><a href="virus.html" >Virus y parásitos</a><a href="organizaciones.html" >Organizaciones</a><a href="lugares.html" >Ubicaciones</a><a href="peliculas.html" >Películas y series</a><a href="cronologia.html" >Cronología</a><a href="mapa.html" >Mapa</a><a href="buscar.html" >Buscar</a><a href="acceso.html" >Acceso</a></nav>
+<span class="proto-search" aria-label="Buscador de muestra">⌕ Buscar archivos (maqueta)</span></header>
+<section class="proto-hero" style="--img:url('../img/escenarios/re2_vestibulo.webp')"><div><span class="proto-kicker">INICIO · ACCESS GRANTED</span><h1>Centro de archivos</h1>
+<p>Vista de muestra del diseño de Umbrella Archives. El contenido final se conectará posteriormente a Angular y a un servicio de datos.</p></div></section><main class="proto-shell"><h2 class="proto-title">Explorar las secciones</h2><div class="proto-grid"><article class="proto-card"><div class="proto-img" style="--img:url('../img/escenarios/re2_vestibulo.webp')" role="img" aria-label="Imagen conservada del proyecto"></div><div class="proto-copy"><span class="proto-tag">ARCHIVO 001</span><h3>Juegos</h3><p>Ficha ilustrativa del diseño. Los textos, las estadísticas y los datos se cargarán en la versión funcional.</p></div></article><article class="proto-card"><div class="proto-img" style="--img:url('../img/escenarios/re4_castillo.webp')" role="img" aria-label="Imagen conservada del proyecto"></div><div class="proto-copy"><span class="proto-tag">ARCHIVO 002</span><h3>Personajes</h3><p>Ficha ilustrativa del diseño. Los textos, las estadísticas y los datos se cargarán en la versión funcional.</p></div></article><article class="proto-card"><div class="proto-img" style="--img:url('../img/escenarios/re8_aldea.webp')" role="img" aria-label="Imagen conservada del proyecto"></div><div class="proto-copy"><span class="proto-tag">ARCHIVO 003</span><h3>Bestiario</h3><p>Ficha ilustrativa del diseño. Los textos, las estadísticas y los datos se cargarán en la versión funcional.</p></div></article><article class="proto-card"><div class="proto-img" style="--img:url('../img/escenarios/re2_vestibulo.webp')" role="img" aria-label="Imagen conservada del proyecto"></div><div class="proto-copy"><span class="proto-tag">ARCHIVO 004</span><h3>Cronología</h3><p>Ficha ilustrativa del diseño. Los textos, las estadísticas y los datos se cargarán en la versión funcional.</p></div></article><article class="proto-card"><div class="proto-img" style="--img:url('../img/escenarios/re4_castillo.webp')" role="img" aria-label="Imagen conservada del proyecto"></div><div class="proto-copy"><span class="proto-tag">ARCHIVO 005</span><h3>Mapa</h3><p>Ficha ilustrativa del diseño. Los textos, las estadísticas y los datos se cargarán en la versión funcional.</p></div></article><article class="proto-card"><div class="proto-img" style="--img:url('../img/escenarios/re8_aldea.webp')" role="img" aria-label="Imagen conservada del proyecto"></div><div class="proto-copy"><span class="proto-tag">ARCHIVO 006</span><h3>Expedientes</h3><p>Ficha ilustrativa del diseño. Los textos, las estadísticas y los datos se cargarán en la versión funcional.</p></div></article></div><p>Todos los elementos son representaciones visuales. Esta versión no recoge datos personales.</p></main><footer class="proto-foot">UMBRELLA ARCHIVES · PROTOTIPO VISUAL · 2026 · NO OFICIAL</footer></body></html>
