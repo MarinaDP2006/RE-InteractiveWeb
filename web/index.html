@@ -14,7 +14,7 @@
   <meta name="description" content="Umbrella Archives: wiki completa de la saga Resident Evil: juegos, películas, personajes, bestiario, virus, cronología y mapa.">
   <title>Umbrella Archives</title>
   <!-- Icono de la pestaña: el logotipo de la web -->
-  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <!-- Tipografías y estilos comunes (los propios del portal van en <style>) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,45 +73,45 @@
   <div class="portal">
     <!-- Cabecera: logotipo girando y nombre -->
     <header class="portal-cab">
-      <span id="logo"></span>
+      <img id="logo" src="img/logo.svg" alt="Logotipo Umbrella Archives" width="78" height="78">
       <h1>UMBRELLA ARCHIVES</h1>
-      <p>RESIDENT EVIL · WIKI · ARCHIVO</p>
+      <p>RESIDENT EVIL · MAQUETA VISUAL · SIN BACKEND</p>
       <div class="portal-intro">Explora el universo Resident Evil: personajes, juegos, criaturas y acontecimientos, en un solo lugar.</div>
-      <a class="portal-cta" href="/wiki/">Explorar la wiki →</a>
+      <a class="portal-cta" href="wiki/index.html">Explorar la wiki →</a>
     </header>
     <nav class="accesos" aria-label="Accesos rápidos">
-      <a href="/wiki/#/s/juegos">Juegos</a>
-      <a href="/wiki/#/s/personajes">Personajes</a>
-      <a href="/wiki/#/s/criaturas">Bestiario</a>
-      <a href="/wiki/#/cronologia">Cronología</a>
-      <a href="/wiki/#/mapa">Mapa</a>
+      <a href="wiki/juegos.html">Juegos</a>
+      <a href="wiki/personajes.html">Personajes</a>
+      <a href="wiki/criaturas.html">Bestiario</a>
+      <a href="wiki/cronologia.html">Cronología</a>
+      <a href="wiki/mapa.html">Mapa</a>
     </nav>
     <!-- Las tres puertas de entrada -->
     <main class="puertas" id="portal-contenido">
-      <a class="puerta" id="puerta-wiki" href="/wiki/">
-        <div class="puerta-fondo" style="--img:url('/img/escenarios/re2_vestibulo.webp')"></div>
+      <a class="puerta" id="puerta-wiki" href="wiki/index.html">
+        <div class="puerta-fondo" style="--img:url('img/escenarios/re2_vestibulo.webp')"></div>
         <div class="puerta-in">
           <small>WIKI</small>
           <h2>WIKI</h2>
-          <p>La historia completa de la saga: juegos y películas canon, personajes, bestiario, virus, cronología y mapa interactivo.</p>
+          <p>Maqueta visual de juegos, películas, personajes, criaturas y lugares, sin datos dinámicos.</p>
           <span class="btn btn-rojo">Abrir los archivos</span>
         </div>
       </a>
-      <a class="puerta puerta-wiki-extra" href="/wiki/#/cronologia">
-        <div class="puerta-fondo" style="--img:url('/img/escenarios/re4_castillo.webp')"></div>
+      <a class="puerta puerta-wiki-extra" href="wiki/cronologia.html">
+        <div class="puerta-fondo" style="--img:url('img/escenarios/re4_castillo.webp')"></div>
         <div class="puerta-in">
           <small>HISTORIA</small>
           <h2>CRONOLOGÍA</h2>
-          <p>Más de un siglo de historia, de 1919 a hoy: cada brote, cada juego y cada película en su lugar.</p>
+          <p>Vista previa del diseño de la cronología; no hay base de datos conectada.</p>
           <span class="btn btn-rojo">Recorrer la historia</span>
         </div>
       </a>
-      <a class="puerta puerta-wiki-extra" href="/wiki/#/mapa">
-        <div class="puerta-fondo" style="--img:url('/img/escenarios/re8_aldea.webp')"></div>
+      <a class="puerta puerta-wiki-extra" href="wiki/mapa.html">
+        <div class="puerta-fondo" style="--img:url('img/escenarios/re8_aldea.webp')"></div>
         <div class="puerta-in">
           <small>LUGARES</small>
           <h2>MAPA</h2>
-          <p>Raccoon City, la mansión Spencer, la aldea de Europa del Este… todos los lugares de la saga sobre el mapa del mundo.</p>
+          <p>Vista previa del diseño del mapa y sus ubicaciones.</p>
           <span class="btn btn-rojo">Abrir el mapa</span>
         </div>
       </a>
@@ -119,12 +119,6 @@
     <!-- Pie -->
     <footer class="portal-pie"><b>UMBRELLA ARCHIVES</b> · 2026</footer>
   </div>
-  <!-- Efectos de ambiente y utilidades comunes (objeto Umbra) -->
-  <script src="comun/ambiente.js"></script>
-  <script>
-    /* Arranque del portal: efectos de ambiente y logotipo. */
-    Umbra.iniciar();
-    document.getElementById("logo").innerHTML = Umbra.logo();
-  </script>
+  <!-- Portada visual sin JavaScript ni servicios externos. -->
 </body>
 </html>
