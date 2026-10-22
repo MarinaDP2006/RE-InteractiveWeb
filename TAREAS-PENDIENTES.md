@@ -29,6 +29,11 @@ Actualizado: 22 de octubre de 2026. Estado revisado sobre `main`.
 - [ ] Configurar alojamiento siempre disponible dentro de un plan gratuito, sin garantías de uptime.
 - [ ] Auditoría de CSRF, rate limiting, almacenamiento y políticas de privacidad.
 
+## Pruebas de integración añadidas (sin alterar Google Auth)
+- [x] Añadido `scripts/smoke-test.py` con comprobaciones HTTP de portada, wiki, API, rutas inexistentes y fichas ocultas.
+- [x] Integrada la batería HTTP en GitHub Actions Java 21 y captura de registros al fallar.
+- [ ] Confirmar ejecución verde del workflow tras el commit y comprobar la web desde un navegador Windows.
+
 ## Pendiente prioritario
 - [ ] Crear/configurar el cliente OAuth 2.0 de Google y establecer `GOOGLE_CLIENT_ID` para el origen real.
 - [ ] Probar en navegador todo el flujo Google: entrar, refrescar, abrir fichas ocultas y salir.
