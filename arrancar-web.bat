@@ -15,7 +15,8 @@ title Umbrella Archives
 
 set PORT=%1
 if "%PORT%"=="" set PORT=8080
-set GOOGLE_CLIENT_ID=
+REM Configura GOOGLE_CLIENT_ID en la terminal o en las variables de entorno de Windows.
+REM No lo sobrescribimos: asi se conserva la configuracion del usuario.
 
 where javac >nul 2>nul
 if errorlevel 1 (
