@@ -1,51 +1,25 @@
-# Lista de trabajo · Umbrella Archives
+# Umbrella Archives · Estado de la maqueta y próxima versión
 
-Actualizado: 22 de octubre de 2026. Estado revisado sobre `main`.
+## Completado en la rama main
+- [x] Archivar el backend Java, Docker, configuración Render, datos JSON y scripts antiguos en la rama `archivo-backend-previo-maqueta-2026-10` antes de retirarlos.
+- [x] Mantener **todas las 293 imágenes** originales en `web/img/`.
+- [x] Mantener el CSS original `web/comun/estilos.css` y `web/wiki/wiki.css`.
+- [x] Conservar los archivos HTML existentes y añadir pantallas estáticas para todas las secciones.
+- [x] Añadir `web/wiki/maqueta.css` para la visualización estática sin backend.
+- [x] Conectar la navegación básica mediante enlaces HTML, sin JavaScript.
+- [x] Redactar `README.md` desde cero con tutorial VS Code, Angular, Node.js, JavaFX, Firebase y alojamiento gratis con cuotas.
 
-## Hecho (código confirmado)
-- [x] Implementación inicial de inicio con Google: botón web, validación de credenciales en Java y sesión de miembro.
-- [x] Restricción desde API de las fichas marcadas como ocultas.
-- [x] Manejar mejor el fallo al cerrar sesión sin ocultar el mensaje.
-- [x] Simplificar el portal: navegación rápida a secciones, tarjetas de tamaño estable y CTA principal.
-- [x] Mejorar la adaptación a móvil y teclado; respetar preferencia de movimiento reducido en la portada.
-- [x] Aclarar los errores cuando el acceso con Google no está configurado.
+## Pendiente (futura aplicación, todavía no funcional)
+- [ ] Reproducir los diseños de esta maqueta en componentes Angular.
+- [ ] Construir contenido real, navegación, buscador y fichas con Angular.
+- [ ] Conectar Firebase Authentication y Cloud Firestore con reglas seguras y plan gratuito.
+- [ ] Publicar Angular en Firebase Hosting Spark o Cloudflare Pages Free.
+- [ ] Crear el lanzador JavaFX de Windows y empaquetarlo con jpackage.
+- [ ] Incorporar API Node.js únicamente si surgen funciones que requieran servidor propio.
+- [ ] Comprobar visualmente cada pestaña en Chrome/Firefox y en pantallas móviles.
+- [ ] Sustituir el antiguo servicio Docker de Render por alojamiento estático si se desea conservar un dominio de Render.
 
-## Preparación de Render y tutorial (22/10/2026)
-- [x] Añadidos Dockerfile, .dockerignore y render.yaml; se preservan todas las imágenes de web/img/.
-- [x] README ampliado con configuración desde ordenador limpio, desarrollo local, Google OAuth y despliegue en Render.
-- [x] El lanzador local ya no borra GOOGLE_CLIENT_ID; cookies de sesión con Secure si el servidor está alojado en Render.
-- [ ] Conectar cuenta Render, crear el servicio y verificar URL real publicada.
-- [ ] Completar seguridad del login y persistencia de miembros en hosting.
+## Advertencias
+`main` es únicamente una **maqueta visual**. Ni el acceso de usuarios ni la búsqueda son operativos. Nunca escribir contraseñas reales en una maqueta. Los servidores y secretos antiguos ya no forman parte del código actual; sus versiones históricas pueden consultarse en la rama de respaldo. El servicio Render anterior no puede compilar esta rama sin cambiar de servicio Docker a Static Site.
 
-## Implementado en esta revisión
-- [x] Clase `AlmacenMiembros.java` para perfiles y sesiones persistentes mediante la API REST de Supabase, guardando hashes de tokens.
-- [x] Integrada la persistencia opcional en `Miembros.java`; respaldo local de desarrollo si no hay configuración.
-- [x] Esquema SQL privado con tablas de miembros y sesiones en `database/supabase.sql`.
-- [x] README ampliado con preparación del proyecto desde cero, Google OAuth, Supabase Free y alojamiento alternativo sin Render.
-- [x] Workflow Java 21 para compilación y comprobación básica de rutas HTTP.
-- [x] Ninguna imagen del proyecto eliminada.
-- [ ] Ejecutar y revisar una compilación de GitHub Actions completa.
-- [ ] Configurar un proyecto real en Supabase y probar persistencia de usuarios, reinicios y cierre de sesión.
-- [ ] Configurar alojamiento siempre disponible dentro de un plan gratuito, sin garantías de uptime.
-- [ ] Auditoría de CSRF, rate limiting, almacenamiento y políticas de privacidad.
-
-## Pruebas de integración añadidas (sin alterar Google Auth)
-- [x] Añadido `scripts/smoke-test.py` con comprobaciones HTTP de portada, wiki, API, rutas inexistentes y fichas ocultas.
-- [x] Integrada la batería HTTP en GitHub Actions Java 21 y captura de registros al fallar.
-- [ ] Confirmar ejecución verde del workflow tras el commit y comprobar la web desde un navegador Windows.
-
-## Pendiente prioritario
-- [ ] Crear/configurar el cliente OAuth 2.0 de Google y establecer `GOOGLE_CLIENT_ID` para el origen real.
-- [ ] Probar en navegador todo el flujo Google: entrar, refrescar, abrir fichas ocultas y salir.
-- [ ] Persistir sesiones entre reinicios con caducidad y revocación segura; actualmente se guardan en memoria.
-- [ ] Revisar seguridad de cookies HTTPS/Secure y protección de solicitudes sensibles (CSRF, origen).
-- [ ] Validar errores y estados de carga en la wiki (API no disponible, conexión lenta, sesión caducada).
-- [ ] Revisar exhaustivamente navegación, enlaces rápidos, secciones y contraste con teclado/móvil.
-- [ ] Revisar diseño de la wiki interior para simplificar menús, fichas y filtros sin perder contenidos.
-- [ ] Compilar y probar el servidor Java 21 mediante `arrancar-web.bat`.
-
-## Para entrega
-- [ ] Manual de puesta en marcha, configuración OAuth y uso para evaluación.
-- [ ] Pruebas funcionales reproducibles (API, interfaz, autenticación y persistencia).
-
-**Nota:** se ha simplificado la portada y mejorado la experiencia de errores; el inicio de sesión aún no se considera validado de extremo a extremo.
+**No borrar ni reescribir las imágenes, HTML, ni CSS existentes.**
