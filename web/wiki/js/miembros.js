@@ -82,7 +82,14 @@
 
   /** Cierra la sesión del miembro y recarga los datos sin lo oculto. */
   async function salir() {
-    await Umbra.api("/api/miembro/salir", {}).catch(() => {});
+    try {
+      await Umbra.api("/api/miembro/salir", {});
+    } catch (e) {
+      const aviso = $("#unirse-aviso");
+      if (aviso) aviso.textContent = "No se pudo cerrar la sesión. Inténtalo de nuevo.";
+      abrir();
+      return;
+    }
     if (window.google?.accounts?.id) google.accounts.id.disableAutoSelect();
     W.miembro = null;
     await Wiki.cargar();
