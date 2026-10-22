@@ -10,6 +10,13 @@ Actualizado: 22 de octubre de 2026. Estado revisado sobre `main`.
 - [x] Mejorar la adaptación a móvil y teclado; respetar preferencia de movimiento reducido en la portada.
 - [x] Aclarar los errores cuando el acceso con Google no está configurado.
 
+## Preparación de Render y tutorial (22/10/2026)
+- [x] Añadidos Dockerfile, .dockerignore y render.yaml; se preservan todas las imágenes de web/img/.
+- [x] README ampliado con configuración desde ordenador limpio, desarrollo local, Google OAuth y despliegue en Render.
+- [x] El lanzador local ya no borra GOOGLE_CLIENT_ID; cookies de sesión con Secure si el servidor está alojado en Render.
+- [ ] Conectar cuenta Render, crear el servicio y verificar URL real publicada.
+- [ ] Completar seguridad del login y persistencia de miembros en hosting.
+
 ## Pendiente prioritario
 - [ ] Crear/configurar el cliente OAuth 2.0 de Google y establecer `GOOGLE_CLIENT_ID` para el origen real.
 - [ ] Probar en navegador todo el flujo Google: entrar, refrescar, abrir fichas ocultas y salir.
