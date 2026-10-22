@@ -102,7 +102,7 @@ $env:GOOGLE_CLIENT_ID = 'TU_CLIENT_ID.apps.googleusercontent.com'
 java -cp build es.umbrella.Servidor .
 ```
 
-**Atención:** el archivo `arrancar-web.bat` establece actualmente `GOOGLE_CLIENT_ID` vacío. Para usar el archivo por doble clic, edita esa línea y escribe tu ID de cliente, o modifica el archivo para preservar una variable de entorno ya definida. El Client ID no es una contraseña; **nunca** guardes secretos privados en Git.
+**Atención:** `arrancar-web.bat` conserva el valor de `GOOGLE_CLIENT_ID` que hayas definido previamente en tu terminal o en las variables de entorno de Windows. Para arrancarlo con ese valor desde PowerShell, ejecuta `cmd /c arrancar-web.bat` en la misma terminal. El Client ID no es una contraseña, pero **nunca** guardes secretos privados en Git.
 
 La aplicación valida el ID token en Java, crea una cookie y protege expedientes ocultos desde la API. **Pendiente de endurecimiento antes de producción:** cookies con `Secure` bajo HTTPS, sesiones persistentes, control de origen/CSRF y pruebas completas del login.
 
