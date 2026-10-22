@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: umbrella-archives
+    runtime: docker
+    plan: free
+    repo: https://github.com/MarinaDP2006/RE-InteractiveWeb
+    branch: main
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: GOOGLE_CLIENT_ID
+        sync: false
