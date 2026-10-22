@@ -5,9 +5,7 @@ services:
     plan: free
     repo: https://github.com/MarinaDP2006/RE-InteractiveWeb
     branch: main
-    healthCheckPath: /
+    healthCheckPath: /api/estado
     envVars:
       - key: PORT
         value: 10000
-      - key: GOOGLE_CLIENT_ID
-        sync: false
