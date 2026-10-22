@@ -30,7 +30,7 @@
     .accesos a:hover, .accesos a:focus-visible { background: var(--rojo-oscuro); border-color: var(--rojo-vivo); outline: 2px solid transparent; }
     .portal-cta { display: inline-block; margin-top: 14px; padding: .55em 1.1em; border-radius: 6px; color: #fff; background: var(--rojo); text-decoration: none; font: 500 1rem var(--f-ui); }
     .portal-cta:hover, .portal-cta:focus-visible { background: #a40b25; outline: 2px solid #fff; outline-offset: 3px; }
-    .portal { position: relative; z-index: 2; min-height: 100vh; display: grid; grid-template-rows: auto auto auto 1fr auto; }
+    .portal { position: relative; z-index: 2; min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
     .portal-cab { display: flex; flex-direction: column; align-items: center; padding: 34px 16px 10px; text-align: center; }
     .portal-cab .logo-umbrella { font-size: 74px;  filter: drop-shadow(0 0 30px rgba(200, 16, 46, .5)); }
     @keyframes girarLento { to { transform: rotate(360deg); } }
@@ -75,17 +75,8 @@
     <header class="portal-cab">
       <img id="logo" src="img/logo.svg" alt="Logotipo Umbrella Archives" width="78" height="78">
       <h1>UMBRELLA ARCHIVES</h1>
-      <p>RESIDENT EVIL · MAQUETA VISUAL · SIN BACKEND</p>
       <div class="portal-intro">Explora el universo Resident Evil: personajes, juegos, criaturas y acontecimientos, en un solo lugar.</div>
-      <a class="portal-cta" href="wiki/index.html">Explorar la wiki →</a>
     </header>
-    <nav class="accesos" aria-label="Accesos rápidos">
-      <a href="wiki/juegos.html">Juegos</a>
-      <a href="wiki/personajes.html">Personajes</a>
-      <a href="wiki/criaturas.html">Bestiario</a>
-      <a href="wiki/cronologia.html">Cronología</a>
-      <a href="wiki/mapa.html">Mapa</a>
-    </nav>
     <!-- Las tres puertas de entrada -->
     <main class="puertas" id="portal-contenido">
       <a class="puerta" id="puerta-wiki" href="wiki/index.html">
