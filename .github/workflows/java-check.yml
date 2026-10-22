@@ -29,3 +29,7 @@ jobs:
           curl -fS http://127.0.0.1:18080/
           curl -fS http://127.0.0.1:18080/wiki/
           curl -fS http://127.0.0.1:18080/api/miembro
+          python3 scripts/smoke-test.py
+      - name: Mostrar errores del servidor si falla
+        if: failure()
+        run: cat /tmp/umbrella.log || true
