@@ -124,6 +124,11 @@ final class Api implements HttpHandler {
     //  Miembros (acceso con Google)
     // ------------------------------------------------------------------
 
+    /** Render publica el servidor detrás de HTTPS; en localhost se permite HTTP. */
+    private static String cookieSecure() {
+        return "true".equalsIgnoreCase(System.getenv("RENDER")) ? "; Secure" : "";
+    }
+
     private void miembro(Peticion p) throws Exception {
         String accion = p.metodo + " " + (p.parte(2) == null ? "" : p.parte(2));
         switch (accion) {
@@ -136,12 +141,12 @@ final class Api implements HttpHandler {
                 Map<String, Object> d = p.json(8192);
                 String token = miembros.entrar(Json.texto(d, "credential", null));
                 p.ex.getResponseHeaders().add("Set-Cookie", Miembros.COOKIE + "=" + token
-                        + "; Path=/; HttpOnly; SameSite=Lax; Max-Age=" + Miembros.DURACION_SEG);
+                        + "; Path=/; HttpOnly; SameSite=Lax" + cookieSecure() + "; Max-Age=" + Miembros.DURACION_SEG);
                 p.responderJson(200, Peticion.ok());
             }
             case "POST salir" -> {
                 miembros.salir(p);
-                p.ex.getResponseHeaders().add("Set-Cookie", Miembros.COOKIE + "=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0");
+                p.ex.getResponseHeaders().add("Set-Cookie", Miembros.COOKIE + "=; Path=/; HttpOnly; SameSite=Lax" + cookieSecure() + "; Max-Age=0");
                 p.responderJson(200, Peticion.ok());
             }
             default -> throw new Peticion.ErrorHttp(404, "Ruta de API desconocida: " + p.ruta);
