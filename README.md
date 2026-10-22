@@ -216,5 +216,3 @@ Pasos de infraestructura:
 Consulta [TAREAS-PENDIENTES.md](TAREAS-PENDIENTES.md) para las tareas terminadas y pendientes de verificación.
 
 ---
-
-Proyecto de fans no oficial, realizado con fines educativos. Resident Evil pertenece a sus respectivos titulares.
