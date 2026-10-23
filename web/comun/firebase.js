@@ -21,6 +21,14 @@ export const firebaseConfig = {
 
 export const configurado = !firebaseConfig.apiKey.startsWith("TU_");
 
+// Cuestionario de la saga (wiki/index.html). En Google Forms: Enviar > < > y copia
+// lo que va entre "/e/" y "/viewform". También vale pegar el enlace entero.
+export const FORMULARIO_CUESTIONARIO = "PEGA_AQUI_EL_ID_DEL_FORMULARIO";
+const idFormulario = FORMULARIO_CUESTIONARIO.match(/\/e\/([^/?]+)/)?.[1] ?? FORMULARIO_CUESTIONARIO.trim();
+export const formularioListo = !idFormulario.startsWith("PEGA_AQUI");
+export const urlFormulario = incrustado =>
+  `https://docs.google.com/forms/d/e/${idFormulario}/viewform${incrustado ? "?embedded=true" : ""}`;
+
 // Colecciones públicas de la wiki: nombre en Firestore → título visible.
 export const COLECCIONES = {
   juegos: "Juegos",
