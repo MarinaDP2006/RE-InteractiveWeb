@@ -15,18 +15,29 @@ window.umbrellaMostrarCuestionario=function(conSesion){var s=document.getElement
 document.addEventListener('umbrella:sesion',function(e){umbrellaMostrarCuestionario(!!e.detail);});
 </script>
 <script type="module">
-/* Misma configuración que en acceso.html: Firebase comparte la sesión entre páginas del mismo dominio. */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO",
-  storageBucket: "TU_PROYECTO.appspot.com",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
-};
-try {
-  onAuthStateChanged(getAuth(initializeApp(firebaseConfig)), (usuario) => umbrellaMostrarCuestionario(!!usuario));
-} catch (e) { console.warn("Firebase sin configurar: el cuestionario sigue oculto.", e); }
-</script><p>Todos los elementos son representaciones visuales. Esta versión no recoge datos personales.</p></main><footer class="proto-foot">UMBRELLA ARCHIVES · 2026 · SITIO NO OFICIAL</footer></body></html>
+  // Firebase comparte la sesión entre páginas: si el usuario entró en acceso.html, aquí también la tiene.
+  const { conectar } = await import("../comun/firebase.js");
+  const c = await conectar().catch(() => null);
+  if (c) c.authSdk.onAuthStateChanged(c.auth, usuario => umbrellaMostrarCuestionario(!!usuario));
+</script>
+<p>Todos los elementos son representaciones visuales. Esta versión no recoge datos personales.</p></main><footer class="proto-foot">UMBRELLA ARCHIVES · 2026 · SITIO NO OFICIAL</footer>
+<script type="module">
+  // Carga inicial de la base de datos: abre wiki/index.html?sembrar=1 con una
+  // cuenta cuyo documento usuarios/{uid} tenga rol "admin" (se pone a mano en la consola).
+  if (new URLSearchParams(location.search).has("sembrar")) {
+    const { configurado, usuarioActual, esAdmin, sembrarDatos, crear } = await import("../comun/firebase.js");
+    const aviso = crear("p", "proto-paper");
+    document.querySelector(".proto-shell").prepend(aviso);
+    const usuario = await usuarioActual();
+    if (!configurado) aviso.textContent = "Rellena firebaseConfig en web/comun/firebase.js antes de sembrar.";
+    else if (!usuario) aviso.textContent = "Inicia sesión con una cuenta de administración para cargar los datos.";
+    else if (!(await esAdmin(usuario))) aviso.textContent = "Tu cuenta no tiene rol \"admin\" en la colección usuarios.";
+    else {
+      aviso.textContent = "Cargando los datos de la wiki en Firestore…";
+      sembrarDatos()
+        .then(total => (aviso.textContent = `Listo: ${total} documentos guardados en Firestore.`))
+        .catch(error => (aviso.textContent = `Error al sembrar: ${error.message}`));
+    }
+  }
+</script>
+</body></html>
