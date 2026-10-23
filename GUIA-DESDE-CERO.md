@@ -116,20 +116,19 @@ En `api-node/.env`, establece `ALLOWED_ORIGINS` con el dominio exacto de tu web 
 
 No publiques rutas privadas antes de implementar validación, autenticación, autorización, limitación de peticiones y almacenamiento seguro. CORS **no** es un sistema de autenticación.
 
-## 6. Publicar Angular en Netlify
+## 6. Publicar la web original en Netlify (configuración actual)
 
-1. Entra en https://app.netlify.com/ e inicia sesión.
-2. Si **ya tienes un sitio Netlify** conectado a este repositorio, abre ese sitio. No crees otro por duplicado.
-3. Ve a **Site configuration → Build & deploy** y comprueba que el repositorio sea `MarinaDP2006/archivos-umbrella` y la rama `main`.
-4. El archivo raíz `netlify.toml` define:
-   - Carpeta base: `angular-app`
-   - Comando: `npm install && npm run build && node ../scripts/copiar-legado.mjs`
-   - Carpeta publicada, relativa a la base: `dist/umbrella/browser`
-5. Si configuraste valores manuales incompatibles, corrígelos para que coincidan con el archivo.
-6. Lanza **Trigger deploy → Deploy site**. Comprueba el log de compilación.
-7. Prueba Inicio, Wiki, Buscar, una ficha, la recarga directa de rutas y `/legado/index.html`.
+El sitio público **rewikifan.netlify.app** utiliza directamente la carpeta `web/`, con sus archivos HTML, CSS, imágenes y páginas `wiki/*.html`. No necesitas compilar Angular para actualizarlo.
 
-**Importante:** Netlify solo publicará el frontend y archivos estáticos. La API Express no funcionará ahí como proceso permanente.
+1. Edita los archivos de `web/` en VS Code.
+2. Comprueba que `web/index.html`, `web/comun/estilos.css` y `web/img/` siguen presentes.
+3. En la raíz del repositorio ejecuta `git status`, `git add web`, `git commit -m "Actualiza web original"` y `git push origin main`.
+4. En Netlify abre el sitio **rewikifan**, conectado a `MarinaDP2006/archivos-umbrella` y rama `main`.
+5. La configuración de `netlify.toml` debe tener `publish = "web"`, sin carpeta base ni comando de compilación.
+6. Comprueba `https://rewikifan.netlify.app/`, `/wiki/index.html` y `/img/logo.svg`.
+7. Si no se actualiza, abre el registro de despliegues y usa **Trigger deploy** en el sitio existente.
+
+**Importante:** Angular sigue guardado en `angular-app/` como proyecto de desarrollo, pero no está publicado en este sitio. Para publicarlo en el futuro se deberá decidir si sustituye a la web original o si tendrá un sitio independiente. No borres `web/`.
 
 ## 7. Publicar API Node en Render (opcional, cuando esté preparada)
 
