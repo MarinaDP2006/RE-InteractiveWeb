@@ -24,7 +24,7 @@ Repositorio correcto: https://github.com/MarinaDP2006/archivos-umbrella
 
 **Maquetas o funciones todavía incompletas:**
 - 'web/wiki/buscar.html' anuncia un buscador futuro y muestra resultados de ejemplo. No es un buscador operativo.
-- 'web/wiki/acceso.html' muestra un formulario ficticio; no hay autenticación de usuarios.
+- 'web/wiki/acceso.html' tiene inicio de sesión y registro reales con Firebase Authentication (Google y correo/contraseña). Funciona en cuanto se rellenan las claves de 'firebaseConfig' en 'web/comun/firebase.js'.
 - 'web/wiki/ficha.html' es una ficha de muestra, no una ficha dinámica por ID.
 - 'web/wiki/mapa.html' tiene etiquetas de lugares en un mapa visual; no hay filtros ni navegación interactiva completa.
 - 'web/wiki/cronologia.html' tiene acontecimientos de ejemplo y filtros previstos, sin filtrado implementado.
@@ -182,7 +182,7 @@ Empieza por unas pocas fichas reales para validar el formato; después amplía e
 
 **Mapa:** convertir los puntos decorativos en enlaces o controles accesibles asociados a fichas de ubicaciones; después implementar filtros, zoom y controles táctiles si el tiempo lo permite.
 
-**Acceso:** mantenerlo como demostración hasta que exista autenticación REAL. No aceptar contraseñas en un formulario casero ni guardar contraseñas en localStorage.
+**Acceso:** ya usa Firebase Authentication: las contraseñas las guarda Google, nunca nuestra web ni localStorage. Para activarlo: en la consola de Firebase, Authentication → Método de acceso → activar «Correo electrónico/contraseña» y «Google»; en Configuración → Dominios autorizados, añadir el dominio de Render (y 'localhost'/'127.0.0.1' para pruebas); copiar la configuración de la app web en 'firebaseConfig' de 'web/comun/firebase.js'. Probar siempre con Live Server, no abriendo el archivo con doble clic (Google no funciona con 'file://').
 
 **Comprobación:** cada ficha se encuentra desde el buscador, se abre desde su categoría, y enlaza a otras fichas sin errores.
 
@@ -278,7 +278,8 @@ Un lanzador JavaFX no reemplaza la web; es un complemento. No lo uses para ocult
 - **'npm start' falla:** el proyecto actual es HTML/CSS estático y no tiene 'package.json' de arranque.
 - **La portada funciona pero una imagen falla:** comprueba mayúsculas y minúsculas, ruta relativa y que la imagen esté publicada en 'web/img/'.
 - **Una tarjeta no hace nada:** puede ser un elemento visual sin enlace; hay que implementarlo.
-- **El buscador o inicio de sesión no funcionan:** son maquetas, no fallos del navegador.
+- **El buscador no funciona:** es una maqueta, no un fallo del navegador.
+- **El inicio de sesión dice «Falta configurar Firebase» o «dominio no autorizado»:** faltan las claves en 'firebaseConfig' de 'web/comun/firebase.js' o el dominio en Authentication → Configuración → Dominios autorizados.
 - **Render muestra una web antigua:** verifica sitio, rama, commit y directorio 'web' en el registro de despliegue.
 - **Git rechaza 'push':** actualiza tu rama, revisa el conflicto y evita sobrescribir el trabajo de otra persona.
 - **Los cambios no se ven:** usa recarga forzada, comprueba el despliegue y descarta caché.
