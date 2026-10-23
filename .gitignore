@@ -12,3 +12,11 @@ Thumbs.db
 .idea/
 .claude/
 node_modules/
+
+# Angular / Node
+**/dist/
+**/.angular/
+**/.env
+**/.env.*
+!**/.env.example
+coverage/
