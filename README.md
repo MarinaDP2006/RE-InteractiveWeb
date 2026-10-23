@@ -6,9 +6,9 @@ Portal y wiki no oficial del universo **Resident Evil**. Proyecto de fans y trab
 
 - **Angular**: base inicial creada, con portada, categorías, búsqueda local y fichas de ejemplo. No es todavía una migración completa de la wiki.
 - **API Node.js / Express**: prototipo independiente con endpoints de estado y expedientes de ejemplo. Sin autenticación, base de datos ni panel administrativo.
-- **Netlify**: configuración de compilación preparada en `netlify.toml`. El despliegue real aún debe verificarse.
+- **Netlify**: publica directamente `web/` (HTML, CSS, imágenes y wiki) en la raíz del dominio. Angular se conserva para desarrollo futuro.
 - **JavaFX**: pendiente para la fase final.
-- **Maqueta original**: conservada íntegra en `web/`, incluidos HTML, CSS e imágenes. El script de compilación la publica bajo `/legado/`.
+- **Web original**: `web/` es la web pública actual; sus rutas se publican sin prefijo `/legado/`.
 
 ## Estructura
 
@@ -57,7 +57,7 @@ API local: http://localhost:3000/api/estado y http://localhost:3000/api/archivos
 
 ## Publicación
 
-Netlify debe conectarse a la rama `main` y leer `netlify.toml`. El frontend es estático. La API Express **no se ejecuta automáticamente en Netlify**: necesita un servicio Node separado, por ejemplo Render, o una migración explícita a Netlify Functions. No se han configurado secretos ni Firebase. No introducir credenciales reales en la maqueta.
+Netlify debe conectarse a la rama `main` y leer `netlify.toml`. El directorio publicado es `web/`, sin comando de compilación. Angular queda en desarrollo y no reemplaza la web pública.
 
 ## Siguientes etapas
 
