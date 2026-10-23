@@ -23,7 +23,7 @@ export const configurado = !firebaseConfig.apiKey.startsWith("TU_");
 
 // Cuestionario de la saga (wiki/index.html). En Google Forms: Enviar > < > y copia
 // lo que va entre "/e/" y "/viewform". También vale pegar el enlace entero.
-export const FORMULARIO_CUESTIONARIO = "uJMFdMTQGWCvDZzJ8";
+export const FORMULARIO_CUESTIONARIO = "https://forms.gle/uJMFdMTQGWCvDZzJ8";
 const idFormulario = FORMULARIO_CUESTIONARIO.match(/\/e\/([^/?]+)/)?.[1] ?? FORMULARIO_CUESTIONARIO.trim();
 export const formularioListo = !idFormulario.startsWith("PEGA_AQUI");
 export const urlFormulario = incrustado =>
