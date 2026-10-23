@@ -163,3 +163,13 @@ Estas reglas se han probado con el emulador de Firestore (`@firebase/rules-unit-
 Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, validar Render y finalmente construir JavaFX.
 
 **Tutorial detallado:** [GUIA-DESDE-CERO.md](GUIA-DESDE-CERO.md)
+
+## Cuestionario público de Resident Evil
+
+El cuestionario de Google Forms está enlazado desde la portada y se muestra integrado en el centro de archivos de la web:
+
+- Formulario: https://forms.gle/uJMFdMTQGWCvDZzJ8
+- Web: https://umbrella-archives-static.onrender.com/wiki/index.html#cuestionario-saga
+- Código del formulario e integración: `web/comun/firebase.js`, `web/index.html` y `web/wiki/index.html`.
+
+No requiere iniciar sesión en Umbrella Archives; Google Forms puede aplicar sus propios requisitos de acceso según la configuración del formulario.
