@@ -13,10 +13,10 @@ const CDN = `https://www.gstatic.com/firebasejs/${VERSION_SDK}`;
 export const firebaseConfig = {
   apiKey: "TU_API_KEY",
   authDomain: "TU_PROYECTO.firebaseapp.com",
-  projectId: "TU_PROYECTO",
+  projectId: "archivos-umbrella",
   storageBucket: "TU_PROYECTO.appspot.com",
   messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
+  appId: "1:709530308208:web:73ddfba0b4db877d35aeb5"
 };
 
 export const configurado = !firebaseConfig.apiKey.startsWith("TU_");
