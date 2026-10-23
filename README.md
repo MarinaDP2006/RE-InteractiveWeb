@@ -5,7 +5,7 @@ Portal y wiki no oficial del universo **Resident Evil**. Proyecto de fans y trab
 ## Estado
 - **Angular**: base inicial creada, con portada, categorías, búsqueda local y fichas de ejemplo. No es todavía una migración completa de la wiki.
 - **API Node.js / Express**: prototipo independiente con endpoints de estado y expedientes de ejemplo. Sin autenticación, base de datos ni panel administrativo.
-- **Netlify**: publica directamente `web/` (HTML, CSS, imágenes y wiki) en la raíz del dominio. Angular se conserva para desarrollo futuro.
+- **Render**: publica directamente `web/` (HTML, CSS, imágenes y wiki) en la raíz del dominio. Angular se conserva para desarrollo futuro.
 - **JavaFX**: pendiente para la fase final.
 - **Web original**: `web/` es la web pública actual; sus rutas se publican sin prefijo `/legado/`.
 
@@ -19,7 +19,7 @@ archivos-umbrella/
 ├── scripts/             # Copia de imágenes y maqueta al compilar
 ├── web/                 # Maqueta original, sin modificar
 ├── src/img/             # Recursos originales adicionales
-├── netlify.toml         # Compilación Angular en Netlify
+├── render.yaml          # Publicación estática en Render
 ├── GUIA-DESDE-CERO.md   # Tutorial completo para principiantes
 └── README.md
 ```
@@ -51,9 +51,12 @@ npm run dev
 API local: http://localhost:3000/api/estado y http://localhost:3000/api/archivos.
 
 ## Publicación
-Netlify: https://arcfangame.netlify.app/#inicio
+
+La web pública se genera directamente desde `web/`, sin compilar Angular. En Render, crea un **Static Site** conectado a `main` o usa `render.yaml` como Blueprint; directorio de publicación: `web`. La cuenta de Render debe seleccionar el workspace correcto. El servicio gratuito tiene límites de ancho de banda y minutos de build.
+
+**Sitio estático en Render:** https://umbrella-archives-static.onrender.com/ (servicio creado; comprobar estado de despliegue en Render). El antiguo servicio Docker `umbrella-archives.onrender.com` es independiente.
 
 ## Siguientes etapas
-Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, validar Netlify y finalmente construir JavaFX.
+Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, validar Render y finalmente construir JavaFX.
 
 **Tutorial detallado:** [GUIA-DESDE-CERO.md](GUIA-DESDE-CERO.md)
