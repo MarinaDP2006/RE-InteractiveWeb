@@ -6,7 +6,7 @@ Esta es mi guía de trabajo, escrita para poder seguirla sin dar nada por sabido
 
 **Lo más importante:** ahora mismo tengo una **maqueta visual** en GitHub. Se ven sus páginas, imágenes y estilos, pero todavía no funciona como una aplicación completa. Mi trabajo será convertir esa maqueta en una web real, paso a paso. No tengo que reconstruir todo de golpe ni borrar los diseños que ya he hecho.
 
-Mi repositorio es: **https://github.com/MarinaDP2006/RE-InteractiveWeb**. Si quiero consultar cómo era el proyecto antiguo, existe la rama de respaldo `archivo-backend-previo-maqueta-2026-10`, pero **no la voy a usar como base** para este nuevo desarrollo.
+Mi repositorio es: **https://github.com/MarinaDP2006/archivos-umbrella**. Si quiero consultar cómo era el proyecto antiguo, existe la rama de respaldo `archivo-backend-previo-maqueta-2026-10`, pero **no la voy a usar como base** para este nuevo desarrollo.
 
 ---
 
@@ -88,12 +88,12 @@ En VS Code abro el icono de **Extensiones** de la izquierda, escribo el nombre y
 
 Esto vale tanto para mi PC como para otro nuevo.
 
-1. Entro en https://github.com/MarinaDP2006/RE-InteractiveWeb y compruebo que puedo ver el repositorio.
+1. Entro en https://github.com/MarinaDP2006/archivos-umbrella y compruebo que puedo ver el repositorio.
 2. En el ordenador abro la carpeta donde guardaré el proyecto, por ejemplo `C:\Proyectos`.
 3. Abro una terminal dentro de esa carpeta y escribo:
 
 ```powershell
-git clone https://github.com/MarinaDP2006/RE-InteractiveWeb.git
+git clone https://github.com/MarinaDP2006/archivos-umbrella.git
 cd RE-InteractiveWeb
 code .
 ```
