@@ -63,7 +63,7 @@ La wiki lee sus datos de **Cloud Firestore**. Todo el acceso está en `web/comun
 3. **Firestore → Reglas**: pega las reglas de abajo y publica.
 4. **Authentication**: activa *Google* y *Correo electrónico/contraseña*, y añade el dominio de Render en *Dominios autorizados*.
 5. Entra en la web con tu cuenta. En **Firestore → usuarios → (tu uid)** cambia `rol` de `miembro` a `admin` a mano (las reglas impiden hacerlo desde la web).
-6. Abre `wiki/index.html?sembrar=1`: copia los 47 documentos de `SEMILLA` a Firestore.
+6. Abre `wiki/index.html?sembrar=1`: copia los 239 documentos de `SEMILLA` a Firestore.
 7. Crea a mano en la consola los documentos de `expedientes` (no van en el código porque es contenido privado).
 
 ### Modelo de datos
@@ -157,7 +157,7 @@ service cloud.firestore {
 - Expedientes: hace falta sesión iniciada; sin ella Firestore responde *permission-denied*.
 - Usuarios: cada uno solo ve el suyo, se crea siempre como `miembro` y no puede cambiar `uid`, `rol` ni `creado`, ni añadir campos inventados.
 
-Estas reglas se han probado con el emulador de Firestore (`@firebase/rules-unit-testing`): 22 casos permitidos/denegados y la carga inicial de 47 documentos como admin.
+Estas reglas se han probado con el emulador de Firestore (`@firebase/rules-unit-testing`): 22 casos permitidos/denegados y la carga inicial de los 239 documentos como admin.
 
 ## Siguientes etapas
 Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, validar Render y finalmente construir JavaFX.
