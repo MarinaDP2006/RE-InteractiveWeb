@@ -1,7 +1,4 @@
 # UMBRELLA ARCHIVES · Resident Evil
-
-Portal y wiki no oficial del universo **Resident Evil**. Proyecto de fans y trabajo de desarrollo web.
-
 ## Estado
 - **Angular**: base inicial creada, con portada, categorías, búsqueda local y fichas de ejemplo. No es todavía una migración completa de la wiki.
 - **API Node.js / Express**: prototipo independiente con endpoints de estado y expedientes de ejemplo. Sin autenticación, base de datos ni panel administrativo.
