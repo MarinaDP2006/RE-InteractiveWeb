@@ -54,7 +54,7 @@ API local: http://localhost:3000/api/estado y http://localhost:3000/api/archivos
 
 La web pública se genera directamente desde `web/`, sin compilar Angular. En Render, crea un **Static Site** conectado a `main` o usa `render.yaml` como Blueprint; directorio de publicación: `web`. La cuenta de Render debe seleccionar el workspace correcto. El servicio gratuito tiene límites de ancho de banda y minutos de build.
 
-Render: URL `https://umbrella-archives.onrender.com` prevista; solo será válida después de crear y desplegar el servicio en Render.
+**Sitio estático en Render:** https://umbrella-archives-static.onrender.com/ (servicio creado; comprobar estado de despliegue en Render). El antiguo servicio Docker `umbrella-archives.onrender.com` es independiente.
 
 ## Siguientes etapas
 Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, validar Render y finalmente construir JavaFX.
