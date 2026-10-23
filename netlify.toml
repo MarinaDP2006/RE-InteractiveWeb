@@ -1,0 +1,9 @@
+[build]
+base = "angular-app"
+command = "npm install && npm run build && node ../scripts/copiar-legado.mjs"
+publish = "dist/umbrella/browser"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
