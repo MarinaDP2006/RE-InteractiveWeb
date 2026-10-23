@@ -42,6 +42,20 @@
     imagen.alt = item.nombre;
     imagen.style.cssText = "width:100%;height:auto";
     document.getElementById("ficha-tecnica").replaceChildren(crear("h2", "", "Ficha técnica"), lista, imagen);
+    // Otras imágenes de la ficha, p. ej. apariencias de un personaje en cada juego (campo opcional "galeria").
+    if (Array.isArray(item.galeria) && item.galeria.length) {
+      const galeria = crear("div");
+      galeria.style.cssText = "display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px";
+      for (const ruta of item.galeria) {
+        const miniatura = crear("img");
+        miniatura.src = rutaImagen(ruta);
+        miniatura.alt = `${item.nombre}: otra apariencia`;
+        miniatura.loading = "lazy";
+        miniatura.style.cssText = "width:100%;height:auto;border-radius:4px";
+        galeria.append(miniatura);
+      }
+      document.getElementById("ficha-tecnica").append(crear("h3", "proto-tag", "Otras apariencias"), galeria);
+    }
   } else if (coleccion || id) {
     document.getElementById("ficha-nombre").textContent = "Expediente no encontrado";
     document.getElementById("ficha-resumen").textContent = "Este archivo no existe o ha sido destruido.";
