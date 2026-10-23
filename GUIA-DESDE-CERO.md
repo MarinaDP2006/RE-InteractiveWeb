@@ -1,6 +1,6 @@
 # GUÍA DESDE CERO · UMBRELLA ARCHIVES
 
-**Actualizada el 23 de octubre de 2026 a partir de los archivos reales de la rama main.**
+**Actualizada el 23 de octubre de 2026.** La configuración Render está preparada en una PR hasta que se fusione con `main`.
 
 Esta guía explica cómo retomar, desarrollar y entregar **Umbrella Archives**, una wiki no oficial del universo Resident Evil, desde un ordenador Windows con PowerShell y Visual Studio Code. Distingue lo que **ya existe**, lo que **es solo diseño** y lo que **todavía falta implementar**. No se debe confundir una página dibujada con una función operativa.
 
@@ -13,7 +13,7 @@ Repositorio correcto: https://github.com/MarinaDP2006/archivos-umbrella
 - Las páginas HTML de la wiki en 'web/wiki/': inicio, juegos, personajes, criaturas, virus, organizaciones, lugares, películas, cronología, mapa, búsqueda, acceso y ficha.
 - Estilos en 'web/comun/estilos.css', 'web/wiki/wiki.css' y 'web/wiki/estilos-archivos.css'.
 - Numerosos recursos gráficos en 'web/img/' y 'src/img/' (retratos, escenarios, ilustraciones, etc.).
-- 'netlify.toml' configurado para publicar directamente la carpeta 'web/' sin paso de compilación.
+- 'render.yaml' configurado para publicar directamente la carpeta 'web/' sin paso de compilación.
 - 'README.md', 'tutorial.md' y esta guía.
 - La PR #1, que retiró la implementación anterior del juego y dejó la wiki como objetivo principal, ya está fusionada.
 
@@ -30,7 +30,7 @@ Repositorio correcto: https://github.com/MarinaDP2006/archivos-umbrella
 - 'web/wiki/cronologia.html' tiene acontecimientos de ejemplo y filtros previstos, sin filtrado implementado.
 - La navegación de categorías está maquetada; sus fichas, enlaces y contenidos tienen que comprobarse uno a uno.
 
-**Importante:** el README anterior menciona Angular y API y un dominio de publicación que no coinciden con lo que realmente contiene esta rama. Comprueba el sitio asociado en tu propia cuenta Netlify antes de dar por buena cualquier URL.
+**Importante:** la web estática actual se sirve desde `web/` en https://umbrella-archives-static.onrender.com/. El Angular y la API descritos en documentos antiguos son planes de futuro, no requisitos para desplegar la web.
 
 ## 1. Qué se pretende entregar
 
@@ -76,7 +76,7 @@ cd archivos-umbrella
 code .
 ~~~~
 
-La raíz debe contener 'web/', 'src/img/', 'README.md', 'netlify.toml' y 'GUIA-DESDE-CERO.md'. Verifica:
+La raíz debe contener 'web/', 'src/img/', 'README.md', 'render.yaml' y 'GUIA-DESDE-CERO.md'. Verifica:
 
 ~~~~powershell
 pwd
@@ -129,13 +129,13 @@ archivos-umbrella/
 │       ├── wiki.css
 │       └── estilos-archivos.css
 ├── src/img/                     Colección adicional de arte
-├── netlify.toml                  Publica web/
+├── render.yaml                  Publica web/
 ├── README.md
 ├── tutorial.md                   Documento histórico: verificar rutas
 └── GUIA-DESDE-CERO.md            Esta guía
 ~~~~
 
-Para que una imagen cargue en Netlify tiene que estar dentro de 'web/' (o copiarse allí mediante un proceso explícito). Los archivos de 'src/img/' NO se publican automáticamente con 'publish = "web"'. No borres ni muevas las imágenes originales hasta verificar todas sus referencias.
+Para que una imagen cargue en Render tiene que estar dentro de 'web/' (o copiarse allí mediante un proceso explícito). Los archivos de 'src/img/' NO se publican automáticamente con 'publish = "web"'. No borres ni muevas las imágenes originales hasta verificar todas sus referencias.
 
 ## 6. Primera fase: estabilizar la maqueta
 
@@ -200,7 +200,7 @@ La tecnología final debe justificarse en la memoria: qué problema resuelve y c
 
 Si hacen falta usuarios, primero define exactamente qué podrán hacer. Firebase Authentication u otro proveedor gestionado puede encargarse del inicio de sesión; los datos protegidos requieren reglas de autorización en el servidor o en la base de datos. Ocultar botones en el navegador **no protege** datos. No publiques secretos, claves administrativas ni perfiles privados en GitHub. Si no hay una necesidad real de cuentas, entrega una wiki pública funcional y explica que el acceso es ampliación futura.
 
-## 11. Publicar en Netlify
+## 11. Publicar en Render
 
 La configuración versionada actual es:
 
@@ -211,9 +211,9 @@ La configuración versionada actual es:
 
 No hay 'build command', ni despliegue Angular, ni redirección SPA global. Los archivos HTML se publican como rutas reales.
 
-1. En https://app.netlify.com/ abre el **sitio ya conectado al repositorio**; verifica el nombre y dominio en el panel antes de actuar. No crees otro sitio por error.
+1. En https://app.Render.com/ abre el **sitio ya conectado al repositorio**; verifica el nombre y dominio en el panel antes de actuar. No crees otro sitio por error.
 2. Confirma repositorio 'MarinaDP2006/archivos-umbrella', rama 'main' y directorio de publicación 'web'.
-3. Guarda los cambios mediante Git y súbelos a 'main' tras revisarlos. Netlify debería desplegar con la integración Git, si está configurada.
+3. Guarda los cambios mediante Git y súbelos a 'main' tras revisarlos. Render debería desplegar con la integración Git, si está configurada.
 4. Revisa el registro de despliegue. Si falla, busca el primer error.
 5. Prueba la portada, '/wiki/index.html', '/wiki/buscar.html', '/wiki/cronologia.html', '/wiki/mapa.html' y '/img/logo.svg' en el **dominio real**.
 6. Comprueba enlaces, imágenes, versión móvil y ausencia de errores en consola.
@@ -268,7 +268,7 @@ Un lanzador JavaFX no reemplaza la web; es un complemento. No lo uses para ocult
 | Cronología | Acontecimientos de ejemplo | Datos contrastados, navegación y filtros |
 | Mapa | Puntos visuales | Controles interactivos y fichas asociadas |
 | Usuarios | Acceso de demostración | Autenticación segura solo si es necesaria |
-| Publicación | Configuración Netlify presente | Verificar despliegue y dominio real |
+| Publicación | Configuración Render presente | Verificar despliegue y dominio real |
 | Pruebas / memoria | Documentación inicial | Capturas, pruebas, incidencias y conclusiones |
 | JavaFX | No iniciado | Crear al final y empaquetar |
 
@@ -279,7 +279,7 @@ Un lanzador JavaFX no reemplaza la web; es un complemento. No lo uses para ocult
 - **La portada funciona pero una imagen falla:** comprueba mayúsculas y minúsculas, ruta relativa y que la imagen esté publicada en 'web/img/'.
 - **Una tarjeta no hace nada:** puede ser un elemento visual sin enlace; hay que implementarlo.
 - **El buscador o inicio de sesión no funcionan:** son maquetas, no fallos del navegador.
-- **Netlify muestra una web antigua:** verifica sitio, rama, commit y directorio 'web' en el registro de despliegue.
+- **Render muestra una web antigua:** verifica sitio, rama, commit y directorio 'web' en el registro de despliegue.
 - **Git rechaza 'push':** actualiza tu rama, revisa el conflicto y evita sobrescribir el trabajo de otra persona.
 - **Los cambios no se ven:** usa recarga forzada, comprueba el despliegue y descarta caché.
 
