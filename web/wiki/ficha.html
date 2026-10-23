@@ -7,5 +7,44 @@
 <header class="proto-header"><a class="proto-logo" href="../index.html"><b>UMBRELLA</b> ARCHIVES</a>
 <nav class="proto-nav" aria-label="Secciones"><a href="index.html" >Inicio</a><a href="juegos.html" >Juegos</a><a href="personajes.html" >Personajes</a><a href="criaturas.html" >Bestiario</a><a href="virus.html" >Virus y parásitos</a><a href="organizaciones.html" >Organizaciones</a><a href="lugares.html" >Ubicaciones</a><a href="peliculas.html" >Películas y series</a><a href="cronologia.html" >Cronología</a><a href="mapa.html" >Mapa</a><a href="buscar.html" >Buscar</a><a href="acceso.html" >Acceso</a></nav>
 <span class="proto-search" aria-label="Buscador de muestra">⌕ Buscar archivos</span></header>
-<section class="proto-hero" style="--img:url('../img/escenarios/re2_vestibulo.webp')"><div><span class="proto-kicker">ARCHIVO · VISTA DETALLE</span><h1>Ficha de expediente</h1>
-<p>Explora los archivos del universo Resident Evil.</p></div></section><main class="proto-shell"><div class="proto-columns"><article class="proto-paper"><h2>Expediente de muestra</h2><p>Esta vista representa cómo quedarán las fichas de personajes, juegos y criaturas en la aplicación final.</p><h2>Historial</h2><p>Biografía, relaciones, cronología, apariciones y galería de los expedientes.</p></article><aside class="proto-paper"><h2>Ficha técnica</h2><p>Nombre, primer juego, afiliación, estado, fuente y fotografía.</p><img src="../img/escenarios/re2_vestibulo.webp" alt="Recurso gráfico existente" style="width:100%;height:auto"></aside></div></main><footer class="proto-foot">UMBRELLA ARCHIVES · 2026 · SITIO NO OFICIAL</footer></body></html>
+<section class="proto-hero" style="--img:url('../img/escenarios/re2_vestibulo.webp')"><div><span class="proto-kicker" id="ficha-seccion">ARCHIVO · VISTA DETALLE</span><h1 id="ficha-nombre">Ficha de expediente</h1>
+<p id="ficha-resumen">Explora los archivos del universo Resident Evil.</p></div></section><main class="proto-shell"><div class="proto-columns"><article class="proto-paper" id="ficha-texto"><h2>Expediente de muestra</h2><p>Esta vista representa cómo quedarán las fichas de personajes, juegos y criaturas en la aplicación final.</p><h2>Historial</h2><p>Biografía, relaciones, cronología, apariciones y galería de los expedientes.</p></article><aside class="proto-paper" id="ficha-tecnica"><h2>Ficha técnica</h2><p>Nombre, primer juego, afiliación, estado, fuente y fotografía.</p><img src="../img/escenarios/re2_vestibulo.webp" alt="Recurso gráfico existente" style="width:100%;height:auto"></aside></div></main><footer class="proto-foot">UMBRELLA ARCHIVES · 2026 · SITIO NO OFICIAL</footer>
+<script type="module">
+  import { leerDocumento, COLECCIONES, CAMPOS, rutaImagen, crear } from "../comun/firebase.js";
+  // La ficha se elige por la URL: ficha.html?c=personajes&id=leon
+  const parametros = new URLSearchParams(location.search);
+  const coleccion = parametros.get("c");
+  const id = parametros.get("id");
+  const item = coleccion in COLECCIONES && id ? await leerDocumento(coleccion, id) : null;
+  if (item) {
+    document.title = `${item.nombre} | Umbrella Archives`;
+    document.getElementById("ficha-seccion").textContent = `ARCHIVO · ${COLECCIONES[coleccion].toUpperCase()}`;
+    document.getElementById("ficha-nombre").textContent = item.nombre;
+    document.getElementById("ficha-resumen").textContent = item.resumen;
+    document.querySelector(".proto-hero").style.setProperty("--img", `url('${rutaImagen(item.imagen)}')`);
+
+    const volver = crear("a", "", `← Volver a ${COLECCIONES[coleccion]}`);
+    volver.href = `${coleccion}.html`;
+    volver.style.color = "inherit";
+    const pieVolver = crear("p");
+    pieVolver.append(volver);
+    document.getElementById("ficha-texto").replaceChildren(crear("h2", "", "Historial"), crear("p", "", item.descripcion), pieVolver);
+
+    const lista = crear("dl");
+    for (const [campo, etiqueta] of Object.entries(CAMPOS[coleccion])) {
+      if (item[campo] === undefined) continue;
+      const valor = Array.isArray(item[campo]) ? item[campo].join(", ") : item[campo];
+      lista.append(crear("dt", "proto-tag", etiqueta), crear("dd", "", String(valor)));
+    }
+    lista.querySelectorAll("dd").forEach(dd => (dd.style.cssText = "margin:0 0 14px;font:16px/1.5 Georgia,serif;color:#c9c0bb"));
+    const imagen = crear("img");
+    imagen.src = rutaImagen(item.imagen);
+    imagen.alt = item.nombre;
+    imagen.style.cssText = "width:100%;height:auto";
+    document.getElementById("ficha-tecnica").replaceChildren(crear("h2", "", "Ficha técnica"), lista, imagen);
+  } else if (coleccion || id) {
+    document.getElementById("ficha-nombre").textContent = "Expediente no encontrado";
+    document.getElementById("ficha-resumen").textContent = "Este archivo no existe o ha sido destruido.";
+  }
+</script>
+</body></html>
