@@ -1,9 +1,7 @@
+# Publicar directamente la web HTML/CSS/JS existente.
+# Angular permanece en angular-app/ para desarrollo futuro.
 [build]
-base = "angular-app"
-command = "npm install && npm run build && node ../scripts/copiar-legado.mjs"
-publish = "dist/umbrella/browser"
+  publish = "web"
 
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+# Las páginas HTML reales (wiki/*.html) se sirven sin redirección SPA.
+# No añadir fallback /* -> /index.html: ocultaría errores y páginas.
