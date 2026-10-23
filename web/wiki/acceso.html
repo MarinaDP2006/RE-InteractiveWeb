@@ -73,35 +73,14 @@
 
 <!-- ============================================================
      FIREBASE AUTHENTICATION
-     type="module" permite usar "import" en el navegador sin
-     instalar nada: las librerías se descargan de la web de Google.
+     type="module" permite usar "import" en el navegador sin instalar nada.
+     La configuración (firebaseConfig) y la conexión están en ../comun/firebase.js,
+     el mismo módulo que usa el resto de la wiki: las claves se ponen solo allí.
      ============================================================ -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getAuth, onAuthStateChanged, signOut,
-    GoogleAuthProvider, signInWithPopup,
-    signInWithEmailAndPassword, createUserWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  import {
-    getFirestore, doc, getDoc, setDoc, serverTimestamp,
-    collection, getDocs, query, orderBy
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { configurado, conectar, guardarUsuario, leerExpedientes, rutaImagen } from "../comun/firebase.js";
 
-  // ---------- 1. CONFIGURACIÓN ----------
-  // Sustituye estos valores por los de tu proyecto:
-  // Consola de Firebase → ⚙ Configuración del proyecto → Tus apps → App web → "Configuración del SDK".
-  // Estos datos NO son secretos (cualquier web con Firebase los muestra); lo que protege los datos son las reglas.
-  const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
-  };
-
-  // ---------- 2. ELEMENTOS DE LA PÁGINA ----------
+  // ---------- 1. ELEMENTOS DE LA PÁGINA ----------
   const zonaAcceso = document.getElementById("zona-acceso");
   const zonaRestringida = document.getElementById("zona-restringida");
   const formEmail = document.getElementById("form-email");
@@ -111,21 +90,24 @@
   function mostrarMensaje(texto) { mensaje.textContent = texto; }
 
   // Si todavía no se han puesto las claves, avisamos y no intentamos conectar.
-  if (firebaseConfig.apiKey === "TU_API_KEY") {
-    mostrarMensaje("Falta configurar Firebase: pon tus claves en firebaseConfig (dentro de acceso.html).");
+  if (!configurado) {
+    mostrarMensaje("Falta configurar Firebase: pon tus claves en firebaseConfig (web/comun/firebase.js).");
     botones.forEach(b => b.disabled = true);
   } else {
-    iniciarFirebase();
+    iniciarAcceso();
   }
 
-  function iniciarFirebase() {
-    // ---------- 3. ARRANCAR FIREBASE ----------
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  async function iniciarAcceso() {
+    // ---------- 2. CONECTAR CON FIREBASE ----------
+    // conectar() devuelve "auth" (la sesión) y "authSdk" (las funciones de Authentication).
+    const { auth, authSdk } = await conectar();
+    const {
+      onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup,
+      signInWithEmailAndPassword, createUserWithEmailAndPassword
+    } = authSdk;
     auth.languageCode = "es"; // la ventana de Google sale en español
-    const db = getFirestore(app); // base de datos Firestore (guarda la ficha de cada usuario)
 
-    // ---------- 4. ESCUCHAR LA SESIÓN ----------
+    // ---------- 3. ESCUCHAR LA SESIÓN ----------
     // Firebase llama a esta función al cargar la página y cada vez que alguien entra o sale.
     // "usuario" es null si no hay sesión. Firebase recuerda la sesión aunque cierres el navegador.
     onAuthStateChanged(auth, usuario => {
@@ -137,12 +119,13 @@
         document.getElementById("correo-usuario").textContent = usuario.email;
         formEmail.reset();
         mostrarMensaje("");
-        guardarUsuario(db, usuario);
-        cargarExpedientes(db);
+        // Guarda la ficha en usuarios/{uid}. Si falla (reglas, red...), el login sigue funcionando.
+        guardarUsuario(usuario).catch(error => console.warn("No se pudo guardar el usuario en Firestore:", error.code));
+        cargarExpedientes();
       }
     });
 
-    // ---------- 5. ENTRAR CON GOOGLE ----------
+    // ---------- 4. ENTRAR CON GOOGLE ----------
     document.getElementById("btn-google").addEventListener("click", async () => {
       try {
         await signInWithPopup(auth, new GoogleAuthProvider());
@@ -151,7 +134,7 @@
       }
     });
 
-    // ---------- 6. ENTRAR O REGISTRARSE CON EMAIL ----------
+    // ---------- 5. ENTRAR O REGISTRARSE CON EMAIL ----------
     formEmail.addEventListener("submit", async evento => {
       evento.preventDefault(); // evita que el formulario recargue la página
       const email = formEmail.email.value.trim();
@@ -174,50 +157,25 @@
       }
     });
 
-    // ---------- 7. CERRAR SESIÓN ----------
+    // ---------- 6. CERRAR SESIÓN ----------
     document.getElementById("btn-salir").addEventListener("click", () => signOut(auth));
-  }
-
-  // Guarda o actualiza el documento usuarios/{uid} en Firestore.
-  // El "rol" solo se escribe al crear la cuenta: las reglas de Firestore no dejan que el usuario se lo cambie.
-  async function guardarUsuario(db, usuario) {
-    const ref = doc(db, "usuarios", usuario.uid);
-    const datos = {
-      nombre: usuario.displayName || "",
-      email: usuario.email,
-      foto: usuario.photoURL || "",
-      proveedor: usuario.providerData[0] ? usuario.providerData[0].providerId : "password", // "google.com" o "password"
-      ultimoAcceso: serverTimestamp()
-    };
-    try {
-      const existe = (await getDoc(ref)).exists();
-      if (existe) {
-        await setDoc(ref, datos, { merge: true });
-      } else {
-        await setDoc(ref, { uid: usuario.uid, ...datos, rol: "miembro", creado: serverTimestamp() });
-      }
-    } catch (error) {
-      // Si Firestore aún no está creado o las reglas lo impiden, el login sigue funcionando igual.
-      console.warn("No se pudo guardar el usuario en Firestore:", error.code);
-    }
   }
 
   // Lee la colección "expedientes" (las reglas solo la dejan leer con sesión iniciada)
   // y dibuja una tarjeta por documento. Si está vacía, se quedan las tarjetas de ejemplo.
-  async function cargarExpedientes(db) {
+  async function cargarExpedientes() {
     try {
-      const resultado = await getDocs(query(collection(db, "expedientes"), orderBy("orden")));
-      if (resultado.empty) return;
+      const expedientes = await leerExpedientes();
+      if (expedientes.length === 0) return;
       const lista = document.getElementById("lista-expedientes");
       const cuestionario = document.getElementById("tarjeta-cuestionario");
       lista.replaceChildren(); // vacía la lista
-      resultado.forEach(documento => {
-        const e = documento.data();
+      expedientes.forEach(e => {
         const tarjeta = document.createElement("article");
         tarjeta.className = "proto-card";
         tarjeta.innerHTML = '<div class="proto-img" role="img"></div><div class="proto-copy"><span class="proto-tag"></span><h3></h3><p></p></div>';
         // textContent (y no innerHTML) para que el texto de la base de datos nunca se ejecute como código
-        tarjeta.querySelector(".proto-img").style.setProperty("--img", "url('../" + e.imagen + "')");
+        tarjeta.querySelector(".proto-img").style.setProperty("--img", "url('" + rutaImagen(e.imagen) + "')");
         tarjeta.querySelector(".proto-img").setAttribute("aria-label", e.titulo);
         tarjeta.querySelector(".proto-tag").textContent = e.nivel;
         tarjeta.querySelector("h3").textContent = e.titulo;
