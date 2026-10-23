@@ -1,0 +1,1 @@
+import {cpSync,mkdirSync} from 'node:fs';import {resolve} from 'node:path';const root=resolve(process.cwd(),'..');const out=resolve(process.cwd(),'dist/umbrella/browser');mkdirSync(out,{recursive:true});cpSync(resolve(root,'web'),resolve(out,'legado'),{recursive:true});cpSync(resolve(root,'web/img'),resolve(out,'img'),{recursive:true});
