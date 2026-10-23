@@ -26,8 +26,11 @@ export const configurado = !firebaseConfig.apiKey.startsWith("TU_");
 export const FORMULARIO_CUESTIONARIO = "https://forms.gle/uJMFdMTQGWCvDZzJ8";
 const idFormulario = FORMULARIO_CUESTIONARIO.match(/\/e\/([^/?]+)/)?.[1] ?? FORMULARIO_CUESTIONARIO.trim();
 export const formularioListo = !idFormulario.startsWith("PEGA_AQUI");
-export const urlFormulario = incrustado =>
-  `https://docs.google.com/forms/d/e/${idFormulario}/viewform${incrustado ? "?embedded=true" : ""}`;
+export const urlFormulario = incrustado => {
+  // El enlace forms.gle es una URL corta pública, no el ID interno /e/... de Google.
+  if (idFormulario.startsWith("https://forms.gle/")) return idFormulario;
+  return `https://docs.google.com/forms/d/e/${idFormulario}/viewform${incrustado ? "?embedded=true" : ""}`;
+};
 
 // Colecciones públicas de la wiki: nombre en Firestore → título visible.
 export const COLECCIONES = {
