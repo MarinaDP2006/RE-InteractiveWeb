@@ -1,196 +1,288 @@
-# GUÍA COMPLETA DESDE CERO · UMBRELLA ARCHIVES
+# GUÍA DESDE CERO · UMBRELLA ARCHIVES
 
-Esta guía está pensada para alguien que empieza desde cero en **Windows con PowerShell y Visual Studio Code**. Haz cada paso en orden. Nunca copies comandos sin comprobar en qué carpeta estás.
+**Actualizada el 23 de octubre de 2026 a partir de los archivos reales de la rama main.**
 
-## 0. Qué vamos a conseguir
+Esta guía explica cómo retomar, desarrollar y entregar **Umbrella Archives**, una wiki no oficial del universo Resident Evil, desde un ordenador Windows con PowerShell y Visual Studio Code. Distingue lo que **ya existe**, lo que **es solo diseño** y lo que **todavía falta implementar**. No se debe confundir una página dibujada con una función operativa.
 
-Primero arrancaremos la web Angular, después la API Node, luego publicaremos Angular en Netlify. **JavaFX queda para el final**. La carpeta `web/` contiene la maqueta original y no debe borrarse. El proyecto nuevo es una base inicial: aún no incluye todas las fichas ni usuarios reales.
+## 0. Situación real del proyecto
 
-## 1. Instalar los programas
+Repositorio correcto: https://github.com/MarinaDP2006/archivos-umbrella
 
-1. Instala Git desde https://git-scm.com/downloads
-2. Instala VS Code desde https://code.visualstudio.com/
-3. Instala Node.js **22 LTS** desde https://nodejs.org/ (Angular 19 admite Node 22). npm viene incluido.
-4. Abre VS Code. Menú **Terminal → Nuevo terminal** y selecciona PowerShell.
-5. Ejecuta, una línea cada vez:
+**Lo que existe en main:**
+- Una portada estática en 'web/index.html' con tres accesos: wiki, cronología y mapa.
+- Las páginas HTML de la wiki en 'web/wiki/': inicio, juegos, personajes, criaturas, virus, organizaciones, lugares, películas, cronología, mapa, búsqueda, acceso y ficha.
+- Estilos en 'web/comun/estilos.css', 'web/wiki/wiki.css' y 'web/wiki/estilos-archivos.css'.
+- Numerosos recursos gráficos en 'web/img/' y 'src/img/' (retratos, escenarios, ilustraciones, etc.).
+- 'netlify.toml' configurado para publicar directamente la carpeta 'web/' sin paso de compilación.
+- 'README.md', 'tutorial.md' y esta guía.
+- La PR #1, que retiró la implementación anterior del juego y dejó la wiki como objetivo principal, ya está fusionada.
 
-```powershell
+**Lo que no existe actualmente en main:**
+- 'angular-app/', 'api-node/', 'scripts/' y 'escritorio-javafx/'. Aunque se describan en documentos antiguos, NO están presentes: no ejecutes comandos dentro de esas carpetas.
+- 'package.json' en la raíz: la web actual no necesita 'npm install' ni 'npm start' para funcionar.
+- Una base de datos, API propia, fichas alimentadas por registros reales, registro de usuarios operativo o aplicación JavaFX.
+
+**Maquetas o funciones todavía incompletas:**
+- 'web/wiki/buscar.html' anuncia un buscador futuro y muestra resultados de ejemplo. No es un buscador operativo.
+- 'web/wiki/acceso.html' muestra un formulario ficticio; no hay autenticación de usuarios.
+- 'web/wiki/ficha.html' es una ficha de muestra, no una ficha dinámica por ID.
+- 'web/wiki/mapa.html' tiene etiquetas de lugares en un mapa visual; no hay filtros ni navegación interactiva completa.
+- 'web/wiki/cronologia.html' tiene acontecimientos de ejemplo y filtros previstos, sin filtrado implementado.
+- La navegación de categorías está maquetada; sus fichas, enlaces y contenidos tienen que comprobarse uno a uno.
+
+**Importante:** el README anterior menciona Angular y API y un dominio de publicación que no coinciden con lo que realmente contiene esta rama. Comprueba el sitio asociado en tu propia cuenta Netlify antes de dar por buena cualquier URL.
+
+## 1. Qué se pretende entregar
+
+Una wiki de Resident Evil con diseño de archivo secreto, visualmente coherente, usable desde móvil y ordenador: portada, categorías, fichas completas y relacionadas, buscador funcional, cronología, mapa, y opcionalmente acceso de usuarios. Para un proyecto académico, además prepara documentación, capturas, decisiones técnicas y pruebas. JavaFX es la última fase; la publicación de la web no depende de JavaFX.
+
+**Prioridad:** una wiki completa, navegable y comprobada antes de añadir tecnologías que no sean necesarias.
+
+## 2. Instalar solo las herramientas necesarias
+
+1. Instala Git: https://git-scm.com/downloads
+2. Instala Visual Studio Code: https://code.visualstudio.com/
+3. Usa Chrome, Edge o Firefox para las pruebas.
+4. Opcional: extensión Live Server en VS Code para previsualizar HTML estático.
+5. Node.js LTS solo será necesario cuando se creen herramientas de desarrollo, Angular o un servidor Node. No hace falta para ver la web actual.
+6. JDK 21, Maven y JavaFX solo cuando comience la fase de escritorio.
+
+En VS Code, abre Terminal > Nuevo terminal y comprueba:
+
+~~~~powershell
 git --version
+code --version
+~~~~
+
+Si más adelante instalas Node:
+
+~~~~powershell
 node --version
 npm --version
-```
+~~~~
 
-Si algún comando no existe, cierra y vuelve a abrir VS Code después de instalarlo. No necesitas Java, Maven, Docker ni MySQL para esta fase.
+No instales Angular, Express, Firebase, MySQL o JavaFX por adelantado si aún no los necesitas.
 
-## 2. Descargar el repositorio
+## 3. Descargar la versión correcta (primera vez)
 
 En PowerShell:
 
-```powershell
+~~~~powershell
 cd $HOME
-mkdir Proyectos -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Force -Path Proyectos | Out-Null
 cd Proyectos
 git clone https://github.com/MarinaDP2006/archivos-umbrella.git
 cd archivos-umbrella
 code .
-```
+~~~~
 
-Si ya tienes el repositorio, **no vuelvas a clonarlo encima**. Entra en su carpeta y ejecuta `git pull origin main`, siempre después de guardar o confirmar tus cambios locales.
+La raíz debe contener 'web/', 'src/img/', 'README.md', 'netlify.toml' y 'GUIA-DESDE-CERO.md'. Verifica:
 
-La raíz es la carpeta que contiene `README.md`, `angular-app/`, `api-node/` y `web/`. Puedes comprobarlo con:
-
-```powershell
+~~~~powershell
 pwd
-dir
+Get-ChildItem
 git status
-```
+git branch --show-current
+~~~~
 
-## 3. Ejecutar Angular
+Si ya lo descargaste, no lo clones de nuevo encima. Antes de actualizar:
 
-En la terminal, desde la raíz:
-
-```powershell
-cd angular-app
-npm install
-npm start
-```
-
-Abre **http://localhost:4200**. Deja esa terminal abierta. Prueba Inicio, Wiki, Buscar y una ficha. La búsqueda actual trabaja con registros de ejemplo almacenados en `src/app.ts`, no con una base de datos.
-
-Para detener el servidor, pulsa **Ctrl+C**. Para generar la web de producción:
-
-```powershell
-npm run build
-node ../scripts/copiar-legado.mjs
-```
-
-Angular genera `angular-app/dist/umbrella/browser/`. El segundo comando copia `web/` a `legado/` y las imágenes originales a `img/` dentro de esa salida. No edites `dist/`: se regenera.
-
-### Qué modificar en Angular
-
-- `angular-app/src/app.ts`: rutas, páginas, componentes y expedientes de muestra.
-- `angular-app/src/styles.css`: colores, tamaños y adaptación móvil.
-- `angular-app/src/index.html`: título y metadatos.
-- `angular-app/public/_redirects`: recarga de rutas en Netlify.
-- `web/`: maqueta de referencia. **No modificar ni borrar**.
-
-Para ampliar el proyecto, separa los componentes de `app.ts` en archivos individuales y migra las páginas originales una a una. Para generar componentes nuevos desde `angular-app/`:
-
-```powershell
-npx ng generate component pages/cronologia
-npx ng generate component pages/mapa
-npx ng generate component pages/acceso
-```
-
-Después debes añadir las rutas y enlazar las nuevas pantallas. Generar un componente no lo conecta automáticamente al menú.
-
-## 4. Ejecutar la API Node
-
-Abre una **segunda terminal** en VS Code, sin cerrar Angular. Desde la raíz del repositorio:
-
-```powershell
-cd api-node
-npm install
-Copy-Item .env.example .env
-npm run dev
-```
-
-Si la terminal anterior sigue dentro de `angular-app/`, escribe primero `cd ..` y después `cd api-node`.
-
-Abre estas direcciones en el navegador:
-
-- http://localhost:3000/api/estado
-- http://localhost:3000/api/archivos
-- http://localhost:3000/api/archivos?q=leon
-- http://localhost:3000/api/archivos/leon
-
-El archivo `api-node/server.js` contiene el servidor y las rutas. `api-node/.env` contiene ajustes **locales**, y debe quedar fuera de Git. No almacenes contraseñas ni claves en el código ni en `.env.example`.
-
-La API actual solo devuelve datos de demostración. Angular todavía usa su propio catálogo local; conectarlos es el siguiente trabajo de integración. No existe registro ni autenticación real.
-
-## 5. Conectar Angular con la API (siguiente fase)
-
-En producción, el navegador no puede llamar a `localhost:3000`: esa dirección sería el ordenador del visitante. Cuando la API esté desplegada, configura su URL pública en Angular y utiliza `HttpClient` para consultar `/api/archivos`.
-
-En `api-node/.env`, establece `ALLOWED_ORIGINS` con el dominio exacto de tu web Netlify. Reinicia el servidor tras cambiar variables.
-
-No publiques rutas privadas antes de implementar validación, autenticación, autorización, limitación de peticiones y almacenamiento seguro. CORS **no** es un sistema de autenticación.
-
-## 6. Publicar la web original en Netlify (configuración actual)
-
-El sitio público **rewikifan.netlify.app** utiliza directamente la carpeta `web/`, con sus archivos HTML, CSS, imágenes y páginas `wiki/*.html`. No necesitas compilar Angular para actualizarlo.
-
-1. Edita los archivos de `web/` en VS Code.
-2. Comprueba que `web/index.html`, `web/comun/estilos.css` y `web/img/` siguen presentes.
-3. En la raíz del repositorio ejecuta `git status`, `git add web`, `git commit -m "Actualiza web original"` y `git push origin main`.
-4. En Netlify abre el sitio **rewikifan**, conectado a `MarinaDP2006/archivos-umbrella` y rama `main`.
-5. La configuración de `netlify.toml` debe tener `publish = "web"`, sin carpeta base ni comando de compilación.
-6. Comprueba `https://rewikifan.netlify.app/`, `/wiki/index.html` y `/img/logo.svg`.
-7. Si no se actualiza, abre el registro de despliegues y usa **Trigger deploy** en el sitio existente.
-
-**Importante:** Angular sigue guardado en `angular-app/` como proyecto de desarrollo, pero no está publicado en este sitio. Para publicarlo en el futuro se deberá decidir si sustituye a la web original o si tendrá un sitio independiente. No borres `web/`.
-
-## 7. Publicar API Node en Render (opcional, cuando esté preparada)
-
-1. En https://dashboard.render.com/ comprueba si ya existe un servicio para esta API. No lo dupliques.
-2. Crea o reutiliza un **Web Service** conectado al mismo repositorio y rama `main`.
-3. Root Directory: `api-node`.
-4. Build Command: `npm install`.
-5. Start Command: `npm start`.
-6. Configura `ALLOWED_ORIGINS=https://TU-SITIO.netlify.app` como variable de entorno. No añadas barra final.
-7. El servicio utiliza `process.env.PORT`; Render asigna el puerto.
-8. Tras desplegar, prueba `https://TU-API.onrender.com/api/estado` con el dominio real que te proporcione Render.
-
-Comprueba las condiciones y límites actuales del plan antes de activarlo. El plan gratuito puede suspender servicios inactivos. No publiques endpoints de administración sin controles de seguridad.
-
-## 8. Guardar cambios en GitHub
-
-Abre una terminal **en la raíz** (`archivos-umbrella/`):
-
-```powershell
+~~~~powershell
 git status
-git add angular-app api-node scripts netlify.toml README.md GUIA-DESDE-CERO.md
-git commit -m "Actualiza Umbrella Archives"
+git pull --ff-only origin main
+~~~~
+
+Si tienes cambios locales, guárdalos o haz commit primero. No uses 'git reset --hard' para solucionar un conflicto sin copia de seguridad.
+
+## 4. Abrir la web actual sin compilar
+
+Desde VS Code, instala Live Server si quieres y abre 'web/index.html' con **Open with Live Server**. Alternativa con Python, si está instalado:
+
+~~~~powershell
+cd web
+python -m http.server 5500
+~~~~
+
+Visita http://localhost:5500/. Si usas Live Server, abre la dirección que te muestre. Desde la portada entra a 'wiki/index.html', 'wiki/cronologia.html' y 'wiki/mapa.html'.
+
+No abras 'localhost:4200' ni 'localhost:3000' esperando encontrar Angular o una API: hoy no existen esos servidores en este repositorio.
+
+**Comprobación:** la portada carga, las imágenes aparecen, los enlaces internos van a sus páginas y no hay errores de recursos en las herramientas de desarrollo del navegador (F12 > Console/Network).
+
+## 5. Conocer las carpetas antes de editar
+
+~~~~text
+archivos-umbrella/
+├── web/
+│   ├── index.html                Portada real
+│   ├── 404.html
+│   ├── comun/estilos.css         Estilos globales
+│   ├── img/                      Imágenes servidas en la web
+│   └── wiki/
+│       ├── index.html            Inicio de la wiki
+│       ├── juegos.html, personajes.html, criaturas.html...
+│       ├── ficha.html            Ficha de demostración
+│       ├── buscar.html           Buscador de demostración
+│       ├── acceso.html           Acceso de demostración
+│       ├── cronologia.html       Cronología de ejemplo
+│       ├── mapa.html             Mapa de ejemplo
+│       ├── wiki.css
+│       └── estilos-archivos.css
+├── src/img/                     Colección adicional de arte
+├── netlify.toml                  Publica web/
+├── README.md
+├── tutorial.md                   Documento histórico: verificar rutas
+└── GUIA-DESDE-CERO.md            Esta guía
+~~~~
+
+Para que una imagen cargue en Netlify tiene que estar dentro de 'web/' (o copiarse allí mediante un proceso explícito). Los archivos de 'src/img/' NO se publican automáticamente con 'publish = "web"'. No borres ni muevas las imágenes originales hasta verificar todas sus referencias.
+
+## 6. Primera fase: estabilizar la maqueta
+
+Antes de añadir grandes funciones:
+1. Recorre todas las páginas con el navegador y anota qué funciona, qué no enlaza y qué es solo un ejemplo.
+2. Comprueba desde móvil o con las herramientas responsive de Chrome que menús, textos y tarjetas caben en pantalla.
+3. Corrige enlaces rotos, textos de relleno, rutas a imágenes inexistentes, contrastes y navegación por teclado.
+4. Haz que cada tarjeta importante sea un enlace accesible real; no basta con que parezca pulsable.
+5. Conserva el estilo Umbrella Archives y el aviso de proyecto de fans.
+
+**Resultado esperado:** navegación coherente y diseño estable, incluso aunque las fichas sigan siendo estáticas.
+
+## 7. Segunda fase: preparar los datos reales de la wiki
+
+Se recomienda empezar con **un único catálogo estructurado** (JSON o módulos JavaScript) para evitar copiar información en docenas de páginas. No es obligatorio adoptar Angular para hacer esto.
+
+Ejemplo de esquema de contenido:
+
+~~~~json
+{
+  "id": "leon-s-kennedy",
+  "tipo": "personaje",
+  "nombre": "Leon S. Kennedy",
+  "resumen": "Descripción revisada y documentada",
+  "imagen": "../img/retratos/leon.webp",
+  "relacionados": ["resident-evil-2"],
+  "fuentes": []
+}
+~~~~
+
+El ejemplo es orientativo: antes de usar esa ruta comprueba si el archivo existe exactamente en 'web/img/'. Define IDs únicos, campos obligatorios, fuentes de información y categoría para juegos, personajes, criaturas, virus, organizaciones, ubicaciones y películas. Diferencia juegos, adaptaciones audiovisuales y líneas temporales; no mezcles canon sin explicarlo.
+
+Empieza por unas pocas fichas reales para validar el formato; después amplía el catálogo por secciones. Si reutilizas recursos oficiales, ten en cuenta los derechos de autor y mantén el carácter no oficial.
+
+## 8. Tercera fase: convertir las páginas de muestra en funciones reales
+
+**Fichas:** 'ficha.html' debe leer un ID (por ejemplo mediante un parámetro de URL), buscarlo en el catálogo, mostrar descripción, imagen, fuentes y relacionados. Si el ID no existe, mostrar un error comprensible y un enlace para volver.
+
+**Buscador:** sustituir el texto de ejemplo en 'buscar.html' por un campo real que filtre el catálogo por nombre, alias, tipo y, opcionalmente, etiquetas. Permitir limpiar filtros, manejar cero resultados y funcionar con teclado.
+
+**Categorías:** leer el mismo catálogo y enlazar cada tarjeta a su ficha, sin duplicar sus datos.
+
+**Cronología:** convertir los acontecimientos de ejemplo en registros con fechas, referencias y filtros por juego, año o tipo de suceso. Indicar las fechas aproximadas.
+
+**Mapa:** convertir los puntos decorativos en enlaces o controles accesibles asociados a fichas de ubicaciones; después implementar filtros, zoom y controles táctiles si el tiempo lo permite.
+
+**Acceso:** mantenerlo como demostración hasta que exista autenticación REAL. No aceptar contraseñas en un formulario casero ni guardar contraseñas en localStorage.
+
+**Comprobación:** cada ficha se encuentra desde el buscador, se abre desde su categoría, y enlaza a otras fichas sin errores.
+
+## 9. Elegir arquitectura sin tirar el trabajo existente
+
+**Ruta recomendada para terminar antes:** ampliar la web estática con JavaScript modular y JSON. Es suficiente para una wiki pública con búsqueda y fichas, sin servidor.
+
+**Ruta alternativa si el proyecto requiere Angular:** crear 'angular-app/' desde cero solo tras decidir la migración; pasar estilos y pantallas gradualmente, dejando 'web/' intacta hasta verificar paridad. Escribir el proyecto en Angular NO está hecho a fecha de esta guía.
+
+**Backend Node / base de datos:** añadirlos únicamente cuando sean imprescindibles para cuentas, edición de contenidos o información privada. Una wiki pública de solo lectura puede funcionar sin API propia.
+
+La tecnología final debe justificarse en la memoria: qué problema resuelve y cómo se prueba.
+
+## 10. Autenticación y zona restringida (fase opcional posterior)
+
+Si hacen falta usuarios, primero define exactamente qué podrán hacer. Firebase Authentication u otro proveedor gestionado puede encargarse del inicio de sesión; los datos protegidos requieren reglas de autorización en el servidor o en la base de datos. Ocultar botones en el navegador **no protege** datos. No publiques secretos, claves administrativas ni perfiles privados en GitHub. Si no hay una necesidad real de cuentas, entrega una wiki pública funcional y explica que el acceso es ampliación futura.
+
+## 11. Publicar en Netlify
+
+La configuración versionada actual es:
+
+~~~~toml
+[build]
+  publish = "web"
+~~~~
+
+No hay 'build command', ni despliegue Angular, ni redirección SPA global. Los archivos HTML se publican como rutas reales.
+
+1. En https://app.netlify.com/ abre el **sitio ya conectado al repositorio**; verifica el nombre y dominio en el panel antes de actuar. No crees otro sitio por error.
+2. Confirma repositorio 'MarinaDP2006/archivos-umbrella', rama 'main' y directorio de publicación 'web'.
+3. Guarda los cambios mediante Git y súbelos a 'main' tras revisarlos. Netlify debería desplegar con la integración Git, si está configurada.
+4. Revisa el registro de despliegue. Si falla, busca el primer error.
+5. Prueba la portada, '/wiki/index.html', '/wiki/buscar.html', '/wiki/cronologia.html', '/wiki/mapa.html' y '/img/logo.svg' en el **dominio real**.
+6. Comprueba enlaces, imágenes, versión móvil y ausencia de errores en consola.
+
+No presupongas que un dominio mencionado en README o en un tutorial antiguo es el dominio definitivo. Tampoco añadas un proxy o Render sin una API que desplegar.
+
+## 12. Guardar cambios sin perder nada
+
+Desde la raíz del repositorio:
+
+~~~~powershell
+git status
+git add web GUIA-DESDE-CERO.md README.md
+git commit -m "Actualizar wiki y documentacion"
 git push origin main
-```
+~~~~
 
-Si no has cambiado nada, Git indicará que no hay cambios que confirmar. Nunca subas `node_modules/`, `dist/` ni `.env`. Comprueba `git status` antes de hacer commit.
+Añade solo los archivos que hayas editado. Si colaboras con Claude, Copilot u otras personas, lo más seguro es crear una rama por tarea y revisar una Pull Request antes de fusionar. No editéis simultáneamente el mismo archivo sin sincronizar las ramas. No subas contraseñas, tokens, 'node_modules/', archivos '.env' ni materiales privados.
 
-## 9. Solucionar errores frecuentes
+## 13. Pruebas y requisitos de entrega
 
-- **npm no reconocido:** reinstala Node LTS, reinicia la terminal.
-- **Puerto 4200 ocupado:** cierra otro `ng serve` o usa `npm start -- --port 4201`.
-- **Puerto 3000 ocupado:** cambia `PORT=3001` en `api-node/.env`.
-- **Imágenes no aparecen en Angular local:** las imágenes originales se copian al compilar para Netlify; para desarrollo local copia manualmente `web/img/` a `angular-app/public/img/` (no borres el original).
-- **404 al recargar una ruta:** revisa `angular-app/public/_redirects` y el despliegue.
-- **Error CORS:** revisa que `ALLOWED_ORIGINS` contenga el origen exacto del navegador, incluyendo protocolo y puerto.
-- **Netlify falla:** abre el log, busca el primer error real y verifica la versión de Node y el directorio base.
+Para cada fase, anota **fecha, archivo cambiado, qué se ha probado, resultado y captura**. Comprueba al menos:
+- Portada y navegación entre todas las categorías.
+- Enlaces a fichas, imágenes reales y páginas de error.
+- Búsqueda sin resultados, búsqueda con tildes y nombres alternativos.
+- Móvil, tableta y escritorio, teclado y lector de pantalla en los flujos críticos.
+- Carga sin errores 404, accesibilidad básica (contraste, etiquetas, foco) y tiempos razonables.
+- Publicación después de cada cambio significativo.
+- Seguridad y permisos si finalmente hay cuentas.
 
-## 10. Pruebas antes de entregar
+No marques una característica como 'completa' por la mera presencia de una página HTML; demuestra el comportamiento.
 
-Comprueba en móvil y escritorio la navegación, búsqueda, fichas, imágenes, enlaces, accesibilidad de teclado, recarga de rutas y mensajes de error. Después prueba API, CORS y despliegue. Anota qué funciona y qué está pendiente, sin presentar funciones de muestra como definitivas.
+## 14. JavaFX (solo al final)
 
-## 11. JavaFX, ÚLTIMA ETAPA (NO IMPLEMENTADA)
+**No existe todavía 'escritorio-javafx/' en main.** Cuando la web esté funcional y publicada:
+1. Instala JDK 21 y Maven y verifica 'java -version' y 'mvn -version'.
+2. Crea un proyecto JavaFX/OpenJFX separado en 'escritorio-javafx/'.
+3. Haz una ventana sencilla, con identidad visual Umbrella Archives y un botón para abrir la URL pública en el navegador predeterminado.
+4. Implementa estado, ayuda y empaquetado con 'jpackage' solo si los necesitas para la entrega.
+5. Prueba el ejecutable en Windows y documenta requisitos e instalación.
 
-Cuando Angular y la API funcionen, instala **JDK 21**, **Maven**, **JavaFX** y, si quieres, **Scene Builder**. Verifica:
+Un lanzador JavaFX no reemplaza la web; es un complemento. No lo uses para ocultar funcionalidades pendientes.
 
-```powershell
-java -version
-javac -version
-mvn -version
-```
+## 15. Plan de trabajo recomendado (en orden)
 
-Entonces crea `escritorio-javafx/` con Maven y OpenJFX. Primero haz una ventana con un botón que abra la URL publicada de Netlify en el navegador predeterminado. Después añade estado del sitio, configuración y empaquetado con `jpackage`. No es necesario construir JavaFX para publicar Angular.
+| Fase | Situación actual | Qué hay que terminar |
+| --- | --- | --- |
+| Recuperación del proyecto | Repositorio y web estática presentes | Clonar, abrir y validar rutas |
+| Diseño / navegación | Portada y páginas HTML presentes | Corregir enlaces, móvil y accesibilidad |
+| Catálogo de la wiki | Imágenes y vistas de ejemplo | Datos estructurados, fichas reales y enlaces |
+| Buscador | Solo maqueta | Búsqueda real y filtros |
+| Cronología | Acontecimientos de ejemplo | Datos contrastados, navegación y filtros |
+| Mapa | Puntos visuales | Controles interactivos y fichas asociadas |
+| Usuarios | Acceso de demostración | Autenticación segura solo si es necesaria |
+| Publicación | Configuración Netlify presente | Verificar despliegue y dominio real |
+| Pruebas / memoria | Documentación inicial | Capturas, pruebas, incidencias y conclusiones |
+| JavaFX | No iniciado | Crear al final y empaquetar |
 
-## 12. Orden recomendado para continuar
+## 16. Problemas frecuentes
 
-1. Ejecutar y corregir la compilación Angular.
-2. Migrar completamente los diseños y fichas de `web/`.
-3. Añadir datos y buscador completo.
-4. Integrar Angular y API Node.
-5. Incorporar autenticación y persistencia, si se necesitan.
-6. Validar Netlify y, cuando corresponda, el alojamiento de la API.
-7. Probar seguridad, móviles y accesibilidad.
-8. Crear el escritorio JavaFX al final.
+- **'cd angular-app' o 'cd api-node' falla:** esas carpetas no existen en main. Sigue esta guía, no los comandos históricos.
+- **'npm start' falla:** el proyecto actual es HTML/CSS estático y no tiene 'package.json' de arranque.
+- **La portada funciona pero una imagen falla:** comprueba mayúsculas y minúsculas, ruta relativa y que la imagen esté publicada en 'web/img/'.
+- **Una tarjeta no hace nada:** puede ser un elemento visual sin enlace; hay que implementarlo.
+- **El buscador o inicio de sesión no funcionan:** son maquetas, no fallos del navegador.
+- **Netlify muestra una web antigua:** verifica sitio, rama, commit y directorio 'web' en el registro de despliegue.
+- **Git rechaza 'push':** actualiza tu rama, revisa el conflicto y evita sobrescribir el trabajo de otra persona.
+- **Los cambios no se ven:** usa recarga forzada, comprueba el despliegue y descarta caché.
 
-No confundas una base de proyecto con una aplicación terminada. Esta guía sirve para avanzar con comprobaciones en cada fase.
+## 17. Regla para continuar
+
+Antes de empezar cada tarea: **verificar lo que existe → definir comportamiento → implementar → probar localmente → revisar en GitHub → desplegar → registrar resultado**. Mantén los diseños originales hasta que su sustituto esté probado. No presentes Angular, API, usuarios ni JavaFX como terminados: actualmente son objetivos futuros.
