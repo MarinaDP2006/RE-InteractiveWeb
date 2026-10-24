@@ -70,7 +70,7 @@ npm run dev        # arranca el servidor y se reinicia al guardar cambios
 Abre http://localhost:3000. Si ves `{"ok":true,"bd":true}` en http://localhost:3000/api/estado, el servidor está conectado a MySQL.
 
 ## Publicar en Render con MySQL
-Render no ofrece MySQL gestionado (solo PostgreSQL), así que la base de datos va en un proveedor de MySQL y el servidor en Render.
+Render no ofrece MySQL gestionado (solo PostgreSQL), así que la base de datos va en un proveedor de MySQL y el servidor en Render. Explicado paso a paso, en [GUIA-DESDE-CERO.md, apartado 11](GUIA-DESDE-CERO.md#11-publicar-en-render).
 
 1. **MySQL gratis en Aiven**: crea una cuenta en https://aiven.io, crea un servicio *MySQL* con el plan **Free** y espera a que esté *Running*. En *Overview* copia la **Service URI** (`mysql://avnadmin:...@...:PUERTO/defaultdb?ssl-mode=REQUIRED`) y descarga el **CA certificate**.
 2. **Cargar los datos**: en tu `servidor/.env` pon `DATABASE_URL=` con esa URI y `MYSQL_CA_FILE=` con la ruta del certificado. Después ejecuta `npm run bd:crear` desde tu ordenador.
