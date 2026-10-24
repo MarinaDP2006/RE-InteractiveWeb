@@ -60,6 +60,8 @@ La base de datos se llama `umbrella` y usa **utf8mb4** con cotejamiento **utf8mb
 npm run bd:crear   # crea las tablas y carga los datos (¡borra lo que hubiera!)
 ```
 
+**Base de datos completa del respaldo** (opcional): `servidor/bd/umbrella-completa.sql` contiene todo el contenido de la rama `backend-previo-para-mas-info` (250 fichas con textos, curiosidades, etiquetas, relaciones entre fichas, coordenadas del mapa, cronología de 1919 a 2037, y las tablas de miembros y sesiones), convertido a MySQL. Se importa igual en phpMyAdmin y crea su propia base `umbrella_completa` (utf8mb4 / utf8mb4_general_ci), así que no toca la base `umbrella` de la web.
+
 Después arranca la web:
 ```powershell
 npm run dev        # arranca el servidor y se reinicia al guardar cambios
