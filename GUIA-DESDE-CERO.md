@@ -209,14 +209,69 @@ Ocultar botones en el navegador **no protege** datos: lo que protege los expedie
 
 ## 11. Publicar en Render
 
-Render ejecuta el servidor de Node ('render.yaml'): instala las dependencias con 'cd servidor && npm ci' y arranca con 'npm start'. Render no tiene MySQL propio, así que la base de datos va en un proveedor de MySQL (recomendado: el plan gratuito de Aiven). Los pasos detallados están en el README, apartado «Publicar en Render con MySQL». En resumen:
+Render ejecuta el servidor de Node ('render.yaml'): instala las dependencias con 'cd servidor && npm ci' y arranca con 'npm start'. Render no tiene MySQL propio, así que la base de datos va en **Aiven**, que tiene un plan MySQL gratuito. Son cuatro pasos, en este orden: crear el MySQL, cargar los datos, montar el servicio en Render y borrar el sitio antiguo.
 
-1. Crea el MySQL gratuito en Aiven y copia la **Service URI** y el **certificado CA**.
-2. Desde tu ordenador, con esos datos en 'servidor/.env', ejecuta 'npm run bd:crear'.
-3. En Render: *New → Blueprint* con este repositorio. Rellena 'DATABASE_URL', 'MYSQL_CA' y, si quieres Google, 'GOOGLE_CLIENT_ID'.
-4. Despliega y abre '/api/estado': debe responder '{"ok":true,"bd":true}'.
-5. Prueba la portada, un listado, una ficha, el buscador, el registro y los expedientes en el **dominio real**.
-6. Cuando el nuevo servicio funcione, borra el antiguo *Static Site*: un sitio estático no puede ejecutar Node.
+### 11.1. Crear el MySQL gratis en Aiven
+
+1. Entra en https://aiven.io y pulsa **Sign up**. Puedes registrarte con tu cuenta de Google.
+2. Si te pide crear un proyecto, ponle cualquier nombre (por ejemplo 'umbrella').
+3. Pulsa **Create service** y elige **MySQL**.
+4. En el plan, elige **Free**. En la región elige una de Europa si te deja.
+5. Ponle de nombre 'umbrella-mysql' y pulsa **Create free service**.
+6. Espera a que el estado pase de *Rebuilding* a **Running** (tarda unos minutos).
+7. Entra en el servicio. En la pestaña **Overview**, en *Connection information*:
+   - Copia la **Service URI**. Es una línea que empieza por 'mysql://avnadmin:...'. Guárdala, porque es la "llave" de tu base de datos: no la pegues en GitHub ni en ningún archivo que subas.
+   - Pulsa **Download** junto a **CA certificate**. Se descarga un archivo 'ca.pem'. Muévelo a la carpeta 'servidor/' del proyecto (Git no lo sube).
+
+### 11.2. Cargar los datos en Aiven desde tu ordenador
+
+1. Abre la carpeta 'servidor/' en VS Code y abre el archivo '.env'. Si no existe, copia '.env.example' y llámalo '.env'.
+2. Añade estas dos líneas, con tu Service URI de verdad:
+
+~~~~text
+DATABASE_URL=mysql://avnadmin:TU-CONTRASEÑA@TU-SERVIDOR.aivencloud.com:12345/defaultdb?ssl-mode=REQUIRED
+MYSQL_CA_FILE=./ca.pem
+~~~~
+
+   Si 'DATABASE_URL' está rellena, el servidor la usa y no hace caso de las líneas 'MYSQL_HOST', 'MYSQL_USER', etc. de XAMPP. Para volver a XAMPP, pon '#' delante de 'DATABASE_URL'.
+3. Abre una terminal en 'servidor/' (en VS Code: *Terminal → New Terminal*, y luego 'cd servidor') y ejecuta:
+
+~~~~powershell
+npm install
+npm run bd:crear
+~~~~
+
+4. Si sale una tabla con 'juegos 28', 'personajes 70', etc. y el mensaje **Base de datos lista**, ya tienes las fichas en Aiven. Las tablas se crean en la base 'defaultdb' que da Aiven, no hace falta crear ninguna más.
+5. Si da un error de certificado o SSL, revisa que 'ca.pem' esté dentro de 'servidor/' y que la línea 'MYSQL_CA_FILE=./ca.pem' esté bien escrita.
+
+### 11.3. Montar el servicio en Render con el Blueprint
+
+Un *Blueprint* es el archivo 'render.yaml' del repositorio: le dice a Render qué servicio crear y cómo arrancarlo, para que no tengas que configurarlo a mano.
+
+1. Comprueba que 'main' en GitHub tiene la última versión (el archivo 'render.yaml' y la carpeta 'servidor/').
+2. Entra en https://dashboard.render.com, pulsa **New +** y elige **Blueprint**.
+3. Conecta tu cuenta de GitHub si te lo pide y elige el repositorio 'archivos-umbrella', rama 'main'.
+4. Render lee 'render.yaml' y te enseña que va a crear un **Web Service** llamado 'umbrella-archives'. Te pedirá las variables que faltan:
+   - **DATABASE_URL**: pega la Service URI de Aiven (la misma del '.env').
+   - **MYSQL_CA**: abre 'ca.pem' con el Bloc de notas y pega **todo** su contenido, desde '-----BEGIN CERTIFICATE-----' hasta '-----END CERTIFICATE-----', ambas líneas incluidas.
+   - **GOOGLE_CLIENT_ID**: déjalo vacío si no vas a usar el acceso con Google. Sin él, funciona el registro con email.
+   - 'SESSION_SECRET' no lo toques: Render lo inventa solo.
+5. Pulsa **Apply** y espera a que el despliegue termine (en *Events* o *Logs* tiene que salir **Live**).
+6. Abre la dirección que te da Render ('https://umbrella-archives.onrender.com' o parecida) y añade '/api/estado' al final. Tiene que salir '{"ok":true,"bd":true}'.
+   - Si sale '"bd":false', el servidor funciona pero no conecta con Aiven: revisa 'DATABASE_URL' y 'MYSQL_CA' en *Environment* y pulsa *Manual Deploy → Deploy latest commit*.
+7. Prueba en esa dirección la portada, un listado, una ficha, el buscador, el registro y los expedientes.
+
+Cada vez que fusiones algo en 'main', Render vuelve a desplegar solo. El plan gratuito se duerme tras 15 minutos sin visitas, así que la primera carga después tarda de 30 a 60 segundos.
+
+### 11.4. Borrar el Static Site antiguo
+
+El sitio anterior era un *Static Site*: solo sirve HTML y no puede ejecutar el servidor de Node, así que sin la API no tiene datos ni acceso. **Bórralo solo cuando el paso 11.3 funcione.**
+
+1. En el panel de Render, abre el servicio antiguo (el que pone **Static Site**).
+2. Ve a **Settings**, baja hasta el final y pulsa **Delete Static Site**.
+3. Escribe el nombre que te pida para confirmar.
+
+Si tenías un dominio propio en el sitio antiguo, añádelo antes en *Settings → Custom Domains* del nuevo Web Service.
 
 ## 12. Guardar cambios sin perder nada
 
