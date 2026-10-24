@@ -17,7 +17,7 @@ archivos-umbrella/
 ├── web/                 # Maqueta original, sin modificar
 ├── src/img/             # Recursos originales adicionales
 ├── render.yaml          # Publicación estática en Render
-├── GUIA-DESDE-CERO.md   # Tutorial completo para principiantes
+├── GUIA-DESDE-CERO.md   # Tutorial completo
 └── README.md
 ```
 
@@ -48,13 +48,11 @@ npm run dev
 API local: http://localhost:3000/api/estado y http://localhost:3000/api/archivos.
 
 ## Publicación
-
 La web pública se genera directamente desde `web/`, sin compilar Angular. En Render, crea un **Static Site** conectado a `main` o usa `render.yaml` como Blueprint; directorio de publicación: `web`. La cuenta de Render debe seleccionar el workspace correcto. El servicio gratuito tiene límites de ancho de banda y minutos de build.
 
 **Sitio estático en Render:** https://umbrella-archives-static.onrender.com/ (servicio creado; comprobar estado de despliegue en Render). El antiguo servicio Docker `umbrella-archives.onrender.com` es independiente.
 
 ## Base de datos (Firebase Firestore)
-
 La wiki lee sus datos de **Cloud Firestore**. Todo el acceso está en `web/comun/firebase.js` (configuración, lectura, usuarios y datos iniciales); cada página solo importa lo que necesita. Mientras la configuración tenga los marcadores `TU_...`, la web funciona igual con los datos locales de `SEMILLA`, así que nunca se queda vacía.
 
 ### Puesta en marcha
@@ -160,16 +158,13 @@ service cloud.firestore {
 Estas reglas se han probado con el emulador de Firestore (`@firebase/rules-unit-testing`): 22 casos permitidos/denegados y la carga inicial de los 239 documentos como admin.
 
 ## Siguientes etapas
-Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, validar Render y finalmente construir JavaFX.
+Completar la migración de cada pantalla, ampliar datos, añadir pruebas y accesibilidad, conectar Angular a la API mediante una URL de entorno, incorporar autenticación y almacenamiento con reglas seguras, deploy y validar Render.
 
 **Tutorial detallado:** [GUIA-DESDE-CERO.md](GUIA-DESDE-CERO.md)
 
 ## Cuestionario público de Resident Evil
-
 El cuestionario de Google Forms está enlazado desde la portada y se muestra integrado en el centro de archivos de la web:
 
 - Formulario: https://forms.gle/uJMFdMTQGWCvDZzJ8
 - Web: https://umbrella-archives-static.onrender.com/wiki/index.html#cuestionario-saga
 - Código del formulario e integración: `web/comun/firebase.js`, `web/index.html` y `web/wiki/index.html`.
-
-No requiere iniciar sesión en Umbrella Archives; Google Forms puede aplicar sus propios requisitos de acceso según la configuración del formulario.
