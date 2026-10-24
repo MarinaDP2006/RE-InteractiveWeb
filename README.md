@@ -47,10 +47,21 @@ npm install
 copy .env.example .env      # y rellena los datos de tu MySQL
 ```
 
-Crea una base de datos vacía (por ejemplo `umbrella`) en MySQL Workbench o phpMyAdmin con la intercalación `utf8mb4_0900_ai_ci`. Después:
+La base de datos se llama `umbrella` y usa **utf8mb4** con cotejamiento **utf8mb4_general_ci**. `esquema.sql` ya la crea así (`CREATE DATABASE IF NOT EXISTS umbrella ...`), así que no hace falta crearla a mano. Hay dos formas de cargarla:
 
+**Con XAMPP y phpMyAdmin**
+1. Abre el panel de XAMPP y pulsa *Start* en **Apache** y **MySQL**.
+2. Entra en http://localhost/phpmyadmin → pestaña **Importar** → elige `servidor/bd/esquema.sql` → **Importar**.
+3. Repite con `servidor/bd/datos.sql`.
+4. En `servidor/.env` deja `MYSQL_HOST=localhost`, `MYSQL_USER=root`, `MYSQL_PASSWORD=` (vacía en XAMPP) y `MYSQL_DATABASE=umbrella`.
+
+**Con la terminal** (hace lo mismo que los pasos 2 y 3, con la base de datos del `.env`):
 ```powershell
 npm run bd:crear   # crea las tablas y carga los datos (¡borra lo que hubiera!)
+```
+
+Después arranca la web:
+```powershell
 npm run dev        # arranca el servidor y se reinicia al guardar cambios
 ```
 
@@ -94,13 +105,15 @@ El plan gratuito de Render se duerme tras 15 minutos sin visitas: la primera car
 | `usuarios` | `id` AUTO_INCREMENT | `email` UNIQUE, `nombre`, `foto`, `proveedor` (ENUM), `password_hash`, `google_id` UNIQUE, `rol` (ENUM), `creado`, `ultimo_acceso` | |
 | `sesiones` | `session_id` | `expires`, `data` | la gestiona express-mysql-session |
 
+Todas las tablas son InnoDB con `utf8mb4` y `utf8mb4_general_ci`, igual que la base de datos. Funciona en MySQL 8 y en el MariaDB de XAMPP.
+
 Todas las tablas de la wiki comparten `nombre`, `resumen`, `descripcion`, `imagen` (ruta desde `web/`) y `orden`.
 
 Decisiones:
 - **Una tabla por sección**, porque cada tipo de ficha tiene columnas distintas.
 - **Las listas van en tablas hijas** (protagonistas, galería de imágenes) con `FOREIGN KEY ... ON DELETE CASCADE`, y no como texto separado por comas. Así se respeta la primera forma normal.
 - **Ids legibles** (`leon`, `virus-t`) para que las URL sean claras: `ficha.html?c=personajes&id=leon`.
-- **Búsqueda con `LIKE`**: la intercalación `utf8mb4_0900_ai_ci` no distingue mayúsculas ni tildes, así que `nemesis` encuentra «Némesis».
+- **Búsqueda con `LIKE`**: el cotejamiento `utf8mb4_general_ci` no distingue mayúsculas ni tildes, así que `nemesis` encuentra «Némesis».
 
 ### API
 | Método y ruta | Qué hace |

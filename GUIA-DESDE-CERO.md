@@ -97,10 +97,16 @@ npm install
 copy .env.example .env
 ~~~~
 
-Abre 'servidor/.env' y pon los datos de tu MySQL. Crea antes una base de datos vacía llamada 'umbrella' en MySQL Workbench o phpMyAdmin. Después:
+Abre 'servidor/.env' y pon los datos de tu MySQL. Con XAMPP son: MYSQL_HOST=localhost, MYSQL_USER=root, MYSQL_PASSWORD vacía y MYSQL_DATABASE=umbrella.
+
+Para crear la base de datos (utf8mb4 con cotejamiento utf8mb4_general_ci) tienes dos opciones:
+
+- **phpMyAdmin**: arranca Apache y MySQL en XAMPP, abre http://localhost/phpmyadmin, ve a *Importar* y sube primero 'servidor/bd/esquema.sql' y después 'servidor/bd/datos.sql'. El primero crea la base 'umbrella' y sus tablas; el segundo mete las fichas.
+- **Terminal**: 'npm run bd:crear' hace lo mismo en la base de datos que pongas en el .env.
+
+Después arranca la web:
 
 ~~~~powershell
-npm run bd:crear
 npm run dev
 ~~~~
 

@@ -5,7 +5,12 @@ import { readFileSync } from "node:fs";
 import mysql from "mysql2/promise";
 import { configuracionMySQL } from "../bd.js";
 
-const leer = archivo => readFileSync(new URL(archivo, import.meta.url), "utf8");
+// Los .sql empiezan con CREATE DATABASE umbrella y USE umbrella para poder
+// importarlos en phpMyAdmin. Aquí se quitan esas líneas y se usa la base de
+// datos del .env (en Aiven, por ejemplo, se llama defaultdb).
+const leer = archivo => readFileSync(new URL(archivo, import.meta.url), "utf8")
+  .replace(/^CREATE DATABASE[^;]*;\s*$/gim, "")
+  .replace(/^USE [^;]*;\s*$/gim, "");
 
 const conexion = await mysql.createConnection(configuracionMySQL({ multipleStatements: true }));
 try {

@@ -107,8 +107,8 @@ api.get("/wiki/:seccion/:id", ruta(async (req, res) => {
   res.json(ficha);
 }));
 
-// Búsqueda en todas las secciones con LIKE. La intercalación utf8mb4_0900_ai_ci
-// de MySQL ignora mayúsculas y tildes: "nemesis" encuentra "Némesis".
+// Búsqueda en todas las secciones con LIKE. El cotejamiento utf8mb4_general_ci
+// ignora mayúsculas y tildes: "nemesis" encuentra "Némesis".
 api.get("/buscar", ruta(async (req, res) => {
   const termino = String(req.query.q || "").trim().slice(0, 60);
   if (!termino) return res.json([]);

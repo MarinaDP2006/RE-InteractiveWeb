@@ -1,10 +1,18 @@
 -- ============================================================
--- UMBRELLA ARCHIVES · Esquema de la base de datos (MySQL 8)
--- Se ejecuta con:  npm run bd:crear   (desde la carpeta servidor/)
+-- UMBRELLA ARCHIVES · Esquema de la base de datos (MySQL / MariaDB)
+-- Dos formas de ejecutarlo:
+--   a) npm run bd:crear   (desde la carpeta servidor/)
+--   b) phpMyAdmin (XAMPP): pestaña "Importar" → este archivo y después datos.sql
 -- Borra y vuelve a crear las tablas: úsalo solo para instalar o reiniciar.
+-- Juego de caracteres utf8mb4 (admite tildes, ñ y emojis) y cotejamiento
+-- utf8mb4_general_ci (no distingue mayúsculas ni tildes al buscar).
 -- ============================================================
 
-SET NAMES utf8mb4;
+CREATE DATABASE IF NOT EXISTS umbrella
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE umbrella;
+
+SET NAMES utf8mb4 COLLATE utf8mb4_general_ci;
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS juego_protagonistas, pelicula_protagonistas,
@@ -38,7 +46,7 @@ CREATE TABLE juegos (
   plataforma    VARCHAR(120),
   ambientacion  VARCHAR(150),
   INDEX idx_juegos_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE personajes (
   id                VARCHAR(60)  PRIMARY KEY,
@@ -52,7 +60,7 @@ CREATE TABLE personajes (
   estado            VARCHAR(60),
   nacimiento        VARCHAR(30),   -- texto: puede ser un año o "Desconocido"
   INDEX idx_personajes_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE criaturas (
   id                VARCHAR(60)  PRIMARY KEY,
@@ -65,7 +73,7 @@ CREATE TABLE criaturas (
   primera_aparicion VARCHAR(120),
   peligrosidad      TINYINT CHECK (peligrosidad BETWEEN 1 AND 5),
   INDEX idx_criaturas_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE virus (
   id                VARCHAR(60)  PRIMARY KEY,
@@ -78,7 +86,7 @@ CREATE TABLE virus (
   creador           VARCHAR(150),
   primera_aparicion VARCHAR(120),
   INDEX idx_virus_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE organizaciones (
   id          VARCHAR(60)  PRIMARY KEY,
@@ -92,7 +100,7 @@ CREATE TABLE organizaciones (
   lider       VARCHAR(150),
   estado      VARCHAR(60),
   INDEX idx_organizaciones_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE lugares (
   id                VARCHAR(60)  PRIMARY KEY,
@@ -105,7 +113,7 @@ CREATE TABLE lugares (
   primera_aparicion VARCHAR(120),
   anio              SMALLINT,
   INDEX idx_lugares_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE peliculas (
   id          VARCHAR(60)  PRIMARY KEY,
@@ -117,7 +125,7 @@ CREATE TABLE peliculas (
   anio        SMALLINT     NOT NULL,
   formato     VARCHAR(60),
   INDEX idx_peliculas_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE cronologia (
   id          VARCHAR(60)  PRIMARY KEY,
@@ -130,7 +138,7 @@ CREATE TABLE cronologia (
   anio        SMALLINT,
   juego       VARCHAR(120),
   INDEX idx_cronologia_orden (orden)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ------------------------------------------------------------
 -- 2) LISTAS DENTRO DE UNA FICHA (relaciones 1 a N)
@@ -146,7 +154,7 @@ CREATE TABLE juego_protagonistas (
   nombre   VARCHAR(120) NOT NULL,
   orden    INT          NOT NULL,
   FOREIGN KEY (juego_id) REFERENCES juegos(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE pelicula_protagonistas (
   id          INT AUTO_INCREMENT PRIMARY KEY,
@@ -154,7 +162,7 @@ CREATE TABLE pelicula_protagonistas (
   nombre      VARCHAR(120) NOT NULL,
   orden       INT          NOT NULL,
   FOREIGN KEY (pelicula_id) REFERENCES peliculas(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE personaje_imagenes (
   id           INT AUTO_INCREMENT PRIMARY KEY,
@@ -162,7 +170,7 @@ CREATE TABLE personaje_imagenes (
   imagen       VARCHAR(200) NOT NULL,
   orden        INT          NOT NULL,
   FOREIGN KEY (personaje_id) REFERENCES personajes(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE criatura_imagenes (
   id          INT AUTO_INCREMENT PRIMARY KEY,
@@ -170,7 +178,7 @@ CREATE TABLE criatura_imagenes (
   imagen      VARCHAR(200) NOT NULL,
   orden       INT          NOT NULL,
   FOREIGN KEY (criatura_id) REFERENCES criaturas(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ------------------------------------------------------------
 -- 3) CONTENIDO RESTRINGIDO
@@ -185,7 +193,7 @@ CREATE TABLE expedientes (
   texto   TEXT,
   imagen  VARCHAR(200),
   orden   INT          NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ------------------------------------------------------------
 -- 4) USUARIOS
@@ -205,7 +213,7 @@ CREATE TABLE usuarios (
   rol           ENUM('miembro', 'admin') NOT NULL DEFAULT 'miembro',
   creado        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   ultimo_acceso DATETIME
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ------------------------------------------------------------
 -- 5) SESIONES
@@ -217,4 +225,4 @@ CREATE TABLE sesiones (
   session_id VARCHAR(128) NOT NULL PRIMARY KEY,
   expires    INT UNSIGNED NOT NULL,
   data       MEDIUMTEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

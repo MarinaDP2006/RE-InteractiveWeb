@@ -1,9 +1,10 @@
 -- ============================================================
 -- UMBRELLA ARCHIVES · Datos de la wiki
--- Se cargan con:  npm run bd:crear   (después de esquema.sql)
+-- Se cargan con:  npm run bd:crear, o en phpMyAdmin importándolo después de esquema.sql
 -- ============================================================
 
-SET NAMES utf8mb4;
+USE umbrella;
+SET NAMES utf8mb4 COLLATE utf8mb4_general_ci;
 
 -- juegos (28)
 INSERT INTO juegos (id, nombre, categoria, imagen, resumen, descripcion, anio, plataforma, ambientacion, orden) VALUES
